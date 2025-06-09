@@ -94,8 +94,8 @@ export default function Home() {
               <br />
               최고의 복리후생을 제공합니다.
             </p>
-            <button className="bg-blue-600 text-white px-8 py-5 rounded-full font-semibold shadow-md hover:bg-blue-700 transition">
-              채용중인 분야 보기
+            <button className="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold shadow-md hover:bg-blue-700 transition">
+              채용중인 분야 보기 ＞
             </button>
           </div>
         </div>
