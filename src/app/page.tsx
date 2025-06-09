@@ -1,5 +1,5 @@
 import "./main.css";
-import { TypingAnimation } from "@/components/magicui/typing-animation";
+
 export default function Home() {
   return (
     <main className="main w-full min-h-screen flex flex-col items-center bg-white">
