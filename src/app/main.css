@@ -1,0 +1,62 @@
+.main__hero-content {
+    max-width: 1000px;
+    width: 100%;
+    margin: auto;
+}
+
+.main__hero-title {
+    line-height: 1.2;
+}
+
+.main__hero-btn {
+    padding: 1.5rem 12rem;
+    border: 1px solid #fff;
+    border-radius: 100px;
+    text-align: center;
+    display: inline-block;
+    color: #fff !important;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.main__hero-btn:hover {
+    background-color: #000;
+    color: #ffffff;
+    border: 1px solid #000;
+    transition: 0.5s ease-out;
+}
+
+.main__service {
+    max-width: 1000px;
+    margin: auto;
+    flex-wrap: wrap;
+    padding-bottom: 10rem;
+}
+
+.main__service_desc {
+    max-width: 680px;
+    padding: 120px 0 80px;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1.62;
+    color: #1e1e25;
+    letter-spacing: -0.3px;
+    word-break: keep-all;
+
+
+}
+
+@media (max-width: 768px) {
+    .main__service_desc {
+        padding: 60px 0 40px;
+        font-size: 18px;
+
+        margin: 0 auto;
+    }
+}
+
+.main__recruit-wrap {
+    width: 1000px;
+    margin: 0 auto;
+}

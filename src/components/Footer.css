@@ -1,0 +1,21 @@
+.footer__container {
+    border-top: 1px solid #e5e7eb;
+}
+
+.footer__logo {
+    letter-spacing: 1px;
+}
+
+.footer__link {
+    color: #64748b;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer__link:hover {
+    color: #2563eb;
+}
+
+.footer__copyright {
+    margin-top: 8px;
+}
