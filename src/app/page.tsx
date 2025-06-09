@@ -83,7 +83,7 @@ export default function Home() {
             backgroundPosition: "center",
           }}
         >
-          <div className="main__recruit-wrap max-w-lg px-4 text-left">
+          <div className="main__recruit-wrap px-4 text-left">
             <h2 className="text-2xl md:text-3xl font-bold mb-4 text-white">
               함께하실 분을 찾습니다.
             </h2>
