@@ -103,7 +103,8 @@ body {
     .main__hero-content,
     .main__recruit-wrap,
     .main__service {
-        max-width: 95vw;
+        width: 1000px;
+        margin: auto;
     }
 
     .main__hero-title {
