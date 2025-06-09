@@ -80,7 +80,7 @@ body {
 
 @media (min-width: 1024px) and (max-width: 1279px) {
     .main__recruit-wrap {
-        margin-left: 13rem;
+        margin-left: 0rem;
     }
 }
 
