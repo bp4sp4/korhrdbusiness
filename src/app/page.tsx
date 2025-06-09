@@ -32,8 +32,8 @@ export default function Home() {
           환경과 맞지 않는 교육을 선택하거나, 점점 더 복잡해지는 실무와 취업
           환경에 적용하지 못해 시작조차 어려워하는 경우가 많다는 사실을
           확인했습니다. 이에 한평생은 교육과 취업을 하나의 흐름으로 연결하는
-          실질적인 시스템을 구축하고, '시작부터 현장까지' 책임지는 교육을
-          실현하고 있습니다.
+          실질적인 시스템을 구축하고, &apos;시작부터 현장까지&apos; 책임지는
+          교육을 실현하고 있습니다.
         </p>
         <div className="main__service__items flex flex-col md:flex-row gap-8 w-full justify-center">
           <div className="main__service__item flex-1 text-center md:text-left">
@@ -41,9 +41,10 @@ export default function Home() {
               학생분들이 지인 환경부터 확인합니다.
             </h3>
             <p className="main__service__item-desc text-gray-500 text-base leading-relaxed">
-              한평생은 교육은 '어디서부터 시작하느냐'가 무엇보다 중요하다고
-              생각합니다. 학습자 각자의 환경과 여건을 먼저 이해하고, 그에 걸맞은
-              최적의 교유고가정을 제공함으로써 진짜 필요한 교육을 실현합니다.
+              한평생은 교육은 &apos;어디서부터 시작하느냐&apos;가 무엇보다
+              중요하다고 생각합니다. 학습자 각자의 환경과 여건을 먼저 이해하고,
+              그에 걸맞은 최적의 교유고가정을 제공함으로써 진짜 필요한 교육을
+              실현합니다.
             </p>
           </div>
           <div className="main__service__item flex-1 text-center md:text-left">

@@ -1,13 +1,14 @@
 "use client";
 
 import "./Footer.css";
+import Image from "next/image";
 
 export default function Footer() {
   return (
     <footer className="footer w-full bg-gray-50 footer__container">
       <div className="w-full max-w-4xl mx-auto flex flex-col items-center py-6">
         <div className="footer__logo flex text-lg font-bold text-blue-600 mb-2">
-          <img src="/images/logo.png" width={36} height={36} alt="logo" />
+          <Image src="/images/logo.png" width={36} height={36} alt="logo" />
           <p>한평생OOO</p>
         </div>
         <div className="footer__links flex gap-4 mb-2">

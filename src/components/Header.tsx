@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import styles from "./Header.module.css";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Header() {
   const [isTop, setIsTop] = useState(true);
@@ -23,7 +23,7 @@ export default function Header() {
       }`}
     >
       <div className="w-full max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
-        <a href="/" className="header__logo flex items-center gap-2">
+        <Link href="/" className="header__logo flex items-center gap-2">
           <Image
             src="/images/logo.png"
             alt="로고"
@@ -38,7 +38,7 @@ export default function Header() {
           >
             한평생OOO
           </span>
-        </a>
+        </Link>
         <nav
           className={`header__nav hidden md:flex gap-6 ${
             isTop ? "text-white" : "text-gray-900"
