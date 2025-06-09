@@ -30,10 +30,10 @@ export default function Home() {
           교육은 열심히 받았지만 왜 취업으로 이어지지 못할까요? 한평생OOOO은
           교육과 취업이 단절되는 근본 원인을 고민한 끝에, 많은 이들이 자신의
           환경과 맞지 않는 교육을 선택하거나, 점점 더 복잡해지는 실무와 취업
-          환경에 적용하지 못해 시작조차 어려워하는 경우가 많다는 사실을
+          환경에 적용하지 못하여 시작조차 어려워하는 경우가 많다는 사실을
           확인했습니다. 이에 한평생은 교육과 취업을 하나의 흐름으로 연결하는
-          실질적인 시스템을 구축하고, &apos;시작부터 현장까지&apos; 책임지는
-          교육을 실현하고 있습니다.
+          실질적인 시스템을 구축하고, '시작부터 현장까지' 책임지는 맞춤형
+          실무중심 교육을 실현하고 있습니다.
         </p>
         <div className="main__service__items flex flex-col md:flex-row gap-8 w-full justify-center">
           <div className="main__service__item flex-1 text-center md:text-left">
