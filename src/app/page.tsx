@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <main className="main w-full min-h-screen flex flex-col items-center bg-white">
       <section
-        className="main__hero w-full max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between px-4 py-12 relative overflow-hidden"
+        className="main__hero w-full max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between py-12 relative overflow-hidden"
         style={{
           backgroundImage: "url('/images/main__banner2.png')",
           backgroundSize: "cover",
@@ -15,7 +15,7 @@ export default function Home() {
           maxWidth: "100%",
         }}
       >
-        <div className="main__hero-content flex-1 flex flex-col items-start z-10 p-6 rounded-lg md:bg-transparent md:p-0">
+        <div className="main__hero-content flex-1 flex flex-col items-start z-10 rounded-lg md:bg-transparent md:p-0">
           <div className="main__hero-title text-white text-5xl md:text-7xl mb-6 flex flex-col gap-3">
             <TypingAnimation
               duration={40}
@@ -58,7 +58,7 @@ export default function Home() {
         </p>
         <div className="main__service__items flex flex-col md:flex-row gap-8 w-full justify-center">
           <div className="main__service__item flex-1 text-center md:text-left">
-            <h3 className="main__service__item-title text-[24px] font-semibold mb-4 text-gray-600">
+            <h3 className="main__service__item-title text-[21px] font-semibold mb-4 text-gray-600">
               학생분들이 지인 환경부터 확인합니다.
             </h3>
             <p className="main__service__item-desc text-gray-500 text-base leading-relaxed">
@@ -69,7 +69,7 @@ export default function Home() {
             </p>
           </div>
           <div className="main__service__item flex-1 text-center md:text-left">
-            <h3 className="main__service__item-title text-[24px] font-semibold mb-4 text-gray-600">
+            <h3 className="main__service__item-title text-[21px] font-semibold mb-4 text-gray-600">
               꼼꼼하고 세밀하게 관리합니다.
             </h3>
             <p className="main__service__item-desc text-gray-500 text-base leading-relaxed">
@@ -80,7 +80,7 @@ export default function Home() {
             </p>
           </div>
           <div className="main__service__item flex-1 text-center md:text-left">
-            <h3 className="main__service__item-title text-[24px] font-semibold mb-4 text-gray-600">
+            <h3 className="main__service__item-title text-[21px] font-semibold mb-4 text-gray-600">
               실기와 취업은 저희 몫입니다.
             </h3>
             <p className="main__service__item-desc text-gray-500 text-base leading-relaxed">
@@ -105,7 +105,7 @@ export default function Home() {
             height: "480px",
           }}
         >
-          <div className="main__recruit-wrap px-4 text-left">
+          <div className="main__recruit-wrap text-left">
             <h2 className="text-[30px] md:text-[30px] font-semibold mb-4 text-white">
               함께하실 분을 찾습니다.
             </h2>
