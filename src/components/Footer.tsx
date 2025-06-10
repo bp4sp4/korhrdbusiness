@@ -9,7 +9,7 @@ export default function Footer() {
   return (
     <footer className="w-full bg-[#f7f8fa] text-[#222b45]">
       <div className="footer__wrap max-w-6xl mx-auto py-8">
-        <div className="flex flex-col md:flex-row items-start gap-12 mb-8">
+        <div className="flex flex-col md:flex-row items-start text-[#666] text-[15px] gap-[20px] mb-8">
           <div className="min-w-[120px]">
             <div className="font-bold mb-2">서비스</div>
             <Link href="/notice" className="mb-1 block hover:underline">
@@ -98,8 +98,8 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-8">
           {/* 회사 텍스트 정보 */}
           <div className="text-sm text-[#666] text-center md:text-left">
-            <div className="font-bold text-lg text-[#222b45] mb-1">
-              한평생교육그룹
+            <div className="font-bold text-[15px] pb-[16px] text-[#222b45] mb-1">
+              (주)한평생교육그룹
             </div>
             <div>
               사업자등록번호 : 227-88-03196 | 직업평생교육시설신고 (제

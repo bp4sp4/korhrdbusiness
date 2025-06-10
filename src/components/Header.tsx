@@ -15,13 +15,15 @@ export default function Header() {
       <div className="w-full max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
         <Link href="/" className="header__logo flex items-center gap-2">
           <Image
-            src="/images/logo.png"
+            src="/images/logo2.png"
             alt="로고"
-            width={36}
-            height={36}
+            width={30}
+            height={30}
             className="header__logo-img"
           />
-          <span className="text-xl font-bold text-white">한평생OOO</span>
+          <span className="text-2xl font-bold text-white">
+            한평생<span className="text-[22px] font-normal">Guidance</span>
+          </span>
         </Link>
         <nav className="header__nav hidden md:flex gap-3 text-white">
           <Link href="/about" className="group">
@@ -29,7 +31,7 @@ export default function Header() {
               회사소개
             </span>
           </Link>
-          <Link href="/service" className="group">
+          <Link href="/#" className="group">
             <span className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)]">
               교육서비스
             </span>
@@ -39,7 +41,7 @@ export default function Header() {
               설계사채용
             </span>
           </Link>
-          <Link href="/contact" className="group">
+          <Link href="/counsel" className="group">
             <span className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)]">
               교육상담받기
             </span>
