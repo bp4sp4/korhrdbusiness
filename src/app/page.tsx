@@ -19,7 +19,7 @@ export default function Home() {
           <div className="main__hero-title text-white text-5xl md:text-7xl mb-6 flex flex-col gap-3">
             <TypingAnimation
               duration={40}
-              className="text-white text-5xl md:text-5xl font-normal"
+              className="text-white text-5xl md:text-3xl font-normal"
             >
               EP.1 취업난 해결 프로젝트
             </TypingAnimation>
@@ -28,7 +28,7 @@ export default function Home() {
               className="text-white text-5xl md:text-5xl font-bold"
               delay={1200}
             >
-              한평생OOO
+              한평생Guidance
             </TypingAnimation>
           </div>
           <div className="main__hero-buttons flex">
