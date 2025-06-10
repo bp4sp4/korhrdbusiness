@@ -44,9 +44,9 @@ export default function Header() {
             isTop ? "text-white" : "text-gray-900"
           }`}
         >
-          <a href="#" className="header__nav-link">
+          <Link href="/about" className="header__nav-link">
             회사소개
-          </a>
+          </Link>
           <a href="#" className="header__nav-link">
             교육서비스
           </a>
