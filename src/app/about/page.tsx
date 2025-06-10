@@ -22,6 +22,7 @@ import {
   type Variants,
 } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 function cn(...classes: (string | undefined | null | boolean)[]): string {
   return classes.filter(Boolean).join(" ");
@@ -347,7 +348,7 @@ const AboutUsPage: React.FC<AboutUsProps> = ({
   title = "한평생교육그룹 소개",
   description = "평생교육의 교육이념 실현의 선두주자 한평생교육그룹은 언제 어디서든 교육받을 수 있는 환경과 양질의 컨텐츠를 제공하는 것이 목표입니다.",
   mainImage = {
-    src: "/images/office_meeting.png",
+    src: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop",
     alt: "21dev MCP 팀",
   },
   secondaryImage = {
@@ -359,25 +360,17 @@ const AboutUsPage: React.FC<AboutUsProps> = ({
     alt: "21dev MCP 로고",
     title: "혁신적인 기술 솔루션",
     description:
-      "한평생교육그룹은 평생교육 관련 파트별로 계열사를 두어 분야에 맞는 전문서비스를 운영하고 있습니다.",
+      "AI, 클라우드, 모바일 앱 개발 등 최신 기술을 활용하여 고객의 비즈니스 목표를 달성합니다.",
+    buttonText: "자세히 보기",
+    buttonUrl: "#",
   },
-
-  achievementsTitle = "우리의 성과",
-  achievementsDescription = "지속적인 혁신과 고객 만족을 통해 달성한 의미있는 성과들입니다.",
-  achievements = [
-    { label: "완료된 프로젝트", value: "500+" },
-    { label: "만족한 고객사", value: "200+" },
-    { label: "고객 만족도", value: "98%" },
-    { label: "수상 경력", value: "15+" },
-  ],
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationFrameId = useRef<number | null>(null);
-  const [isScrolled, setIsScrolled] = useState<boolean>(false);
 
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, "change", (latest) => {
-    setIsScrolled(latest > 10);
+    // setIsScrolled(latest > 10); // 이 줄도 삭제
   });
 
   const dotsRef = useRef<Dot[]>([]);
@@ -601,22 +594,6 @@ const AboutUsPage: React.FC<AboutUsProps> = ({
     };
   }, [handleResize, handleMouseMove, animateDots]);
 
-  const headerVariants: Variants = {
-    top: {
-      backgroundColor: "rgba(255, 255, 255, 0.8)",
-      borderBottomColor: "rgba(229, 231, 235, 0.5)",
-      position: "fixed",
-      boxShadow: "none",
-    },
-    scrolled: {
-      backgroundColor: "rgba(255, 255, 255, 0.95)",
-      borderBottomColor: "rgba(209, 213, 219, 0.7)",
-      boxShadow:
-        "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
-      position: "fixed",
-    },
-  };
-
   const contentDelay = 0.3;
   const itemDelayIncrement = 0.15;
 
@@ -733,16 +710,21 @@ const AboutUsPage: React.FC<AboutUsProps> = ({
               animate="visible"
               className="grid gap-7 lg:grid-cols-3 mb-20"
             >
-              <img
+              <Image
                 src={mainImage.src}
                 alt={mainImage.alt}
+                width={800}
+                height={600}
                 className="size-full max-h-[620px] rounded-xl object-cover lg:col-span-2 shadow-2xl"
+                priority
               />
               <div className="flex flex-col gap-7 md:flex-row lg:flex-col">
                 <div className="flex flex-col justify-between gap-6 rounded-xl bg-muted p-7 md:w-1/2 lg:w-auto shadow-lg">
-                  <img
+                  <Image
                     src={breakout.src}
                     alt={breakout.alt}
+                    width={48}
+                    height={48}
                     className="mr-auto h-12 w-12 rounded-lg object-cover"
                   />
                   <div>
@@ -754,9 +736,11 @@ const AboutUsPage: React.FC<AboutUsProps> = ({
                     </p>
                   </div>
                 </div>
-                <img
+                <Image
                   src={secondaryImage.src}
                   alt={secondaryImage.alt}
+                  width={400}
+                  height={600}
                   className="grow basis-0 rounded-xl object-cover md:w-1/2 lg:min-h-0 lg:w-auto shadow-lg"
                 />
               </div>
