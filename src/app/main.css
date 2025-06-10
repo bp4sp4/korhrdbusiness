@@ -1,9 +1,7 @@
 @import url('https://static.toss.im/tps/main.css');
 @import url('https://static.toss.im/tps/others.css');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
 
 @font-face {
     font-family: 'Pretendard-Regular';
