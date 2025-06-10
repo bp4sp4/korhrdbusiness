@@ -19,20 +19,20 @@ export default function Home() {
           <div className="main__hero-title text-white text-5xl md:text-7xl mb-6 flex flex-col gap-3">
             <TypingAnimation
               duration={40}
-              className="text-white text-5xl md:text-4xl font-normal"
+              className="text-white text-5xl md:text-5xl font-normal"
             >
               취업난 해결 프로젝트
             </TypingAnimation>
             <TypingAnimation
               duration={40}
-              className="text-white text-5xl md:text-4xl font-normal"
+              className="text-white text-5xl md:text-5xl font-normal"
               delay={1200}
             >
               교육과 취업을 잇다
             </TypingAnimation>
             <TypingAnimation
               duration={40}
-              className="text-white text-5xl md:text-4xl font-bold"
+              className="text-white text-5xl md:text-5xl font-bold"
               delay={2200}
             >
               한평생OOO
@@ -45,17 +45,20 @@ export default function Home() {
       </section>
       <section className="main__service w-full mx-auto flex bg-white">
         <p className="main__service_desc text-black">
-          교육은 열심히 받았지만 왜 취업으로 이어지지 못할까요? 한평생OOOO은
-          교육과 취업이 단절되는 근본 원인을 고민한 끝에, 많은 이들이 자신의
-          환경과 맞지 않는 교육을 선택하거나, 점점 더 복잡해지는 실무와 취업
-          환경에 적용하지 못하여 시작조차 어려워하는 경우가 많다는 사실을
-          확인했습니다. 이에 한평생은 교육과 취업을 하나의 흐름으로 연결하는
-          실질적인 시스템을 구축하고, &apos;시작부터 현장까지&apos; 책임지는
-          맞춤형 실무중심 교육을 실현하고 있습니다.
+          교육은 열심히 받았지만 왜 취업으로 이어지지 못할까요?
+          <br /> 한평생OOOO은 교육과 취업이 단절되는 근본 원인을 고민한 끝에,
+          <br />
+          많은 이들이 자신의 환경과 맞지 않는 교육을 선택하거나,
+          <br /> 점점 더 복잡해지는 실무와 취업 환경에 적용하지 못하여
+          <br /> 시작조차 어려워하는 경우가 많다는 사실을 확인했습니다.
+          <br /> 이에 한평생은 교육과 취업을 하나의 흐름으로 연결하는
+          <br /> 실질적인 시스템을 구축하고, &apos;시작부터 현장까지&apos;
+          책임지는
+          <br /> 맞춤형 실무중심 교육을 실현하고 있습니다.
         </p>
         <div className="main__service__items flex flex-col md:flex-row gap-8 w-full justify-center">
           <div className="main__service__item flex-1 text-center md:text-left">
-            <h3 className="main__service__item-title text-xl font-bold mb-4 text-gray-700">
+            <h3 className="main__service__item-title text-[24px] font-semibold mb-4 text-gray-600">
               학생분들이 지인 환경부터 확인합니다.
             </h3>
             <p className="main__service__item-desc text-gray-500 text-base leading-relaxed">
@@ -66,7 +69,7 @@ export default function Home() {
             </p>
           </div>
           <div className="main__service__item flex-1 text-center md:text-left">
-            <h3 className="main__service__item-title text-xl font-bold mb-4 text-gray-700">
+            <h3 className="main__service__item-title text-[24px] font-semibold mb-4 text-gray-600">
               꼼꼼하고 세밀하게 관리합니다.
             </h3>
             <p className="main__service__item-desc text-gray-500 text-base leading-relaxed">
@@ -77,7 +80,7 @@ export default function Home() {
             </p>
           </div>
           <div className="main__service__item flex-1 text-center md:text-left">
-            <h3 className="main__service__item-title text-xl font-bold mb-4 text-gray-700">
+            <h3 className="main__service__item-title text-[24px] font-semibold mb-4 text-gray-600">
               실기와 취업은 저희 몫입니다.
             </h3>
             <p className="main__service__item-desc text-gray-500 text-base leading-relaxed">
@@ -99,20 +102,21 @@ export default function Home() {
             backgroundImage: "url('/images/metting.png')",
             backgroundSize: "cover",
             backgroundPosition: "center",
+            height: "480px",
           }}
         >
           <div className="main__recruit-wrap px-4 text-left">
-            <h2 className="text-2xl md:text-2xl font-bold mb-4 text-white">
+            <h2 className="text-[30px] md:text-[30px] font-semibold mb-4 text-white">
               함께하실 분을 찾습니다.
             </h2>
-            <p className="text-white text-lg mb-8">
+            <p className="text-white text-[17px] mb-8">
               판매 실적이 아닌, 고객만족 중심의 파격적인 보상을 드립니다.
               <br />
               오직 고객 만족에만 집중할 수 있는 업무 환경과
               <br />
               최고의 복리후생을 제공합니다.
             </p>
-            <button className="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold shadow-md hover:bg-blue-700 transition">
+            <button className="bg-blue-600 text-white px-[36px] py-[16px] rounded-full font-semibold shadow-md hover:bg-blue-700 transition">
               채용중인 지점 보기 ＞
             </button>
           </div>

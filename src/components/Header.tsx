@@ -25,22 +25,22 @@ export default function Header() {
         </Link>
         <nav className="header__nav hidden md:flex gap-3 text-white">
           <Link href="/about" className="group">
-            <span className="header__nav-link text-lg px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)]">
+            <span className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)]">
               회사소개
             </span>
           </Link>
           <Link href="/service" className="group">
-            <span className="header__nav-link text-lg px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)]">
+            <span className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)]">
               교육서비스
             </span>
           </Link>
           <Link href="/recruit" className="group">
-            <span className="header__nav-link text-lg px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)]">
+            <span className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)]">
               설계사채용
             </span>
           </Link>
           <Link href="/contact" className="group">
-            <span className="header__nav-link text-lg px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)]">
+            <span className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)]">
               교육상담받기
             </span>
           </Link>
