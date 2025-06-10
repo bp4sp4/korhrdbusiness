@@ -313,7 +313,6 @@ interface Dot {
 }
 
 interface AboutUsProps {
-  title?: string;
   description?: string;
   mainImage?: {
     src: string;
@@ -345,7 +344,6 @@ interface AboutUsProps {
 }
 
 const AboutUsPage: React.FC<AboutUsProps> = ({
-  title = "한평생교육그룹 소개",
   description = "평생교육의 교육이념 실현의 선두주자 한평생교육그룹은 언제 어디서든 교육받을 수 있는 환경과 양질의 컨텐츠를 제공하는 것이 목표입니다.",
   mainImage = {
     src: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop",
