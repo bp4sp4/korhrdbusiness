@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="w-full bg-[#f7f8fa] text-[#222b45]">
-      <div className="footer__wrap max-w-6xl mx-auto px-4 py-8">
+      <div className="footer__wrap max-w-6xl mx-auto py-8">
         <div className="flex flex-col md:flex-row items-start gap-12 mb-8">
           <div className="min-w-[120px]">
             <div className="font-bold mb-2">서비스</div>
