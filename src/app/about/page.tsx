@@ -601,7 +601,7 @@ const AboutUsPage = () => {
   const description =
     "평생교육의 교육이념 실현의 선두주자 한평생교육그룹은 언제 어디서든 교육받을 수 있는 환경과 양질의 컨텐츠를 제공하는 것이 목표입니다.";
   const mainImage = {
-    src: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop",
+    src: "/images/office_meeting.png",
     alt: "21dev MCP 팀",
   };
   const secondaryImage = {
