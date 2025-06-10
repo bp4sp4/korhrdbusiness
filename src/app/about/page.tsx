@@ -312,57 +312,7 @@ interface Dot {
   currentRadius: number;
 }
 
-interface AboutUsProps {
-  description?: string;
-  mainImage?: {
-    src: string;
-    alt: string;
-  };
-  secondaryImage?: {
-    src: string;
-    alt: string;
-  };
-  breakout?: {
-    src: string;
-    alt: string;
-    title?: string;
-    description?: string;
-    buttonText?: string;
-    buttonUrl?: string;
-  };
-  companiesTitle?: string;
-  companies?: Array<{
-    src: string;
-    alt: string;
-  }>;
-  achievementsTitle?: string;
-  achievementsDescription?: string;
-  achievements?: Array<{
-    label: string;
-    value: string;
-  }>;
-}
-
-const AboutUsPage: React.FC<AboutUsProps> = ({
-  description = "평생교육의 교육이념 실현의 선두주자 한평생교육그룹은 언제 어디서든 교육받을 수 있는 환경과 양질의 컨텐츠를 제공하는 것이 목표입니다.",
-  mainImage = {
-    src: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop",
-    alt: "21dev MCP 팀",
-  },
-  secondaryImage = {
-    src: "/images/chart.jpg",
-    alt: "현대적인 오피스",
-  },
-  breakout = {
-    src: "/images/logo.png",
-    alt: "21dev MCP 로고",
-    title: "혁신적인 기술 솔루션",
-    description:
-      "AI, 클라우드, 모바일 앱 개발 등 최신 기술을 활용하여 고객의 비즈니스 목표를 달성합니다.",
-    buttonText: "자세히 보기",
-    buttonUrl: "#",
-  },
-}) => {
+const AboutUsPage = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationFrameId = useRef<number | null>(null);
 
@@ -646,6 +596,26 @@ const AboutUsPage: React.FC<AboutUsProps> = ({
       y: 0,
       transition: { duration: 0.8, ease: "easeOut" },
     },
+  };
+
+  const description =
+    "평생교육의 교육이념 실현의 선두주자 한평생교육그룹은 언제 어디서든 교육받을 수 있는 환경과 양질의 컨텐츠를 제공하는 것이 목표입니다.";
+  const mainImage = {
+    src: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop",
+    alt: "21dev MCP 팀",
+  };
+  const secondaryImage = {
+    src: "/images/chart.jpg",
+    alt: "현대적인 오피스",
+  };
+  const breakout = {
+    src: "/images/logo.png",
+    alt: "21dev MCP 로고",
+    title: "혁신적인 기술 솔루션",
+    description:
+      "AI, 클라우드, 모바일 앱 개발 등 최신 기술을 활용하여 고객의 비즈니스 목표를 달성합니다.",
+    buttonText: "자세히 보기",
+    buttonUrl: "#",
   };
 
   return (
