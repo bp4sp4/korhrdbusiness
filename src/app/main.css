@@ -1,3 +1,10 @@
+@import url('https://static.toss.im/tps/main.css');
+@import url('https://static.toss.im/tps/others.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
     font-family: 'Pretendard-Regular';
     src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
@@ -5,8 +12,8 @@
     font-style: normal;
 }
 
-body {
-    font-family: 'Pretendard-Regular', sans-serif !important;
+* {
+    font-family: 'Toss Product Sans' !important;
 }
 
 .main__hero-content {
@@ -22,7 +29,7 @@ body {
 .main__hero-btn {
     padding: 1.5rem 12rem;
     border: 1px solid #fff;
-    border-radius: 100px;
+    border-radius: 10px;
     text-align: center;
     display: inline-block;
     color: #fff;
@@ -46,9 +53,9 @@ body {
 }
 
 .main__service_desc {
-    max-width: 640px;
+    max-width: 550px;
     padding: 120px 0 80px;
-    font-size: 26px;
+    font-size: 23px;
     font-weight: 600;
     line-height: 1.62;
     color: #1e1e25;

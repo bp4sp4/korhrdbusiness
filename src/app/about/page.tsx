@@ -611,9 +611,9 @@ const AboutUsPage = () => {
   const breakout = {
     src: "/images/logo.png",
     alt: "21dev MCP 로고",
-    title: "혁신적인 기술 솔루션",
+    title: "평생교육 컨설팅",
     description:
-      "AI, 클라우드, 모바일 앱 개발 등 최신 기술을 활용하여 고객의 비즈니스 목표를 달성합니다.",
+      "각종 교육제도를 이용하여 평생교육을 전문적으로 받을 수 있게 컨설팅해 주는 사업을 꾸준하게 진행하고 있습니다.",
     buttonText: "자세히 보기",
     buttonUrl: "#",
   };
@@ -786,20 +786,8 @@ const AboutUsPage = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button size="lg" className="text-base px-8">
+                <Button size="lg" className="text-base px-10 py-7">
                   프로젝트 상담받기
-                </Button>
-              </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="text-base px-8 bg-white hover:bg-gray-50"
-                >
-                  포트폴리오 보기
                 </Button>
               </motion.div>
             </motion.div>

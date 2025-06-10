@@ -5,22 +5,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Header() {
-  const [isTop, setIsTop] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsTop(window.scrollY < 40);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
     <header
-      className={`header w-full fixed top-0 left-0 z-50 transition-colors duration-300 ${
-        isTop ? "bg-transparent" : "bg-white shadow"
-      }`}
+      className="header w-full fixed top-0 left-0 z-50 transition-colors duration-300"
+      style={{ backgroundColor: "#191f28" }}
     >
       <div className="w-full max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
         <Link href="/" className="header__logo flex items-center gap-2">
@@ -31,36 +21,32 @@ export default function Header() {
             height={36}
             className="header__logo-img"
           />
-          <span
-            className={`text-xl font-bold ${
-              isTop ? "text-white" : "text-gray-600"
-            }`}
-          >
-            한평생OOO
-          </span>
+          <span className="text-xl font-bold text-white">한평생OOO</span>
         </Link>
-        <nav
-          className={`header__nav hidden md:flex gap-6 ${
-            isTop ? "text-white" : "text-gray-900"
-          }`}
-        >
-          <Link href="/about" className="header__nav-link">
-            회사소개
+        <nav className="header__nav hidden md:flex gap-3 text-white">
+          <Link href="/about" className="group">
+            <span className="header__nav-link text-lg px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)]">
+              회사소개
+            </span>
           </Link>
-          <a href="#" className="header__nav-link">
-            교육서비스
-          </a>
-          <a href="#" className="header__nav-link">
-            설계사채용
-          </a>
-          <a href="#" className="header__nav-link">
-            교육상담받기
-          </a>
+          <Link href="/service" className="group">
+            <span className="header__nav-link text-lg px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)]">
+              교육서비스
+            </span>
+          </Link>
+          <Link href="/recruit" className="group">
+            <span className="header__nav-link text-lg px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)]">
+              설계사채용
+            </span>
+          </Link>
+          <Link href="/contact" className="group">
+            <span className="header__nav-link text-lg px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)]">
+              교육상담받기
+            </span>
+          </Link>
         </nav>
         <button
-          className={`header__menu-btn md:hidden ${
-            isTop ? "text-white" : "text-gray-900"
-          }`}
+          className="header__menu-btn md:hidden text-white"
           onClick={() => setMenuOpen((open) => !open)}
         >
           <span className="header__menu-icon">☰</span>
@@ -118,6 +104,7 @@ export default function Header() {
           </div>
         </div>
       )}
+      {/* 스타일은 Tailwind group-hover로 대체 */}
     </header>
   );
 }

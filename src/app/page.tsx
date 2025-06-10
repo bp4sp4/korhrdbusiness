@@ -1,4 +1,5 @@
 import "./main.css";
+import { TypingAnimation } from "@/components/magicui/typing-animation";
 
 export default function Home() {
   return (
@@ -9,17 +10,34 @@ export default function Home() {
           backgroundImage: "url('/images/main__banner2.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
+          backgroundAttachment: "fixed",
           height: "100vh",
           maxWidth: "100%",
         }}
       >
         <div className="main__hero-content flex-1 flex flex-col items-start z-10 p-6 rounded-lg md:bg-transparent md:p-0">
-          <h1 className="main__hero-title text-white text-3xl md:text-5xl mb-6">
-            대한민국의 취업난 해결 프로젝트 <br />
-            교육과 취업을 잇다
-            <br />
-            <strong>한평생OOO</strong>
-          </h1>
+          <div className="main__hero-title text-white text-5xl md:text-7xl mb-6 flex flex-col gap-3">
+            <TypingAnimation
+              duration={40}
+              className="text-white text-5xl md:text-4xl font-normal"
+            >
+              취업난 해결 프로젝트
+            </TypingAnimation>
+            <TypingAnimation
+              duration={40}
+              className="text-white text-5xl md:text-4xl font-normal"
+              delay={1200}
+            >
+              교육과 취업을 잇다
+            </TypingAnimation>
+            <TypingAnimation
+              duration={40}
+              className="text-white text-5xl md:text-4xl font-bold"
+              delay={2200}
+            >
+              한평생OOO
+            </TypingAnimation>
+          </div>
           <div className="main__hero-buttons flex">
             <a className="main__hero-btn">Button</a>
           </div>
@@ -84,7 +102,7 @@ export default function Home() {
           }}
         >
           <div className="main__recruit-wrap px-4 text-left">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-white">
+            <h2 className="text-2xl md:text-2xl font-bold mb-4 text-white">
               함께하실 분을 찾습니다.
             </h2>
             <p className="text-white text-lg mb-8">
@@ -95,7 +113,7 @@ export default function Home() {
               최고의 복리후생을 제공합니다.
             </p>
             <button className="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold shadow-md hover:bg-blue-700 transition">
-              채용중인 분야 보기 ＞
+              채용중인 지점 보기 ＞
             </button>
           </div>
         </div>
