@@ -369,7 +369,7 @@ const AboutUsPage: React.FC<AboutUsProps> = ({
   const animationFrameId = useRef<number | null>(null);
 
   const { scrollY } = useScroll();
-  useMotionValueEvent(scrollY, "change", (latest) => {
+  useMotionValueEvent(scrollY, "change", () => {
     // setIsScrolled(latest > 10); // 이 줄도 삭제
   });
 
