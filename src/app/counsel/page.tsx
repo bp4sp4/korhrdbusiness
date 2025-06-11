@@ -6,10 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import {
   Calendar,
-  Clock,
   User,
-  Phone,
-  Mail,
   MessageSquare,
   Briefcase,
   GraduationCap,
@@ -143,7 +140,7 @@ const CareerConsultationUI = () => {
         process.env.NEXT_PUBLIC_EMAILJS_USER_ID!
       )
       .then(
-        (result) => {
+        () => {
           alert("상담 신청이 성공적으로 전송되었습니다!");
           setIsSubmitted(true);
           setTimeout(() => {
@@ -164,7 +161,7 @@ const CareerConsultationUI = () => {
             setIsSubmitting(false);
           }, 2000);
         },
-        (error) => {
+        () => {
           alert("전송에 실패했습니다. 다시 시도해주세요.");
           setIsSubmitting(false);
         }
