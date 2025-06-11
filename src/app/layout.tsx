@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "한평생OOO",
-  description: "한평생OOO",
+  title: "한평생Guidance",
+  description: "한평생Guidance 입니다.",
 };
 
 export default function RootLayout({
