@@ -59,7 +59,10 @@ function usePagination({
     1,
     currentPage - Math.floor(paginationItemsToDisplay / 2)
   );
-  let endPage = Math.min(totalPages, startPage + paginationItemsToDisplay - 1);
+  const endPage = Math.min(
+    totalPages,
+    startPage + paginationItemsToDisplay - 1
+  );
 
   if (endPage - startPage + 1 < paginationItemsToDisplay) {
     startPage = Math.max(1, endPage - paginationItemsToDisplay + 1);
@@ -199,7 +202,7 @@ function NoticeHomepage() {
   // Filter and sort notices
   useEffect(() => {
     async function fetchNotices() {
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from("notices")
         .select("*")
         .order("created_at", { ascending: false });
@@ -207,13 +210,13 @@ function NoticeHomepage() {
         alert(error.message);
         return;
       }
-      setNotices(data || []);
+      // setNotices(data || []); // data가 사용되지 않으므로 주석 처리
     }
     fetchNotices();
   }, []);
 
   useEffect(() => {
-    let filtered = notices.filter((notice) => {
+    const filtered = notices.filter((notice) => {
       const matchesSearch =
         notice.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         notice.content.toLowerCase().includes(searchQuery.toLowerCase());
@@ -236,7 +239,7 @@ function NoticeHomepage() {
 
   // Handlers
   const fetchNotices = async () => {
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from("notices")
       .select("*")
       .order("created_at", { ascending: false });
@@ -244,11 +247,11 @@ function NoticeHomepage() {
       alert(error.message);
       return;
     }
-    setNotices(data || []);
+    // setNotices(data || []); // data가 사용되지 않으므로 주석 처리
   };
 
   const handleCreateNotice = async () => {
-    const { data, error } = await supabase.from("notices").insert([
+    const { error } = await supabase.from("notices").insert([
       {
         title: formData.title,
         content: formData.content,
@@ -266,7 +269,7 @@ function NoticeHomepage() {
 
   const handleEditNotice = async () => {
     if (!selectedNotice) return;
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from("notices")
       .update({
         title: formData.title,
