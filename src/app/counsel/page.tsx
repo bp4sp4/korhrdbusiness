@@ -40,6 +40,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import emailjs from "emailjs-com";
+import { supabase } from "@/lib/supabase";
 
 interface ConsultationFormData {
   name: string;
@@ -111,11 +112,25 @@ const CareerConsultationUI = () => {
     }
   };
 
-  const handleSubmit = (e?: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e?: React.FormEvent<HTMLFormElement>) => {
     if (e) e.preventDefault();
     if (isSubmitting) return;
     setIsSubmitting(true);
 
+    // 1. Supabase에 저장
+    const { error } = await supabase.from("consultations").insert([
+      {
+        ...formData,
+        created_at: new Date().toISOString(),
+      },
+    ]);
+    if (error) {
+      alert("DB 저장 실패: " + error.message);
+      setIsSubmitting(false);
+      return;
+    }
+
+    // 2. emailjs 전송 (기존 코드)
     const templateParams = {
       title: "상담 신청",
       name: formData.name,

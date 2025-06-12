@@ -28,7 +28,7 @@ export default function AdminLoginPage() {
       await supabase.auth.signOut();
       return;
     }
-    router.push("/notice"); // 로그인 후 이동
+    router.push("/"); // 로그인 후 이동
 
     // 30분 후 자동 로그아웃 타이머 설정
     if (logoutTimer.current) clearTimeout(logoutTimer.current);

@@ -1,11 +1,47 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { supabase } from "@/lib/supabase";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    async function checkAdmin() {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (!user) {
+        setIsAdmin(false);
+        return;
+      }
+      const { data: admins } = await supabase
+        .from("admins")
+        .select("email")
+        .eq("email", user.email);
+      setIsAdmin(Array.isArray(admins) && admins.length > 0);
+    }
+    checkAdmin();
+
+    // 로그인/로그아웃 등 인증 상태 변화 감지
+    const { data: listener } = supabase.auth.onAuthStateChange(() => {
+      checkAdmin();
+    });
+
+    return () => {
+      listener?.subscription.unsubscribe();
+    };
+  }, []);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    router.push("/admin/login");
+  };
 
   return (
     <header
@@ -25,7 +61,7 @@ export default function Header() {
             한평생<span className="text-[22px] font-normal">Guidance</span>
           </span>
         </Link>
-        <nav className="header__nav hidden md:flex gap-3 text-white">
+        <nav className="header__nav hidden md:flex gap-3 text-white items-center">
           <Link href="/about" className="group">
             <span className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)]">
               회사소개
@@ -46,6 +82,29 @@ export default function Header() {
               교육상담받기
             </span>
           </Link>
+          {isAdmin && (
+            <>
+              <Link href="/admin/consultations" className="group">
+                <span className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)] font-bold text-blue-300">
+                  상담 신청 내역
+                </span>
+              </Link>
+              <button
+                onClick={handleLogout}
+                className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)] font-bold text-red-300"
+                style={{
+                  border: 0,
+                  background: "none",
+                  display: "inline-block",
+                  verticalAlign: "middle",
+                  lineHeight: "normal",
+                  cursor: "pointer",
+                }}
+              >
+                로그아웃
+              </button>
+            </>
+          )}
         </nav>
         <button
           className="header__menu-btn md:hidden text-white"
@@ -102,6 +161,27 @@ export default function Header() {
               >
                 교육상담받기
               </a>
+              {isAdmin && (
+                <>
+                  <a
+                    href="/admin/consultations"
+                    className="w-full py-3 px-2 text-lg font-semibold text-blue-300 hover:bg-[#22304a] rounded transition"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    상담 신청 내역
+                  </a>
+                  <button
+                    onClick={async () => {
+                      await supabase.auth.signOut();
+                      setMenuOpen(false);
+                      router.push("/admin/login");
+                    }}
+                    className="w-full py-3 px-2 text-lg font-semibold text-white hover:bg-[#22304a] rounded transition"
+                  >
+                    로그아웃
+                  </button>
+                </>
+              )}
             </nav>
           </div>
         </div>
