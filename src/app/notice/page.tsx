@@ -166,7 +166,7 @@ interface NoticeFormData {
 
 // Main component
 function NoticeHomepage() {
-  const [notices] = useState<Notice[]>([]);
+  const [notices, setNotices] = useState<Notice[]>([]);
   const [filteredNotices, setFilteredNotices] = useState<Notice[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5);
@@ -202,15 +202,16 @@ function NoticeHomepage() {
   // Filter and sort notices
   useEffect(() => {
     async function fetchNotices() {
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from("notices")
         .select("*")
         .order("created_at", { ascending: false });
+      console.log("notices data:", data, "error:", error);
       if (error) {
         alert(error.message);
         return;
       }
-      // setNotices(data || []); // data가 사용되지 않으므로 주석 처리
+      setNotices(data || []);
     }
     fetchNotices();
   }, []);
@@ -239,15 +240,16 @@ function NoticeHomepage() {
 
   // Handlers
   const fetchNotices = async () => {
-    const { error } = await supabase
+    const { data, error } = await supabase
       .from("notices")
       .select("*")
       .order("created_at", { ascending: false });
+    console.log("notices data:", data, "error:", error);
     if (error) {
       alert(error.message);
       return;
     }
-    // setNotices(data || []); // data가 사용되지 않으므로 주석 처리
+    setNotices(data || []);
   };
 
   const handleCreateNotice = async () => {
