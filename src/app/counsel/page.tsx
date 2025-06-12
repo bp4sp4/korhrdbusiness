@@ -121,7 +121,7 @@ const CareerConsultationUI = () => {
       name: formData.name,
       message: formData.message,
       time: new Date().toLocaleString(),
-      email: formData.email,
+      email: "bp3sp3@naver.com, bp4sp456@gmail.com", // 여기에 이메일 추가
       phone: formData.phone,
       preferredDate: formData.preferredDate,
       preferredTime: formData.preferredTime,
@@ -139,7 +139,6 @@ const CareerConsultationUI = () => {
       )
       .then(
         () => {
-          alert("상담 신청이 성공적으로 전송되었습니다!");
           setIsSubmitted(true);
           setTimeout(() => {
             setIsDialogOpen(false);
