@@ -28,7 +28,7 @@ export default function Home() {
               className="text-white text-5xl md:text-5xl font-bold"
               delay={1200}
             >
-              한평생Guidance
+              한평생가이던스
             </TypingAnimation>
           </div>
           <div className="main__hero-buttons flex">

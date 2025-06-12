@@ -4,47 +4,14 @@ import * as React from "react";
 import { useState, useEffect, useMemo } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-  Search,
-  Download,
-  Eye,
-  MoreHorizontal,
-  Calendar,
-  User,
-  Mail,
-  Phone,
-  Briefcase,
-  Clock,
-  CheckCircle,
-  XCircle,
-  AlertCircle,
-} from "lucide-react";
+
+import { Download, CheckCircle, XCircle, AlertCircle } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import * as XLSX from "xlsx";
+import DataTable from "@/components/admin/DataTable";
+import FilterBar from "@/components/admin/FilterBar";
 
 interface ConsultationRequest {
   id: string | number;
@@ -295,186 +262,21 @@ const ConsultationAdminPage = () => {
           </Card>
         </div>
 
-        {/* Filters */}
-        <Card>
-          <CardContent className="p-4">
-            <div className="flex flex-col md:flex-row gap-4">
-              <div className="flex-1">
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
-                  <Input
-                    placeholder="이름, 이메일, 연락처로 검색..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10"
-                  />
-                </div>
-              </div>
-              <Select value={statusFilter} onValueChange={setStatusFilter}>
-                <SelectTrigger className="w-full md:w-48">
-                  <SelectValue placeholder="상태 필터" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">모든 상태</SelectItem>
-                  <SelectItem value="pending">대기중</SelectItem>
-                  <SelectItem value="approved">승인됨</SelectItem>
-                  <SelectItem value="rejected">거절됨</SelectItem>
-                  <SelectItem value="completed">완료됨</SelectItem>
-                </SelectContent>
-              </Select>
-              <Select value={fieldFilter} onValueChange={setFieldFilter}>
-                <SelectTrigger className="w-full md:w-48">
-                  <SelectValue placeholder="분야 필터" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">모든 분야</SelectItem>
-                  {uniqueFields.map((field) => (
-                    <SelectItem key={field} value={field}>
-                      {field}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-          </CardContent>
-        </Card>
+        <FilterBar
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          statusFilter={statusFilter}
+          setStatusFilter={setStatusFilter}
+          fieldFilter={fieldFilter}
+          setFieldFilter={setFieldFilter}
+          uniqueFields={uniqueFields}
+        />
 
-        {/* Table */}
-        <Card>
-          <CardContent className="p-0">
-            <div className="overflow-x-auto">
-              <Table>
-                <TableHeader>
-                  <TableRow className="bg-muted/50">
-                    <TableHead className="font-semibold">이름</TableHead>
-                    <TableHead className="font-semibold">연락처</TableHead>
-                    <TableHead className="font-semibold">경력</TableHead>
-                    <TableHead className="font-semibold">분야</TableHead>
-                    <TableHead className="font-semibold">상담유형</TableHead>
-                    <TableHead className="font-semibold">희망일</TableHead>
-                    <TableHead className="font-semibold">희망시간</TableHead>
-                    <TableHead className="font-semibold">메시지</TableHead>
-                    <TableHead className="font-semibold">상태</TableHead>
-                    <TableHead className="font-semibold">신청일</TableHead>
-                    <TableHead className="font-semibold text-center">
-                      작업
-                    </TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {paginatedData.map((item) => (
-                    <TableRow
-                      key={String(item.id)}
-                      className="hover:bg-muted/30"
-                    >
-                      <TableCell>
-                        <div className="space-y-1">
-                          <div className="font-medium flex items-center gap-2">
-                            <User className="w-4 h-4 text-muted-foreground" />
-                            {item.name}
-                          </div>
-                          <div className="text-sm text-muted-foreground flex items-center gap-2">
-                            <Mail className="w-3 h-3" />
-                            {item.email}
-                          </div>
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <div className="flex items-center gap-2">
-                          <Phone className="w-4 h-4 text-muted-foreground" />
-                          {item.phone}
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <div className="flex items-center gap-2">
-                          <Briefcase className="w-4 h-4 text-muted-foreground" />
-                          {item.experience}
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <Badge variant="outline">{item.field}</Badge>
-                      </TableCell>
-                      <TableCell>{item.consultationType}</TableCell>
-                      <TableCell>
-                        <div className="flex items-center gap-2">
-                          <Calendar className="w-4 h-4 text-muted-foreground" />
-                          {item.preferredDate}
-                        </div>
-                      </TableCell>
-                      <TableCell>{item.preferredTime}</TableCell>
-                      <TableCell>{item.message}</TableCell>
-                      <TableCell>{getStatusBadge(item.status)}</TableCell>
-                      <TableCell>
-                        <div className="flex items-center gap-2">
-                          <Clock className="w-4 h-4 text-muted-foreground" />
-                          {item.requestDate}
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <div className="flex items-center justify-center gap-2">
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            className="h-8 w-8 p-0"
-                            title="상세보기"
-                          >
-                            <Eye className="w-4 h-4" />
-                          </Button>
-                          <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                className="h-8 w-8 p-0"
-                              >
-                                <MoreHorizontal className="w-4 h-4" />
-                              </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end">
-                              <DropdownMenuItem
-                                onClick={() =>
-                                  handleStatusChange(
-                                    String(item.id),
-                                    "approved"
-                                  )
-                                }
-                                className="text-blue-600"
-                              >
-                                승인
-                              </DropdownMenuItem>
-                              <DropdownMenuItem
-                                onClick={() =>
-                                  handleStatusChange(
-                                    String(item.id),
-                                    "rejected"
-                                  )
-                                }
-                                className="text-red-600"
-                              >
-                                거절
-                              </DropdownMenuItem>
-                              <DropdownMenuItem
-                                onClick={() =>
-                                  handleStatusChange(
-                                    String(item.id),
-                                    "completed"
-                                  )
-                                }
-                                className="text-green-600"
-                              >
-                                완료 처리
-                              </DropdownMenuItem>
-                            </DropdownMenuContent>
-                          </DropdownMenu>
-                        </div>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </div>
-          </CardContent>
-        </Card>
+        <DataTable
+          data={paginatedData}
+          onStatusChange={handleStatusChange}
+          getStatusBadge={getStatusBadge}
+        />
 
         {/* Pagination */}
         <div className="flex items-center justify-between">
