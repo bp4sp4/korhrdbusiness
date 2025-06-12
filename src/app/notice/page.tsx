@@ -166,7 +166,7 @@ interface NoticeFormData {
 
 // Main component
 function NoticeHomepage() {
-  const [notices, setNotices] = useState<Notice[]>([]);
+  const [notices] = useState<Notice[]>([]);
   const [filteredNotices, setFilteredNotices] = useState<Notice[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5);
