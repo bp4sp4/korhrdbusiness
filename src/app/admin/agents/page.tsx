@@ -1,10 +1,13 @@
 import React from "react";
 import DataTable from "@/components/admin/DataTable";
 import FilterBar from "@/components/admin/FilterBar";
+import type { ConsultationTableRow } from "@/components/admin/DataTable";
+
+type Agent = ConsultationTableRow;
 
 export default function AgentsAdminPage() {
   // TODO: fetch agent application data, implement filters, etc.
-  const data: any[] = [];
+  const data: Agent[] = [];
   const handleStatusChange = () => {};
   const getStatusBadge = () => null;
   const searchTerm = "";

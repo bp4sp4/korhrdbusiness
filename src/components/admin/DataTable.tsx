@@ -17,8 +17,23 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Eye, MoreHorizontal } from "lucide-react";
 
+export interface ConsultationTableRow {
+  id: string | number;
+  name: string;
+  email: string;
+  phone: string;
+  experience: string;
+  field: string;
+  consultationType: string;
+  preferredDate: string;
+  preferredTime: string;
+  message: string;
+  status: string;
+  requestDate?: string;
+}
+
 type DataTableProps = {
-  data: any[];
+  data: ConsultationTableRow[];
   onStatusChange: (id: string, status: string) => void;
   getStatusBadge: (status: string) => React.ReactNode;
 };

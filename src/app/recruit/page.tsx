@@ -9,7 +9,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 
 const jobs = [
@@ -51,7 +50,6 @@ export default function RecruitListPage() {
   const [keyword, setKeyword] = useState("");
   const [company, setCompany] = useState("all");
   const [type, setType] = useState("all");
-  const router = useRouter();
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
@@ -74,12 +72,6 @@ export default function RecruitListPage() {
 
   const recruitList = jobs.filter((job) => !job.isEvent);
   const eventList = jobs.filter((job) => job.isEvent);
-
-  const filtered = jobs.filter(
-    (job) =>
-      (company === "all" || job.status === company) &&
-      (keyword === "" || job.title.includes(keyword))
-  );
 
   return (
     <main className="max-w-6xl mx-auto mt-10 py-12 px-4">
