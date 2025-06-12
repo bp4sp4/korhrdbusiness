@@ -14,7 +14,7 @@ import { supabase } from "@/lib/supabase";
 const jobs = [
   {
     id: 1,
-    title: "보험설계사 (위촉직 대면 FC, 직영)",
+    title: "서울 강남지점 | 교육설계사(Eduvisor) | 신입",
     tags: ["비즈니스", "보험영업", "상담", "손해보험"],
     date: "2025.06.05",
     status: "단기계약직",
@@ -22,15 +22,15 @@ const jobs = [
   },
   {
     id: 2,
-    title: "이벤트: 보험설계사 컨퍼런스",
-    tags: ["이벤트", "보험영업", "컨퍼런스"],
-    date: "2025.07.15",
+    title: "",
+    tags: [""],
+    date: "",
     status: "이벤트",
     isEvent: true,
   },
   {
     id: 3,
-    title: "보험설계사 (위촉직 대면 FC, 직영)",
+    title: "서울 북부지점 | 교육설계사(Eduvisor) | 경력",
     tags: ["비즈니스", "보험영업", "상담", "손해보험"],
     date: "2025.06.05",
     status: "단기계약직",
@@ -38,11 +38,35 @@ const jobs = [
   },
   {
     id: 4,
-    title: "이벤트: 보험설계사 컨퍼런스",
-    tags: ["이벤트", "보험영업", "컨퍼런스"],
-    date: "2025.07.15",
+    title: "",
+    tags: [""],
+    date: "",
     status: "이벤트",
     isEvent: true,
+  },
+  {
+    id: 5,
+    title: "서울 은평지점 | 교육설계사(Eduvisor) | 지점장",
+    tags: ["비즈니스", "보험영업", "상담", "손해보험"],
+    date: "2025.06.05",
+    status: "단기계약직",
+    isEvent: false,
+  },
+  {
+    id: 6,
+    title: "",
+    tags: [""],
+    date: "",
+    status: "이벤트",
+    isEvent: true,
+  },
+  {
+    id: 7,
+    title: "서울 북부지점 | 교육설계사(Eduvisor) | 팀장급",
+    tags: ["비즈니스", "보험영업", "상담", "손해보험"],
+    date: "2025.06.05",
+    status: "단기계약직",
+    isEvent: false,
   },
 ];
 
@@ -143,6 +167,10 @@ export default function RecruitListPage() {
       </section>
 
       {/* 목록 */}
+      <div className="text-xl font-bold mb-6">
+        <span className="text-blue-500">{recruitList.length}개</span>의 포지션이
+        열려있어요.
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
         {/* 왼쪽 2칸: 설계사 채용 리스트 */}
         <div className="md:col-span-2 flex flex-col gap-4">
@@ -177,6 +205,7 @@ export default function RecruitListPage() {
           style={{
             minWidth: 220,
             maxWidth: 320,
+            height: "500px",
             position: "relative",
             maxHeight: "calc(100vh - 200px)",
             overflowY: "auto",
@@ -200,6 +229,22 @@ export default function RecruitListPage() {
             </div>
           ))}
         </div>
+      </div>
+      <div
+        className="wrapper flex flex-col items-center justify-center"
+        style={{ position: "fixed", bottom: 20, right: 20, zIndex: 1000 }}
+      >
+        <p>
+          채용팀에
+          <br /> 문의하기
+        </p>
+        <img
+          className="image__wrapper"
+          src="/images/recruit.png"
+          alt="recruit"
+          width={100}
+          height={100}
+        />
       </div>
     </main>
   );
