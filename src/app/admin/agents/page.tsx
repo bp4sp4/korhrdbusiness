@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import DataTable from "@/components/admin/DataTable";
 import FilterBar from "@/components/admin/FilterBar";
