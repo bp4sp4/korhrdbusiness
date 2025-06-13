@@ -298,17 +298,20 @@ export default function RecruitListPage() {
   };
 
   return (
-    <div className="min-h-screen mt-12 bg-background">
+    <div className="min-h-screen mt-12 mb-30 bg-background">
       <div className="w-full bg-[url('/images/001.png')] bg-cover bg-center bg-no-repeat">
         <main className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
           <section className="mb-8">
             <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6">
               <div className="flex-1">
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-10 mb-4 text-[#191f28] leading-tight">
+                <h1
+                  className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-10 mb-4 text-[#191f28] leading-tight"
+                  style={{ letterSpacing: "-4px" }}
+                >
                   대한민국 교육과 취업의 연결
                   <br />그 위대한 도전을 한평생에서 함께해보세요.
                 </h1>
-                <p className="text-[#797979] mb-6 text-sm sm:text-base leading-relaxed">
+                <p className="text-[#797979] mb-[30px] mt-[30px] text-sm sm:text-base leading-relaxed">
                   한평생가이던스는 단순히 교육서비스를 판매하는곳이 아닙니다.
                   고객이 현재 처한 상황을 면밀히 분석하여
                   <br className="hidden sm:block" />
@@ -319,7 +322,7 @@ export default function RecruitListPage() {
                   합니다.
                 </p>
 
-                <div className="flex flex-col sm:flex-row gap-3 mb-6">
+                <div className="flex flex-col sm:flex-row gap-3 mb-6 pb-[10px]">
                   <div className="relative flex-1">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                     <Input
@@ -346,14 +349,41 @@ export default function RecruitListPage() {
 
                     <Select value={type} onValueChange={setType}>
                       <SelectTrigger className="w-full sm:w-40 bg-white">
-                        <SelectValue placeholder="분류" />
+                        <span className={type !== "all" ? "text-blue-500" : ""}>
+                          {type === "all" ? "분류" : type}
+                        </span>
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="all">분류</SelectItem>
-                        <SelectItem value="지점장">지점장</SelectItem>
-                        <SelectItem value="팀장급">팀장급</SelectItem>
-                        <SelectItem value="경력">경력</SelectItem>
-                        <SelectItem value="신입">신입</SelectItem>
+                        <SelectItem
+                          value="all"
+                          className="data-[state=checked]:text-blue-500"
+                        >
+                          분류
+                        </SelectItem>
+                        <SelectItem
+                          value="지점장"
+                          className="data-[state=checked]:text-blue-500"
+                        >
+                          지점장
+                        </SelectItem>
+                        <SelectItem
+                          value="팀장급"
+                          className="data-[state=checked]:text-blue-500"
+                        >
+                          팀장급
+                        </SelectItem>
+                        <SelectItem
+                          value="경력"
+                          className="data-[state=checked]:text-blue-500"
+                        >
+                          경력
+                        </SelectItem>
+                        <SelectItem
+                          value="신입"
+                          className="data-[state=checked]:text-blue-500"
+                        >
+                          신입
+                        </SelectItem>
                       </SelectContent>
                     </Select>
 
@@ -376,7 +406,7 @@ export default function RecruitListPage() {
                     className="bg-green-600 hover:bg-green-700 text-white"
                   >
                     <Plus className="h-4 w-4 mr-2" />
-                    설계사 등록
+                    채용공고 등록
                   </Button>
                 </div>
               )}
