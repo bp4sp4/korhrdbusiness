@@ -627,7 +627,7 @@ const AboutUsPage = () => {
       <div className="absolute inset-0 z-1 pointer-events-none bg-gradient-to-b from-transparent via-gray-50/50 to-gray-50"></div>
 
       <main className="relative z-10">
-        <section className="pt-32 pb-20 px-6 md:px-10 lg:px-16">
+        <section className="pt-22 pb-20 px-6 md:px-10 lg:px-16">
           <div className="max-w-screen-xl mx-auto">
             <motion.div
               variants={heroVariants}

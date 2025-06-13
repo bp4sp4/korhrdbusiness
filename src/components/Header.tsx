@@ -45,8 +45,13 @@ export default function Header() {
 
   return (
     <header
-      className="header w-full fixed top-0 left-0 z-50 transition-colors duration-300"
-      style={{ backgroundColor: "#191f28" }}
+      className="header w-full transition-colors duration-300"
+      style={{
+        backgroundColor: "#191f28",
+        position: "sticky",
+        top: 0,
+        zIndex: 100,
+      }}
     >
       <div className="w-full max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
         <Link href="/" className="header__logo flex items-center gap-2">
