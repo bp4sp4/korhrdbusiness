@@ -120,7 +120,7 @@ const AddJobForm = ({ onAdd, onCancel }: AddJobFormProps) => {
 const EditJobForm = ({ job, onSave, onCancel }: EditJobFormProps) => {
   const [title, setTitle] = useState(job.title);
   const [tags, setTags] = useState(job.tags.join(", "));
-  const [date, setDate] = useState(job.date);
+  const [date] = useState(job.date);
   const [status, setStatus] = useState(job.status);
 
   const handleSubmit = (e: React.FormEvent) => {
