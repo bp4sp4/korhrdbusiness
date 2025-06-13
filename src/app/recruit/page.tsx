@@ -299,16 +299,16 @@ export default function RecruitListPage() {
 
   return (
     <div className="min-h-screen mt-12 bg-background">
-      <div className="w-full bg-blue-500 bg-[url('/images/colud_image.png')] bg-cover bg-center bg-no-repeat">
+      <div className="w-full bg-[url('/images/001.png')] bg-cover bg-center bg-no-repeat">
         <main className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
           <section className="mb-8">
             <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6">
               <div className="flex-1">
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-white leading-tight">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-10 mb-4 text-[#191f28] leading-tight">
                   대한민국 교육과 취업의 연결
                   <br />그 위대한 도전을 한평생에서 함께해보세요.
                 </h1>
-                <p className="text-blue-100 mb-6 text-sm sm:text-base leading-relaxed">
+                <p className="text-[#797979] mb-6 text-sm sm:text-base leading-relaxed">
                   한평생가이던스는 단순히 교육서비스를 판매하는곳이 아닙니다.
                   고객이 현재 처한 상황을 면밀히 분석하여
                   <br className="hidden sm:block" />
@@ -323,7 +323,7 @@ export default function RecruitListPage() {
                   <div className="relative flex-1">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                     <Input
-                      placeholder="직무, 키워드로 검색하세요"
+                      placeholder="지역과 고용분류를 검색해보세요."
                       value={keyword}
                       onChange={(e) => setKeyword(e.target.value)}
                       className="pl-10 bg-white"

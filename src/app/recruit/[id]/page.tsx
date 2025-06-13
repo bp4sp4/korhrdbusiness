@@ -50,24 +50,28 @@ interface ApplicationForm {
   coverLetter: string;
 }
 
-// 파일명에서 한글, 공백, 특수문자 제거 (영문, 숫자, 일부 기호만 허용)
+// 파일명에서 한글, 공백, 특수문자 제거 (영문, 숫자, 언더스코어, 하이픈만 허용)
 function sanitizeFileName(filename: string) {
   // 확장자 분리
-  const ext = filename.split(".").pop();
+  const ext = filename.includes(".") ? filename.split(".").pop() : "";
   // 이름 부분만 추출
   let name = filename.replace(/\.[^/.]+$/, "");
-  // 한글, 공백, 특수문자 모두 _로 변환, 연속 _는 하나로, 길이 제한
+  // 영문, 숫자, 언더스코어, 하이픈만 남기고 나머지는 _로
   name = name
     .replace(/[^a-zA-Z0-9-_]/g, "_")
     .replace(/_+/g, "_")
-    .slice(-30);
-  return `${name}_${Date.now()}.${ext}`;
+    .slice(0, 30);
+  // 이름이 비어있으면 random 값
+  if (!name) name = Math.random().toString(36).slice(2, 10);
+  // 확장자 붙이기
+  return `${name}_${Date.now()}${ext ? "." + ext : ""}`;
 }
 
 const JobDetailPage = () => {
   const params = useParams();
   const router = useRouter();
   const jobId = Number(params.id);
+
   const [job, setJob] = useState<Job | null>(null);
   const [loading, setLoading] = useState(true);
   const [applicationForm, setApplicationForm] = useState<ApplicationForm>({
@@ -126,14 +130,13 @@ const JobDetailPage = () => {
 
     // 이력서 업로드
     if (applicationForm.resume) {
-      const ext = applicationForm.resume.name.split(".").pop() || "pdf";
-      const filePath = `resumes/${Date.now()}_${Math.random()
-        .toString(36)
-        .slice(2, 10)}.${ext}`;
+      const safeName = sanitizeFileName(applicationForm.resume.name);
+      const filePath = `resumes/${safeName}`;
       const { error } = await supabase.storage
         .from("recruit-files")
         .upload(filePath, applicationForm.resume, { upsert: true });
       if (error) {
+        console.log(error);
         alert("이력서 업로드 실패: " + error.message);
         setIsSubmitting(false);
         return;
@@ -163,6 +166,21 @@ const JobDetailPage = () => {
     }
 
     // 2. recruit_applications 테이블에 저장
+    console.log({
+      job_id: jobId,
+      name: applicationForm.name,
+      email: applicationForm.email,
+      phone: applicationForm.phone,
+      address: applicationForm.address,
+      birth_date: applicationForm.birthDate,
+      experience: applicationForm.experience,
+      introduction: applicationForm.introduction,
+      cover_letter: applicationForm.coverLetter,
+      resume_url: resumeUrl,
+      portfolio_url: portfolioUrl,
+      status: "pending",
+    });
+
     const { error: insertError } = await supabase
       .from("recruit_applications")
       .insert([
