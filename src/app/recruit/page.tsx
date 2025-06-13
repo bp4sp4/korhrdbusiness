@@ -240,7 +240,6 @@ export default function RecruitListPage() {
   });
 
   const recruitList = filteredJobs;
-  const eventList = jobs.filter((job) => job.isEvent);
 
   const handleAddJob = async (newJob: Omit<Job, "id">) => {
     const { data, error } = await supabase

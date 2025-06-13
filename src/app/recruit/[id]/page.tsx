@@ -14,8 +14,6 @@ import {
   FileText,
   User,
   MapPin,
-  Mail,
-  Phone,
   Calendar,
   Briefcase,
   Send,
@@ -132,7 +130,7 @@ const JobDetailPage = () => {
       const filePath = `resumes/${Date.now()}_${Math.random()
         .toString(36)
         .slice(2, 10)}.${ext}`;
-      const { data, error } = await supabase.storage
+      const { error } = await supabase.storage
         .from("recruit-files")
         .upload(filePath, applicationForm.resume, { upsert: true });
       if (error) {
@@ -151,7 +149,7 @@ const JobDetailPage = () => {
         .toString(36)
         .slice(2)}`;
       const filePath = `portfolios/${uniqueSuffix}_${safeName}`;
-      const { data, error } = await supabase.storage
+      const { error } = await supabase.storage
         .from("recruit-files")
         .upload(filePath, applicationForm.portfolio, { upsert: true });
       if (error) {
