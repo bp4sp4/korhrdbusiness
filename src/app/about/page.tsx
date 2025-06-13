@@ -23,6 +23,7 @@ import {
 } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 function cn(...classes: (string | undefined | null | boolean)[]): string {
   return classes.filter(Boolean).join(" ");
@@ -782,14 +783,11 @@ const AboutUsPage = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
+              <Link href="/counsel">
                 <Button size="lg" className="text-base px-10 py-7">
                   프로젝트 상담받기
                 </Button>
-              </motion.div>
+              </Link>
             </motion.div>
           </div>
         </motion.section>

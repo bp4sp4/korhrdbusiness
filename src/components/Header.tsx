@@ -143,50 +143,50 @@ export default function Header() {
 
             {/* 메뉴 */}
             <nav className="w-full flex flex-col items-center gap-2 mb-6">
-              <a
-                href="#"
+              <Link
+                href="/about"
                 className="w-full py-3 px-2 text-lg font-semibold text-white hover:bg-[#22304a] rounded transition"
                 onClick={() => setMenuOpen(false)}
               >
                 회사 소개
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                href="/"
                 className="w-full py-3 px-2 text-lg font-semibold text-white hover:bg-[#22304a] rounded transition"
                 onClick={() => setMenuOpen(false)}
               >
                 교육서비스
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                href="/recruit"
                 className="w-full py-3 px-2 text-lg font-semibold text-white hover:bg-[#22304a] rounded transition"
                 onClick={() => setMenuOpen(false)}
               >
                 설계사 채용
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                href="/counsel"
                 className="w-full py-3 px-2 text-lg font-semibold text-white hover:bg-[#22304a] rounded transition"
                 onClick={() => setMenuOpen(false)}
               >
                 교육상담받기
-              </a>
+              </Link>
               {isAdmin && (
                 <>
-                  <a
+                  <Link
                     href="/admin/consultations"
                     className="w-full py-3 px-2 text-lg font-semibold text-blue-300 hover:bg-[#22304a] rounded transition"
                     onClick={() => setMenuOpen(false)}
                   >
-                    상담 신청 내
-                  </a>
-                  <a
+                    상담 신청 내역
+                  </Link>
+                  <Link
                     href="/admin/recruit-applications"
                     className="w-full py-3 px-2 text-lg font-semibold text-blue-300 hover:bg-[#22304a] rounded transition"
                     onClick={() => setMenuOpen(false)}
                   >
                     설계사 지원자 관리
-                  </a>
+                  </Link>
                   <button
                     onClick={async () => {
                       await supabase.auth.signOut();

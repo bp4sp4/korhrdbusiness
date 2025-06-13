@@ -1,5 +1,6 @@
 import "./main.css";
 import { TypingAnimation } from "@/components/magicui/typing-animation";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -107,9 +108,12 @@ export default function Home() {
               <br />
               최고의 복리후생을 제공합니다.
             </p>
-            <button className="bg-blue-600 text-white px-[36px] py-[16px] rounded-full font-semibold shadow-md hover:bg-blue-700 transition">
+            <Link
+              href="/recruit"
+              className="bg-blue-600 text-white px-[36px] py-[16px] rounded-full font-semibold shadow-md hover:bg-blue-700 transition inline-block text-center"
+            >
               채용중인 지점 보기 ＞
-            </button>
+            </Link>
           </div>
         </div>
       </section>
