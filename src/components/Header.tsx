@@ -203,7 +203,6 @@ export default function Header() {
           </div>
         </div>
       )}
-      {/* 스타일은 Tailwind group-hover로 대체 */}
     </header>
   );
 }

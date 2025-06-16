@@ -33,6 +33,11 @@ interface Job {
   date: string;
   status: string;
   isEvent: boolean;
+  salary?: string;
+  main_tasks?: string;
+  qualification?: string;
+  welfare?: string;
+  location?: string;
 }
 
 interface AddJobFormProps {
@@ -51,6 +56,11 @@ const AddJobForm = ({ onAdd, onCancel }: AddJobFormProps) => {
   const [tags, setTags] = useState("");
   const [date, setDate] = useState("");
   const [status, setStatus] = useState("단기계약직");
+  const [location, setLocation] = useState("");
+  const [salary, setSalary] = useState("");
+  const [mainTasks, setMainTasks] = useState("");
+  const [qualification, setQualification] = useState("");
+  const [welfare, setWelfare] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -64,11 +74,21 @@ const AddJobForm = ({ onAdd, onCancel }: AddJobFormProps) => {
         date: date || new Date().toISOString().split("T")[0].replace(/-/g, "."),
         status,
         isEvent: false,
+        location,
+        salary,
+        main_tasks: mainTasks,
+        qualification,
+        welfare,
       });
       setTitle("");
       setTags("");
       setDate("");
       setStatus("단기계약직");
+      setLocation("");
+      setSalary("");
+      setMainTasks("");
+      setQualification("");
+      setWelfare("");
     }
   };
 
@@ -88,6 +108,13 @@ const AddJobForm = ({ onAdd, onCancel }: AddJobFormProps) => {
             required
           />
         </div>
+        <div>
+          <Input
+            placeholder="위치 (예: 서울 강남지점)"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+          />
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Input
             placeholder="태그 (쉼표로 구분)"
@@ -105,6 +132,38 @@ const AddJobForm = ({ onAdd, onCancel }: AddJobFormProps) => {
               <SelectItem value="인턴">인턴</SelectItem>
             </SelectContent>
           </Select>
+        </div>
+        <div>
+          <textarea
+            className="w-full border rounded p-2 min-h-[40px]"
+            placeholder="급여 (예: 연 3,000만원\n(인센티브 별도))"
+            value={salary}
+            onChange={(e) => setSalary(e.target.value)}
+          />
+        </div>
+        <div>
+          <textarea
+            className="w-full border rounded p-2 min-h-[48px]"
+            placeholder="주요 업무"
+            value={mainTasks}
+            onChange={(e) => setMainTasks(e.target.value)}
+          />
+        </div>
+        <div>
+          <textarea
+            className="w-full border rounded p-2 min-h-[48px]"
+            placeholder="자격 요건"
+            value={qualification}
+            onChange={(e) => setQualification(e.target.value)}
+          />
+        </div>
+        <div>
+          <textarea
+            className="w-full border rounded p-2 min-h-[48px]"
+            placeholder="복리후생"
+            value={welfare}
+            onChange={(e) => setWelfare(e.target.value)}
+          />
         </div>
         <div className="flex gap-2 justify-end">
           <Button type="button" variant="outline" onClick={onCancel}>
@@ -122,6 +181,11 @@ const EditJobForm = ({ job, onSave, onCancel }: EditJobFormProps) => {
   const [tags, setTags] = useState(job.tags.join(", "));
   const [date] = useState(job.date);
   const [status, setStatus] = useState(job.status);
+  const [location, setLocation] = useState(job.location || "");
+  const [salary, setSalary] = useState(job.salary || "");
+  const [mainTasks, setMainTasks] = useState(job.main_tasks || "");
+  const [qualification, setQualification] = useState(job.qualification || "");
+  const [welfare, setWelfare] = useState(job.welfare || "");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -135,6 +199,11 @@ const EditJobForm = ({ job, onSave, onCancel }: EditJobFormProps) => {
           .filter(Boolean),
         date: date || job.date,
         status,
+        location,
+        salary,
+        main_tasks: mainTasks,
+        qualification,
+        welfare,
       });
     }
   };
@@ -148,12 +217,24 @@ const EditJobForm = ({ job, onSave, onCancel }: EditJobFormProps) => {
     >
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
+          <h4 className="text-sm font-bold mb-2">직무명</h4>
           <Input
             placeholder="직무명을 입력하세요"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
           />
+        </div>
+        <div>
+          <h4 className="text-sm font-bold mb-2">위치</h4>
+          <Input
+            placeholder="위치 (예: 서울 강남지점)"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+          />
+        </div>
+        <div>
+          <h4 className="text-sm font-bold mb-2">태그</h4>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Input
@@ -172,6 +253,42 @@ const EditJobForm = ({ job, onSave, onCancel }: EditJobFormProps) => {
               <SelectItem value="인턴">인턴</SelectItem>
             </SelectContent>
           </Select>
+        </div>
+        <div>
+          <h4 className="text-sm font-bold mb-2">급여</h4>
+          <textarea
+            className="w-full border rounded p-2 min-h-[40px]"
+            placeholder="급여 (예: 연 3,000만원\n(인센티브 별도))"
+            value={salary}
+            onChange={(e) => setSalary(e.target.value)}
+          />
+        </div>
+        <div>
+          <h4 className="text-sm font-bold mb-2">주요 업무</h4>
+          <textarea
+            className="w-full border rounded p-2 min-h-[48px]"
+            placeholder="주요 업무"
+            value={mainTasks}
+            onChange={(e) => setMainTasks(e.target.value)}
+          />
+        </div>
+        <div>
+          <h4 className="text-sm font-bold mb-2">자격 요건</h4>
+          <textarea
+            className="w-full border rounded p-2 min-h-[48px]"
+            placeholder="자격 요건"
+            value={qualification}
+            onChange={(e) => setQualification(e.target.value)}
+          />
+        </div>
+        <div>
+          <h4 className="text-sm font-bold mb-2">복리후생</h4>
+          <textarea
+            className="w-full border rounded p-2 min-h-[48px]"
+            placeholder="복리후생"
+            value={welfare}
+            onChange={(e) => setWelfare(e.target.value)}
+          />
         </div>
         <div className="flex gap-2 justify-end">
           <Button type="button" variant="outline" onClick={onCancel}>
@@ -251,6 +368,11 @@ export default function RecruitListPage() {
           date: newJob.date,
           status: newJob.status,
           is_event: false,
+          location: newJob.location,
+          salary: newJob.salary,
+          main_tasks: newJob.main_tasks,
+          qualification: newJob.qualification,
+          welfare: newJob.welfare,
         },
       ])
       .select();
@@ -272,6 +394,11 @@ export default function RecruitListPage() {
         date: updatedJob.date,
         status: updatedJob.status,
         is_event: updatedJob.isEvent,
+        location: updatedJob.location,
+        salary: updatedJob.salary,
+        main_tasks: updatedJob.main_tasks,
+        qualification: updatedJob.qualification,
+        welfare: updatedJob.welfare,
       })
       .eq("id", updatedJob.id)
       .select();

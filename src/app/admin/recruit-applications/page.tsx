@@ -21,6 +21,7 @@ interface Application {
   cover_letter: string;
   resume_url: string;
   portfolio_url: string;
+  website_url?: string;
   created_at: string;
   status: string;
 }
@@ -155,19 +156,6 @@ export default function RecruitApplicationsPage() {
           <Card>
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-yellow-100 rounded-lg">
-                  <AlertCircle className="w-5 h-5 text-yellow-600" />
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">대기</p>
-                  <p className="text-2xl font-bold">{statusCounts.pending}</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-4">
-              <div className="flex items-center gap-3">
                 <div className="p-2 bg-blue-100 rounded-lg">
                   <CheckCircle className="w-5 h-5 text-blue-600" />
                 </div>
@@ -187,6 +175,19 @@ export default function RecruitApplicationsPage() {
                 <div>
                   <p className="text-sm text-muted-foreground">불합격</p>
                   <p className="text-2xl font-bold">{statusCounts.rejected}</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="p-4">
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-yellow-100 rounded-lg">
+                  <AlertCircle className="w-5 h-5 text-yellow-600" />
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground">대기</p>
+                  <p className="text-2xl font-bold">{statusCounts.pending}</p>
                 </div>
               </div>
             </CardContent>
@@ -225,7 +226,9 @@ export default function RecruitApplicationsPage() {
                 <th className="p-2">이메일</th>
                 <th className="p-2">연락처</th>
                 <th className="p-2">이력서</th>
-                <th className="p-2">포트폴리오</th>
+                <th className="p-2">포트폴리오 파일</th>
+                <th className="p-2">포트폴리오 URL</th>
+                <th className="p-2">개인 웹사이트</th>
                 <th className="p-2">상태</th>
                 <th className="p-2">관리</th>
                 <th className="p-2">상세</th>
@@ -264,6 +267,34 @@ export default function RecruitApplicationsPage() {
                         <Button size="sm" variant="outline">
                           다운로드
                         </Button>
+                      </a>
+                    ) : (
+                      "-"
+                    )}
+                  </td>
+                  <td className="p-2">
+                    {a.portfolio_url && a.portfolio_url.startsWith("http") ? (
+                      <a
+                        href={a.portfolio_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 underline"
+                      >
+                        바로가기
+                      </a>
+                    ) : (
+                      "-"
+                    )}
+                  </td>
+                  <td className="p-2">
+                    {a.website_url ? (
+                      <a
+                        href={a.website_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 underline"
+                      >
+                        바로가기
                       </a>
                     ) : (
                       "-"
@@ -406,7 +437,7 @@ export default function RecruitApplicationsPage() {
                   )}
                 </div>
                 <div>
-                  포트폴리오:{" "}
+                  포트폴리오 파일:{" "}
                   {selected.portfolio_url ? (
                     <a
                       href={selected.portfolio_url}
@@ -420,7 +451,47 @@ export default function RecruitApplicationsPage() {
                     "-"
                   )}
                 </div>
-                <div>상태: {selected.status}</div>
+                <div>
+                  포트폴리오 URL:{" "}
+                  {selected.portfolio_url &&
+                  selected.portfolio_url.startsWith("http") ? (
+                    <a
+                      href={selected.portfolio_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 underline"
+                    >
+                      바로가기
+                    </a>
+                  ) : (
+                    "-"
+                  )}
+                </div>
+                <div>
+                  개인 웹사이트:{" "}
+                  {selected.website_url ? (
+                    <a
+                      href={selected.website_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 underline"
+                    >
+                      바로가기
+                    </a>
+                  ) : (
+                    "-"
+                  )}
+                </div>
+                <div>
+                  상태:{" "}
+                  {selected.status === "pending"
+                    ? "대기중"
+                    : selected.status === "approved"
+                    ? "합격"
+                    : selected.status === "rejected"
+                    ? "불합격"
+                    : selected.status}
+                </div>
                 <div>지원일: {selected.created_at?.split("T")[0]}</div>
               </div>
             </div>

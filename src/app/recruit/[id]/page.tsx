@@ -19,9 +19,17 @@ import {
   Send,
   CheckCircle,
   X,
+  Globe,
+  ExternalLink,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { supabase } from "@/lib/supabase";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 interface Job {
   id: number;
@@ -30,9 +38,9 @@ interface Job {
   date: string;
   status: string;
   isEvent: boolean;
-  description?: string;
-  requirements?: string[];
-  benefits?: string[];
+  main_tasks?: string;
+  qualification?: string;
+  welfare?: string;
   location?: string;
   salary?: string;
 }
@@ -48,6 +56,8 @@ interface ApplicationForm {
   portfolio: File | null;
   resume: File | null;
   coverLetter: string;
+  portfolioUrl: string;
+  websiteUrl: string;
 }
 
 // 파일명에서 한글, 공백, 특수문자 제거 (영문, 숫자, 언더스코어, 하이픈만 허용)
@@ -85,9 +95,13 @@ const JobDetailPage = () => {
     portfolio: null,
     resume: null,
     coverLetter: "",
+    portfolioUrl: "",
+    websiteUrl: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [consent, setConsent] = useState(false);
+  const [showConsentModal, setShowConsentModal] = useState(false);
 
   useEffect(() => {
     async function fetchJob() {
@@ -122,6 +136,10 @@ const JobDetailPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!consent) {
+      alert("개인정보 수집 및 이용에 동의하셔야 지원이 가능합니다.");
+      return;
+    }
     setIsSubmitting(true);
 
     // 1. 파일 업로드
@@ -177,7 +195,9 @@ const JobDetailPage = () => {
       introduction: applicationForm.introduction,
       cover_letter: applicationForm.coverLetter,
       resume_url: resumeUrl,
-      portfolio_url: portfolioUrl,
+      portfolio_file_url: portfolioUrl,
+      portfolio_url: applicationForm.portfolioUrl,
+      website_url: applicationForm.websiteUrl,
       status: "pending",
     });
 
@@ -195,8 +215,11 @@ const JobDetailPage = () => {
           introduction: applicationForm.introduction,
           cover_letter: applicationForm.coverLetter,
           resume_url: resumeUrl,
-          portfolio_url: portfolioUrl,
+          portfolio_file_url: portfolioUrl,
+          portfolio_url: applicationForm.portfolioUrl,
+          website_url: applicationForm.websiteUrl,
           status: "pending",
+          consent: consent ? "Y" : "N",
         },
       ]);
     if (insertError) {
@@ -289,20 +312,36 @@ const JobDetailPage = () => {
                 </div>
                 <div className="pt-4 border-t">
                   <h4 className="font-semibold mb-2">급여</h4>
-                  <p className="text-sm text-muted-foreground">{job.salary}</p>
+                  {job.salary ? (
+                    <div className="text-sm text-muted-foreground whitespace-pre-line">
+                      {job.salary}
+                    </div>
+                  ) : (
+                    <p className="text-sm text-muted-foreground">-</p>
+                  )}
                 </div>
                 <div className="pt-4 border-t">
                   <h4 className="font-semibold mb-2">주요 업무</h4>
-                  <p className="text-sm text-muted-foreground">
-                    {job.description}
-                  </p>
+                  <ul className="text-sm text-muted-foreground space-y-1">
+                    {(job.main_tasks ? job.main_tasks.split("\n") : []).map(
+                      (task, idx) => (
+                        <li key={idx} className="flex items-start gap-2">
+                          <span className="text-blue-500">•</span>
+                          <span>{task}</span>
+                        </li>
+                      )
+                    )}
+                  </ul>
                 </div>
                 <div className="pt-4 border-t">
                   <h4 className="font-semibold mb-2">자격 요건</h4>
                   <ul className="text-sm text-muted-foreground space-y-1">
-                    {job.requirements?.map((req, index) => (
+                    {(job.qualification
+                      ? job.qualification.split("\n")
+                      : []
+                    ).map((req, index) => (
                       <li key={index} className="flex items-start gap-2">
-                        <span className="text-blue-500 mt-1">•</span>
+                        <span className="text-blue-500">•</span>
                         <span>{req}</span>
                       </li>
                     ))}
@@ -311,12 +350,14 @@ const JobDetailPage = () => {
                 <div className="pt-4 border-t">
                   <h4 className="font-semibold mb-2">복리후생</h4>
                   <ul className="text-sm text-muted-foreground space-y-1">
-                    {job.benefits?.map((benefit, index) => (
-                      <li key={index} className="flex items-start gap-2">
-                        <span className="text-green-500 mt-1">•</span>
-                        <span>{benefit}</span>
-                      </li>
-                    ))}
+                    {(job.welfare ? job.welfare.split("\n") : []).map(
+                      (benefit, index) => (
+                        <li key={index} className="flex items-start gap-2">
+                          <span className="text-green-500">•</span>
+                          <span>{benefit}</span>
+                        </li>
+                      )
+                    )}
                   </ul>
                 </div>
               </CardContent>
@@ -445,6 +486,47 @@ const JobDetailPage = () => {
                       />
                     </div>
                   </div>
+                  {/* 포트폴리오 및 웹사이트 URL */}
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-semibold flex items-center gap-2">
+                      <Globe className="h-5 w-5" />
+                      온라인 포트폴리오 & 웹사이트
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="portfolioUrl">포트폴리오 URL</Label>
+                        <div className="relative">
+                          <ExternalLink className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                          <Input
+                            id="portfolioUrl"
+                            type="url"
+                            placeholder="https://portfolio.example.com"
+                            value={applicationForm.portfolioUrl}
+                            onChange={(e) =>
+                              handleInputChange("portfolioUrl", e.target.value)
+                            }
+                            className="pl-10"
+                          />
+                        </div>
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="websiteUrl">개인 웹사이트 URL</Label>
+                        <div className="relative">
+                          <Globe className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                          <Input
+                            id="websiteUrl"
+                            type="url"
+                            placeholder="https://yourwebsite.com"
+                            value={applicationForm.websiteUrl}
+                            onChange={(e) =>
+                              handleInputChange("websiteUrl", e.target.value)
+                            }
+                            className="pl-10"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   {/* 파일 첨부 */}
                   <div className="space-y-4">
                     <h3 className="text-lg font-semibold flex items-center gap-2">
@@ -565,39 +647,105 @@ const JobDetailPage = () => {
                       </div>
                     </div>
                   </div>
-                  {/* 제출 버튼 */}
-                  <div className="pt-6 border-t">
-                    <Button
-                      type="submit"
-                      className="w-full h-12 text-lg"
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting ? (
-                        <motion.div
-                          animate={{ rotate: 360 }}
-                          transition={{
-                            duration: 1,
-                            repeat: Infinity,
-                            ease: "linear",
-                          }}
-                          className="h-5 w-5 border-2 border-white border-t-transparent rounded-full mr-2"
-                        />
-                      ) : (
-                        <Send className="h-5 w-5 mr-2" />
-                      )}
-                      {isSubmitting ? "지원서 제출 중..." : "지원서 제출하기"}
-                    </Button>
-                    <p className="text-xs text-muted-foreground text-center mt-2">
-                      제출된 지원서는 수정할 수 없습니다. 신중히 검토 후
-                      제출해주세요.
-                    </p>
+                  {/* 개인정보 동의 */}
+                  <div className="space-y-4">
+                    <div className="flex items-start space-x-3 p-4 bg-muted/30 rounded-lg border">
+                      <input
+                        id="consent"
+                        type="checkbox"
+                        checked={consent}
+                        onChange={(e) => setConsent(e.target.checked)}
+                        className="mt-1"
+                      />
+                      <div className="space-y-1 leading-none">
+                        <label
+                          htmlFor="consent"
+                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+                        >
+                          개인정보 수집 및 이용에 동의합니다. *
+                        </label>
+                        <p className="text-xs text-muted-foreground">
+                          채용 지원을 위해 개인정보 수집 및 이용에 동의가
+                          필요합니다.{" "}
+                          <button
+                            type="button"
+                            onClick={() => setShowConsentModal(true)}
+                            className="text-blue-600 hover:text-blue-800 underline"
+                          >
+                            자세히 보기
+                          </button>
+                        </p>
+                      </div>
+                    </div>
                   </div>
+                  {/* 지원서 제출 버튼 */}
+                  <Button
+                    type="submit"
+                    className="w-full"
+                    disabled={isSubmitting || !consent}
+                  >
+                    {isSubmitting ? "제출 중..." : "지원서 제출하기"}
+                  </Button>
                 </form>
               </CardContent>
             </Card>
           </div>
         </div>
       </div>
+      {/* 개인정보 동의 모달 */}
+      <Dialog open={showConsentModal} onOpenChange={setShowConsentModal}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-lg font-bold">
+              개인정보 수집 및 이용 동의
+            </DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 text-sm">
+            <div className="space-y-2">
+              <h4 className="font-semibold">수집하는 개인정보 항목</h4>
+              <p className="text-muted-foreground">
+                이름, 이메일, 연락처, 주소, 생년월일, 경력사항, 자기소개서,
+                이력서, 포트폴리오, 포트폴리오 URL, 개인 웹사이트 URL
+              </p>
+            </div>
+            <div className="space-y-2">
+              <h4 className="font-semibold">개인정보 수집 및 이용 목적</h4>
+              <p className="text-muted-foreground">
+                채용 지원자 관리, 채용 전형 진행, 입사 후 인사 관리
+              </p>
+            </div>
+            <div className="space-y-2">
+              <h4 className="font-semibold">개인정보 보유 및 이용 기간</h4>
+              <p className="text-muted-foreground">
+                지원일로부터 1년 (채용 종료 시까지)
+              </p>
+            </div>
+            <div className="space-y-2">
+              <h4 className="font-semibold">동의 거부 권리</h4>
+              <p className="text-muted-foreground">
+                개인정보 수집 및 이용에 대한 동의를 거부할 권리가 있으나, 동의를
+                거부할 경우 채용 지원이 제한될 수 있습니다.
+              </p>
+            </div>
+          </div>
+          <div className="flex justify-end space-x-2 pt-4">
+            <Button
+              variant="outline"
+              onClick={() => setShowConsentModal(false)}
+            >
+              닫기
+            </Button>
+            <Button
+              onClick={() => {
+                setConsent(true);
+                setShowConsentModal(false);
+              }}
+            >
+              동의하기
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
