@@ -19,7 +19,12 @@ export default function AdminLoginPage() {
       password,
     });
     if (error) {
-      setError(error.message);
+      // 에러 메시지 한글로 변환
+      if (error.message === "Invalid login credentials") {
+        setError("이메일 또는 비밀번호가 올바르지 않습니다.");
+      } else {
+        setError(error.message); // 기타 에러는 원문 노출
+      }
       return;
     }
     // 관리자 이메일만 허용 (예시)
