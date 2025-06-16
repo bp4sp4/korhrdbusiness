@@ -12,6 +12,7 @@ import { supabase } from "@/lib/supabase";
 import * as XLSX from "xlsx";
 import DataTable from "@/components/admin/DataTable";
 import FilterBar from "@/components/admin/FilterBar";
+import AdminAuthGuard from "@/components/admin/AdminAuthGuard";
 
 interface ConsultationRequest {
   id: string | number;
@@ -180,164 +181,169 @@ const ConsultationAdminPage = () => {
   }
 
   return (
-    <div className="min-h-screen mt-20 bg-background p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-foreground">
-              상담 신청 관리
-            </h1>
-            <p className="text-muted-foreground mt-1">
-              총 {filteredData.length}개의 상담 신청이 있습니다.
-            </p>
-          </div>
-          <Button className="gap-2" onClick={handleExcelDownload}>
-            <Download className="w-4 h-4" />
-            엑셀 다운로드
-          </Button>
-        </div>
-
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <Card>
-            <CardContent className="p-4">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-yellow-100 rounded-lg">
-                  <AlertCircle className="w-5 h-5 text-yellow-600" />
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">대기중</p>
-                  <p className="text-2xl font-bold">
-                    {data.filter((item) => item.status === "pending").length}
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-4">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-blue-100 rounded-lg">
-                  <CheckCircle className="w-5 h-5 text-blue-600" />
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">승인됨</p>
-                  <p className="text-2xl font-bold">
-                    {data.filter((item) => item.status === "approved").length}
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-4">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-green-100 rounded-lg">
-                  <CheckCircle className="w-5 h-5 text-green-600" />
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">완료됨</p>
-                  <p className="text-2xl font-bold">
-                    {data.filter((item) => item.status === "completed").length}
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-4">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-red-100 rounded-lg">
-                  <XCircle className="w-5 h-5 text-red-600" />
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">거절됨</p>
-                  <p className="text-2xl font-bold">
-                    {data.filter((item) => item.status === "rejected").length}
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        <FilterBar
-          searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
-          statusFilter={statusFilter}
-          setStatusFilter={setStatusFilter}
-          fieldFilter={fieldFilter}
-          setFieldFilter={setFieldFilter}
-          uniqueFields={uniqueFields}
-        />
-
-        <DataTable
-          data={paginatedData}
-          onStatusChange={handleStatusChange}
-          getStatusBadge={getStatusBadge}
-        />
-
-        {/* Pagination */}
-        <div className="flex items-center justify-between">
-          <div className="text-sm text-muted-foreground">
-            {filteredData.length > 0 ? (
-              <>
-                {(currentPage - 1) * itemsPerPage + 1}-
-                {Math.min(currentPage * itemsPerPage, filteredData.length)} of{" "}
-                {filteredData.length} 항목
-              </>
-            ) : (
-              "항목이 없습니다"
-            )}
-          </div>
-          <div className="flex items-center gap-2">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
-              disabled={currentPage === 1}
-            >
-              이전
-            </Button>
-            <div className="flex items-center gap-1">
-              {Array.from({ length: totalPages }, (_, i) => i + 1)
-                .filter(
-                  (page) =>
-                    page === 1 ||
-                    page === totalPages ||
-                    Math.abs(page - currentPage) <= 1
-                )
-                .map((page, index, array) => (
-                  <React.Fragment key={page}>
-                    {index > 0 && array[index - 1] !== page - 1 && (
-                      <span className="px-2 text-muted-foreground">...</span>
-                    )}
-                    <Button
-                      variant={currentPage === page ? "default" : "outline"}
-                      size="sm"
-                      onClick={() => setCurrentPage(page)}
-                      className="w-8 h-8 p-0"
-                    >
-                      {page}
-                    </Button>
-                  </React.Fragment>
-                ))}
+    <AdminAuthGuard>
+      <div className="min-h-screen mt-20 bg-background p-6">
+        <div className="max-w-7xl mx-auto space-y-6">
+          {/* Header */}
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold text-foreground">
+                상담 신청 관리
+              </h1>
+              <p className="text-muted-foreground mt-1">
+                총 {filteredData.length}개의 상담 신청이 있습니다.
+              </p>
             </div>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() =>
-                setCurrentPage((prev) => Math.min(totalPages, prev + 1))
-              }
-              disabled={currentPage === totalPages}
-            >
-              다음
+            <Button className="gap-2" onClick={handleExcelDownload}>
+              <Download className="w-4 h-4" />
+              엑셀 다운로드
             </Button>
+          </div>
+
+          {/* Stats Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <Card>
+              <CardContent className="p-4">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-yellow-100 rounded-lg">
+                    <AlertCircle className="w-5 h-5 text-yellow-600" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">대기중</p>
+                    <p className="text-2xl font-bold">
+                      {data.filter((item) => item.status === "pending").length}
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="p-4">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-blue-100 rounded-lg">
+                    <CheckCircle className="w-5 h-5 text-blue-600" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">승인됨</p>
+                    <p className="text-2xl font-bold">
+                      {data.filter((item) => item.status === "approved").length}
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="p-4">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-green-100 rounded-lg">
+                    <CheckCircle className="w-5 h-5 text-green-600" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">완료됨</p>
+                    <p className="text-2xl font-bold">
+                      {
+                        data.filter((item) => item.status === "completed")
+                          .length
+                      }
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="p-4">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-red-100 rounded-lg">
+                    <XCircle className="w-5 h-5 text-red-600" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">거절됨</p>
+                    <p className="text-2xl font-bold">
+                      {data.filter((item) => item.status === "rejected").length}
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          <FilterBar
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            statusFilter={statusFilter}
+            setStatusFilter={setStatusFilter}
+            fieldFilter={fieldFilter}
+            setFieldFilter={setFieldFilter}
+            uniqueFields={uniqueFields}
+          />
+
+          <DataTable
+            data={paginatedData}
+            onStatusChange={handleStatusChange}
+            getStatusBadge={getStatusBadge}
+          />
+
+          {/* Pagination */}
+          <div className="flex items-center justify-between">
+            <div className="text-sm text-muted-foreground">
+              {filteredData.length > 0 ? (
+                <>
+                  {(currentPage - 1) * itemsPerPage + 1}-
+                  {Math.min(currentPage * itemsPerPage, filteredData.length)} of{" "}
+                  {filteredData.length} 항목
+                </>
+              ) : (
+                "항목이 없습니다"
+              )}
+            </div>
+            <div className="flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
+                disabled={currentPage === 1}
+              >
+                이전
+              </Button>
+              <div className="flex items-center gap-1">
+                {Array.from({ length: totalPages }, (_, i) => i + 1)
+                  .filter(
+                    (page) =>
+                      page === 1 ||
+                      page === totalPages ||
+                      Math.abs(page - currentPage) <= 1
+                  )
+                  .map((page, index, array) => (
+                    <React.Fragment key={page}>
+                      {index > 0 && array[index - 1] !== page - 1 && (
+                        <span className="px-2 text-muted-foreground">...</span>
+                      )}
+                      <Button
+                        variant={currentPage === page ? "default" : "outline"}
+                        size="sm"
+                        onClick={() => setCurrentPage(page)}
+                        className="w-8 h-8 p-0"
+                      >
+                        {page}
+                      </Button>
+                    </React.Fragment>
+                  ))}
+              </div>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() =>
+                  setCurrentPage((prev) => Math.min(totalPages, prev + 1))
+                }
+                disabled={currentPage === totalPages}
+              >
+                다음
+              </Button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </AdminAuthGuard>
   );
 };
 

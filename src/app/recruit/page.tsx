@@ -101,6 +101,9 @@ const AddJobForm = ({ onAdd, onCancel }: AddJobFormProps) => {
     >
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
+          <h4 className="text-sm font-bold mb-2">직무명</h4>
+        </div>
+        <div>
           <Input
             placeholder="직무명을 입력하세요"
             value={title}
@@ -109,11 +112,17 @@ const AddJobForm = ({ onAdd, onCancel }: AddJobFormProps) => {
           />
         </div>
         <div>
+          <h4 className="text-sm font-bold mb-2">위치</h4>
+        </div>
+        <div>
           <Input
             placeholder="위치 (예: 서울 강남지점)"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
           />
+        </div>
+        <div>
+          <h4 className="text-sm font-bold mb-2">태그</h4>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Input
@@ -134,33 +143,51 @@ const AddJobForm = ({ onAdd, onCancel }: AddJobFormProps) => {
           </Select>
         </div>
         <div>
+          <h4 className="text-sm font-bold mb-2">급여</h4>
+        </div>
+        <div>
           <textarea
             className="w-full border rounded p-2 min-h-[40px]"
-            placeholder="급여 (예: 연 3,000만원\n(인센티브 별도))"
+            placeholder="급여 (예: 연 3,000만원(인센티브 별도))"
             value={salary}
             onChange={(e) => setSalary(e.target.value)}
           />
         </div>
         <div>
+          <h4 className="text-sm font-bold mb-2">주요 업무</h4>
+        </div>
+        <div>
           <textarea
             className="w-full border rounded p-2 min-h-[48px]"
-            placeholder="주요 업무"
+            placeholder={`주요 업무
+주요 업무
+주요 업무`}
             value={mainTasks}
             onChange={(e) => setMainTasks(e.target.value)}
           />
         </div>
         <div>
+          <h4 className="text-sm font-bold mb-2">자격 요건</h4>
+        </div>
+        <div>
           <textarea
             className="w-full border rounded p-2 min-h-[48px]"
-            placeholder="자격 요건"
+            placeholder={`자격 요건
+자격 요건
+자격 요건`}
             value={qualification}
             onChange={(e) => setQualification(e.target.value)}
           />
         </div>
         <div>
+          <h4 className="text-sm font-bold mb-2">복리후생</h4>
+        </div>
+        <div>
           <textarea
             className="w-full border rounded p-2 min-h-[48px]"
-            placeholder="복리후생"
+            placeholder={`복리후생
+복리후생
+복리후생`}
             value={welfare}
             onChange={(e) => setWelfare(e.target.value)}
           />
