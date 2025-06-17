@@ -202,6 +202,7 @@ const ConsultationAdminPage = () => {
                 <th className="p-2">희망일</th>
                 <th className="p-2">희망시간</th>
                 <th className="p-2">신청일</th>
+                <th className="p-2">추가메시지</th>
                 <th className="p-2">상태</th>
                 <th className="p-2">관리</th>
               </tr>
@@ -217,6 +218,7 @@ const ConsultationAdminPage = () => {
                   <td className="p-2">{item.preferredDate}</td>
                   <td className="p-2">{item.preferredTime}</td>
                   <td className="p-2">{item.requestDate}</td>
+                  <td className="p-2">{item.message}</td>
                   <td className="p-2">
                     <select
                       className="border rounded px-2 py-1 text-sm"

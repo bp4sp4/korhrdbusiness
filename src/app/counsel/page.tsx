@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import {
@@ -12,6 +12,7 @@ import {
   GraduationCap,
   CheckCircle,
   ArrowRight,
+  ArrowDown,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -55,6 +56,108 @@ interface ConsultationFormData {
   consent: boolean;
 }
 
+interface FieldOption {
+  value: string;
+  label: string;
+  category: string;
+  icon: string;
+  description?: string;
+}
+
+const fieldOptions: FieldOption[] = [
+  {
+    value: "사회복지사 자격증",
+    label: "사회복지사 자격증",
+    category: "국가자격증",
+    icon: "🏥",
+    description: "사회복지 전문가 양성",
+  },
+  {
+    value: "보육교사 자격증",
+    label: "보육교사 자격증",
+    category: "국가자격증",
+    icon: "👶",
+    description: "영유아 보육 전문가",
+  },
+  {
+    value: "한국어교원 자격증",
+    label: "한국어교원 자격증",
+    category: "국가자격증",
+    icon: "🇰🇷",
+    description: "한국어 교육 전문가",
+  },
+  {
+    value: "평생교육사 자격증",
+    label: "평생교육사 자격증",
+    category: "국가자격증",
+    icon: "📚",
+    description: "성인 교육 전문가",
+  },
+  {
+    value: "종합미용면허증",
+    label: "종합미용면허증",
+    category: "국가자격증",
+    icon: "💄",
+    description: "미용 전문가 면허",
+  },
+  {
+    value: "산업기사/기사 응시자격",
+    label: "산업기사/기사 응시자격",
+    category: "국가자격증",
+    icon: "🔧",
+    description: "기술 전문가 자격",
+  },
+  {
+    value: "요양보호사자격증",
+    label: "요양보호사자격증",
+    category: "국가자격증",
+    icon: "👴",
+    description: "노인 돌봄 전문가",
+  },
+  {
+    value: "청소년지도사2급",
+    label: "청소년지도사2급",
+    category: "국가자격증",
+    icon: "🧑‍🎓",
+    description: "청소년 교육 지도",
+  },
+  {
+    value: "장애인영유아보육교사",
+    label: "장애인영유아보육교사",
+    category: "국가자격증",
+    icon: "🤝",
+    description: "특수 보육 전문가",
+  },
+  {
+    value: "심리학사",
+    label: "심리학사",
+    category: "학위/편입",
+    icon: "🧠",
+    description: "심리학 학사 학위",
+  },
+  {
+    value: "2/4년제 학위취득",
+    label: "2/4년제 학위취득",
+    category: "학위/편입",
+    icon: "🎓",
+    description: "대학 학위 취득",
+  },
+  {
+    value: "편입학/대졸자전형",
+    label: "편입학/대졸자전형",
+    category: "학위/편입",
+    icon: "🏫",
+    description: "대학 편입 준비",
+  },
+  {
+    value: "민간자격증",
+    label: "민간자격증",
+    category: "추가경쟁력",
+    icon: "📜",
+    description: "다양한 민간 자격증",
+  },
+];
+
 const CareerConsultationUI = () => {
   const [formData, setFormData] = useState<ConsultationFormData>({
     name: "",
@@ -75,8 +178,40 @@ const CareerConsultationUI = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [emailError, setEmailError] = useState("");
   const [phoneError, setPhoneError] = useState("");
+  const [showScrollIndicator, setShowScrollIndicator] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const totalSteps = 3;
+
+  useEffect(() => {
+    let observer: MutationObserver | null = null;
+
+    const tryCheck = () => {
+      const el = scrollRef.current;
+      if (el) {
+        if (el.scrollHeight > el.clientHeight) {
+          setShowScrollIndicator(true);
+        } else {
+          setShowScrollIndicator(false);
+        }
+        return true;
+      }
+      return false;
+    };
+
+    if (!tryCheck()) {
+      observer = new MutationObserver(() => {
+        if (tryCheck() && observer) {
+          observer.disconnect();
+        }
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+    }
+
+    return () => {
+      if (observer) observer.disconnect();
+    };
+  }, [isDialogOpen, currentStep, formData.field]);
 
   const handleInputChange = (
     field: keyof ConsultationFormData,
@@ -190,13 +325,7 @@ const CareerConsultationUI = () => {
     },
   ];
 
-  const experienceLevels = [
-    "신입 (0-1년)",
-    "경력 1-3년",
-    "경력 3-5년",
-    "경력 5-10년",
-    "경력 10년+",
-  ];
+  const educationLevels = ["고졸", "초대졸", "전문대졸", "4년제대졸"];
 
   const validateEmail = (email: string) => {
     // 간단한 이메일 정규식
@@ -213,6 +342,15 @@ const CareerConsultationUI = () => {
     const d = new Date();
     d.setDate(d.getDate() + 1);
     return d.toISOString().split("T")[0];
+  };
+
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLDivElement;
+    if (target.scrollTop + target.clientHeight >= target.scrollHeight - 2) {
+      setShowScrollIndicator(false);
+    } else {
+      setShowScrollIndicator(true);
+    }
   };
 
   const renderStep = () => {
@@ -284,7 +422,7 @@ const CareerConsultationUI = () => {
             className="space-y-4"
           >
             <div className="space-y-2">
-              <Label className="text-sm font-medium">경력 수준 *</Label>
+              <Label className="text-sm font-medium">학력 *</Label>
               <Select
                 value={formData.experience}
                 onValueChange={(value) =>
@@ -292,10 +430,10 @@ const CareerConsultationUI = () => {
                 }
               >
                 <SelectTrigger>
-                  <SelectValue placeholder="경력을 선택해주세요" />
+                  <SelectValue placeholder="학력을 선택해주세요" />
                 </SelectTrigger>
                 <SelectContent>
-                  {experienceLevels.map((level) => (
+                  {educationLevels.map((level) => (
                     <SelectItem key={level} value={level}>
                       {level}
                     </SelectItem>
@@ -305,104 +443,86 @@ const CareerConsultationUI = () => {
             </div>
 
             <div className="space-y-2">
-              <Label className="text-sm font-medium">관심 분야 *</Label>
-              <Select
-                value={formData.field}
-                onValueChange={(value) => handleInputChange("field", value)}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="분야를 선택해주세요" />
-                </SelectTrigger>
-                <SelectContent className="z-[9999] max-h-[320px] overflow-y-auto">
-                  <div className="px-3 py-1 text-xs font-semibold text-gray-500">
-                    국가자격증
+              <Label className="text-sm font-medium">
+                관심 분야*
+                <span className="text-xs text-gray-400">
+                  (아래로 스크롤해 더 많은 항목을 확인하세요)
+                </span>
+              </Label>
+              <div className="relative">
+                <div
+                  ref={scrollRef}
+                  className="grid grid-cols-1 gap-2 max-h-64 overflow-y-auto border rounded-lg p-2 scrollbar-hide"
+                  onScroll={handleScroll}
+                >
+                  {Object.entries(
+                    fieldOptions.reduce(
+                      (
+                        acc: Record<string, FieldOption[]>,
+                        option: FieldOption
+                      ) => {
+                        if (!acc[option.category]) acc[option.category] = [];
+                        acc[option.category].push(option);
+                        return acc;
+                      },
+                      {} as Record<string, FieldOption[]>
+                    )
+                  ).map(([category, options]) => (
+                    <div key={category} className="space-y-2">
+                      <div className="text-xs font-semibold text-gray-500 px-2 py-1 bg-gray-50 rounded">
+                        {category}
+                      </div>
+                      {(options as FieldOption[]).map((option: FieldOption) => (
+                        <button
+                          key={option.value}
+                          onClick={() =>
+                            handleInputChange("field", option.value)
+                          }
+                          className={cn(
+                            "w-full text-left p-3 rounded-lg border transition-all duration-200 hover:border-primary/50",
+                            formData.field === option.value
+                              ? "border-primary bg-primary/5 text-primary"
+                              : "border-border"
+                          )}
+                        >
+                          <div className="flex items-center gap-3">
+                            <span className="text-lg">{option.icon}</span>
+                            <div className="flex-1 min-w-0">
+                              <div className="font-medium text-sm">
+                                {option.label}
+                              </div>
+                              {option.description && (
+                                <div className="text-xs text-muted-foreground mt-1">
+                                  {option.description}
+                                </div>
+                              )}
+                            </div>
+                            {formData.field === option.value && (
+                              <CheckCircle className="w-4 h-4 text-primary" />
+                            )}
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+                {/* Scroll indicator */}
+                {showScrollIndicator && (
+                  <div className="absolute bottom-0 left-0 right-0 h-14 z-10 bg-gradient-to-t from-white to-transparent pointer-events-none flex flex-col items-center justify-end pb-2">
+                    <motion.div
+                      initial={{ y: -5, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{
+                        repeat: Infinity,
+                        duration: 1,
+                        ease: "easeInOut",
+                      }}
+                    >
+                      <ArrowDown className="w-5 h-5 text-gray-400" />
+                    </motion.div>
                   </div>
-                  <SelectItem
-                    className="whitespace-normal py-3 px-2 text-base"
-                    value="사회복지사 자격증"
-                  >
-                    사회복지사 자격증
-                  </SelectItem>
-                  <SelectItem
-                    className="whitespace-normal py-3 px-2 text-base"
-                    value="보육교사 자격증"
-                  >
-                    보육교사 자격증
-                  </SelectItem>
-                  <SelectItem
-                    className="whitespace-normal py-3 px-2 text-base"
-                    value="한국어교원 자격증"
-                  >
-                    한국어교원 자격증
-                  </SelectItem>
-                  <SelectItem
-                    className="whitespace-normal py-3 px-2 text-base"
-                    value="평생교육사 자격증"
-                  >
-                    평생교육사 자격증
-                  </SelectItem>
-                  <SelectItem
-                    className="whitespace-normal py-3 px-2 text-base"
-                    value="종합미용면허증"
-                  >
-                    종합미용면허증
-                  </SelectItem>
-                  <SelectItem
-                    className="whitespace-normal py-3 px-2 text-base"
-                    value="산업기사/기사 응시자격"
-                  >
-                    산업기사/기사 응시자격
-                  </SelectItem>
-                  <SelectItem
-                    className="whitespace-normal py-3 px-2 text-base"
-                    value="요양보호사자격증"
-                  >
-                    요양보호사자격증
-                  </SelectItem>
-                  <SelectItem
-                    className="whitespace-normal py-3 px-2 text-base"
-                    value="청소년지도사2급"
-                  >
-                    청소년지도사2급
-                  </SelectItem>
-                  <SelectItem
-                    className="whitespace-normal py-3 px-2 text-base"
-                    value="장애인영유아보육교사"
-                  >
-                    장애인영유아보육교사
-                  </SelectItem>
-                  <div className="px-3 py-1 text-xs font-semibold text-gray-500">
-                    학위/편입
-                  </div>
-                  <SelectItem
-                    className="whitespace-normal py-3 px-2 text-base"
-                    value="심리학사"
-                  >
-                    심리학사
-                  </SelectItem>
-                  <SelectItem
-                    className="whitespace-normal py-3 px-2 text-base"
-                    value="2/4년제 학위취득"
-                  >
-                    2/4년제 학위취득
-                  </SelectItem>
-                  <SelectItem
-                    className="whitespace-normal py-3 px-2 text-base"
-                    value="편입학/대졸자전형"
-                  >
-                    편입학/대졸자전형
-                  </SelectItem>
-                  <div className="px-3 py-1 text-xs font-semibold text-gray-500">
-                    추가경쟁력
-                  </div>
-                  <SelectItem
-                    className="whitespace-normal py-3 px-2 text-base"
-                    value="민간자격증"
-                  >
-                    민간자격증
-                  </SelectItem>
-                </SelectContent>
-              </Select>
+                )}
+              </div>
             </div>
 
             <div className="space-y-2">
@@ -544,6 +664,10 @@ const CareerConsultationUI = () => {
     }
   };
 
+  const checkScrollIndicator = () => {
+    // Implementation of checkScrollIndicator function
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br via-white to-indigo-50 p-6 flex items-center justify-center">
       <div className="w-full max-w-4xl">
@@ -652,6 +776,9 @@ const CareerConsultationUI = () => {
                 <Dialog
                   open={isDialogOpen}
                   onOpenChange={(open) => {
+                    if (open) {
+                      checkScrollIndicator();
+                    }
                     if (!open && isSubmitted) {
                       setIsSubmitted(false);
                       setCurrentStep(1);
