@@ -9,6 +9,17 @@ import { Skeleton } from "@/components/ui/skeleton";
 import Script from "next/script";
 import { supabase } from "@/lib/supabase";
 
+interface Place {
+  id: number;
+  name: string;
+  address: string;
+  category: string;
+  lat: number;
+  lng: number;
+  open_hours: string;
+  phone: string;
+}
+
 // TypeScript: declare kakao on window
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare global {
@@ -18,8 +29,8 @@ declare global {
 }
 
 const KakaoMap: React.FC<{
-  locations: any[];
-  selectedLocation: any | null;
+  locations: Place[];
+  selectedLocation: Place | null;
   mapRef: React.MutableRefObject<any>;
 }> = ({ locations, mapRef }) => {
   const mapDivRef = useRef<HTMLDivElement>(null);
@@ -52,14 +63,14 @@ const KakaoMap: React.FC<{
         iw.open(map, marker);
       });
     });
-  }, [locations]);
+  }, [locations, mapRef]);
 
   return <div ref={mapDivRef} style={{ width: "100%", height: "100%" }} />;
 };
 
 const PlaceList: React.FC<{
-  places: any[];
-  onSelect: (place: any) => void;
+  places: Place[];
+  onSelect: (place: Place) => void;
   loading: boolean;
 }> = ({ places, onSelect, loading }) => {
   if (loading) {
@@ -117,8 +128,8 @@ const PlaceList: React.FC<{
 };
 
 const KakaoMapSearchComponent: React.FC = () => {
-  const [places, setPlaces] = useState<any[]>([]);
-  const [selectedLocation, setSelectedLocation] = useState<any | null>(null);
+  const [places, setPlaces] = useState<Place[]>([]);
+  const [selectedLocation, setSelectedLocation] = useState<Place | null>(null);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
   const mapRef = useRef<any>(null);
@@ -153,7 +164,7 @@ const KakaoMapSearchComponent: React.FC = () => {
     fetchPlaces("");
   };
 
-  const handleSelect = (place: any) => {
+  const handleSelect = (place: Place) => {
     setSelectedLocation(place);
     if (mapRef.current) {
       mapRef.current.setLevel(3);
