@@ -9,6 +9,31 @@ import { Skeleton } from "@/components/ui/skeleton";
 import Script from "next/script";
 import { supabase } from "@/lib/supabase";
 
+interface LocationData {
+  id: number;
+  name: string;
+  address: string;
+  category: string;
+
+  coordinates: {
+    lat: number;
+    lng: number;
+  };
+  openHours: string;
+  distance: string;
+  phone: string;
+}
+
+interface SearchResult {
+  id: number;
+  name: string;
+  address: string;
+  category: string;
+  distance: string;
+  openHours: string;
+  phone: string;
+}
+
 interface Place {
   id: number;
   name: string;
@@ -20,12 +45,8 @@ interface Place {
   phone: string;
 }
 
-// kakao map 최소 타입 선언
-interface KakaoMap {
-  setLevel: (level: number) => void;
-  panTo: (latlng: { getLat: () => number; getLng: () => number }) => void;
-}
-
+// TypeScript: declare kakao on window
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare global {
   interface Window {
     kakao: any;
@@ -33,10 +54,10 @@ declare global {
 }
 
 const KakaoMap: React.FC<{
-  locations: Place[];
-  selectedLocation: Place | null;
-  mapRef: React.MutableRefObject<KakaoMap | null>;
-}> = ({ locations, mapRef }) => {
+  locations: any[];
+  selectedLocation: any | null;
+  mapRef: React.MutableRefObject<any>;
+}> = ({ locations, selectedLocation, mapRef }) => {
   const mapDivRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -67,14 +88,14 @@ const KakaoMap: React.FC<{
         iw.open(map, marker);
       });
     });
-  }, [locations, mapRef]);
+  }, [locations]);
 
   return <div ref={mapDivRef} style={{ width: "100%", height: "100%" }} />;
 };
 
 const PlaceList: React.FC<{
-  places: Place[];
-  onSelect: (place: Place) => void;
+  places: any[];
+  onSelect: (place: any) => void;
   loading: boolean;
 }> = ({ places, onSelect, loading }) => {
   if (loading) {
@@ -132,11 +153,11 @@ const PlaceList: React.FC<{
 };
 
 const KakaoMapSearchComponent: React.FC = () => {
-  const [places, setPlaces] = useState<Place[]>([]);
-  const [selectedLocation, setSelectedLocation] = useState<Place | null>(null);
+  const [places, setPlaces] = useState<any[]>([]);
+  const [selectedLocation, setSelectedLocation] = useState<any | null>(null);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
-  const mapRef = useRef<KakaoMap | null>(null);
+  const mapRef = useRef<any>(null);
 
   const fetchPlaces = async (keyword = "") => {
     setLoading(true);
@@ -168,14 +189,11 @@ const KakaoMapSearchComponent: React.FC = () => {
     fetchPlaces("");
   };
 
-  const handleSelect = (place: Place) => {
+  const handleSelect = (place: any) => {
     setSelectedLocation(place);
     if (mapRef.current) {
       mapRef.current.setLevel(3);
-      mapRef.current.panTo({
-        getLat: () => place.lat,
-        getLng: () => place.lng,
-      });
+      mapRef.current.panTo(new window.kakao.maps.LatLng(place.lat, place.lng));
     }
   };
 
