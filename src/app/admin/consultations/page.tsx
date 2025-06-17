@@ -199,6 +199,8 @@ const ConsultationAdminPage = () => {
                 <th className="p-2">연락처</th>
                 <th className="p-2">분야</th>
                 <th className="p-2">상담유형</th>
+                <th className="p-2">희망일</th>
+                <th className="p-2">희망시간</th>
                 <th className="p-2">신청일</th>
                 <th className="p-2">상태</th>
                 <th className="p-2">관리</th>
@@ -212,6 +214,8 @@ const ConsultationAdminPage = () => {
                   <td className="p-2">{item.phone}</td>
                   <td className="p-2">{item.field}</td>
                   <td className="p-2">{item.consultationType}</td>
+                  <td className="p-2">{item.preferredDate}</td>
+                  <td className="p-2">{item.preferredTime}</td>
                   <td className="p-2">{item.requestDate}</td>
                   <td className="p-2">
                     <select

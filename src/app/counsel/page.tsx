@@ -199,12 +199,19 @@ const CareerConsultationUI = () => {
   ];
 
   const fields = [
-    "사회복지사 2급",
-    "보육교사 2급",
-    "평생교육사 2급",
-    "한국어교원 2급",
-    "청소년 지도사 2급",
-    "장애영유아보육교사 ",
+    "사회복지사 자격증",
+    "보육교사 자격증",
+    "한국어교원 자격증",
+    "평생교육사 자격증",
+    "종합미용면허증",
+    "산업기사/기사 응시자격",
+    "심리학사",
+    "2/4년제 학위취득",
+    "편입학/대졸자전형",
+    "민간자격증",
+    "요양보호사자격증",
+    "청소년지도사2급",
+    "장애인영유아보육교사",
   ];
 
   const validateEmail = (email: string) => {
@@ -215,6 +222,13 @@ const CareerConsultationUI = () => {
   const validatePhone = (phone: string) => {
     // 숫자만 9~11자리 허용
     return /^\d{9,11}$/.test(phone);
+  };
+
+  // 내일 날짜를 yyyy-mm-dd로 계산
+  const getTomorrow = () => {
+    const d = new Date();
+    d.setDate(d.getDate() + 1);
+    return d.toISOString().split("T")[0];
   };
 
   const renderStep = () => {
@@ -367,6 +381,7 @@ const CareerConsultationUI = () => {
                 <Input
                   id="date"
                   type="date"
+                  min={getTomorrow()}
                   value={formData.preferredDate}
                   onChange={(e) =>
                     handleInputChange("preferredDate", e.target.value)
@@ -464,7 +479,7 @@ const CareerConsultationUI = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 p-6 flex items-center justify-center">
+    <div className="min-h-screen bg-gradient-to-br via-white to-indigo-50 p-6 flex items-center justify-center">
       <div className="w-full max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
