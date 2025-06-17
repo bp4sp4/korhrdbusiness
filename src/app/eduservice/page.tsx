@@ -20,8 +20,12 @@ interface Place {
   phone: string;
 }
 
-// TypeScript: declare kakao on window
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// kakao map 최소 타입 선언
+interface KakaoMap {
+  setLevel: (level: number) => void;
+  panTo: (latlng: { getLat: () => number; getLng: () => number }) => void;
+}
+
 declare global {
   interface Window {
     kakao: any;
@@ -31,7 +35,7 @@ declare global {
 const KakaoMap: React.FC<{
   locations: Place[];
   selectedLocation: Place | null;
-  mapRef: React.MutableRefObject<any>;
+  mapRef: React.MutableRefObject<KakaoMap | null>;
 }> = ({ locations, mapRef }) => {
   const mapDivRef = useRef<HTMLDivElement>(null);
 
@@ -132,7 +136,7 @@ const KakaoMapSearchComponent: React.FC = () => {
   const [selectedLocation, setSelectedLocation] = useState<Place | null>(null);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
-  const mapRef = useRef<any>(null);
+  const mapRef = useRef<KakaoMap | null>(null);
 
   const fetchPlaces = async (keyword = "") => {
     setLoading(true);
@@ -168,7 +172,10 @@ const KakaoMapSearchComponent: React.FC = () => {
     setSelectedLocation(place);
     if (mapRef.current) {
       mapRef.current.setLevel(3);
-      mapRef.current.panTo(new window.kakao.maps.LatLng(place.lat, place.lng));
+      mapRef.current.panTo({
+        getLat: () => place.lat,
+        getLng: () => place.lng,
+      });
     }
   };
 
