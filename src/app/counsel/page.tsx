@@ -23,6 +23,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
+  SelectGroup,
 } from "@/components/ui/select";
 import {
   Dialog,
@@ -61,7 +62,7 @@ const CareerConsultationUI = () => {
     email: "",
     phone: "",
     experience: "",
-    field: "",
+    field: "사회복지사 자격증",
     preferredDate: "",
     preferredTime: "",
     consultationType: "",
@@ -198,22 +199,6 @@ const CareerConsultationUI = () => {
     "경력 10년+",
   ];
 
-  const fields = [
-    "사회복지사 자격증",
-    "보육교사 자격증",
-    "한국어교원 자격증",
-    "평생교육사 자격증",
-    "종합미용면허증",
-    "산업기사/기사 응시자격",
-    "심리학사",
-    "2/4년제 학위취득",
-    "편입학/대졸자전형",
-    "민간자격증",
-    "요양보호사자격증",
-    "청소년지도사2급",
-    "장애인영유아보육교사",
-  ];
-
   const validateEmail = (email: string) => {
     // 간단한 이메일 정규식
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -329,12 +314,94 @@ const CareerConsultationUI = () => {
                 <SelectTrigger>
                   <SelectValue placeholder="분야를 선택해주세요" />
                 </SelectTrigger>
-                <SelectContent>
-                  {fields.map((field) => (
-                    <SelectItem key={field} value={field}>
-                      {field}
-                    </SelectItem>
-                  ))}
+                <SelectContent className="z-[9999] max-h-[320px] overflow-y-auto">
+                  <div className="px-3 py-1 text-xs font-semibold text-gray-500">
+                    국가자격증
+                  </div>
+                  <SelectItem
+                    className="whitespace-normal py-3 px-2 text-base"
+                    value="사회복지사 자격증"
+                  >
+                    사회복지사 자격증
+                  </SelectItem>
+                  <SelectItem
+                    className="whitespace-normal py-3 px-2 text-base"
+                    value="보육교사 자격증"
+                  >
+                    보육교사 자격증
+                  </SelectItem>
+                  <SelectItem
+                    className="whitespace-normal py-3 px-2 text-base"
+                    value="한국어교원 자격증"
+                  >
+                    한국어교원 자격증
+                  </SelectItem>
+                  <SelectItem
+                    className="whitespace-normal py-3 px-2 text-base"
+                    value="평생교육사 자격증"
+                  >
+                    평생교육사 자격증
+                  </SelectItem>
+                  <SelectItem
+                    className="whitespace-normal py-3 px-2 text-base"
+                    value="종합미용면허증"
+                  >
+                    종합미용면허증
+                  </SelectItem>
+                  <SelectItem
+                    className="whitespace-normal py-3 px-2 text-base"
+                    value="산업기사/기사 응시자격"
+                  >
+                    산업기사/기사 응시자격
+                  </SelectItem>
+                  <SelectItem
+                    className="whitespace-normal py-3 px-2 text-base"
+                    value="요양보호사자격증"
+                  >
+                    요양보호사자격증
+                  </SelectItem>
+                  <SelectItem
+                    className="whitespace-normal py-3 px-2 text-base"
+                    value="청소년지도사2급"
+                  >
+                    청소년지도사2급
+                  </SelectItem>
+                  <SelectItem
+                    className="whitespace-normal py-3 px-2 text-base"
+                    value="장애인영유아보육교사"
+                  >
+                    장애인영유아보육교사
+                  </SelectItem>
+                  <div className="px-3 py-1 text-xs font-semibold text-gray-500">
+                    학위/편입
+                  </div>
+                  <SelectItem
+                    className="whitespace-normal py-3 px-2 text-base"
+                    value="심리학사"
+                  >
+                    심리학사
+                  </SelectItem>
+                  <SelectItem
+                    className="whitespace-normal py-3 px-2 text-base"
+                    value="2/4년제 학위취득"
+                  >
+                    2/4년제 학위취득
+                  </SelectItem>
+                  <SelectItem
+                    className="whitespace-normal py-3 px-2 text-base"
+                    value="편입학/대졸자전형"
+                  >
+                    편입학/대졸자전형
+                  </SelectItem>
+                  <div className="px-3 py-1 text-xs font-semibold text-gray-500">
+                    기타
+                  </div>
+                  <SelectItem
+                    className="whitespace-normal py-3 px-2 text-base"
+                    value="민간자격증"
+                  >
+                    민간자격증
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -594,7 +661,7 @@ const CareerConsultationUI = () => {
                         email: "",
                         phone: "",
                         experience: "",
-                        field: "",
+                        field: "사회복지사 자격증",
                         preferredDate: "",
                         preferredTime: "",
                         consultationType: "",

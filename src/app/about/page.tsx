@@ -4,6 +4,7 @@ import React, { useRef, useEffect, useState } from "react";
 import { useScroll, useTransform } from "framer-motion";
 import { motion } from "framer-motion";
 import "../main.css";
+import { SelectContent } from "@/components/ui/select";
 
 interface TimelineEntry {
   year: string;
@@ -55,12 +56,7 @@ export default function EduServicePage() {
           >
             누구도 끝까지 책임지지 않던
           </h2>
-          <p
-            className="text-2xl md:text-4xl "
-            style={{ letterSpacing: "-3px" }}
-          >
-            교육의 본질을 바꿉니다.
-          </p>
+          <p className="text-2xl md:text-4xl ">교육의 본질을 바꿉니다.</p>
           <p className="text-base font-bold md:text-2xl text-gray-200 mt-10">
             한평생교육은 정말{" "}
             <span className="text-white font-bold border-b-2 border-white-400">
