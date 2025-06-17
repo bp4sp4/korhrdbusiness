@@ -393,7 +393,7 @@ const CareerConsultationUI = () => {
                     편입학/대졸자전형
                   </SelectItem>
                   <div className="px-3 py-1 text-xs font-semibold text-gray-500">
-                    기타
+                    추가경쟁력
                   </div>
                   <SelectItem
                     className="whitespace-normal py-3 px-2 text-base"
