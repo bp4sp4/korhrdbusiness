@@ -8,31 +8,7 @@ import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import Script from "next/script";
 import { supabase } from "@/lib/supabase";
-
-interface LocationData {
-  id: number;
-  name: string;
-  address: string;
-  category: string;
-
-  coordinates: {
-    lat: number;
-    lng: number;
-  };
-  openHours: string;
-  distance: string;
-  phone: string;
-}
-
-interface SearchResult {
-  id: number;
-  name: string;
-  address: string;
-  category: string;
-  distance: string;
-  openHours: string;
-  phone: string;
-}
+import { PostgrestFilterBuilder } from "@supabase/postgrest-js";
 
 interface Place {
   id: number;
@@ -45,7 +21,6 @@ interface Place {
   phone: string;
 }
 
-// kakao map 최소 타입 선언
 interface KakaoMap {
   setLevel: (level: number) => void;
   panTo: (latlng: { getLat: () => number; getLng: () => number }) => void;
@@ -55,13 +30,16 @@ declare global {
   interface Window {
     kakao: {
       maps: {
-        Map: new (container: HTMLElement, options: any) => KakaoMap;
+        Map: new (container: HTMLElement, options: unknown) => KakaoMap;
         LatLng: new (lat: number, lng: number) => {
           getLat: () => number;
           getLng: () => number;
         };
-        Marker: new (options: any) => any;
-        InfoWindow: new (options: any) => any;
+        Marker: new (options: unknown) => unknown;
+        InfoWindow: new (options: { content: string }) => {
+          open: (map: KakaoMap, marker: unknown) => void;
+        };
+        load: (callback: () => void) => void;
       };
     };
   }
@@ -76,9 +54,11 @@ const KakaoMap: React.FC<{
 
   useEffect(() => {
     if (typeof window === "undefined" || locations.length === 0) return;
-    (window.kakao.maps as any).load(() => {
+
+    window.kakao.maps.load(() => {
       const container = mapDivRef.current;
       if (!container) return;
+
       const center = new window.kakao.maps.LatLng(
         locations[0].lat,
         locations[0].lng
@@ -96,16 +76,16 @@ const KakaoMap: React.FC<{
           map,
           title: loc.name,
         });
+
         const iw = new window.kakao.maps.InfoWindow({
           content: `<div style='padding:8px 12px;font-size:14px;'>${loc.name}</div>`,
         });
-        // 선택된 마커만 InfoWindow open
+
         if (selectedLocation && loc.id === selectedLocation.id) {
           iw.open(map, marker);
         }
       });
 
-      // 선택된 마커로 지도 이동 및 레벨 변경
       if (
         selectedLocation &&
         mapRef.current &&
@@ -140,12 +120,11 @@ const PlaceList: React.FC<{
       </div>
     );
   }
-  if (!places) {
-    return <div className="p-6">로딩 중...</div>;
-  }
-  if (places.length === 0) {
+
+  if (!places || places.length === 0) {
     return <div className="p-6">장소 데이터가 없습니다.</div>;
   }
+
   return (
     <div className="p-4 space-y-3">
       <p className="text-sm text-muted-foreground mb-4">
@@ -194,29 +173,30 @@ const KakaoMapSearchComponent: React.FC = () => {
 
   const fetchPlaces = async (keyword = "") => {
     setLoading(true);
+
     let query = supabase.from("places").select("*").order("id");
+
     if (keyword) {
       query = query.or(
         `name.ilike.%${keyword}%,address.ilike.%${keyword}%,category.ilike.%${keyword}%`
       );
     }
+
     const { data, error } = await query;
-    if (!error && data) setPlaces(data);
+
+    if (!error && data) {
+      setPlaces(data as Place[]);
+    }
+
     setLoading(false);
   };
 
   useEffect(() => {
     fetchPlaces();
-  }, []);
-
-  useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleSearch = () => {
-    fetchPlaces(search);
-  };
-
+  const handleSearch = () => fetchPlaces(search);
   const handleReset = () => {
     setSearch("");
     fetchPlaces("");
@@ -228,13 +208,11 @@ const KakaoMapSearchComponent: React.FC = () => {
 
   return (
     <>
-      {/* 카카오맵 스크립트 동적 로드 */}
       <Script
         strategy="afterInteractive"
         src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_MAP_API_KEY}&autoload=false`}
       />
       <div className="flex h-screen w-screen flex-col md:flex-row">
-        {/* 지도 영역 */}
         <div className="flex-1 min-w-0 h-[350px] md:h-full">
           <div className="w-full h-full">
             {places.length > 0 ? (
@@ -250,7 +228,6 @@ const KakaoMapSearchComponent: React.FC = () => {
             )}
           </div>
         </div>
-        {/* 검색 영역 */}
         <div className="w-full md:w-[400px] max-w-full md:max-w-[400px] h-full bg-white shadow-lg border-l border-border flex flex-col rounded-none md:rounded-l-2xl overflow-y-auto">
           <div className="p-6 border-b border-border flex gap-2">
             <Input
@@ -267,13 +244,11 @@ const KakaoMapSearchComponent: React.FC = () => {
               리셋
             </Button>
           </div>
-          <div className="flex-1 overflow-y-auto">
-            <PlaceList
-              places={places}
-              onSelect={handleSelect}
-              loading={loading}
-            />
-          </div>
+          <PlaceList
+            places={places}
+            onSelect={handleSelect}
+            loading={loading}
+          />
         </div>
       </div>
     </>
