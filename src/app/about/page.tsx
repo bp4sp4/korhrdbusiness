@@ -107,7 +107,7 @@ export default function EduServicePage() {
                 주부
               </div>
               <img
-                src="/images/about/001.png"
+                src="/images/about/004.png"
                 alt="주부"
                 className="w-full h-auto object-contain mb-2"
               />
@@ -121,7 +121,7 @@ export default function EduServicePage() {
                 대학생
               </div>
               <img
-                src="/images/about/002.png"
+                src="/images/about/001.png"
                 alt="대학생"
                 className="w-full h-auto object-contain mb-2"
               />
@@ -135,7 +135,7 @@ export default function EduServicePage() {
                 중장년층
               </div>
               <img
-                src="/images/about/003.png"
+                src="/images/about/002.png"
                 alt="중장년층"
                 className="w-full h-auto object-contain mb-2"
               />
@@ -149,7 +149,7 @@ export default function EduServicePage() {
                 노년층
               </div>
               <img
-                src="/images/about/004.png"
+                src="/images/about/003.png"
                 alt="노년층"
                 className="w-full h-auto object-contain mb-2"
               />
