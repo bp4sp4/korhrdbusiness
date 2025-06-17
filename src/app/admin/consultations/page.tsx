@@ -136,26 +136,6 @@ const ConsultationAdminPage = () => {
     return Array.from(new Set(data.map((item) => item.field)));
   }, [data]);
 
-  const handleStatusChange = async (id: string | number, newStatus: string) => {
-    // DB 업데이트
-    const { error } = await supabase
-      .from("consultations")
-      .update({ status: newStatus })
-      .eq("id", id);
-    if (error) {
-      alert("상태 변경 실패: " + error.message);
-      return;
-    }
-    // 변경 후 데이터 다시 불러오기
-    setData((prev) =>
-      prev.map((item) =>
-        item.id === id
-          ? { ...item, status: newStatus as ConsultationRequest["status"] }
-          : item
-      )
-    );
-  };
-
   const handleExcelDownload = () => {
     const exportData = filteredData.map((item) => ({
       이름: item.name,
@@ -298,7 +278,36 @@ const ConsultationAdminPage = () => {
                   <td className="p-2">{item.field}</td>
                   <td className="p-2">{item.consultationType}</td>
                   <td className="p-2">{item.requestDate}</td>
-                  <td className="p-2">{getStatusBadge(item.status)}</td>
+                  <td className="p-2">
+                    <select
+                      className="border rounded px-2 py-1 text-sm"
+                      value={item.status}
+                      onChange={async (e) => {
+                        const newStatus = e.target
+                          .value as ConsultationRequest["status"];
+                        const { error } = await supabase
+                          .from("consultations")
+                          .update({ status: newStatus })
+                          .eq("id", item.id);
+                        if (!error) {
+                          setData((prev) =>
+                            prev.map((row) =>
+                              row.id === item.id
+                                ? { ...row, status: newStatus }
+                                : row
+                            )
+                          );
+                        } else {
+                          alert("상태 변경 실패: " + error.message);
+                        }
+                      }}
+                    >
+                      <option value="pending">대기중</option>
+                      <option value="approved">승인됨</option>
+                      <option value="completed">완료됨</option>
+                      <option value="rejected">거절됨</option>
+                    </select>
+                  </td>
                   <td className="p-2">
                     <Button
                       size="sm"
