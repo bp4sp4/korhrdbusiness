@@ -8,7 +8,6 @@ import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import Script from "next/script";
 import { supabase } from "@/lib/supabase";
-import { PostgrestFilterBuilder } from "@supabase/postgrest-js";
 
 interface Place {
   id: number;
