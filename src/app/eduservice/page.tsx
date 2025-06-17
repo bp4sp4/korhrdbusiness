@@ -45,25 +45,40 @@ interface Place {
   phone: string;
 }
 
-// TypeScript: declare kakao on window
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// kakao map 최소 타입 선언
+interface KakaoMap {
+  setLevel: (level: number) => void;
+  panTo: (latlng: { getLat: () => number; getLng: () => number }) => void;
+}
+
 declare global {
   interface Window {
-    kakao: any;
+    kakao: {
+      maps: {
+        Map: new (container: HTMLElement, options: any) => KakaoMap;
+        LatLng: new (lat: number, lng: number) => {
+          getLat: () => number;
+          getLng: () => number;
+        };
+        Marker: new (options: any) => any;
+        InfoWindow: new (options: any) => any;
+      };
+    };
   }
 }
 
 const KakaoMap: React.FC<{
-  locations: any[];
-  selectedLocation: any | null;
-  mapRef: React.MutableRefObject<any>;
+  locations: Place[];
+  selectedLocation: Place | null;
+  mapRef: React.MutableRefObject<KakaoMap | null>;
 }> = ({ locations, selectedLocation, mapRef }) => {
   const mapDivRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (typeof window === "undefined" || locations.length === 0) return;
-    window.kakao.maps.load(() => {
+    (window.kakao.maps as any).load(() => {
       const container = mapDivRef.current;
+      if (!container) return;
       const center = new window.kakao.maps.LatLng(
         locations[0].lat,
         locations[0].lng
@@ -81,21 +96,39 @@ const KakaoMap: React.FC<{
           map,
           title: loc.name,
         });
-        // InfoWindow 항상 open
         const iw = new window.kakao.maps.InfoWindow({
           content: `<div style='padding:8px 12px;font-size:14px;'>${loc.name}</div>`,
         });
-        iw.open(map, marker);
+        // 선택된 마커만 InfoWindow open
+        if (selectedLocation && loc.id === selectedLocation.id) {
+          iw.open(map, marker);
+        }
       });
+
+      // 선택된 마커로 지도 이동 및 레벨 변경
+      if (
+        selectedLocation &&
+        mapRef.current &&
+        typeof mapRef.current.setLevel === "function" &&
+        typeof mapRef.current.panTo === "function"
+      ) {
+        mapRef.current.setLevel(3);
+        mapRef.current.panTo(
+          new window.kakao.maps.LatLng(
+            selectedLocation.lat,
+            selectedLocation.lng
+          )
+        );
+      }
     });
-  }, [locations]);
+  }, [locations, selectedLocation, mapRef]);
 
   return <div ref={mapDivRef} style={{ width: "100%", height: "100%" }} />;
 };
 
 const PlaceList: React.FC<{
-  places: any[];
-  onSelect: (place: any) => void;
+  places: Place[];
+  onSelect: (place: Place) => void;
   loading: boolean;
 }> = ({ places, onSelect, loading }) => {
   if (loading) {
@@ -153,11 +186,11 @@ const PlaceList: React.FC<{
 };
 
 const KakaoMapSearchComponent: React.FC = () => {
-  const [places, setPlaces] = useState<any[]>([]);
-  const [selectedLocation, setSelectedLocation] = useState<any | null>(null);
+  const [places, setPlaces] = useState<Place[]>([]);
+  const [selectedLocation, setSelectedLocation] = useState<Place | null>(null);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
-  const mapRef = useRef<any>(null);
+  const mapRef = useRef<KakaoMap | null>(null);
 
   const fetchPlaces = async (keyword = "") => {
     setLoading(true);
@@ -189,12 +222,8 @@ const KakaoMapSearchComponent: React.FC = () => {
     fetchPlaces("");
   };
 
-  const handleSelect = (place: any) => {
+  const handleSelect = (place: Place) => {
     setSelectedLocation(place);
-    if (mapRef.current) {
-      mapRef.current.setLevel(3);
-      mapRef.current.panTo(new window.kakao.maps.LatLng(place.lat, place.lng));
-    }
   };
 
   return (
