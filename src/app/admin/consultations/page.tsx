@@ -2,10 +2,9 @@
 
 import * as React from "react";
 import { useState, useEffect, useMemo } from "react";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Download, CheckCircle, XCircle, AlertCircle } from "lucide-react";
+import { Download, CheckCircle, AlertCircle } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import * as XLSX from "xlsx";
 import FilterBar from "@/components/admin/FilterBar";
