@@ -598,7 +598,7 @@ const CareerConsultationUI = () => {
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-[500px]">
                     <DialogHeader>
-                      <DialogTitle>취업 상담 신청</DialogTitle>
+                      <DialogTitle>교육 상담 신청</DialogTitle>
                       <DialogDescription>
                         단계별로 정보를 입력해주세요. ({currentStep}/
                         {totalSteps})
