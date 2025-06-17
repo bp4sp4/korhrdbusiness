@@ -204,7 +204,7 @@ const ConsultationAdminPage = () => {
                 <th className="p-2">관리</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="text-center">
               {paginatedData.map((item) => (
                 <tr key={item.id} className="border-b hover:bg-gray-50">
                   <td className="p-2">{item.name}</td>

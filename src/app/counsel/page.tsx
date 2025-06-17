@@ -52,6 +52,7 @@ interface ConsultationFormData {
   preferredTime: string;
   consultationType: string;
   message: string;
+  consent: boolean;
 }
 
 const CareerConsultationUI = () => {
@@ -65,6 +66,7 @@ const CareerConsultationUI = () => {
     preferredTime: "",
     consultationType: "",
     message: "",
+    consent: false,
   });
 
   const [currentStep, setCurrentStep] = useState(1);
@@ -122,6 +124,7 @@ const CareerConsultationUI = () => {
       {
         ...formData,
         created_at: new Date().toISOString(),
+        consent: formData.consent,
       },
     ]);
     if (error) {
@@ -155,23 +158,7 @@ const CareerConsultationUI = () => {
       .then(
         () => {
           setIsSubmitted(true);
-          setTimeout(() => {
-            setIsDialogOpen(false);
-            setIsSubmitted(false);
-            setCurrentStep(1);
-            setFormData({
-              name: "",
-              email: "",
-              phone: "",
-              experience: "",
-              field: "",
-              preferredDate: "",
-              preferredTime: "",
-              consultationType: "",
-              message: "",
-            });
-            setIsSubmitting(false);
-          }, 2000);
+          setIsSubmitting(false);
         },
         () => {
           alert("전송에 실패했습니다. 다시 시도해주세요.");
@@ -205,22 +192,19 @@ const CareerConsultationUI = () => {
 
   const experienceLevels = [
     "신입 (0-1년)",
-    "주니어 (1-3년)",
-    "미드레벨 (3-5년)",
-    "시니어 (5-10년)",
-    "리드/매니저 (10년+)",
+    "경력 1-3년",
+    "경력 3-5년",
+    "경력 5-10년",
+    "경력 10년+",
   ];
 
   const fields = [
-    "소프트웨어 개발",
-    "데이터 사이언스",
-    "디자인",
-    "마케팅",
-    "영업",
-    "기획",
-    "인사",
-    "재무/회계",
-    "기타",
+    "사회복지사 2급",
+    "보육교사 2급",
+    "평생교육사 2급",
+    "한국어교원 2급",
+    "청소년 지도사 2급",
+    "장애영유아보육교사 ",
   ];
 
   const validateEmail = (email: string) => {
@@ -428,6 +412,34 @@ const CareerConsultationUI = () => {
                 className="min-h-[100px]"
               />
             </div>
+
+            <div className="mt-6 p-4 bg-gray-50 rounded-lg border">
+              <div className="font-semibold mb-2">
+                개인정보 수집 및 이용 동의
+              </div>
+              <ul className="text-xs text-gray-600 mb-2 list-disc pl-4">
+                <li>
+                  수집 항목: 이름, 이메일, 연락처, 경력, 분야, 상담유형, 메시지
+                  등
+                </li>
+                <li>이용 목적: 상담 신청 및 관리, 서비스 제공</li>
+                <li>보유 기간: 신청일로부터 1년 또는 관련 법령에 따름</li>
+                <li>동의 거부 시 상담 신청이 제한될 수 있습니다.</li>
+              </ul>
+              <label className="flex items-center gap-2 text-sm font-medium">
+                <input
+                  type="checkbox"
+                  checked={formData.consent}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      consent: e.target.checked,
+                    }))
+                  }
+                />
+                개인정보 수집 및 이용에 동의합니다.
+              </label>
+            </div>
           </motion.div>
         );
 
@@ -445,7 +457,7 @@ const CareerConsultationUI = () => {
           formData.experience && formData.field && formData.consultationType
         );
       case 3:
-        return true;
+        return formData.consent;
       default:
         return false;
     }
@@ -556,7 +568,28 @@ const CareerConsultationUI = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                <Dialog
+                  open={isDialogOpen}
+                  onOpenChange={(open) => {
+                    if (!open && isSubmitted) {
+                      setIsSubmitted(false);
+                      setCurrentStep(1);
+                      setFormData({
+                        name: "",
+                        email: "",
+                        phone: "",
+                        experience: "",
+                        field: "",
+                        preferredDate: "",
+                        preferredTime: "",
+                        consultationType: "",
+                        message: "",
+                        consent: false,
+                      });
+                    }
+                    setIsDialogOpen(open);
+                  }}
+                >
                   <DialogTrigger asChild>
                     <Button size="lg" className="w-full">
                       <Calendar className="w-4 h-4 mr-2" />

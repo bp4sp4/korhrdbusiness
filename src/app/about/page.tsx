@@ -15,7 +15,7 @@ export default function EduServicePage() {
   // Parallax 관련 ref 및 motion 값 정의
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
-  // Hero 영역이 화면 상단에 있을 때만 parallax 적용 (0~500px 구간)
+
   const bgY = useTransform(scrollY, [0, 500], [0, 80]); // 배경은 느리게
   const textY = useTransform(scrollY, [0, 500], [0, -120]); // 텍스트는 더 빠르게
 
@@ -106,7 +106,7 @@ export default function EduServicePage() {
               <div className="font-extrabold text-3xl md:text-4xl mb-6">
                 주부
               </div>
-              <Image
+              <img
                 src="/images/about/001.png"
                 alt="주부"
                 className="w-full h-auto object-contain mb-2"
@@ -120,7 +120,7 @@ export default function EduServicePage() {
               <div className="font-extrabold text-3xl md:text-4xl mb-6">
                 대학생
               </div>
-              <Image
+              <img
                 src="/images/about/002.png"
                 alt="대학생"
                 className="w-full h-auto object-contain mb-2"
@@ -134,7 +134,7 @@ export default function EduServicePage() {
               <div className="font-extrabold text-3xl md:text-4xl mb-6">
                 중장년층
               </div>
-              <Image
+              <img
                 src="/images/about/003.png"
                 alt="중장년층"
                 className="w-full h-auto object-contain mb-2"
@@ -148,7 +148,7 @@ export default function EduServicePage() {
               <div className="font-extrabold text-3xl md:text-4xl mb-6">
                 노년층
               </div>
-              <Image
+              <img
                 src="/images/about/004.png"
                 alt="노년층"
                 className="w-full h-auto object-contain mb-2"
@@ -157,7 +157,7 @@ export default function EduServicePage() {
           </div>
         </motion.div>
         <div className="max-w-2xl mx-auto text-center">
-          <h3 className="text-2xl md:text-4xl font-extragray-50mt-[200px] mb-4">
+          <h3 className="text-2xl md:text-4xl font-extrabold font-extragray-50mt-[200px] mb-4">
             교육은 진짜{" "}
             <span className="bg-blue-500 text-white ">써먹어야 합니다</span>
           </h3>
@@ -191,7 +191,7 @@ export default function EduServicePage() {
               </div>
             </div>
             <div className="flex-1">
-              <Image
+              <img
                 src="/images/chart.jpg"
                 alt="에듀바이저 상담"
                 className="w-full h-auto aspect-[4/3] object-cover rounded-2xl shadow-xl"
@@ -211,7 +211,7 @@ export default function EduServicePage() {
               </div>
             </div>
             <div className="flex-1">
-              <Image
+              <img
                 src="/images/chart.jpg"
                 alt="교육기관"
                 className="w-full h-auto aspect-[4/3] object-cover rounded-2xl shadow-xl"
@@ -254,7 +254,7 @@ export default function EduServicePage() {
           </div>
           {/* 사인 영역 */}
           <div className="flex-1 flex justify-center md:justify-end items-start w-full">
-            <Image
+            <img
               src="/images/chart.jpg"
               alt="CEO 서명"
               className="w-64 max-w-full h-auto object-contain"
