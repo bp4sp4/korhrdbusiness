@@ -113,7 +113,7 @@ export default function EduServicePage() {
               <img
                 src="/images/about/004.png"
                 alt="주부"
-                className="w-full h-auto object-contain mb-2"
+                className="w-full h-auto object-contain mb-2 drop-shadow-[0_12px_16px_rgba(0,0,0,0.4)]"
               />
             </div>
             {/* 대학생 */}
@@ -127,7 +127,7 @@ export default function EduServicePage() {
               <img
                 src="/images/about/001.png"
                 alt="대학생"
-                className="w-full h-auto object-contain mb-2"
+                className="w-full h-auto object-contain mb-2 drop-shadow-[0_12px_16px_rgba(0,0,0,0.4)]"
               />
             </div>
             {/* 중장년층 */}
@@ -141,7 +141,7 @@ export default function EduServicePage() {
               <img
                 src="/images/about/002.png"
                 alt="중장년층"
-                className="w-full h-auto object-contain mb-2"
+                className="w-full h-auto object-contain mb-2 drop-shadow-[0_12px_16px_rgba(0,0,0,0.4)]"
               />
             </div>
             {/* 노년층 */}
@@ -155,7 +155,7 @@ export default function EduServicePage() {
               <img
                 src="/images/about/003.png"
                 alt="노년층"
-                className="w-full h-auto object-contain mb-2"
+                className="w-full h-auto object-contain mb-2 drop-shadow-[0_12px_16px_rgba(0,0,0,0.4)]"
               />
             </div>
           </div>
