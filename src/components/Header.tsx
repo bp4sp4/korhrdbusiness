@@ -72,19 +72,19 @@ export default function Header() {
               회사소개
             </span>
           </Link>
-          <Link href="/#" className="group">
+          <Link href="/eduservice" className="group">
             <span className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)]">
               교육서비스
-            </span>
-          </Link>
-          <Link href="/recruit" className="group">
-            <span className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)]">
-              설계사채용
             </span>
           </Link>
           <Link href="/counsel" className="group">
             <span className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)]">
               교육상담받기
+            </span>
+          </Link>
+          <Link href="/recruit" className="group">
+            <span className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)]">
+              설계사채용
             </span>
           </Link>
           {isAdmin && (
@@ -151,18 +151,11 @@ export default function Header() {
                 회사 소개
               </Link>
               <Link
-                href="/"
+                href="/eduservice"
                 className="w-full py-3 px-2 text-lg font-semibold text-white hover:bg-[#22304a] rounded transition"
                 onClick={() => setMenuOpen(false)}
               >
                 교육서비스
-              </Link>
-              <Link
-                href="/recruit"
-                className="w-full py-3 px-2 text-lg font-semibold text-white hover:bg-[#22304a] rounded transition"
-                onClick={() => setMenuOpen(false)}
-              >
-                설계사 채용
               </Link>
               <Link
                 href="/counsel"
@@ -170,6 +163,13 @@ export default function Header() {
                 onClick={() => setMenuOpen(false)}
               >
                 교육상담받기
+              </Link>
+              <Link
+                href="/recruit"
+                className="w-full py-3 px-2 text-lg font-semibold text-white hover:bg-[#22304a] rounded transition"
+                onClick={() => setMenuOpen(false)}
+              >
+                설계사 채용
               </Link>
               {isAdmin && (
                 <>

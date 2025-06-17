@@ -39,8 +39,10 @@ export default function Home() {
       </section>
       <section className="main__service w-full mx-auto flex bg-white">
         <p className="main__service_desc text-black">
-          교육은 받았지만 왜 취업은 어려울까요?
-          <br /> 한평생OOOO은 많은 이들이 자신과 맞지 않는 교육을 선택하거나
+          <strong className="block font-bold text-[35px] mb-4">
+            교육은 받았지만 왜 취업은 어려울까요?
+          </strong>
+          한평생OOOO은 많은 이들이 자신과 맞지 않는 교육을 선택하거나
           <br />
           복잡해진 실무·취업 환경에 적응하지 못해 시작조차 어려운 현실을
           확인했습니다.

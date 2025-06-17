@@ -453,7 +453,7 @@ export default function RecruitListPage() {
 
   return (
     <div className="min-h-screen mb-30 bg-background">
-      <div className="w-full bg-[url('/images/001.png')] bg-cover bg-center bg-no-repeat">
+      <div className="w-full bg-[url('/images/recruit/recruit__banner.png')] bg-cover bg-center bg-no-repeat">
         <main className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
           <section className="mb-8">
             <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6">

@@ -10,7 +10,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Download, CheckCircle, XCircle, AlertCircle } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import * as XLSX from "xlsx";
-import DataTable from "@/components/admin/DataTable";
 import FilterBar from "@/components/admin/FilterBar";
 import AdminAuthGuard from "@/components/admin/AdminAuthGuard";
 
@@ -56,10 +55,10 @@ const getStatusBadge = (status: string) => {
       return (
         <Badge
           variant="secondary"
-          className="bg-red-100 text-red-800 border-red-200"
+          className="bg-gray-200 text-gray-700 border-gray-300"
         >
           <XCircle className="w-3 h-3 mr-1" />
-          거절됨
+          삭제됨
         </Badge>
       );
     case "completed":
@@ -277,11 +276,55 @@ const ConsultationAdminPage = () => {
             uniqueFields={uniqueFields}
           />
 
-          <DataTable
-            data={paginatedData}
-            onStatusChange={handleStatusChange}
-            getStatusBadge={getStatusBadge}
-          />
+          <table className="w-full text-sm mt-6">
+            <thead>
+              <tr className="bg-gray-100">
+                <th className="p-2">이름</th>
+                <th className="p-2">이메일</th>
+                <th className="p-2">연락처</th>
+                <th className="p-2">분야</th>
+                <th className="p-2">상담유형</th>
+                <th className="p-2">신청일</th>
+                <th className="p-2">상태</th>
+                <th className="p-2">관리</th>
+              </tr>
+            </thead>
+            <tbody>
+              {paginatedData.map((item) => (
+                <tr key={item.id} className="border-b hover:bg-gray-50">
+                  <td className="p-2">{item.name}</td>
+                  <td className="p-2">{item.email}</td>
+                  <td className="p-2">{item.phone}</td>
+                  <td className="p-2">{item.field}</td>
+                  <td className="p-2">{item.consultationType}</td>
+                  <td className="p-2">{item.requestDate}</td>
+                  <td className="p-2">{getStatusBadge(item.status)}</td>
+                  <td className="p-2">
+                    <Button
+                      size="sm"
+                      variant="destructive"
+                      onClick={async () => {
+                        if (!confirm("정말 삭제하시겠습니까?")) return;
+                        const { error } = await supabase
+                          .from("consultations")
+                          .delete()
+                          .eq("id", item.id);
+                        if (!error) {
+                          setData((prev) =>
+                            prev.filter((row) => row.id !== item.id)
+                          );
+                        } else {
+                          alert("삭제 실패: " + error.message);
+                        }
+                      }}
+                    >
+                      삭제
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
 
           {/* Pagination */}
           <div className="flex items-center justify-between">
