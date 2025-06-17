@@ -4,7 +4,6 @@ import React, { useRef, useEffect, useState } from "react";
 import { useScroll, useTransform } from "framer-motion";
 import { motion } from "framer-motion";
 import "../main.css";
-import { SelectContent } from "@/components/ui/select";
 
 interface TimelineEntry {
   year: string;
