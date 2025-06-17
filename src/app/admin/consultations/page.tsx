@@ -4,9 +4,7 @@ import * as React from "react";
 import { useState, useEffect, useMemo } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-
 import { Card, CardContent } from "@/components/ui/card";
-
 import { Download, CheckCircle, XCircle, AlertCircle } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import * as XLSX from "xlsx";
@@ -25,56 +23,9 @@ interface ConsultationRequest {
   preferredTime: string;
   message: string;
   created_at: string;
-  status: "pending" | "approved" | "rejected" | "completed";
+  status: "pending" | "approved" | "completed";
   requestDate?: string;
 }
-
-const getStatusBadge = (status: string) => {
-  switch (status) {
-    case "pending":
-      return (
-        <Badge
-          variant="secondary"
-          className="bg-yellow-100 text-yellow-800 border-yellow-200"
-        >
-          <AlertCircle className="w-3 h-3 mr-1" />
-          대기중
-        </Badge>
-      );
-    case "approved":
-      return (
-        <Badge
-          variant="secondary"
-          className="bg-blue-100 text-blue-800 border-blue-200"
-        >
-          <CheckCircle className="w-3 h-3 mr-1" />
-          승인됨
-        </Badge>
-      );
-    case "rejected":
-      return (
-        <Badge
-          variant="secondary"
-          className="bg-gray-200 text-gray-700 border-gray-300"
-        >
-          <XCircle className="w-3 h-3 mr-1" />
-          삭제됨
-        </Badge>
-      );
-    case "completed":
-      return (
-        <Badge
-          variant="secondary"
-          className="bg-green-100 text-green-800 border-green-200"
-        >
-          <CheckCircle className="w-3 h-3 mr-1" />
-          완료됨
-        </Badge>
-      );
-    default:
-      return <Badge variant="outline">{status}</Badge>;
-  }
-};
 
 const ConsultationAdminPage = () => {
   const [data, setData] = useState<ConsultationRequest[]>([]);
@@ -180,7 +131,7 @@ const ConsultationAdminPage = () => {
           </div>
 
           {/* Stats Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Card>
               <CardContent className="p-4">
                 <div className="flex items-center gap-3">
@@ -224,21 +175,6 @@ const ConsultationAdminPage = () => {
                         data.filter((item) => item.status === "completed")
                           .length
                       }
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-4">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-red-100 rounded-lg">
-                    <XCircle className="w-5 h-5 text-red-600" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">거절됨</p>
-                    <p className="text-2xl font-bold">
-                      {data.filter((item) => item.status === "rejected").length}
                     </p>
                   </div>
                 </div>
@@ -305,7 +241,6 @@ const ConsultationAdminPage = () => {
                       <option value="pending">대기중</option>
                       <option value="approved">승인됨</option>
                       <option value="completed">완료됨</option>
-                      <option value="rejected">거절됨</option>
                     </select>
                   </td>
                   <td className="p-2">

@@ -82,13 +82,13 @@ export default function EduServicePage() {
       <motion.section className="bg-white text-black py-16 relative">
         <div className="max-w-2xl mx-auto text-center">
           <h3 className="text-2xl md:text-4xl font-extrabold mb-10">
-            '<span className="text-blue-600">왜?</span>' 교육은 어렵게만
-            느껴질까?
+            &apos;<span className="text-blue-600">왜?</span>&apos; 교육은
+            어렵게만 느껴질까?
           </h3>
           <p className="mb-23 text-2xl">
             수많은 학생분들을 만나오면서
             <br />
-            '되는 방법'을 알고, 실제로 '되게' 만듭니다.
+            &apos;되는 방법&apos;을 알고, 실제로 &apos;되게&apos; 만듭니다.
           </p>
         </div>
         <motion.div
@@ -106,7 +106,7 @@ export default function EduServicePage() {
               <div className="font-extrabold text-3xl md:text-4xl mb-6">
                 주부
               </div>
-              <img
+              <Image
                 src="/images/about/001.png"
                 alt="주부"
                 className="w-full h-auto object-contain mb-2"
@@ -120,7 +120,7 @@ export default function EduServicePage() {
               <div className="font-extrabold text-3xl md:text-4xl mb-6">
                 대학생
               </div>
-              <img
+              <Image
                 src="/images/about/002.png"
                 alt="대학생"
                 className="w-full h-auto object-contain mb-2"
@@ -134,7 +134,7 @@ export default function EduServicePage() {
               <div className="font-extrabold text-3xl md:text-4xl mb-6">
                 중장년층
               </div>
-              <img
+              <Image
                 src="/images/about/003.png"
                 alt="중장년층"
                 className="w-full h-auto object-contain mb-2"
@@ -148,7 +148,7 @@ export default function EduServicePage() {
               <div className="font-extrabold text-3xl md:text-4xl mb-6">
                 노년층
               </div>
-              <img
+              <Image
                 src="/images/about/004.png"
                 alt="노년층"
                 className="w-full h-auto object-contain mb-2"
@@ -164,7 +164,7 @@ export default function EduServicePage() {
           <p className="mb-8 text-2xl mt-10">
             수많은 학생분들을 만나오면서
             <br />
-            '되는 방법'을 알고, 실제로 '되게' 만듭니다.
+            &apos;되는 방법&apos;을 알고, 실제로 &apos;되게&apos; 만듭니다.
           </p>
         </div>
       </motion.section>
@@ -191,7 +191,7 @@ export default function EduServicePage() {
               </div>
             </div>
             <div className="flex-1">
-              <img
+              <Image
                 src="/images/chart.jpg"
                 alt="에듀바이저 상담"
                 className="w-full h-auto aspect-[4/3] object-cover rounded-2xl shadow-xl"
@@ -211,7 +211,7 @@ export default function EduServicePage() {
               </div>
             </div>
             <div className="flex-1">
-              <img
+              <Image
                 src="/images/chart.jpg"
                 alt="교육기관"
                 className="w-full h-auto aspect-[4/3] object-cover rounded-2xl shadow-xl"
@@ -254,7 +254,7 @@ export default function EduServicePage() {
           </div>
           {/* 사인 영역 */}
           <div className="flex-1 flex justify-center md:justify-end items-start w-full">
-            <img
+            <Image
               src="/images/chart.jpg"
               alt="CEO 서명"
               className="w-64 max-w-full h-auto object-contain"
