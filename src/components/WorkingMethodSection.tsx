@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  motion,
-  useInView,
-  useDragControls,
-  useMotionValue,
-} from "framer-motion";
+import { motion, useInView, useDragControls } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 
 const WorkingMethodSection = () => {

@@ -51,15 +51,35 @@ const GoalsSection = () => {
     },
   ];
 
-  // 카드별 ref/inView 배열 생성 (map 내부에서 훅 호출 금지)
-  const cardRefs = goals.map(() => useRef(null));
-  const cardInViews = cardRefs.map((ref) =>
-    useInView(ref, {
-      once: false,
-      amount: 0.3,
-      margin: "-100px 0px -100px 0px",
-    })
-  );
+  // 카드 개수(4개)에 맞춰 useRef/useInView를 각각 선언
+  const cardRef0 = useRef(null);
+  const cardRef1 = useRef(null);
+  const cardRef2 = useRef(null);
+  const cardRef3 = useRef(null);
+
+  const cardInView0 = useInView(cardRef0, {
+    once: false,
+    amount: 0.3,
+    margin: "-100px 0px -100px 0px",
+  });
+  const cardInView1 = useInView(cardRef1, {
+    once: false,
+    amount: 0.3,
+    margin: "-100px 0px -100px 0px",
+  });
+  const cardInView2 = useInView(cardRef2, {
+    once: false,
+    amount: 0.3,
+    margin: "-100px 0px -100px 0px",
+  });
+  const cardInView3 = useInView(cardRef3, {
+    once: false,
+    amount: 0.3,
+    margin: "-100px 0px -100px 0px",
+  });
+
+  const cardRefs = [cardRef0, cardRef1, cardRef2, cardRef3];
+  const cardInViews = [cardInView0, cardInView1, cardInView2, cardInView3];
 
   return (
     <section ref={ref} className="py-20 bg-gray-50 overflow-hidden" id="goals">
