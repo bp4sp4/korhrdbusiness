@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useInView, useScroll } from "framer-motion";
 import { useRef, useState } from "react";
 
 const GoalsSection = () => {

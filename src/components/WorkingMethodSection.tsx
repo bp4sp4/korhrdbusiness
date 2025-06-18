@@ -19,11 +19,6 @@ const WorkingMethodSection = () => {
 
   const dragControls = useDragControls();
   const x = useMotionValue(0);
-  const background = useTransform(
-    x,
-    [-100, 0, 100],
-    ["#ffedd5", "#ffffff", "#ddd6fe"]
-  );
 
   const workingMethods = [
     {
