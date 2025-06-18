@@ -5,7 +5,6 @@ import {
   useInView,
   useDragControls,
   useMotionValue,
-  useTransform,
 } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 
@@ -18,7 +17,6 @@ const WorkingMethodSection = () => {
   const [canScrollRight, setCanScrollRight] = useState(true);
 
   const dragControls = useDragControls();
-  const x = useMotionValue(0);
 
   const workingMethods = [
     {

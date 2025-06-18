@@ -51,6 +51,16 @@ const GoalsSection = () => {
     },
   ];
 
+  // 카드별 ref/inView 배열 생성 (map 내부에서 훅 호출 금지)
+  const cardRefs = goals.map(() => useRef(null));
+  const cardInViews = cardRefs.map((ref) =>
+    useInView(ref, {
+      once: false,
+      amount: 0.3,
+      margin: "-100px 0px -100px 0px",
+    })
+  );
+
   return (
     <section ref={ref} className="py-20 bg-gray-50 overflow-hidden" id="goals">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -87,12 +97,8 @@ const GoalsSection = () => {
 
         <div className="space-y-8">
           {goals.map((goal, index) => {
-            const cardRef = useRef(null);
-            const cardInView = useInView(cardRef, {
-              once: false,
-              amount: 0.3,
-              margin: "-100px 0px -100px 0px",
-            });
+            const cardRef = cardRefs[index];
+            const cardInView = cardInViews[index];
 
             return (
               <motion.div
