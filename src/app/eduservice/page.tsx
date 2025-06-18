@@ -79,7 +79,7 @@ export default function Eduservice() {
         <div className="relative h-[650px]">
           <Iphone15Pro
             className="size-full"
-            videoSrc="https://videos.pexels.com/video-files/8946986/8946986-uhd_1440_2732_25fps.mp4"
+            videoSrc="/images/eduservice/consule.mp4"
           />
         </div>
       </section>
@@ -110,65 +110,45 @@ export default function Eduservice() {
 
           <div className="flex gap-8 justify-center">
             {/* 맞춤형 커리큘럼 설계 */}
-            <div className="bg-white rounded-xl shadow-lg p-8 flex flex-col items-start w-[300px] h-[300px]">
-              {/* 아이콘: FOLDER.png */}
-
-              <h3 className="text-xl font-bold mb-2 text-left">
+            <div className=" rounded-xl shadow-lg p-8 flex flex-col items-start w-[300px] h-[300px] bg-blue-800">
+              <h3 className="text-xl text-white font-bold mb-2 text-left">
                 맞춤형 커리큘럼 설계
               </h3>
               <img
                 src="/images/eduservice/FOLDER.png"
                 alt=""
-                className="w-[100px] h-[100px] mb-4 mx-auto"
+                className="w-[150px] h-[150px] mx-auto"
               />
-              <p className="text-gray-500 text-left text-base">
+              <p className="text-[#f7f8fb] text-left text-base">
                 개인별 목표와 역량에 맞춘 교육 로드맵을 제공합니다.
               </p>
             </div>
             {/* 전문가 1:1 커리어 상담 */}
-            <div className="bg-white rounded-xl shadow-lg p-8 flex flex-col items-start w-[300px] h-[300px]">
-              {/* 아이콘: UserGroup */}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-12 h-12 text-blue-600 mb-4"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m13-6.13a4 4 0 11-8 0 4 4 0 018 0zM9 7a4 4 0 11-8 0 4 4 0 018 0z"
-                />
-              </svg>
-              <h3 className="text-xl font-bold mb-2 text-left">
+            <div className="bg-blue-600 rounded-xl shadow-lg p-8 flex flex-col items-start w-[300px] h-[300px]">
+              <h3 className="text-xl text-white font-bold mb-2 text-left">
                 전문가 1:1 커리어 상담
               </h3>
-              <p className="text-gray-500 text-left text-base">
+              <img
+                src="/images/eduservice/PASSPORT.png"
+                alt=""
+                className="w-[150px] h-[150px] mx-auto"
+              />
+              <p className="text-[#f7f8fb] text-left text-base">
                 경력 설계부터 실전 취업까지, 전문가가 함께합니다.
               </p>
             </div>
             {/* 365일 교육상담 지원 */}
-            <div className="bg-white rounded-xl shadow-lg p-8 flex flex-col items-start w-[300px] h-[300px]">
+            <div className="bg-blue-200 rounded-xl shadow-lg p-8 flex flex-col items-start w-[300px] h-[300px]">
               {/* 아이콘: Clock */}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-12 h-12 text-blue-600 mb-4"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 6v6l4 2m8-4a10 10 0 11-20 0 10 10 0 0120 0z"
-                />
-              </svg>
+
               <h3 className="text-xl font-bold mb-2 text-left">
                 365일 교육상담 지원
               </h3>
+              <img
+                src="/images/eduservice/CLOCK.png"
+                alt=""
+                className="w-[150px] h-[150px] mx-auto"
+              />
               <p className="text-gray-500 text-left text-base">
                 언제든 궁금한 점을 문의하세요. 연중무휴로 도와드립니다.
               </p>
