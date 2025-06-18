@@ -36,7 +36,7 @@ export default function EduServicePage() {
             src="/images/about/office-bg.png"
             alt="오피스 배경"
             fill
-            className="object-cover opacity-60"
+            className="object-cover opacity-15"
             priority
           />
         </motion.div>
@@ -50,13 +50,15 @@ export default function EduServicePage() {
           viewport={{ once: true, amount: 0.2 }}
         >
           <h2
-            className="text-3xl md:text-5xl font-bold mb-2"
+            className="text-4xl md:text-6xl font-extrabold mb-2"
             style={{ letterSpacing: "-3px" }}
           >
             누구도 끝까지 책임지지 않던
           </h2>
-          <p className="text-2xl md:text-4xl ">교육의 본질을 바꿉니다.</p>
-          <p className="text-base font-bold md:text-2xl text-gray-200 mt-10">
+          <p className="text-3xl font-bold md:text-5xl ">
+            교육의 본질을 바꿉니다.
+          </p>
+          <p className="text-lg font-bold md:text-3xl text-gray-200 mt-10">
             한평생교육은 정말{" "}
             <span className="text-white font-bold border-b-2 border-white-400">
               한 평생 함께합니다.
