@@ -99,6 +99,11 @@ export default function Header() {
                   설계사 지원자 관리
                 </span>
               </Link>
+              <Link href="/admin/update" className="group">
+                <span className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)] font-bold text-blue-300">
+                  업데이트
+                </span>
+              </Link>
               <button
                 onClick={handleLogout}
                 className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)] font-bold text-red-300"
@@ -186,6 +191,13 @@ export default function Header() {
                     onClick={() => setMenuOpen(false)}
                   >
                     설계사 지원자 관리
+                  </Link>
+                  <Link
+                    href="/admin/update"
+                    className="w-full py-3 px-2 text-lg font-semibold text-blue-300 hover:bg-[#22304a] rounded transition"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    업데이트
                   </Link>
                   <button
                     onClick={async () => {

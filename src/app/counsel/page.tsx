@@ -750,9 +750,9 @@ const CareerConsultationUI = () => {
                   </div>
                   <ul className="text-sm text-blue-800 space-y-1">
                     <li>• 상담 시간: 60분</li>
-                    <li>• 상담 방식: 온라인/오프라인</li>
-                    <li>• 상담 비용: 무료 (첫 상담)</li>
-                    <li>• 후속 지원: 이메일 피드백 제공</li>
+                    <li>• 상담 방식: 유선 전화</li>
+                    <li>• 상담 비용: 무료</li>
+                    <li>• 후속 지원: 컨설팅 제공</li>
                   </ul>
                 </div>
               </CardContent>
