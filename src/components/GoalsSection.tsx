@@ -81,7 +81,7 @@ const GoalsSection = () => {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            카카오는 목표를 향해 달려갑니다
+            한평생 가이던스는 목표를 향해 달려갑니다
           </motion.h2>
         </motion.div>
 

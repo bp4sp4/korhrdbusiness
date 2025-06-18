@@ -59,7 +59,7 @@ const HeroSection = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              모두의 메신저에서
+              모두의 배움,
             </motion.span>
             <br />
             <motion.span
@@ -68,7 +68,7 @@ const HeroSection = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              라이프 플랫폼으로
+              모두의 성장
             </motion.span>
           </h1>
         </motion.div>
@@ -79,36 +79,14 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
         >
-          모두의 일상을 더 편리하게, 모두의 가능성을 더 크게 만들어 왔습니다
+          교육의 경계를 넘어 더 많은 사람의 가능성을 연결합니다.
         </motion.p>
-
-        <motion.div
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.0 }}
-        >
-          <motion.button
-            className="btn-primary w-full sm:w-auto"
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            카카오 크루로 함께하기
-          </motion.button>
-          <motion.button
-            className="btn-secondary w-full sm:w-auto"
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            카카오 소식 보러가기
-          </motion.button>
-        </motion.div>
       </div>
 
       {/* Scroll indicator */}
       <motion.div
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden md:block"
-        animate={{ y: [0, 10, 0] }}
+        animate={{ y: [0, 0, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
         <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
