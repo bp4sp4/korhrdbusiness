@@ -163,7 +163,7 @@ export default function EduServicePage() {
           </div>
         </motion.div>
         <div className="max-w-2xl mx-auto text-center">
-          <h3 className="text-2xl md:text-4xl font-extrabold font-extragray-50mt-[200px] mb-4">
+          <h3 className="text-2xl md:text-4xl font-extrabold font-extragray-50mt-[200px] mt-30 mb-4 ">
             교육은 진짜{" "}
             <span className="bg-blue-500 text-white ">써먹어야 합니다</span>
           </h3>
