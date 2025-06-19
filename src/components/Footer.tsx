@@ -97,7 +97,7 @@ export default function Footer() {
         {/* 회사 정보 */}
         <div className="flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-8">
           {/* 회사 텍스트 정보 */}
-          <div className="text-sm text-[#666] text-center md:text-left">
+          <div className="text-sm text-[#666] text-left md:text-left">
             <div className="font-bold text-[15px] pb-[16px] text-[#222b45] mb-1">
               (주)한평생교육그룹
             </div>
