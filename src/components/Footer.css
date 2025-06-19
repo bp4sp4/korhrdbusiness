@@ -1,5 +1,16 @@
+footer {
+    padding: 50px 0 100px;
+}
+
+@media (max-width: 768px) {
+    footer {
+        padding: 60px 40px 80px;
+    }
+}
+
 .footer__container {
     border-top: 1px solid #e5e7eb;
+
 }
 
 .footer__logo {

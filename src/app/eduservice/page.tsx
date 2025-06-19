@@ -1,6 +1,7 @@
 "use client";
 import { ThreeDMarquee } from "@/components/ui/3d-marquee";
 import Iphone15Pro from "@/components/magicui/iphone-15-pro";
+import { motion } from "framer-motion";
 
 export default function Eduservice() {
   const images = [
@@ -33,9 +34,10 @@ export default function Eduservice() {
     "/images/eduservice/eduservice019.png",
     "/images/eduservice/eduservice020.png",
   ];
+
   return (
     <>
-      <div className="relative  flex h-screen w-full flex-col items-center justify-center overflow-hidden ">
+      <div className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden">
         <h2 className="relative z-20 mx-auto max-w-4xl text-center text-3xl font-extrabold text-white md:text-5xl lg:text-6xl leading-tight">
           한평생가이던스와 함께
           <span className="relative inline-block mx-2 align-middle">
@@ -67,91 +69,152 @@ export default function Eduservice() {
           images={images}
         />
       </div>
-      <section className="flex items-center  justify-between min-h-[880px] max-w-[801px] mx-auto p-0 w-full">
-        <div>
-          <h2 className="text-[48px] font-extrabold">
-            전문가와 <br /> 내 커리어 설계
+      <section className="relative flex flex-col md:flex-row items-center justify-between min-h-[600px] md:min-h-[880px] max-w-[801px] mx-auto p-0 w-full overflow-hidden">
+        {/* 텍스트 영역 */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="w-full md:w-auto mb-8 md:mb-0 md:mr-8 flex-shrink-0 px-4"
+          style={{ padding: "72px 32px 0" }}
+        >
+          <h2 className="text-[32px] md:text-[48px] font-extrabold text-left md:text-Left leading-tight mb-4">
+            전문가와
+            <br />내 커리어 설계
           </h2>
-          <p className="mt-5 text-[20px] font-normal text-gray-500">
+          <p className="text-[16px] md:text-[20px] text-gray-400 text-left md:text-center">
             나의 목표와 꿈을 현실로 만들어 드립니다.
           </p>
-        </div>
-        <div className="relative h-[650px]">
+        </motion.div>
+        {/* 아이폰/비디오 영역 */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut", delay: 0.4 }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="w-full max-w-[340px] mx-auto h-[420px] md:h-[650px]
+            flex items-center justify-center
+            relative
+            translate-y-[40px] md:translate-y-0
+            z-10"
+        >
           <Iphone15Pro
-            className="size-full"
+            className="w-full h-full"
             videoSrc="/images/eduservice/consult.mp4"
           />
-        </div>
+        </motion.div>
       </section>
       <div className="bg-gray-100">
-        <section className="flex items-center  justify-between min-h-[880px] max-w-[801px] mx-auto p-0 w-full">
-          <div className="relative h-[650px]">
+        <section className="flex flex-col md:flex-row items-center justify-between min-h-[600px] md:min-h-[880px] max-w-[801px] mx-auto p-0 w-full overflow-hidden">
+          {/* 아이폰 모형 - 먼저 등장 */}
+          <motion.div
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.3 }}
+            className="w-full max-w-[340px] mx-auto h-[420px] md:h-[650px] flex items-center justify-center order-2 md:order-1 translate-y-[40px] md:translate-y-0 z-10"
+          >
             <Iphone15Pro
-              className="size-full"
+              className="w-full h-full"
               videoSrc="/images/eduservice/recruit.mp4"
             />
-          </div>
-          <div>
-            <h2 className="text-[48px] font-extrabold">
+          </motion.div>
+          {/* 텍스트 - 나중에 등장 */}
+          <motion.div
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, ease: "easeOut", delay: 0.4 }}
+            viewport={{ once: true, amount: 0.3 }}
+            className="w-full md:w-auto mb-8 md:mb-0 md:ml-16 flex-shrink-0 px-4 order-1 md:order-2"
+            style={{
+              padding: "72px 32px 0",
+            }}
+          >
+            <h2 className="text-[32px] md:text-[48px] font-extrabold text-left md:text-left leading-tight mb-4">
               내일의 전문가 <br /> 오늘 지원하세요
             </h2>
-            <p className="mt-5 text-[20px] font-normal text-gray-500">
-              목표를 현실로, 한평생이 도와드립니다
+            <p className="text-[16px] md:text-[20px] text-gray-400 text-left md:text-right">
+              목표를 현실로, 한평생이 도와드립니다.
             </p>
-          </div>
+          </motion.div>
         </section>
       </div>
-      <section className="flex items-center h-[880px] mx-auto p-0 w-full">
-        <div className="mx-auto">
-          <h2 className="text-[48px] text-center mb-10  font-extrabold">
-            맞춤 교육과 상담
-            <br /> 성장의 시작
-          </h2>
+      <section className="px-[32px] mt-[20px] mb-[20px] md:px-0 md:mt-0 md:mb-0">
+        <div className="flex items-center min-h-[600px] md:h-[880px]  mx-auto p-0 w-full">
+          <div className="mx-auto w-full">
+            <motion.h2
+              className="pt-[20px] pb-[20px] text-[28px] md:text-[48px] text-center mb-6 md:mb-10 font-extrabold leading-tight"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              맞춤 교육과 상담
+              <br className="hidden md:block" /> 성장의 시작
+            </motion.h2>
 
-          <div className="flex gap-8 justify-center">
-            {/* 맞춤형 커리큘럼 설계 */}
-            <div className=" rounded-xl shadow-lg p-8 flex flex-col items-start w-[300px] h-[300px] bg-blue-800">
-              <h3 className="text-xl text-white font-bold mb-2 text-left">
-                맞춤형 커리큘럼 설계
-              </h3>
-              <img
-                src="/images/eduservice/FOLDER.png"
-                alt=""
-                className="w-[150px] h-[150px] mx-auto"
-              />
-              <p className="text-[#f7f8fb] text-left text-base">
-                개인별 목표와 역량에 맞춘 교육 로드맵을 제공합니다.
-              </p>
-            </div>
-            {/* 전문가 1:1 커리어 상담 */}
-            <div className="bg-blue-600 rounded-xl shadow-lg p-8 flex flex-col items-start w-[300px] h-[300px]">
-              <h3 className="text-xl text-white font-bold mb-2 text-left">
-                전문가 1:1 커리어 상담
-              </h3>
-              <img
-                src="/images/eduservice/PASSPORT.png"
-                alt=""
-                className="w-[150px] h-[150px] mx-auto"
-              />
-              <p className="text-[#f7f8fb] text-left text-base">
-                경력 설계부터 실전 취업까지, 전문가가 함께합니다.
-              </p>
-            </div>
-            {/* 365일 교육상담 지원 */}
-            <div className="bg-blue-200 rounded-xl shadow-lg p-8 flex flex-col items-start w-[300px] h-[300px]">
-              {/* 아이콘: Clock */}
-
-              <h3 className="text-xl font-bold mb-2 text-left">
-                365일 교육상담 지원
-              </h3>
-              <img
-                src="/images/eduservice/CLOCK.png"
-                alt=""
-                className="w-[150px] h-[150px] mx-auto"
-              />
-              <p className="text-gray-500 text-left text-base">
-                언제든 궁금한 점을 문의하세요. 연중무휴로 도와드립니다.
-              </p>
+            <div className="flex flex-col md:flex-row gap-6 md:gap-8 justify-center items-center md:items-stretch w-full">
+              {/* 맞춤형 커리큘럼 설계 */}
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+                viewport={{ once: true, amount: 0.3 }}
+                className="rounded-xl shadow-lg p-10 md:p-8 flex flex-col items-start w-[90vw] max-w-[320px] h-[240px] md:w-[300px] md:h-[300px] bg-blue-800"
+              >
+                <h3 className="text-lg md:text-xl text-white font-bold mb-2 text-left">
+                  맞춤형 커리큘럼 설계
+                </h3>
+                <img
+                  src="/images/eduservice/FOLDER.png"
+                  alt=""
+                  className="w-[90px] h-[90px] md:w-[150px] md:h-[150px] mx-auto"
+                />
+                <p className="text-[#f7f8fb] text-left text-sm md:text-base mt-2">
+                  개인별 목표와 역량에 맞춘 교육 로드맵을 제공합니다.
+                </p>
+              </motion.div>
+              {/* 전문가 1:1 커리어 상담 */}
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
+                viewport={{ once: true, amount: 0.3 }}
+                className="bg-blue-600 rounded-xl shadow-lg p-10 md:p-8 flex flex-col items-start w-[90vw] max-w-[320px] h-[240px] md:w-[300px] md:h-[300px]"
+              >
+                <h3 className="text-lg md:text-xl text-white font-bold mb-2 text-left">
+                  전문가 1:1 커리어 상담
+                </h3>
+                <img
+                  src="/images/eduservice/PASSPORT.png"
+                  alt=""
+                  className="w-[90px] h-[90px] md:w-[150px] md:h-[150px] mx-auto"
+                />
+                <p className="text-[#f7f8fb] text-left text-sm md:text-base mt-2">
+                  경력 설계부터 실전 취업까지, 전문가가 함께합니다.
+                </p>
+              </motion.div>
+              {/* 365일 교육상담 지원 */}
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
+                viewport={{ once: true, amount: 0.3 }}
+                className="bg-blue-200 rounded-xl shadow-lg p-10 md:p-8 flex flex-col items-start w-[90vw] max-w-[320px] h-[240px] md:w-[300px] md:h-[300px]"
+              >
+                <h3 className="text-lg md:text-xl font-bold mb-2 text-left">
+                  365일 교육상담 지원
+                </h3>
+                <img
+                  src="/images/eduservice/CLOCK.png"
+                  alt=""
+                  className="w-[90px] h-[90px] md:w-[150px] md:h-[150px] mx-auto"
+                />
+                <p className="text-gray-500 text-left text-sm md:text-base mt-2">
+                  언제든 궁금한 점을 문의하세요. 연중무휴로 도와드립니다.
+                </p>
+              </motion.div>
             </div>
           </div>
         </div>

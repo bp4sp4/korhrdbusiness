@@ -17,10 +17,10 @@ export default function Home() {
         }}
       >
         <div className="main__hero-content flex-1 flex flex-col items-start z-10 rounded-lg md:bg-transparent md:p-0">
-          <div className="main__hero-title text-white text-5xl md:text-7xl mb-6 flex flex-col gap-3">
+          <div className="main__hero-title text-white text-2xl md:text-7xl mb-6 flex flex-col gap-3">
             <TypingAnimation
               duration={40}
-              className="text-white text-5xl md:text-3xl font-normal"
+              className="text-white text-4xl md:text-3xl font-normal"
             >
               EP.1 취업난 해결 프로젝트
             </TypingAnimation>
