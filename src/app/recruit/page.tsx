@@ -675,20 +675,37 @@ export default function RecruitListPage() {
 
           <div className="lg:col-span-1">
             <div className="sticky top-6 space-y-4 max-h-[calc(100vh-8rem)] overflow-y-auto">
-              <Card className="p-4 min-h-[100px] bg-muted/50 flex items-center justify-center">
+              <Card
+                className="min-h-[100px] bg-muted/50 flex flex-col justify-between"
+                style={{ padding: "18px 18px 10px" }}
+              >
+                <div>
+                  <div className="font-bold text-base text-gray-900 mb-1 line-clamp-2">
+                    한평생가이던스 채용팀의 이야기
+                  </div>
+                  <div className="text-sm text-gray-500">
+                    한평생가이던스 채용팀
+                  </div>
+                </div>
+                <div className="text-xs text-gray-400 mb-1">2025.06.17</div>
+              </Card>
+              <Card
+                className="min-h-[100px] bg-muted/50 flex flex-col justify-between"
+                style={{ padding: "18px 18px 10px" }}
+              >
                 {/* 나중에 내용을 추가할 수 있는 빈 카드 */}
               </Card>
-              <Card className="p-4 min-h-[100px] bg-muted/50 flex items-center justify-center">
-                {/* 나중에 내용을 추가할 수 있는 빈 카드 */}
-              </Card>
-              <Card className="p-4 min-h-[100px] bg-muted/50 flex items-center justify-center">
+              <Card
+                className="min-h-[100px] bg-muted/50 flex flex-col justify-between"
+                style={{ padding: "18px 18px 10px" }}
+              >
                 {/* 나중에 내용을 추가할 수 있는 빈 카드 */}
               </Card>
             </div>
           </div>
         </div>
 
-        <div className="fixed bottom-6 right-6 z-50">
+        <div className="fixed bottom-30 right-6 z-50">
           <div className="flex flex-col items-center gap-2">
             <p className="text-sm text-center text-muted-foreground bg-background/80 backdrop-blur-sm px-3 py-1 rounded-lg border">
               채용팀에
