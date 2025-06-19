@@ -103,61 +103,61 @@ export default function EduServicePage() {
           transition={{ duration: 0.7, ease: "easeOut", delay: 0.5 }}
           viewport={{ once: true, amount: 0.2 }}
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-14 max-w-[1200px] mx-auto mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10 max-w-[1200px] mx-auto mb-10 px-2">
             {/* 주부 */}
-            <div className="bg-white rounded-[2.5rem] shadow-2xl flex flex-col items-center p-10 text-center">
-              <div className="text-gray-500 text-lg md:text-xl mb-2">
+            <div className="bg-white rounded-3xl shadow-2xl flex flex-col items-center p-5 sm:p-8 md:p-10 text-center">
+              <div className="text-gray-500 text-base sm:text-lg md:text-xl mb-1 sm:mb-2">
                 아기 엄마도 쉽게!
               </div>
-              <div className="font-extrabold text-3xl md:text-4xl mb-6">
+              <div className="font-extrabold text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-6">
                 주부
               </div>
               <img
                 src="/images/about/004.png"
                 alt="주부"
-                className="w-full h-auto object-contain mb-2 drop-shadow-[0_12px_16px_rgba(0,0,0,0.4)]"
+                className="w-[120px] h-auto sm:w-[150px] md:w-full object-contain mb-2 drop-shadow-[0_8px_12px_rgba(0,0,0,0.18)]"
               />
             </div>
             {/* 대학생 */}
-            <div className="bg-white rounded-[2.5rem] shadow-2xl flex flex-col items-center p-10 text-center">
-              <div className="text-gray-500 text-lg md:text-xl mb-2">
+            <div className="bg-white rounded-3xl shadow-2xl flex flex-col items-center p-5 sm:p-8 md:p-10 text-center">
+              <div className="text-gray-500 text-base sm:text-lg md:text-xl mb-1 sm:mb-2">
                 경쟁력을 원해요
               </div>
-              <div className="font-extrabold text-3xl md:text-4xl mb-6">
+              <div className="font-extrabold text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-6">
                 대학생
               </div>
               <img
                 src="/images/about/001.png"
                 alt="대학생"
-                className="w-full h-auto object-contain mb-2 drop-shadow-[0_12px_16px_rgba(0,0,0,0.4)]"
+                className="w-[120px] h-auto sm:w-[150px] md:w-full object-contain mb-2 drop-shadow-[0_8px_12px_rgba(0,0,0,0.18)]"
               />
             </div>
             {/* 중장년층 */}
-            <div className="bg-white rounded-[2.5rem] shadow-2xl flex flex-col items-center p-10 text-center">
-              <div className="text-gray-500 text-lg md:text-xl mb-2">
+            <div className="bg-white rounded-3xl shadow-2xl flex flex-col items-center p-5 sm:p-8 md:p-10 text-center">
+              <div className="text-gray-500 text-base sm:text-lg md:text-xl mb-1 sm:mb-2">
                 제2의직업 대비
               </div>
-              <div className="font-extrabold text-3xl md:text-4xl mb-6">
+              <div className="font-extrabold text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-6">
                 중장년층
               </div>
               <img
                 src="/images/about/002.png"
                 alt="중장년층"
-                className="w-full h-auto object-contain mb-2 drop-shadow-[0_12px_16px_rgba(0,0,0,0.4)]"
+                className="w-[120px] h-auto sm:w-[150px] md:w-full object-contain mb-2 drop-shadow-[0_8px_12px_rgba(0,0,0,0.18)]"
               />
             </div>
             {/* 노년층 */}
-            <div className="bg-white rounded-[2.5rem] shadow-2xl flex flex-col items-center p-10 text-center">
-              <div className="text-gray-500 text-lg md:text-xl mb-2">
+            <div className="bg-white rounded-3xl shadow-2xl flex flex-col items-center p-5 sm:p-8 md:p-10 text-center">
+              <div className="text-gray-500 text-base sm:text-lg md:text-xl mb-1 sm:mb-2">
                 정말 쓸모있는 교육
               </div>
-              <div className="font-extrabold text-3xl md:text-4xl mb-6">
+              <div className="font-extrabold text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-6">
                 노년층
               </div>
               <img
                 src="/images/about/003.png"
                 alt="노년층"
-                className="w-full h-auto object-contain mb-2 drop-shadow-[0_12px_16px_rgba(0,0,0,0.4)]"
+                className="w-[120px] h-auto sm:w-[150px] md:w-full object-contain mb-2 drop-shadow-[0_8px_12px_rgba(0,0,0,0.18)]"
               />
             </div>
           </div>

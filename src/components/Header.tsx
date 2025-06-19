@@ -7,11 +7,13 @@ import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 
 export default function Header() {
+  // isAdmin: null(아직 확인 전), true(어드민), false(비어있음)
+  const [isAdmin, setIsAdmin] = useState<null | boolean>(null);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
+    // 클라이언트에서만 실행되는 코드
     async function checkAdmin() {
       const {
         data: { user },
@@ -43,6 +45,7 @@ export default function Header() {
     router.push("/admin/login");
   };
 
+  // Header의 구조는 항상 렌더링!
   return (
     <header
       className="header w-full transition-colors duration-300"
@@ -67,6 +70,11 @@ export default function Header() {
           </span>
         </Link>
         <nav className="header__nav hidden md:flex gap-3 text-white items-center">
+          <Link href="/" className="group">
+            <span className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)]">
+              홈
+            </span>
+          </Link>
           <Link href="/about" className="group">
             <span className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)]">
               회사소개
@@ -87,7 +95,8 @@ export default function Header() {
               설계사채용
             </span>
           </Link>
-          {isAdmin && (
+          {/* admin 메뉴는 isAdmin === true일 때만 렌더링 */}
+          {isAdmin === true && (
             <>
               <Link href="/admin/consultations" className="group">
                 <span className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)] font-bold text-blue-300">
@@ -97,11 +106,6 @@ export default function Header() {
               <Link href="/admin/recruit-applications" className="group">
                 <span className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)] font-bold text-blue-300">
                   설계사 지원자 관리
-                </span>
-              </Link>
-              <Link href="/admin/update" className="group">
-                <span className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)] font-bold text-blue-300">
-                  업데이트
                 </span>
               </Link>
               <button
@@ -141,13 +145,27 @@ export default function Header() {
             </button>
             {/* 로고 */}
             <div className="mb-6 flex items-center gap-2">
-              <Image src="/images/logo.png" alt="로고" width={40} height={40} />
-              <span className="text-2xl font-bold text-white">한평생OOO</span>
+              <Image
+                src="/images/logo2.png"
+                alt="로고"
+                width={40}
+                height={40}
+              />
+              <span className="text-2xl font-bold text-white">
+                한평생Guidance
+              </span>
             </div>
             {/* 안내문구 */}
 
             {/* 메뉴 */}
             <nav className="w-full flex flex-col items-center gap-2 mb-6">
+              <Link
+                href="/"
+                className="w-full py-3 px-2 text-lg font-semibold text-white hover:bg-[#22304a] rounded transition"
+                onClick={() => setMenuOpen(false)}
+              >
+                홈
+              </Link>
               <Link
                 href="/about"
                 className="w-full py-3 px-2 text-lg font-semibold text-white hover:bg-[#22304a] rounded transition"
@@ -176,7 +194,8 @@ export default function Header() {
               >
                 설계사 채용
               </Link>
-              {isAdmin && (
+              {/* admin 메뉴는 isAdmin === true일 때만 렌더링 */}
+              {isAdmin === true && (
                 <>
                   <Link
                     href="/admin/consultations"
@@ -192,20 +211,13 @@ export default function Header() {
                   >
                     설계사 지원자 관리
                   </Link>
-                  <Link
-                    href="/admin/update"
-                    className="w-full py-3 px-2 text-lg font-semibold text-blue-300 hover:bg-[#22304a] rounded transition"
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    업데이트
-                  </Link>
                   <button
                     onClick={async () => {
                       await supabase.auth.signOut();
                       setMenuOpen(false);
                       router.push("/admin/login");
                     }}
-                    className="w-full py-3 px-2 text-lg font-semibold text-white hover:bg-[#22304a] rounded transition"
+                    className="w-full py-3 px-2 text-lg text-left font-semibold text-white hover:bg-[#22304a] rounded transition"
                   >
                     로그아웃
                   </button>
