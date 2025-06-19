@@ -166,10 +166,10 @@ export default function Home() {
             padding: "60px 0 0",
           }}
         >
-          <h2 className="text-xl font-semibold mb-3 text-center text-black drop-shadow">
+          <h2 className="text-xl text-[#3b2e1a] font-semibold mb-3 text-center text-black drop-shadow">
             함께하실 분을 찾습니다.
           </h2>
-          <p className="text-base mb-6 text-center text-black drop-shadow">
+          <p className="text-base text-[#4b3a1a] mb-6 text-center text-black drop-shadow">
             판매 실적이 아닌, 고객만족 중심의 파격적인 보상을 드립니다.
             <br />
             오직 고객 만족에만 집중할 수 있는 업무 환경과
