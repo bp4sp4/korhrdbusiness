@@ -669,7 +669,7 @@ const CareerConsultationUI = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br via-white to-indigo-50 p-6 flex items-center justify-center">
+    <div className="min-h-screen p-6 flex items-center justify-center">
       <div className="w-full max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
