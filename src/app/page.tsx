@@ -40,7 +40,12 @@ export default function Home() {
       <section className="main__service w-full mx-auto flex bg-white">
         <p className="main__service_desc text-black">
           <strong className="block font-bold text-[35px] mb-4">
-            🤔교육은 받았지만 왜 취업은 어려울까요?
+            <img
+              src="/images/main/ta.gif"
+              alt=""
+              className="w-[40px] h-[40px] inline-block mb-2 mr-1"
+            />
+            교육은 받았지만 왜 취업은 어려울까요?
           </strong>
           한평생가이던스은 많은 이들이 자신과 맞지 않는 교육을 선택하거나
           <br />
@@ -53,7 +58,15 @@ export default function Home() {
         </p>
         <div className="main__service__items flex flex-col md:flex-row gap-8 w-full justify-center">
           <div className="main__service__item flex-1 text-center md:text-left">
-            <h3 className="main__service__item-title text-[21px] font-semibold mb-4 text-gray-600">
+            <h3
+              className="main__service__item-title text-[21px] font-semibold mb-4 text-gray-600"
+              style={{ letterSpacing: "-1px", fontSize: "20px" }}
+            >
+              <img
+                src="/images/main/search.png"
+                alt="search"
+                className="w-[30px] h-[30px] inline-block mb-1 mr-1"
+              />
               학생분들이 처한 환경부터 확인합니다.
             </h3>
             <p className="main__service__item-desc text-gray-500 text-base leading-relaxed">
@@ -64,25 +77,41 @@ export default function Home() {
             </p>
           </div>
           <div className="main__service__item flex-1 text-center md:text-left">
-            <h3 className="main__service__item-title text-[21px] font-semibold mb-4 text-gray-600">
+            <h3
+              className="main__service__item-title text-[21px] font-semibold mb-4 text-gray-600"
+              style={{ letterSpacing: "-1px", fontSize: "20px" }}
+            >
+              <img
+                src="/images/main/books.png"
+                alt="books"
+                className="w-[30px] h-[30px] inline-block mb-1 mr-1"
+              />
               꼼꼼하고 세밀하게 관리합니다.
             </h3>
             <p className="main__service__item-desc text-gray-500 text-base leading-relaxed">
-              한평생OOOO은 학습자의 중도 포기를 철저히 방지하기 위해, 전문
+              한평생가이던스는 학습자의 중도 포기를 철저히 방지하기 위해, 전문
               양성과정을 거친 설계사들이 체계적인 학습관리 시스템으로 학습
               완료까지 책임지고 동행합니다. 학습자 한사람 한 사람의 끝맺음을
               우리의 사명으로 여깁니다.
             </p>
           </div>
           <div className="main__service__item flex-1 text-center md:text-left">
-            <h3 className="main__service__item-title text-[21px] font-semibold mb-4 text-gray-600">
+            <h3
+              className="main__service__item-title text-[21px] font-semibold mb-4 text-gray-600"
+              style={{ letterSpacing: "-1px", fontSize: "20px" }}
+            >
+              <img
+                src="/images/main/cb.png"
+                alt="culture"
+                className="w-[30px] h-[30px] inline-block mb-1 mr-1"
+              />
               실기와 취업은 저희 몫입니다.
             </h3>
             <p className="main__service__item-desc text-gray-500 text-base leading-relaxed">
-              한평생은 교육의 끝이 아닌, 취업까지 연결되는 실질적인 결과를
-              중요하게 생각합니다. 실기 능력 향상부터 취업 연계까지 전 과정을
-              지원하며, 교육이 현장으로 자연스럽게 이어질 수 있도록 끝까지
-              책임집니다.
+              꼼꼼하고 한평생은 교육의 끝이 아닌, 취업까지 연결되는 실질적인
+              결과를 중요하게 생각합니다. 실기 능력 향상부터 취업 연계까지 전
+              과정을 지원하며, 교육이 현장으로 자연스럽게 이어질 수 있도록
+              끝까지 책임집니다.
             </p>
           </div>
         </div>

@@ -79,7 +79,7 @@ export default function Eduservice() {
         <div className="relative h-[650px]">
           <Iphone15Pro
             className="size-full"
-            videoSrc="/images/eduservice/consule.mp4"
+            videoSrc="/images/eduservice/consult.mp4"
           />
         </div>
       </section>
@@ -88,7 +88,7 @@ export default function Eduservice() {
           <div className="relative h-[650px]">
             <Iphone15Pro
               className="size-full"
-              videoSrc="https://videos.pexels.com/video-files/8946986/8946986-uhd_1440_2732_25fps.mp4"
+              videoSrc="/images/eduservice/recruit.mp4"
             />
           </div>
           <div>
