@@ -8,15 +8,17 @@ export interface Iphone15ProProps extends SVGProps<SVGSVGElement> {
 }
 
 export default function Iphone15Pro({
+  width = 433,
+  height = 882,
   src,
   videoSrc,
   ...props
 }: Iphone15ProProps) {
   return (
     <svg
-      width="100%"
-      height="100%"
-      viewBox="0 0 433 882"
+      width={width}
+      height={height}
+      viewBox={`0 0 ${width} ${height}`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...props}

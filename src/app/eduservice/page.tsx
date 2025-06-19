@@ -95,20 +95,22 @@ export default function Eduservice() {
           </p>
         </motion.div>
         {/* 아이폰/비디오 영역 */}
-        <div
-          className="mx-auto"
-          style={{
-            width: "100%",
-            maxWidth: "340px",
-            aspectRatio: "433 / 882",
-            height: "auto",
-          }}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut", delay: 0.4 }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="w-full max-w-[340px] mx-auto h-[420px] md:h-[650px]
+            flex items-center justify-center
+            relative
+            translate-y-[40px] md:translate-y-0
+            z-10"
         >
           <Iphone15Pro
-            className="w-full h-auto"
+            className="w-[280px] h-[560px] md:w-full md:h-full scale-[0.75] md:scale-100 transform-gpu object-cover"
             videoSrc="/images/eduservice/consult.mp4"
           />
-        </div>
+        </motion.div>
       </section>
       <div className="bg-gray-100">
         <section className="flex flex-col md:flex-row items-center justify-between min-h-[600px] md:min-h-[880px] max-w-[801px] mx-auto p-0 w-full overflow-hidden">
@@ -118,7 +120,7 @@ export default function Eduservice() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.3 }}
-            className="w-full max-w-[340px] mx-auto h-[420px] md:h-[650px] flex items-center justify-center order-2 md:order-1 translate-y-[40px] md:translate-y-0 z-10"
+            className="order-2 md:order-1 z-10 flex items-center justify-center w-full"
           >
             <div
               className="mx-auto"
@@ -127,6 +129,9 @@ export default function Eduservice() {
                 maxWidth: "340px",
                 aspectRatio: "433 / 882",
                 height: "auto",
+                paddingLeft: "env(safe-area-inset-left)",
+                paddingRight: "env(safe-area-inset-right)",
+                overflow: "visible",
               }}
             >
               <Iphone15Pro
