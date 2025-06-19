@@ -100,22 +100,16 @@ export default function Eduservice() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: "easeOut", delay: 0.4 }}
           viewport={{ once: true, amount: 0.3 }}
-          className="flex items-center justify-center relative z-10"
+          className="w-full max-w-[340px] mx-auto h-[420px] md:h-[650px]
+            flex items-center justify-center
+            relative
+            translate-y-[40px] md:translate-y-0
+            z-10"
         >
-          <div
-            className="mx-auto"
-            style={{
-              width: "100%",
-              maxWidth: "340px",
-              aspectRatio: "433 / 882",
-              height: "auto",
-            }}
-          >
-            <Iphone15Pro
-              className="w-full h-auto"
-              videoSrc="/images/eduservice/consult.mp4"
-            />
-          </div>
+          <Iphone15Pro
+            className="w-full h-full object-cover"
+            videoSrc="/images/eduservice/consult.mp4"
+          />
         </motion.div>
       </section>
       <div className="bg-gray-100">
@@ -126,22 +120,12 @@ export default function Eduservice() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.3 }}
-            className="flex items-center justify-center order-2 md:order-1 z-10"
+            className="w-full max-w-[340px] mx-auto h-[420px] md:h-[650px] flex items-center justify-center order-2 md:order-1 translate-y-[40px] md:translate-y-0 z-10"
           >
-            <div
-              className="mx-auto"
-              style={{
-                width: "100%",
-                maxWidth: "340px",
-                aspectRatio: "433 / 882",
-                height: "auto",
-              }}
-            >
-              <Iphone15Pro
-                className="w-full h-auto"
-                videoSrc="/images/eduservice/recruit.mp4"
-              />
-            </div>
+            <Iphone15Pro
+              className="w-full h-full object-cover"
+              videoSrc="/images/eduservice/recruit.mp4"
+            />
           </motion.div>
           {/* 텍스트 - 나중에 등장 */}
           <motion.div
