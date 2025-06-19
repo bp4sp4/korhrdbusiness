@@ -28,12 +28,12 @@ export default function Eduservice() {
     "/images/eduservice/eduservice016.png",
     "/images/eduservice/eduservice017.png",
     "/images/eduservice/eduservice018.png",
-    "/images/eduservice/eduservice018.png",
-    "/images/eduservice/eduservice018.png",
-    "/images/eduservice/eduservice018.png",
-    "/images/eduservice/eduservice018.png",
     "/images/eduservice/eduservice019.png",
     "/images/eduservice/eduservice020.png",
+    "/images/eduservice/eduservice021.png",
+    "/images/eduservice/eduservice022.png",
+    "/images/eduservice/eduservice015.png",
+    "/images/eduservice/eduservice009.png",
   ];
 
   return (

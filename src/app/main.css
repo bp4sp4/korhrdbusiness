@@ -236,6 +236,7 @@
         width: 100%;
         height: 100%;
     }
+
 }
 
 @media (max-width: 480px) {
@@ -250,7 +251,7 @@
     .main__service_desc {
         font-size: 1rem;
         padding: 2rem 0 1.5rem;
-        max-width: 340px;
+        max-width: 346px;
         margin: 0 auto 2rem auto;
         line-height: 1.7;
         text-align: left;
@@ -279,17 +280,17 @@
     .main__service__item-title {
         font-size: 1.1rem;
         margin-bottom: 0.75rem;
-        display: flex;
+
         align-items: center;
         gap: 0.5rem;
         color: #222;
     }
 
     .main__service__item-title img {
-        width: 22px !important;
-        height: 22px !important;
-        margin-bottom: 0 !important;
-        margin-right: 0.5rem;
+        width: 30px !important;
+        height: 30px !important;
+        margin-bottom: 5px !important;
+        margin-right: 0.3rem;
     }
 
     .main__service__item-desc {
@@ -304,5 +305,11 @@
 
     .header__logo span {
         font-size: 1rem;
+    }
+}
+
+@media (max-width: 767px) {
+    br.mobile-hide {
+        display: none;
     }
 }

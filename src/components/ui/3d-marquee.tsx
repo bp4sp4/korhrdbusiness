@@ -18,12 +18,12 @@ export const ThreeDMarquee = ({
   return (
     <div
       className={cn(
-        "mx-auto block h-[600px] overflow-hidden rounded-2xl max-sm:h-100",
-        className,
+        "mx-auto block h-[600px] overflow-hidden rounded-2xl",
+        className
       )}
     >
       <div className="flex size-full items-center justify-center">
-        <div className="size-[1720px] shrink-0 scale-50 sm:scale-75 lg:scale-100">
+        <div className="size-[1720px] shrink-0 scale-50 sm:scale-75 lg:scale-100 mt-[100px]">
           <div
             style={{
               transform: "rotateX(55deg) rotateY(0deg) rotateZ(-45deg)",
@@ -100,7 +100,7 @@ const GridLineHorizontal = ({
         "[mask-composite:exclude]",
         "z-30",
         "dark:bg-[linear-gradient(to_right,var(--color-dark),var(--color-dark)_50%,transparent_0,transparent)]",
-        className,
+        className
       )}
     ></div>
   );
@@ -135,7 +135,7 @@ const GridLineVertical = ({
         "[mask-composite:exclude]",
         "z-30",
         "dark:bg-[linear-gradient(to_bottom,var(--color-dark),var(--color-dark)_50%,transparent_0,transparent)]",
-        className,
+        className
       )}
     ></div>
   );

@@ -48,13 +48,15 @@ export default function Home() {
             교육은 받았지만 왜 취업은 어려울까요?
           </strong>
           한평생가이던스은 많은 이들이 자신과 맞지 않는 교육을 선택하거나
-          <br />
+          <span className="hidden md:block" />
           복잡해진 실무·취업 환경에 적응하지 못해 시작조차 어려운 현실을
-          확인했습니다.
-          <br /> 이에 교육과 취업을 하나로 잇는 실질적인 시스템을 구축하고,
-          <br /> 시작조차 어려워하는 경우가 많다는 사실을 확인했습니다.
-          <br /> &apos;시작부터 현장까지&apos;책임지는 맞춤형 실무교유을
-          실현하고 있습니다.
+          <span className="hidden md:block" />
+          이에 교육과 취업을 하나로 잇는 실질적인 시스템을 구축하고,
+          <span className="hidden md:block" />
+          시작조차 어려워하는 경우가 많다는 사실을 확인했습니다.
+          <span className="hidden md:block" />
+          &apos;시작부터 현장까지&apos;책임지는 맞춤형 실무교육을 실현하고
+          있습니다.
         </p>
         <div className="main__service__items flex flex-col md:flex-row gap-8 w-full justify-center">
           <div className="main__service__item flex-1 text-center md:text-left">
@@ -118,8 +120,7 @@ export default function Home() {
       </section>
 
       {/* Recruit Section */}
-      <section className="main__recruit w-full flex flex-col md:flex-row items-stretch h-auto md:h-[400px]">
-        {/* 좌측 텍스트/버튼 */}
+      <section className="main__recruit w-full flex-col md:flex-row items-stretch h-auto md:h-[400px] hidden md:flex">
         <div
           className="flex-1 h-[300px] md:h-full flex flex-col justify-center bg-[#aeb2a3]"
           style={{
@@ -129,7 +130,7 @@ export default function Home() {
           }}
         >
           <div className="main__recruit-wrap text-left">
-            <h2 className="text-[30px] md:text-[30px] font-semibold mb-4 text-white">
+            <h2 className="text-[30px] font-semibold mb-4 text-white">
               함께하실 분을 찾습니다.
             </h2>
             <p className="text-white text-[17px] mb-8">
@@ -139,13 +140,48 @@ export default function Home() {
               <br />
               최고의 복리후생을 제공합니다.
             </p>
-            <Link
-              href="/recruit"
+            <a
               className="bg-blue-600 text-white px-[36px] py-[16px] rounded-full font-semibold shadow-md hover:bg-blue-700 transition inline-block text-center"
+              href="/recruit"
             >
-              채용중인 지점 보기 ＞
-            </Link>
+              채용중인 지점 보기 &gt;
+            </a>
           </div>
+        </div>
+      </section>
+
+      {/* 모바일: 토스 스타일 오버레이 구조 */}
+      <section className="relative w-full h-[100vh] flex md:hidden">
+        {/* 배경 이미지 */}
+        <img
+          src="/images/main/meeting_mobile.png"
+          alt="채용 미팅"
+          className="w-full h-full object-cover"
+          style={{ height: "100vh" }}
+        />
+        {/* 오버레이 텍스트/버튼 */}
+        <div
+          className="absolute inset-0 flex flex-col items-center px-4"
+          style={{
+            padding: "60px 0 0",
+          }}
+        >
+          <h2 className="text-xl font-semibold mb-3 text-center text-black drop-shadow">
+            함께하실 분을 찾습니다.
+          </h2>
+          <p className="text-base mb-6 text-center text-black drop-shadow">
+            판매 실적이 아닌, 고객만족 중심의 파격적인 보상을 드립니다.
+            <br />
+            오직 고객 만족에만 집중할 수 있는 업무 환경과
+            <br />
+            최고의 복리후생을 제공합니다.
+          </p>
+          <a
+            href="/recruit"
+            className="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold shadow-md hover:bg-blue-700 transition text-center inline-block"
+          >
+            채용중인 분야 보기 &gt;
+          </a>
         </div>
       </section>
     </main>
