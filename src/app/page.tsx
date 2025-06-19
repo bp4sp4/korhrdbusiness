@@ -20,7 +20,7 @@ export default function Home() {
           <div className="main__hero-title text-white text-2xl md:text-7xl mb-6 flex flex-col gap-3">
             <TypingAnimation
               duration={40}
-              className="text-white text-4xl md:text-3xl font-normal"
+              className="text-white text-3xl md:text-4xl font-normal"
             >
               EP.1 취업난 해결 프로젝트
             </TypingAnimation>
@@ -39,11 +39,11 @@ export default function Home() {
       </section>
       <section className="main__service w-full mx-auto flex bg-white">
         <p className="main__service_desc text-black">
-          <strong className="block font-bold text-[35px] mb-4">
+          <strong className="block font-bold text-[25px] md:text-[45px] mb-4">
             <img
               src="/images/main/ta.gif"
               alt=""
-              className="w-[40px] h-[40px] inline-block mb-2 mr-1"
+              className="w-[30px] h-[30px] md:w-[50px] md:h-[50px] inline-block md:mb-2 mb-0 mr-1"
             />
             교육은 받았지만 왜 취업은 어려울까요?
           </strong>
