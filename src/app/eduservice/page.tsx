@@ -107,7 +107,7 @@ export default function Eduservice() {
             z-10"
         >
           <Iphone15Pro
-            className="w-full h-full"
+            className="w-[280px] h-[560px] md:w-full md:h-full scale-[0.75] md:scale-100 transform-gpu"
             videoSrc="/images/eduservice/consult.mp4"
           />
         </motion.div>
@@ -123,7 +123,7 @@ export default function Eduservice() {
             className="w-full max-w-[340px] mx-auto h-[420px] md:h-[650px] flex items-center justify-center order-2 md:order-1 translate-y-[40px] md:translate-y-0 z-10"
           >
             <Iphone15Pro
-              className="w-full h-full"
+              className="w-[280px] h-[560px] md:w-full md:h-full scale-[0.75] md:scale-100 transform-gpu"
               videoSrc="/images/eduservice/recruit.mp4"
             />
           </motion.div>
