@@ -2,6 +2,7 @@
 import { ThreeDMarquee } from "@/components/ui/3d-marquee";
 import Iphone15Pro from "@/components/magicui/iphone-15-pro";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function Eduservice() {
   const images = [
@@ -54,12 +55,18 @@ export default function Eduservice() {
         </p>
 
         <div className="relative z-20 flex flex-wrap items-center justify-center gap-4 pt-4">
-          <button className="rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700 focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:outline-none shadow">
+          <Link
+            href="/counsel"
+            className="rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700 focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:outline-none shadow"
+          >
             상담 신청하기
-          </button>
-          <button className="rounded-md border border-blue-600 bg-white px-6 py-2.5 text-sm font-semibold text-blue-600 transition-colors hover:bg-blue-50 focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:outline-none shadow">
+          </Link>
+          <Link
+            href="/about"
+            className="rounded-md border border-blue-600 bg-white px-6 py-2.5 text-sm font-semibold text-blue-600 transition-colors hover:bg-blue-50 focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:outline-none shadow"
+          >
             서비스 소개 보기
-          </button>
+          </Link>
         </div>
 
         {/* overlay */}
