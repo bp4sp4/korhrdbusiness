@@ -107,7 +107,7 @@ export default function Eduservice() {
             z-10"
         >
           <Iphone15Pro
-            className="w-[280px] h-[560px] md:w-full md:h-full scale-[0.75] md:scale-100 transform-gpu object-cover"
+            className="relative w-[280px] h-[560px] md:w-full md:h-full scale-[0.75] md:scale-100 transform-gpu object-cover"
             videoSrc="/images/eduservice/consult.mp4"
           />
         </motion.div>
@@ -120,25 +120,12 @@ export default function Eduservice() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.3 }}
-            className="order-2 md:order-1 z-10 flex items-center justify-center w-full"
+            className="w-full max-w-[340px] mx-auto h-[420px] md:h-[650px] flex items-center justify-center order-2 md:order-1 translate-y-[40px] md:translate-y-0 z-10"
           >
-            <div
-              className="mx-auto"
-              style={{
-                width: "100%",
-                maxWidth: "340px",
-                aspectRatio: "433 / 882",
-                height: "auto",
-                paddingLeft: "env(safe-area-inset-left)",
-                paddingRight: "env(safe-area-inset-right)",
-                overflow: "visible",
-              }}
-            >
-              <Iphone15Pro
-                className="w-full h-auto"
-                videoSrc="/images/eduservice/recruit.mp4"
-              />
-            </div>
+            <Iphone15Pro
+              className="relative w-[280px] h-[560px] md:w-full md:h-full scale-[0.75] md:scale-100 transform-gpu object-cover"
+              videoSrc="/images/eduservice/recruit.mp4"
+            />
           </motion.div>
           {/* 텍스트 - 나중에 등장 */}
           <motion.div
