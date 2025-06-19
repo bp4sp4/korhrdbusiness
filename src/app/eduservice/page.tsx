@@ -105,7 +105,6 @@ export default function Eduservice() {
             relative
             translate-y-[40px] md:translate-y-0
             z-10"
-          style={{ minHeight: "calc(100vh - 64px)" }} // 상단 바 높이 고려
         >
           <Iphone15Pro
             className="w-[280px] h-[560px] md:w-full md:h-full scale-[0.75] md:scale-100 transform-gpu object-cover"
