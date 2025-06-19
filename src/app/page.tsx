@@ -176,12 +176,12 @@ export default function Home() {
             <br />
             최고의 복리후생을 제공합니다.
           </p>
-          <a
+          <Link
             href="/recruit"
             className="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold shadow-md hover:bg-blue-700 transition text-center inline-block"
           >
             채용중인 분야 보기 &gt;
-          </a>
+          </Link>
         </div>
       </section>
     </main>
