@@ -5,12 +5,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
+import { useCounselModal } from "@/store/useCounselModal";
 
 export default function Header() {
   // isAdmin: null(아직 확인 전), true(어드민), false(비어있음)
   const [isAdmin, setIsAdmin] = useState<null | boolean>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
+  const { openModal } = useCounselModal();
 
   useEffect(() => {
     // 클라이언트에서만 실행되는 코드
@@ -43,6 +45,11 @@ export default function Header() {
   const handleLogout = async () => {
     await supabase.auth.signOut();
     router.push("/admin/login");
+  };
+
+  const handleOpenCounselModal = () => {
+    openModal();
+    setMenuOpen(false); // Close mobile menu if open
   };
 
   // Header의 구조는 항상 렌더링!
@@ -85,11 +92,14 @@ export default function Header() {
               교육서비스
             </span>
           </Link>
-          <Link href="/counsel" className="group">
+          <button
+            onClick={handleOpenCounselModal}
+            className="group bg-transparent border-none cursor-pointer"
+          >
             <span className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)]">
               교육상담받기
             </span>
-          </Link>
+          </button>
           <Link href="/recruit" className="group">
             <span className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)]">
               설계사채용
@@ -180,13 +190,12 @@ export default function Header() {
               >
                 교육서비스
               </Link>
-              <Link
-                href="/counsel"
-                className="w-full py-3 px-2 text-lg font-semibold text-white hover:bg-[#22304a] rounded transition"
-                onClick={() => setMenuOpen(false)}
+              <button
+                onClick={handleOpenCounselModal}
+                className="w-full py-3 px-2 text-lg font-semibold text-white hover:bg-[#22304a] rounded transition bg-transparent border-none text-center"
               >
                 교육상담받기
-              </Link>
+              </button>
               <Link
                 href="/recruit"
                 className="w-full py-3 px-2 text-lg font-semibold text-white hover:bg-[#22304a] rounded transition"

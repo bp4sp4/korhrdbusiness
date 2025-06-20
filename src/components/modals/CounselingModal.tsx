@@ -5,10 +5,8 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import {
-  Calendar,
   User,
   MessageSquare,
-  Briefcase,
   GraduationCap,
   CheckCircle,
   ArrowRight,
@@ -28,20 +26,13 @@ import {
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
+  DialogDescription,
 } from "@/components/ui/dialog";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import emailjs from "emailjs-com";
 import { supabase } from "@/lib/supabase";
+import { useCounselModal } from "@/store/useCounselModal";
 
 interface ConsultationFormData {
   name: string;
@@ -65,6 +56,7 @@ interface FieldOption {
 }
 
 const fieldOptions: FieldOption[] = [
+  // ... (fieldOptions data remains the same)
   {
     value: "사회복지사 자격증",
     label: "사회복지사 자격증",
@@ -158,7 +150,8 @@ const fieldOptions: FieldOption[] = [
   },
 ];
 
-const CareerConsultationUI = () => {
+const CounselingModal = () => {
+  const { isOpen, closeModal } = useCounselModal();
   const [formData, setFormData] = useState<ConsultationFormData>({
     name: "",
     email: "",
@@ -174,7 +167,6 @@ const CareerConsultationUI = () => {
 
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [emailError, setEmailError] = useState("");
   const [phoneError, setPhoneError] = useState("");
@@ -184,34 +176,48 @@ const CareerConsultationUI = () => {
   const totalSteps = 3;
 
   useEffect(() => {
-    let observer: MutationObserver | null = null;
+    if (!isOpen) {
+      // Reset form when modal closes
+      setTimeout(() => {
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          experience: "",
+          field: "사회복지사 자격증",
+          preferredDate: "",
+          preferredTime: "",
+          consultationType: "",
+          message: "",
+          consent: false,
+        });
+        setCurrentStep(1);
+        setIsSubmitted(false);
+        setEmailError("");
+        setPhoneError("");
+      }, 300); // Delay to allow closing animation
+    }
+  }, [isOpen]);
 
-    const tryCheck = () => {
+  useEffect(() => {
+    const checkScroll = () => {
       const el = scrollRef.current;
       if (el) {
-        if (el.scrollHeight > el.clientHeight) {
-          setShowScrollIndicator(true);
-        } else {
-          setShowScrollIndicator(false);
-        }
-        return true;
+        setShowScrollIndicator(el.scrollHeight > el.clientHeight);
       }
-      return false;
     };
 
-    if (!tryCheck()) {
-      observer = new MutationObserver(() => {
-        if (tryCheck() && observer) {
-          observer.disconnect();
-        }
-      });
-      observer.observe(document.body, { childList: true, subtree: true });
+    // Check on initial render and when dependencies change
+    checkScroll();
+
+    // Also check if the content changes
+    const observer = new MutationObserver(checkScroll);
+    if (scrollRef.current) {
+      observer.observe(scrollRef.current, { childList: true, subtree: true });
     }
 
-    return () => {
-      if (observer) observer.disconnect();
-    };
-  }, [isDialogOpen, currentStep, formData.field]);
+    return () => observer.disconnect();
+  }, [isOpen, currentStep, formData.field]);
 
   const handleInputChange = (
     field: keyof ConsultationFormData,
@@ -222,31 +228,25 @@ const CareerConsultationUI = () => {
       [field]: value,
     }));
     if (field === "email") {
-      if (!validateEmail(value)) {
-        setEmailError("올바른 이메일 형식이 아닙니다.");
-      } else {
-        setEmailError("");
-      }
+      setEmailError(
+        validateEmail(value) ? "" : "올바른 이메일 형식이 아닙니다."
+      );
     }
     if (field === "phone") {
-      if (!validatePhone(value)) {
-        setPhoneError("연락처는 숫자만 입력해주세요.(-)빼고 예: 01012345678");
-      } else {
-        setPhoneError("");
-      }
+      setPhoneError(
+        validatePhone(value)
+          ? ""
+          : "연락처는 숫자만 입력해주세요.(-)빼고 예: 01012345678"
+      );
     }
   };
 
   const handleNext = () => {
-    if (currentStep < totalSteps) {
-      setCurrentStep((prev) => prev + 1);
-    }
+    if (currentStep < totalSteps) setCurrentStep((prev) => prev + 1);
   };
 
   const handlePrev = () => {
-    if (currentStep > 1) {
-      setCurrentStep((prev) => prev - 1);
-    }
+    if (currentStep > 1) setCurrentStep((prev) => prev - 1);
   };
 
   const handleSubmit = async (e?: React.FormEvent<HTMLFormElement>) => {
@@ -254,52 +254,40 @@ const CareerConsultationUI = () => {
     if (isSubmitting) return;
     setIsSubmitting(true);
 
-    // 1. Supabase에 저장
-    const { error } = await supabase.from("consultations").insert([
-      {
-        ...formData,
-        created_at: new Date().toISOString(),
-        consent: formData.consent,
-      },
-    ]);
-    if (error) {
-      alert("DB 저장 실패: " + error.message);
-      setIsSubmitting(false);
-      return;
-    }
+    try {
+      const { error: dbError } = await supabase
+        .from("consultations")
+        .insert([{ ...formData, created_at: new Date().toISOString() }]);
+      if (dbError) throw new Error(`DB 저장 실패: ${dbError.message}`);
 
-    // 2. emailjs 전송 (기존 코드)
-    const templateParams = {
-      title: "상담 신청",
-      name: formData.name,
-      message: formData.message,
-      time: new Date().toLocaleString(),
-      email: "bp3sp3@naver.com, bp4sp456@gmail.com", // 여기에 이메일 추가
-      phone: formData.phone,
-      preferredDate: formData.preferredDate,
-      preferredTime: formData.preferredTime,
-      experience: formData.experience,
-      field: formData.field,
-      consultationType: formData.consultationType,
-    };
+      const templateParams = {
+        title: "상담 신청",
+        name: formData.name,
+        message: formData.message,
+        time: new Date().toLocaleString(),
+        email: "bp3sp3@naver.com, bp4sp456@gmail.com",
+        phone: formData.phone,
+        preferredDate: formData.preferredDate,
+        preferredTime: formData.preferredTime,
+        experience: formData.experience,
+        field: formData.field,
+        consultationType: formData.consultationType,
+      };
 
-    emailjs
-      .send(
+      await emailjs.send(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
         templateParams,
         process.env.NEXT_PUBLIC_EMAILJS_USER_ID!
-      )
-      .then(
-        () => {
-          setIsSubmitted(true);
-          setIsSubmitting(false);
-        },
-        () => {
-          alert("전송에 실패했습니다. 다시 시도해주세요.");
-          setIsSubmitting(false);
-        }
       );
+
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error("Submission failed:", error);
+      alert("전송에 실패했습니다. 다시 시도해주세요.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const consultationTypes = [
@@ -326,34 +314,21 @@ const CareerConsultationUI = () => {
   ];
 
   const educationLevels = ["고졸", "초대졸", "전문대졸", "4년제대졸"];
-
-  const validateEmail = (email: string) => {
-    // 간단한 이메일 정규식
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  };
-
-  const validatePhone = (phone: string) => {
-    // 숫자만 9~11자리 허용
-    return /^\d{9,11}$/.test(phone);
-  };
-
-  // 내일 날짜를 yyyy-mm-dd로 계산
-  const getTomorrow = () => {
-    const d = new Date();
-    d.setDate(d.getDate() + 1);
-    return d.toISOString().split("T")[0];
-  };
+  const validateEmail = (email: string) =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const validatePhone = (phone: string) => /^\d{9,11}$/.test(phone);
+  const getTomorrow = () =>
+    new Date(Date.now() + 864e5).toISOString().split("T")[0];
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const target = e.target as HTMLDivElement;
-    if (target.scrollTop + target.clientHeight >= target.scrollHeight - 2) {
-      setShowScrollIndicator(false);
-    } else {
-      setShowScrollIndicator(true);
-    }
+    setShowScrollIndicator(
+      target.scrollTop + target.clientHeight < target.scrollHeight - 2
+    );
   };
 
   const renderStep = () => {
+    // Switch case for steps remains the same
     switch (currentStep) {
       case 1:
         return (
@@ -652,7 +627,11 @@ const CareerConsultationUI = () => {
   const isStepValid = () => {
     switch (currentStep) {
       case 1:
-        return formData.name && formData.email && formData.phone;
+        return (
+          formData.name &&
+          validateEmail(formData.email) &&
+          validatePhone(formData.phone)
+        );
       case 2:
         return (
           formData.experience && formData.field && formData.consultationType
@@ -664,248 +643,86 @@ const CareerConsultationUI = () => {
     }
   };
 
-  const checkScrollIndicator = () => {
-    // Implementation of checkScrollIndicator function
-  };
-
   return (
-    <div className="min-h-screen p-6 flex items-center justify-center">
-      <div className="w-full max-w-4xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-8"
-        >
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            교육 상담 받기
-          </h1>
-          <p className="text-gray-600">
-            전문 커리어 컨설턴트와 함께 당신의 커리어를 설계해보세요
-          </p>
-        </motion.div>
+    <Dialog open={isOpen} onOpenChange={closeModal}>
+      <DialogContent
+        className="sm:max-w-[500px] p-0"
+        onPointerDownOutside={(e) => e.preventDefault()}
+      >
+        <DialogHeader className="p-6 pb-0">
+          <DialogTitle>교육 상담 신청</DialogTitle>
+          <DialogDescription>
+            단계별로 정보를 입력해주세요. ({currentStep}/{totalSteps})
+          </DialogDescription>
+        </DialogHeader>
 
-        <div className="grid md:grid-cols-2 gap-8 items-start">
-          {/* 서비스 소개 카드 */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
-          >
-            <Card className="h-full">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Briefcase className="w-5 h-5 text-primary" />왜 취업 상담이
-                  필요한가요?
-                </CardTitle>
-                <CardDescription>
-                  전문가의 도움으로 더 나은 커리어를 만들어보세요
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-medium">개인 맞춤 커리어 로드맵</h4>
-                    <p className="text-sm text-gray-600">
-                      당신의 경험과 목표에 맞는 구체적인 계획을 제시합니다
-                    </p>
-                  </div>
-                </div>
+        {!isSubmitted ? (
+          <div className="p-6">
+            <div className="w-full bg-gray-200 rounded-full h-2 mb-6">
+              <motion.div
+                className="bg-primary h-2 rounded-full"
+                animate={{ width: `${(currentStep / totalSteps) * 100}%` }}
+                transition={{ duration: 0.3 }}
+              />
+            </div>
 
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-medium">이력서 & 면접 코칭</h4>
-                    <p className="text-sm text-gray-600">
-                      채용 담당자의 시선을 사로잡는 이력서와 면접 스킬을
-                      배워보세요
-                    </p>
-                  </div>
-                </div>
+            <AnimatePresence mode="wait">{renderStep()}</AnimatePresence>
 
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-medium">업계 인사이트 제공</h4>
-                    <p className="text-sm text-gray-600">
-                      최신 채용 트렌드와 업계 동향을 파악할 수 있습니다
-                    </p>
-                  </div>
-                </div>
+            <div className="flex justify-between pt-6">
+              <Button
+                variant="outline"
+                onClick={handlePrev}
+                disabled={currentStep === 1}
+              >
+                이전
+              </Button>
 
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-medium">네트워킹 기회</h4>
-                    <p className="text-sm text-gray-600">
-                      업계 전문가들과의 연결고리를 만들어드립니다
-                    </p>
-                  </div>
-                </div>
-
-                <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Calendar className="w-4 h-4 text-blue-600" />
-                    <span className="font-medium text-blue-900">상담 정보</span>
-                  </div>
-                  <ul className="text-sm text-blue-800 space-y-1">
-                    <li>• 상담 시간: 60분</li>
-                    <li>• 상담 방식: 유선 전화</li>
-                    <li>• 상담 비용: 무료</li>
-                    <li>• 후속 지원: 컨설팅 제공</li>
-                  </ul>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          {/* 상담 신청 폼 */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4 }}
-          >
-            <Card>
-              <CardHeader>
-                <CardTitle>상담 신청하기</CardTitle>
-                <CardDescription>
-                  간단한 정보를 입력하고 전문가와 상담을 예약하세요
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Dialog
-                  open={isDialogOpen}
-                  onOpenChange={(open) => {
-                    if (open) {
-                      checkScrollIndicator();
-                    }
-                    if (!open && isSubmitted) {
-                      setIsSubmitted(false);
-                      setCurrentStep(1);
-                      setFormData({
-                        name: "",
-                        email: "",
-                        phone: "",
-                        experience: "",
-                        field: "사회복지사 자격증",
-                        preferredDate: "",
-                        preferredTime: "",
-                        consultationType: "",
-                        message: "",
-                        consent: false,
-                      });
-                    }
-                    setIsDialogOpen(open);
-                  }}
+              {currentStep < totalSteps ? (
+                <Button onClick={handleNext} disabled={!isStepValid()}>
+                  다음 <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              ) : (
+                <Button
+                  onClick={() => handleSubmit()}
+                  disabled={!isStepValid() || isSubmitting}
                 >
-                  <DialogTrigger asChild>
-                    <Button size="lg" className="w-full">
-                      <Calendar className="w-4 h-4 mr-2" />
-                      상담 예약하기
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent className="sm:max-w-[500px]">
-                    <DialogHeader>
-                      <DialogTitle>교육 상담 신청</DialogTitle>
-                      <DialogDescription>
-                        단계별로 정보를 입력해주세요. ({currentStep}/
-                        {totalSteps})
-                      </DialogDescription>
-                    </DialogHeader>
-
-                    {!isSubmitted ? (
-                      <>
-                        {/* Progress Bar */}
-                        <div className="w-full bg-gray-200 rounded-full h-2 mb-6">
-                          <motion.div
-                            className="bg-primary h-2 rounded-full"
-                            initial={{ width: 0 }}
-                            animate={{
-                              width: `${(currentStep / totalSteps) * 100}%`,
-                            }}
-                            transition={{ duration: 0.3 }}
-                          />
-                        </div>
-
-                        <AnimatePresence mode="wait">
-                          {renderStep()}
-                        </AnimatePresence>
-
-                        {/* Navigation Buttons */}
-                        <div className="flex justify-between pt-4">
-                          <Button
-                            variant="outline"
-                            onClick={handlePrev}
-                            disabled={currentStep === 1}
-                          >
-                            이전
-                          </Button>
-
-                          {currentStep < totalSteps ? (
-                            <Button
-                              onClick={handleNext}
-                              disabled={
-                                !isStepValid() || !!emailError || !!phoneError
-                              }
-                            >
-                              다음
-                              <ArrowRight className="w-4 h-4 ml-2" />
-                            </Button>
-                          ) : (
-                            <Button
-                              onClick={() => handleSubmit()}
-                              disabled={
-                                !isStepValid() ||
-                                isSubmitting ||
-                                !!emailError ||
-                                !!phoneError
-                              }
-                            >
-                              신청 완료
-                              <CheckCircle className="w-4 h-4 ml-2" />
-                            </Button>
-                          )}
-                        </div>
-                      </>
-                    ) : (
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        className="text-center py-8"
-                      >
-                        <motion.div
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          transition={{ delay: 0.2, type: "spring" }}
-                        >
-                          <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                        </motion.div>
-                        <h3 className="text-xl font-semibold mb-2">
-                          신청이 완료되었습니다!
-                        </h3>
-                        <p className="text-gray-600 mb-4">
-                          담당자가 24시간 내에 연락드릴 예정입니다.
-                        </p>
-                        <div className="text-sm text-gray-500">
-                          <p>• 이메일로 상담 확정 안내를 보내드립니다</p>
-                          <p>• 상담 전 준비사항을 미리 안내해드립니다</p>
-                        </div>
-                      </motion.div>
-                    )}
-                  </DialogContent>
-                </Dialog>
-
-                <div className="mt-4 text-center text-sm text-gray-500">
-                  <p>상담 문의: career@company.com</p>
-                  <p>전화: 02-1234-5678 (평일 9:00-18:00)</p>
-                </div>
-              </CardContent>
-            </Card>
+                  {isSubmitting ? "신청 중..." : "신청 완료"}
+                  <CheckCircle className="w-4 h-4 ml-2" />
+                </Button>
+              )}
+            </div>
+          </div>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="text-center p-8"
+          >
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.2, type: "spring" }}
+            >
+              <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
+            </motion.div>
+            <h3 className="text-xl font-semibold mb-2">
+              신청이 완료되었습니다!
+            </h3>
+            <p className="text-gray-600 mb-4">
+              담당자가 24시간 내에 연락드릴 예정입니다.
+            </p>
+            <div className="text-sm text-gray-500">
+              <p>• 이메일로 상담 확정 안내를 보내드립니다</p>
+              <p>• 상담 전 준비사항을 미리 안내해드립니다</p>
+            </div>
+            <Button onClick={closeModal} className="mt-6">
+              닫기
+            </Button>
           </motion.div>
-        </div>
-      </div>
-    </div>
+        )}
+      </DialogContent>
+    </Dialog>
   );
 };
 
-export default CareerConsultationUI;
+export default CounselingModal;
