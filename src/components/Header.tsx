@@ -49,10 +49,9 @@ export default function Header() {
 
   const handleOpenCounselModal = () => {
     openModal();
-    setMenuOpen(false); // Close mobile menu if open
+    setMenuOpen(false);
   };
 
-  // Header의 구조는 항상 렌더링!
   return (
     <header
       className="header w-full transition-colors duration-300"
@@ -68,13 +67,11 @@ export default function Header() {
           <Image
             src="/images/logo2.png"
             alt="로고"
-            width={30}
-            height={30}
+            width={28}
+            height={28}
             className="header__logo-img"
           />
-          <span className="text-2xl font-bold text-white">
-            한평생<span className="text-[22px] font-normal">Guidance</span>
-          </span>
+          <span className="text-[28px] font-bold text-white">Eduviser</span>
         </Link>
         <nav className="header__nav hidden md:flex gap-3 text-white items-center">
           <Link href="/" className="group">

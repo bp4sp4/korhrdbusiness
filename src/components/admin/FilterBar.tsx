@@ -13,8 +13,6 @@ import { Search } from "lucide-react";
 interface FilterBarProps {
   searchTerm: string;
   setSearchTerm: (value: string) => void;
-  statusFilter: string;
-  setStatusFilter: (value: string) => void;
   fieldFilter: string;
   setFieldFilter: (value: string) => void;
   uniqueFields: string[];
@@ -23,8 +21,6 @@ interface FilterBarProps {
 const FilterBar: React.FC<FilterBarProps> = ({
   searchTerm,
   setSearchTerm,
-  statusFilter,
-  setStatusFilter,
   fieldFilter,
   setFieldFilter,
   uniqueFields,
@@ -37,25 +33,13 @@ const FilterBar: React.FC<FilterBarProps> = ({
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
               <Input
-                placeholder="이름, 이메일, 연락처로 검색..."
+                placeholder="이름, 연락처로 검색..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10"
               />
             </div>
           </div>
-          <Select value={statusFilter} onValueChange={setStatusFilter}>
-            <SelectTrigger className="w-full md:w-48">
-              <SelectValue placeholder="상태 필터" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">모든 상태</SelectItem>
-              <SelectItem value="pending">대기중</SelectItem>
-              <SelectItem value="approved">승인됨</SelectItem>
-              <SelectItem value="rejected">거절됨</SelectItem>
-              <SelectItem value="completed">완료됨</SelectItem>
-            </SelectContent>
-          </Select>
           <Select value={fieldFilter} onValueChange={setFieldFilter}>
             <SelectTrigger className="w-full md:w-48">
               <SelectValue placeholder="분야 필터" />

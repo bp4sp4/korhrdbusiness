@@ -3,8 +3,7 @@
 import * as React from "react";
 import { useState, useEffect, useMemo } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Download, CheckCircle, AlertCircle } from "lucide-react";
+import { Download } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import * as XLSX from "xlsx";
 import FilterBar from "@/components/admin/FilterBar";
@@ -13,16 +12,11 @@ import AdminAuthGuard from "@/components/admin/AdminAuthGuard";
 interface ConsultationRequest {
   id: string | number;
   name: string;
-  email: string;
   phone: string;
   experience: string;
   field: string;
-  consultationType: string;
-  preferredDate: string;
-  preferredTime: string;
-  message: string;
+  consent: boolean;
   created_at: string;
-  status: "pending" | "approved" | "completed";
   requestDate?: string;
 }
 
@@ -30,7 +24,6 @@ const ConsultationAdminPage = () => {
   const [data, setData] = useState<ConsultationRequest[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
-  const [statusFilter, setStatusFilter] = useState<string>("all");
   const [fieldFilter, setFieldFilter] = useState<string>("all");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
@@ -41,7 +34,7 @@ const ConsultationAdminPage = () => {
       setLoading(true);
       const { data, error } = await supabase
         .from("consultations")
-        .select("*")
+        .select("id, name, phone, experience, field, consent, created_at")
         .order("created_at", { ascending: false });
       if (error) {
         alert(error.message);
@@ -52,7 +45,6 @@ const ConsultationAdminPage = () => {
         (data as ConsultationRequest[]).map((item) => ({
           ...item,
           requestDate: item.created_at?.split("T")[0] || "",
-          status: item.status || "pending",
         }))
       );
       setLoading(false);
@@ -64,16 +56,12 @@ const ConsultationAdminPage = () => {
     return data.filter((item) => {
       const matchesSearch =
         item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.phone.includes(searchTerm);
 
-      const matchesStatus =
-        statusFilter === "all" || item.status === statusFilter;
       const matchesField = fieldFilter === "all" || item.field === fieldFilter;
-
-      return matchesSearch && matchesStatus && matchesField;
+      return matchesSearch && matchesField;
     });
-  }, [data, searchTerm, statusFilter, fieldFilter]);
+  }, [data, searchTerm, fieldFilter]);
 
   const paginatedData = useMemo(() => {
     const startIndex = (currentPage - 1) * itemsPerPage;
@@ -89,15 +77,11 @@ const ConsultationAdminPage = () => {
   const handleExcelDownload = () => {
     const exportData = filteredData.map((item) => ({
       이름: item.name,
-      이메일: item.email,
       연락처: item.phone,
-      경력: item.experience,
-      분야: item.field,
-      상담유형: item.consultationType,
-      희망일: item.preferredDate,
-      메시지: item.message,
+      학력: item.experience,
+      관심분야: item.field,
+      개인정보동의: item.consent ? "동의" : "미동의",
       신청일: item.requestDate,
-      상태: item.status,
     }));
     const worksheet = XLSX.utils.json_to_sheet(exportData);
     const workbook = XLSX.utils.book_new();
@@ -129,63 +113,9 @@ const ConsultationAdminPage = () => {
             </Button>
           </div>
 
-          {/* Stats Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <Card>
-              <CardContent className="p-4">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-yellow-100 rounded-lg">
-                    <AlertCircle className="w-5 h-5 text-yellow-600" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">대기중</p>
-                    <p className="text-2xl font-bold">
-                      {data.filter((item) => item.status === "pending").length}
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-4">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-blue-100 rounded-lg">
-                    <CheckCircle className="w-5 h-5 text-blue-600" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">승인됨</p>
-                    <p className="text-2xl font-bold">
-                      {data.filter((item) => item.status === "approved").length}
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-4">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-green-100 rounded-lg">
-                    <CheckCircle className="w-5 h-5 text-green-600" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">완료됨</p>
-                    <p className="text-2xl font-bold">
-                      {
-                        data.filter((item) => item.status === "completed")
-                          .length
-                      }
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
           <FilterBar
             searchTerm={searchTerm}
             setSearchTerm={setSearchTerm}
-            statusFilter={statusFilter}
-            setStatusFilter={setStatusFilter}
             fieldFilter={fieldFilter}
             setFieldFilter={setFieldFilter}
             uniqueFields={uniqueFields}
@@ -195,15 +125,11 @@ const ConsultationAdminPage = () => {
             <thead>
               <tr className="bg-gray-100">
                 <th className="p-2">이름</th>
-                <th className="p-2">이메일</th>
                 <th className="p-2">연락처</th>
-                <th className="p-2">분야</th>
-                <th className="p-2">상담유형</th>
-                <th className="p-2">희망일</th>
-                <th className="p-2">희망시간</th>
+                <th className="p-2">학력</th>
+                <th className="p-2">관심분야</th>
+                <th className="p-2">개인정보동의</th>
                 <th className="p-2">신청일</th>
-                <th className="p-2">추가메시지</th>
-                <th className="p-2">상태</th>
                 <th className="p-2">관리</th>
               </tr>
             </thead>
@@ -211,43 +137,11 @@ const ConsultationAdminPage = () => {
               {paginatedData.map((item) => (
                 <tr key={item.id} className="border-b hover:bg-gray-50">
                   <td className="p-2">{item.name}</td>
-                  <td className="p-2">{item.email}</td>
                   <td className="p-2">{item.phone}</td>
+                  <td className="p-2">{item.experience}</td>
                   <td className="p-2">{item.field}</td>
-                  <td className="p-2">{item.consultationType}</td>
-                  <td className="p-2">{item.preferredDate}</td>
-                  <td className="p-2">{item.preferredTime}</td>
+                  <td className="p-2">{item.consent ? "동의" : "미동의"}</td>
                   <td className="p-2">{item.requestDate}</td>
-                  <td className="p-2">{item.message}</td>
-                  <td className="p-2">
-                    <select
-                      className="border rounded px-2 py-1 text-sm"
-                      value={item.status}
-                      onChange={async (e) => {
-                        const newStatus = e.target
-                          .value as ConsultationRequest["status"];
-                        const { error } = await supabase
-                          .from("consultations")
-                          .update({ status: newStatus })
-                          .eq("id", item.id);
-                        if (!error) {
-                          setData((prev) =>
-                            prev.map((row) =>
-                              row.id === item.id
-                                ? { ...row, status: newStatus }
-                                : row
-                            )
-                          );
-                        } else {
-                          alert("상태 변경 실패: " + error.message);
-                        }
-                      }}
-                    >
-                      <option value="pending">대기중</option>
-                      <option value="approved">승인됨</option>
-                      <option value="completed">완료됨</option>
-                    </select>
-                  </td>
                   <td className="p-2">
                     <Button
                       size="sm"
