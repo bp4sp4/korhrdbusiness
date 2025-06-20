@@ -56,7 +56,6 @@ interface FieldOption {
 }
 
 const fieldOptions: FieldOption[] = [
-  // ... (fieldOptions data remains the same)
   {
     value: "사회복지사 자격증",
     label: "사회복지사 자격증",
@@ -176,9 +175,9 @@ const CounselingModal = () => {
   const totalSteps = 3;
 
   useEffect(() => {
+    // When the modal is closed, reset everything
     if (!isOpen) {
-      // Reset form when modal closes
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         setFormData({
           name: "",
           email: "",
@@ -195,29 +194,22 @@ const CounselingModal = () => {
         setIsSubmitted(false);
         setEmailError("");
         setPhoneError("");
-      }, 300); // Delay to allow closing animation
+      }, 300); // Wait for closing animation
+      return () => clearTimeout(timer);
     }
   }, [isOpen]);
 
-  useEffect(() => {
-    const checkScroll = () => {
-      const el = scrollRef.current;
-      if (el) {
-        setShowScrollIndicator(el.scrollHeight > el.clientHeight);
-      }
-    };
-
-    // Check on initial render and when dependencies change
-    checkScroll();
-
-    // Also check if the content changes
-    const observer = new MutationObserver(checkScroll);
-    if (scrollRef.current) {
-      observer.observe(scrollRef.current, { childList: true, subtree: true });
+  const checkScrollIndicator = () => {
+    const el = scrollRef.current;
+    if (el) {
+      const isScrollable = el.scrollHeight > el.clientHeight;
+      // Hide indicator if scrolled to the bottom (with a 5px buffer)
+      const isAtBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 5;
+      setShowScrollIndicator(isScrollable && !isAtBottom);
+    } else {
+      setShowScrollIndicator(false);
     }
-
-    return () => observer.disconnect();
-  }, [isOpen, currentStep, formData.field]);
+  };
 
   const handleInputChange = (
     field: keyof ConsultationFormData,
@@ -320,15 +312,7 @@ const CounselingModal = () => {
   const getTomorrow = () =>
     new Date(Date.now() + 864e5).toISOString().split("T")[0];
 
-  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    const target = e.target as HTMLDivElement;
-    setShowScrollIndicator(
-      target.scrollTop + target.clientHeight < target.scrollHeight - 2
-    );
-  };
-
   const renderStep = () => {
-    // Switch case for steps remains the same
     switch (currentStep) {
       case 1:
         return (
@@ -395,6 +379,7 @@ const CounselingModal = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
             className="space-y-4"
+            onAnimationComplete={checkScrollIndicator}
           >
             <div className="space-y-2">
               <Label className="text-sm font-medium">학력 *</Label>
@@ -428,7 +413,7 @@ const CounselingModal = () => {
                 <div
                   ref={scrollRef}
                   className="grid grid-cols-1 gap-2 max-h-64 overflow-y-auto border rounded-lg p-2 scrollbar-hide"
-                  onScroll={handleScroll}
+                  onScroll={checkScrollIndicator}
                 >
                   {Object.entries(
                     fieldOptions.reduce(
@@ -650,7 +635,7 @@ const CounselingModal = () => {
         onPointerDownOutside={(e) => e.preventDefault()}
       >
         <DialogHeader className="p-6 pb-0">
-          <DialogTitle>교육 상담 신청</DialogTitle>
+          <DialogTitle>교육 상담 받기</DialogTitle>
           <DialogDescription>
             단계별로 정보를 입력해주세요. ({currentStep}/{totalSteps})
           </DialogDescription>

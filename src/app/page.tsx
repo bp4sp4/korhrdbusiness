@@ -1,8 +1,22 @@
+"use client";
+
 import "./main.css";
-import { TypingAnimation } from "@/components/magicui/typing-animation";
+import { motion, Easing } from "framer-motion";
 import Link from "next/link";
 
 export default function Home() {
+  const textVariants = {
+    hidden: { y: 30, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut" as Easing,
+      },
+    },
+  };
+
   return (
     <main className="main w-full min-h-screen flex flex-col items-center bg-white">
       <section
@@ -18,19 +32,22 @@ export default function Home() {
       >
         <div className="main__hero-content flex-1 flex flex-col items-start z-10 rounded-lg md:bg-transparent md:p-0">
           <div className="main__hero-title text-white text-2xl md:text-7xl mb-6 flex flex-col gap-3">
-            <TypingAnimation
-              duration={40}
+            <motion.p
               className="text-white text-3xl md:text-4xl font-normal"
+              variants={textVariants}
+              initial="hidden"
+              animate="visible"
             >
               EP.1 취업난 해결 프로젝트
-            </TypingAnimation>
-            <TypingAnimation
-              duration={40}
+            </motion.p>
+            <motion.h2
               className="text-white text-5xl md:text-5xl font-bold"
-              delay={1200}
+              variants={textVariants}
+              initial="hidden"
+              animate="visible"
             >
               한평생가이던스
-            </TypingAnimation>
+            </motion.h2>
           </div>
           <div className="main__hero-buttons flex">
             <a className="main__hero-btn">Button</a>

@@ -25,6 +25,7 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 interface Job {
   id: number;
@@ -454,12 +455,12 @@ export default function RecruitListPage() {
   return (
     <div className="min-h-screen mb-30 bg-background">
       <div className="w-full bg-[url('/images/recruit/recruit__banner.png')] bg-cover bg-center bg-no-repeat">
-        <main className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        <main className="max-w-6xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
           <section className="mb-8">
             <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6">
               <div className="flex-1">
                 <h1
-                  className="text-3xl sm:text-4xl lg:text-5xl pt-[40px] font-bold mb-4 text-[#191f28] leading-tight"
+                  className="text-3xl sm:text-4xl lg:text-4xl  font-bold mb-4 text-[#191f28] leading-tight"
                   style={{ letterSpacing: "-4px" }}
                 >
                   대한민국 교육과 취업의 연결
@@ -476,7 +477,7 @@ export default function RecruitListPage() {
                   합니다.
                 </p>
 
-                <div className="flex flex-col sm:flex-row gap-3 mb-6 pb-[10px]">
+                <div className="flex flex-col sm:flex-row gap-3  pb-[10px]">
                   <div className="relative flex-1">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                     <Input
@@ -569,7 +570,7 @@ export default function RecruitListPage() {
         </main>
       </div>
 
-      <main className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+      <main className="max-w-6xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         <div className="mb-6">
           <h2 className="text-xl font-bold">
             <span className="text-blue-500">{recruitList.length}개</span>의
@@ -705,17 +706,21 @@ export default function RecruitListPage() {
           </div>
         </div>
 
-        <div className="fixed bottom-30 right-6 z-50">
-          <div className="flex flex-col items-center gap-2">
-            <p className="text-sm text-center text-muted-foreground bg-background/80 backdrop-blur-sm px-3 py-1 rounded-lg border">
-              채용팀에
-              <br />
-              문의하기
-            </p>
-            <Button size="lg" className="rounded-full h-16 w-16 shadow-lg">
-              <MessageCircle className="h-6 w-6" />
-            </Button>
-          </div>
+        <div className="fixed bottom-8 right-8 z-50">
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button size="lg" className="rounded-full h-16 w-16 shadow-lg">
+                <MessageCircle className="h-6 w-6" fill="currentColor" />
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-md">
+              <p className="text-sm text-center text-muted-foreground bg-background/80 backdrop-blur-sm px-3 py-1 rounded-lg border">
+                채용팀에
+                <br />
+                문의하기
+              </p>
+            </DialogContent>
+          </Dialog>
         </div>
 
         <AnimatePresence>
