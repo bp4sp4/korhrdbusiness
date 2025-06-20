@@ -107,7 +107,7 @@ export default function Eduservice() {
             z-10"
         >
           <img
-            src="/images/eduservice/phone_14_01.jpg"
+            src="/images/eduservice/phone_14_01.png"
             alt="iPhone Frame"
             className="relative z-0 h-full w-full object-contain"
           />
@@ -118,7 +118,7 @@ export default function Eduservice() {
             muted
             loop
             playsInline
-            className="absolute z-10 w-[93%] h-[97%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[30px] md:rounded-[48px] object-cover overflow-hidden"
+            className="absolute z-10 w-[93%] h-[97%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[10px]  object-cover overflow-hidden"
           />
         </motion.div>
       </section>
@@ -132,8 +132,9 @@ export default function Eduservice() {
             viewport={{ once: true, amount: 0.3 }}
             className="w-full max-w-[340px] mx-auto h-[420px] md:h-[650px] flex items-center justify-center order-2 md:order-1 translate-y-[40px] md:translate-y-0 z-10 relative"
           >
+            {/* The phone frame image acts as the background */}
             <img
-              src="/images/eduservice/phone_14_01.jpg"
+              src="/images/eduservice/phone_14_01.png"
               alt="iPhone Frame"
               className="relative z-0 h-full w-full object-contain"
             />
@@ -145,7 +146,7 @@ export default function Eduservice() {
               muted
               loop
               playsInline // Add for iOS compatibility
-              className="absolute z-10 w-[93%] h-[97%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[30px] md:rounded-[48px] object-cover overflow-hidden"
+              className="absolute z-10 w-[93%] h-[97%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[10px] object-cover overflow-hidden"
             />
           </motion.div>
           {/* 텍스트 - 나중에 등장 */}
