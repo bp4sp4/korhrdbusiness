@@ -1,15 +1,13 @@
-import { SVGProps } from "react";
+import { HTMLAttributes } from "react";
 
-export interface Iphone15ProProps extends SVGProps<SVGSVGElement> {
+export interface Iphone15ProProps extends HTMLAttributes<HTMLDivElement> {
   width?: number;
-  height?: number;
   src?: string;
   videoSrc?: string;
 }
 
 export default function Iphone15Pro({
-  width = 433,
-  height = 882,
+  width = 340,
   src,
   videoSrc,
   ...props
@@ -18,29 +16,49 @@ export default function Iphone15Pro({
     <div
       style={{
         position: "relative",
-        width: "340px",
+        width: `${width}px`,
         aspectRatio: "433 / 882",
         margin: "0 auto",
       }}
+      {...props}
     >
-      {/* 비디오 */}
-      <video
-        src={videoSrc}
-        autoPlay
-        loop
-        muted
-        playsInline
-        style={{
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          borderRadius: "40px",
-          position: "absolute",
-          top: "0",
-          left: "0",
-          zIndex: 1,
-        }}
-      />
+      {/* 비디오 또는 이미지 */}
+      {videoSrc ? (
+        <video
+          src={videoSrc}
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            borderRadius: "40px",
+            position: "absolute",
+            top: "0",
+            left: "0",
+            zIndex: 1,
+          }}
+        />
+      ) : (
+        src && (
+          <img
+            src={src}
+            alt="iPhone Screen Content"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              borderRadius: "40px",
+              position: "absolute",
+              top: "0",
+              left: "0",
+              zIndex: 1,
+            }}
+          />
+        )
+      )}
       {/* mockup 프레임 (SVG나 PNG) */}
       <img
         src="/images/iphone15pro-frame.png"
