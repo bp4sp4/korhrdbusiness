@@ -46,7 +46,7 @@ export default function Home() {
               initial="hidden"
               animate="visible"
             >
-              에듀바이저
+              한평생에듀바이저
             </motion.h2>
           </div>
           <div className="main__hero-buttons flex">
@@ -58,13 +58,13 @@ export default function Home() {
         <p className="main__service_desc text-black">
           <strong className="block font-bold text-[25px] md:text-[45px] mb-4">
             <img
-              src="/images/main/ta.gif"
+              src="/images/main/tf.png"
               alt=""
               className="w-[30px] h-[30px] md:w-[50px] md:h-[50px] inline-block md:mb-2 mb-0 mr-1"
             />
             교육은 받았지만 왜 취업은 어려울까요?
           </strong>
-          에듀바이저는 많은 이들이 자신과 맞지 않는 교육을 선택하거나
+          한평생에듀바이저는 많은 이들이 자신과 맞지 않는 교육을 선택하거나
           <span className="hidden md:block" />
           복잡해진 실무·취업 환경에 적응하지 못해 시작조차 어려운 현실을
           <span className="hidden md:block" />
@@ -108,7 +108,7 @@ export default function Home() {
               꼼꼼하고 세밀하게 관리합니다.
             </h3>
             <p className="main__service__item-desc text-gray-500 text-base leading-relaxed">
-              에듀바이저는 학습자의 중도 포기를 철저히 방지하기 위해, 전문
+              한평생에듀바이저는 학습자의 중도 포기를 철저히 방지하기 위해, 전문
               양성과정을 거친 설계사들이 체계적인 학습관리 시스템으로 학습
               완료까지 책임지고 동행합니다. 학습자 한사람 한 사람의 끝맺음을
               우리의 사명으로 여깁니다.

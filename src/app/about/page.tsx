@@ -242,20 +242,20 @@ export default function EduServicePage() {
               CEO Message
             </div>
             <div className="text-gray-700 text-base md:text-lg leading-relaxed mb-8">
-              에듀바이저 홈페이지에 방문해 주신 모든 분께 감사의 말씀을
+              한평생에듀바이저 홈페이지에 방문해 주신 모든 분께 감사의 말씀을
               전합니다.
               <br />
-              에듀바이저는 학생들의 성장과 성공을 최우선으로 생각하며
+              한평생에듀바이저는 학생들의 성장과 성공을 최우선으로 생각하며
               <br />
               실질적이고 현장감 있는 교육, 그리고 내일을 바꾸는 서비스를
               제공합니다. 앞으로도 더 많은 분들이 성장의 기회를 잡을 수 있도록
               혁신을 멈추지 않겠습니다.
               <br />
               <br />
-              에듀바이저 임직원 일동
+              한평생에듀바이저 임직원 일동
             </div>
             <div className="text-right text-gray-400  text-sm mt-8">
-              - 에듀바이저 대표 양병웅 -
+              - 한평생에듀바이저 대표 양병웅 -
             </div>
           </div>
           {/* 사인 영역 */}

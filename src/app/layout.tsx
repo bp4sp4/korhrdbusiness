@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Eduviser",
-  description: "에듀바이저 입니다.",
+  description: "한평생 에듀바이저 입니다.",
 };
 
 export default function RootLayout({

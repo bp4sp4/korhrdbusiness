@@ -141,6 +141,7 @@ const CounselingModal = () => {
   const [phoneError, setPhoneError] = useState("");
   const scrollRef = useRef<HTMLDivElement>(null);
   const [showScrollIndicator, setShowScrollIndicator] = useState(false);
+  const [showTerms, setShowTerms] = useState(false);
 
   useEffect(() => {
     if (!isOpen) {
@@ -157,6 +158,16 @@ const CounselingModal = () => {
       }, 300);
       return () => clearTimeout(timer);
     }
+  }, [isOpen]);
+
+  // 모달이 열릴 때 스크롤 인디케이터 바로 보이게
+  useEffect(() => {
+    if (isOpen) {
+      setTimeout(() => {
+        checkScrollIndicator();
+      }, 0);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
   const checkScrollIndicator = () => {
@@ -217,10 +228,9 @@ const CounselingModal = () => {
       >
         <DialogHeader className="p-6 pb-0">
           <DialogTitle>교육 상담 신청</DialogTitle>
-          <DialogDescription>아래 정보를 입력해주세요.</DialogDescription>
         </DialogHeader>
         {!isSubmitted ? (
-          <form className="p-6 space-y-6" onSubmit={handleSubmit}>
+          <form className="p-4 space-y-6" onSubmit={handleSubmit}>
             <div className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="name" className="text-sm font-medium">
@@ -357,15 +367,6 @@ const CounselingModal = () => {
                 </div>
               </div>
               <div className="mt-6 p-4 bg-gray-50 rounded-lg border">
-                <div className="font-semibold mb-2">
-                  개인정보 수집 및 이용 동의
-                </div>
-                <ul className="text-xs text-gray-600 mb-2 list-disc pl-4">
-                  <li>수집 항목: 이름, 연락처, 학력, 분야</li>
-                  <li>이용 목적: 상담 신청 및 관리, 서비스 제공</li>
-                  <li>보유 기간: 신청일로부터 1년 또는 관련 법령에 따름</li>
-                  <li>동의 거부 시 상담 신청이 제한될 수 있습니다.</li>
-                </ul>
                 <label className="flex items-center gap-2 text-sm font-medium">
                   <input
                     type="checkbox"
@@ -376,6 +377,13 @@ const CounselingModal = () => {
                     required
                   />
                   개인정보 수집 및 이용에 동의합니다.
+                  <button
+                    type="button"
+                    className="ml-2 text-xs underline text-primary hover:text-primary/80"
+                    onClick={() => setShowTerms(true)}
+                  >
+                    자세히 보기
+                  </button>
                 </label>
               </div>
             </div>
@@ -424,6 +432,25 @@ const CounselingModal = () => {
           </motion.div>
         )}
       </DialogContent>
+      {/* 약관 모달 */}
+      <Dialog open={showTerms} onOpenChange={setShowTerms}>
+        <DialogContent className="max-w-md z-1001">
+          <DialogHeader>
+            <DialogTitle>개인정보 수집 및 이용 동의</DialogTitle>
+          </DialogHeader>
+          <div className="text-xs text-gray-600 space-y-2">
+            <ul className="list-disc pl-4 mb-2">
+              <li>수집 항목: 이름, 연락처, 학력, 분야</li>
+              <li>이용 목적: 상담 신청 및 관리, 서비스 제공</li>
+              <li>보유 기간: 신청일로부터 1년 또는 관련 법령에 따름</li>
+              <li>동의 거부 시 상담 신청이 제한될 수 있습니다.</li>
+            </ul>
+          </div>
+          <Button onClick={() => setShowTerms(false)} className="w-full mt-4">
+            닫기
+          </Button>
+        </DialogContent>
+      </Dialog>
     </Dialog>
   );
 };

@@ -40,7 +40,7 @@ export default function Eduservice() {
     <>
       <div className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden">
         <h2 className="relative z-20 mx-auto max-w-4xl text-center text-3xl font-extrabold text-white md:text-5xl lg:text-6xl leading-tight">
-          에듀바이저와 함께
+          한평생에듀바이저와 함께
           <span className="relative inline-block mx-2 align-middle">
             <span className="bg-blue-600/80 px-4 py-1 rounded-lg text-white font-extrabold shadow-lg">
               당신의 인생 방향
