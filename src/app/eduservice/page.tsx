@@ -1,6 +1,6 @@
 "use client";
 import { ThreeDMarquee } from "@/components/ui/3d-marquee";
-import Iphone15Pro from "@/components/magicui/iphone-15-pro";
+
 import { motion } from "framer-motion";
 import Link from "next/link";
 
@@ -106,9 +106,19 @@ export default function Eduservice() {
             translate-y-[40px] md:translate-y-0
             z-10"
         >
-          <Iphone15Pro
-            className="w-full h-full object-cover"
-            videoSrc="/images/eduservice/consult.mp4"
+          <img
+            src="/images/eduservice/phone_14_01.jpg"
+            alt="iPhone Frame"
+            className="relative z-0 h-full w-full object-contain"
+          />
+
+          <video
+            src="/images/eduservice/consult.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute z-10 w-[93%] h-[97%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[30px] md:rounded-[48px] object-cover overflow-hidden"
           />
         </motion.div>
       </section>
@@ -120,11 +130,22 @@ export default function Eduservice() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.3 }}
-            className="w-full max-w-[340px] mx-auto h-[420px] md:h-[650px] flex items-center justify-center order-2 md:order-1 translate-y-[40px] md:translate-y-0 z-10"
+            className="w-full max-w-[340px] mx-auto h-[420px] md:h-[650px] flex items-center justify-center order-2 md:order-1 translate-y-[40px] md:translate-y-0 z-10 relative"
           >
-            <Iphone15Pro
-              className="w-full h-full object-cover"
-              videoSrc="/images/eduservice/recruit.mp4"
+            <img
+              src="/images/eduservice/phone_14_01.jpg"
+              alt="iPhone Frame"
+              className="relative z-0 h-full w-full object-contain"
+            />
+
+            {/* The video is absolutely positioned on top of the image */}
+            <video
+              src="/images/eduservice/recruit.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline // Add for iOS compatibility
+              className="absolute z-10 w-[93%] h-[97%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[30px] md:rounded-[48px] object-cover overflow-hidden"
             />
           </motion.div>
           {/* 텍스트 - 나중에 등장 */}
