@@ -25,7 +25,7 @@ export default function Home() {
           backgroundImage: "url('/images/main__banner2.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          backgroundAttachment: "fixed",
+
           height: "100vh",
           maxWidth: "100%",
         }}

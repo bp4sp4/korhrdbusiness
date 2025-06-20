@@ -20,7 +20,6 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogDescription,
 } from "@/components/ui/dialog";
 import { supabase } from "@/lib/supabase";
 import { useCounselModal } from "@/store/useCounselModal";
