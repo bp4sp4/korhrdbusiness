@@ -71,14 +71,9 @@ export default function Header() {
             height={28}
             className="header__logo-img"
           />
-          <span className="text-[28px] font-bold text-white">Eduviser</span>
+          <span className="text-[28px] font-bold text-white">Eduvisors</span>
         </Link>
         <nav className="header__nav hidden md:flex gap-3 text-white items-center">
-          <Link href="/" className="group">
-            <span className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)]">
-              홈
-            </span>
-          </Link>
           <Link href="/about" className="group">
             <span className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)]">
               회사소개
@@ -166,13 +161,6 @@ export default function Header() {
 
             {/* 메뉴 */}
             <nav className="w-full flex flex-col items-center gap-2 mb-6">
-              <Link
-                href="/"
-                className="w-full py-3 px-2 text-lg font-semibold text-white hover:bg-[#22304a] rounded transition"
-                onClick={() => setMenuOpen(false)}
-              >
-                홈
-              </Link>
               <Link
                 href="/about"
                 className="w-full py-3 px-2 text-lg font-semibold text-white hover:bg-[#22304a] rounded transition"

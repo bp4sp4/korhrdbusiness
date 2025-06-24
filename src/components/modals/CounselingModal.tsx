@@ -118,11 +118,46 @@ const fieldOptions: FieldOption[] = [
     description: "대학 편입 준비",
   },
   {
-    value: "민간자격증",
-    label: "민간자격증",
-    category: "추가경쟁력",
-    icon: "📜",
-    description: "다양한 민간 자격증",
+    value: "병원동행매니저1급",
+    label: "병원동행매니저1급",
+    category: "노인분야자격증",
+    icon: "👴",
+    description: "노인 돌봄 전문가",
+  },
+  {
+    value: "실버인지활동지도사1급",
+    label: "실버인지활동지도사1급",
+    category: "노인분야자격증",
+    icon: "🧩",
+    description: "인지 활동 프로그램 지도 전문가",
+  },
+  {
+    value: "노인돌봄생활지원사1급",
+    label: "노인돌봄생활지원사1급",
+    category: "노인분야자격증",
+    icon: "🤗",
+    description: "노인 생활 지원 및 돌봄 전문가",
+  },
+  {
+    value: "방과후돌봄교실지도사1급",
+    label: "방과후돌봄교실지도사1급",
+    category: "아동분야 자격증",
+    icon: "🧒",
+    description: "노인 생활 지원 및 돌봄 전문가",
+  },
+  {
+    value: "지역아동교육지도사1급",
+    label: "지역아동교육지도사1급",
+    category: "아동분야 자격증",
+    icon: "🏫",
+    description: "지역 아동 교육 전문가",
+  },
+  {
+    value: "방과후아동지도사1급",
+    label: "방과후아동지도사1급",
+    category: "아동분야 자격증",
+    icon: "👩‍",
+    description: "방과후 아동 지도 전문가",
   },
 ];
 
@@ -232,9 +267,22 @@ const CounselingModal = () => {
           <form className="p-4 space-y-6" onSubmit={handleSubmit}>
             <div className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="name" className="text-sm font-medium">
-                  이름 *
-                </Label>
+                <div className="w-full h-10  flex items-center justify-between">
+                  <Label htmlFor="name" className="text-sm font-medium">
+                    이름 *
+                  </Label>
+
+                  <div className="flex items-center justify-center">
+                    <img
+                      src="/images/logo2.png"
+                      alt="logo"
+                      className="w-6 h-6"
+                    />
+                    <span className="ml-1 font-bold text-xl text-gray-800 tracking-wide font-sans">
+                      Eduvisors
+                    </span>
+                  </div>
+                </div>
                 <Input
                   id="name"
                   placeholder="홍길동"
@@ -250,7 +298,7 @@ const CounselingModal = () => {
                 </Label>
                 <Input
                   id="phone"
-                  placeholder="하이픈(-) 없이 숫자만 입력"
+                  placeholder="- 없이 숫자만 입력"
                   value={formData.phone}
                   onChange={(e) => handleInputChange("phone", e.target.value)}
                   className="w-full"
@@ -261,7 +309,12 @@ const CounselingModal = () => {
                 )}
               </div>
               <div className="space-y-2">
-                <Label className="text-sm font-medium">학력 *</Label>
+                <Label className="text-sm font-medium">
+                  최종학력 *
+                  <span className="text-xs text-gray-400">
+                    (최종학력마다 과정이 조금씩 달라져요!)
+                  </span>
+                </Label>
                 <Select
                   value={formData.experience}
                   onValueChange={(value) =>
@@ -339,7 +392,7 @@ const CounselingModal = () => {
                                   )}
                                 </div>
                                 {formData.field === option.value && (
-                                  <CheckCircle className="w-4 h-4 text-primary" />
+                                  <CheckCircle className="w-4 h-4 text-green-500" />
                                 )}
                               </div>
                             </button>

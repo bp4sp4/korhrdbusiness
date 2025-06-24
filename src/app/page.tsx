@@ -46,7 +46,7 @@ export default function Home() {
               initial="hidden"
               animate="visible"
             >
-              한평생에듀바이저
+              한평생 에듀바이저
             </motion.h2>
           </div>
           <div className="main__hero-buttons flex">
