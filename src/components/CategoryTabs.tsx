@@ -22,7 +22,7 @@ const CategoryTabs: React.FC = () => {
     자격증: [
       {
         id: 1,
-        image: "/images/eduservice/Frame1.png",
+        image: "/images/eduservice/Frame.png",
       },
       {
         id: 2,
@@ -136,7 +136,7 @@ const CategoryTabs: React.FC = () => {
               ${
                 activeTab === category
                   ? "bg-[#000000] text-white  shadow-lg"
-                  : "bg-muted text-muted-foreground hover:bg-blue-100 hover:text-blue-600"
+                  : "bg-muted text-muted-foreground hover:bg-blue-100 hover:text-white-100"
               }
             `}
             style={{
