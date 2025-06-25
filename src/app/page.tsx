@@ -26,7 +26,7 @@ export default function Home() {
           backgroundSize: "cover",
           backgroundPosition: "center",
 
-          height: "100vh",
+          height: "90vh",
           maxWidth: "100%",
         }}
       >
@@ -46,7 +46,7 @@ export default function Home() {
               initial="hidden"
               animate="visible"
             >
-              한평생 에듀바이저
+              한평생 에듀바이저스
             </motion.h2>
           </div>
           <div className="main__hero-buttons flex">

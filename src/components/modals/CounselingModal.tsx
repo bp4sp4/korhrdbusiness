@@ -118,46 +118,20 @@ const fieldOptions: FieldOption[] = [
     description: "대학 편입 준비",
   },
   {
-    value: "병원동행매니저1급",
-    label: "병원동행매니저1급",
+    value: "노인분야자격증",
+    label: "노인분야자격증",
     category: "노인분야자격증",
     icon: "👴",
-    description: "노인 돌봄 전문가",
+    description:
+      "병원동행매니저1급, 실버인지활동지도사1급, 노인돌봄생활지원사1급",
   },
   {
-    value: "실버인지활동지도사1급",
-    label: "실버인지활동지도사1급",
-    category: "노인분야자격증",
-    icon: "🧩",
-    description: "인지 활동 프로그램 지도 전문가",
-  },
-  {
-    value: "노인돌봄생활지원사1급",
-    label: "노인돌봄생활지원사1급",
-    category: "노인분야자격증",
-    icon: "🤗",
-    description: "노인 생활 지원 및 돌봄 전문가",
-  },
-  {
-    value: "방과후돌봄교실지도사1급",
-    label: "방과후돌봄교실지도사1급",
-    category: "아동분야 자격증",
-    icon: "🧒",
-    description: "노인 생활 지원 및 돌봄 전문가",
-  },
-  {
-    value: "지역아동교육지도사1급",
-    label: "지역아동교육지도사1급",
-    category: "아동분야 자격증",
-    icon: "🏫",
-    description: "지역 아동 교육 전문가",
-  },
-  {
-    value: "방과후아동지도사1급",
-    label: "방과후아동지도사1급",
+    value: "아동분야자격증",
+    label: "아동분야자격증",
     category: "아동분야 자격증",
     icon: "👩‍",
-    description: "방과후 아동 지도 전문가",
+    description:
+      "방과후아동지도사1급, 지역아동교육지도사1급, 방과후돌봄교실지도사1급",
   },
 ];
 
@@ -276,7 +250,7 @@ const CounselingModal = () => {
                     <img
                       src="/images/logo2.png"
                       alt="logo"
-                      className="w-6 h-6"
+                      className="w-4 h-4"
                     />
                     <span className="ml-1 font-bold text-xl text-gray-800 tracking-wide font-sans">
                       Eduvisors
@@ -373,26 +347,31 @@ const CounselingModal = () => {
                                 handleInputChange("field", option.value)
                               }
                               className={cn(
-                                "w-full text-left p-3 rounded-lg border transition-all duration-200 hover:border-primary/50",
+                                "w-full text-left p-3 rounded-lg border transition-all duration-200 hover:border-primary/50 flex items-center gap-3",
                                 formData.field === option.value
                                   ? "border-primary bg-primary/5 text-primary"
                                   : "border-border"
                               )}
                             >
-                              <div className="flex items-center gap-3">
-                                <span className="text-lg">{option.icon}</span>
-                                <div className="flex-1 min-w-0">
-                                  <div className="font-medium text-sm">
-                                    {option.label}
-                                  </div>
-                                  {option.description && (
-                                    <div className="text-xs text-muted-foreground mt-1">
-                                      {option.description}
-                                    </div>
-                                  )}
+                              {/* 왼쪽 체크박스/체크아이콘 */}
+                              {formData.field === option.value ? (
+                                <img
+                                  src="/images/check.png"
+                                  alt="check"
+                                  className="w-5 h-5 mr-3"
+                                />
+                              ) : (
+                                <span className="inline-block w-5 h-5 mr-3 border-2 border-gray-300 rounded"></span>
+                              )}
+                              {/* 텍스트 영역 */}
+                              <div className="flex-1 min-w-0">
+                                <div className="font-medium text-sm">
+                                  {option.label}
                                 </div>
-                                {formData.field === option.value && (
-                                  <CheckCircle className="w-4 h-4 text-green-500" />
+                                {option.description && (
+                                  <div className="text-xs text-muted-foreground mt-1">
+                                    {option.description}
+                                  </div>
                                 )}
                               </div>
                             </button>

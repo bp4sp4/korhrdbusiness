@@ -51,7 +51,7 @@ export default function EduServicePage() {
         >
           <h2
             className="text-4xl md:text-6xl font-extrabold mb-2"
-            style={{ letterSpacing: "-3px" }}
+            style={{ letterSpacing: "-2px" }}
           >
             누구도 끝까지 책임지지 않던
           </h2>

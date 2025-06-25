@@ -1,4 +1,5 @@
 "use client";
+import CategoryTabs from "@/components/CategoryTabs";
 import { ThreeDMarquee } from "@/components/ui/3d-marquee";
 
 import { motion } from "framer-motion";
@@ -38,7 +39,7 @@ export default function Eduservice() {
 
   return (
     <>
-      <div className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden">
+      <div className="relative flex h-[90vh] w-full flex-col items-center justify-center overflow-hidden">
         <h2 className="relative z-20 mx-auto max-w-4xl text-center text-3xl font-extrabold text-white md:text-5xl lg:text-6xl leading-tight">
           한평생에듀바이저와 함께
           <span className="relative inline-block mx-2 align-middle">
@@ -76,6 +77,9 @@ export default function Eduservice() {
           images={images}
         />
       </div>
+      <section className="w-full">
+        <CategoryTabs />
+      </section>
       <section className="relative flex flex-col md:flex-row items-center justify-between min-h-[600px] md:min-h-[880px] max-w-[801px] mx-auto p-0 w-full overflow-hidden">
         {/* 텍스트 영역 */}
         <motion.div

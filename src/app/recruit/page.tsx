@@ -461,7 +461,7 @@ export default function RecruitListPage() {
               <div className="flex-1">
                 <h1
                   className="text-3xl sm:text-4xl lg:text-4xl  font-bold mb-4 text-[#191f28] leading-tight"
-                  style={{ letterSpacing: "-4px" }}
+                  style={{ letterSpacing: "-2px" }}
                 >
                   대한민국 교육과 취업의 연결
                   <br />그 위대한 도전을 한평생에서 함께해보세요.
