@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { Card } from "@/components/ui/card";
 import "../app/main.css";
-import { px } from "framer-motion";
 
 interface CategoryItem {
   id: number;
