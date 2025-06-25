@@ -39,7 +39,7 @@ export default function Eduservice() {
 
   return (
     <>
-      <div className="relative flex h-[90vh] w-full flex-col items-center justify-center overflow-hidden">
+      <div className="relative flex h-[80vh] w-full flex-col items-center justify-center overflow-hidden">
         <h2 className="relative z-20 mx-auto max-w-4xl text-center text-3xl font-extrabold text-white md:text-5xl lg:text-6xl leading-tight">
           한평생에듀바이저와 함께
           <span className="relative inline-block mx-2 align-middle">
@@ -78,7 +78,16 @@ export default function Eduservice() {
         />
       </div>
       <section className="w-full">
-        <CategoryTabs />
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="w-full md:w-auto mb-8 md:mb-0 md:mr-8 flex-shrink-0 px-4"
+          style={{ padding: "72px 32px 0" }}
+        >
+          <CategoryTabs />
+        </motion.div>
       </section>
       <section className="relative flex flex-col md:flex-row items-center justify-between min-h-[600px] md:min-h-[880px] max-w-[801px] mx-auto p-0 w-full overflow-hidden">
         {/* 텍스트 영역 */}

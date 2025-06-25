@@ -26,7 +26,7 @@ export default function Home() {
           backgroundSize: "cover",
           backgroundPosition: "center",
 
-          height: "90vh",
+          height: "80vh",
           maxWidth: "100%",
         }}
       >
