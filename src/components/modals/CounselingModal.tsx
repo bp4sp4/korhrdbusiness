@@ -231,14 +231,19 @@ const CounselingModal = () => {
   return (
     <Dialog open={isOpen} onOpenChange={closeModal}>
       <DialogContent
-        className="sm:max-w-[500px] p-0 z-999"
+        className="max-w-full sm:max-w-[500px] p-0 z-999"
         onPointerDownOutside={(e) => e.preventDefault()}
       >
-        <DialogHeader className="p-6 pb-0">
-          <DialogTitle>교육 상담 신청</DialogTitle>
+        <DialogHeader className="p-4 md:p-6 pb-0">
+          <DialogTitle className="text-lg md:text-2xl">
+            교육 상담 신청
+          </DialogTitle>
         </DialogHeader>
         {!isSubmitted ? (
-          <form className="p-4 space-y-6" onSubmit={handleSubmit}>
+          <form
+            className="p-4 md:p-6 space-y-4 md:space-y-6"
+            onSubmit={handleSubmit}
+          >
             <div className="space-y-4">
               <div className="space-y-2">
                 <div className="w-full h-10  flex items-center justify-between">
@@ -262,7 +267,7 @@ const CounselingModal = () => {
                   placeholder="홍길동"
                   value={formData.name}
                   onChange={(e) => handleInputChange("name", e.target.value)}
-                  className="w-full"
+                  className="w-full h-10 text-base md:h-12 md:text-lg"
                   required
                 />
               </div>
@@ -275,7 +280,7 @@ const CounselingModal = () => {
                   placeholder="- 없이 숫자만 입력"
                   value={formData.phone}
                   onChange={(e) => handleInputChange("phone", e.target.value)}
-                  className="w-full"
+                  className="w-full h-10 text-base md:h-12 md:text-lg"
                   required
                 />
                 {phoneError && (
@@ -318,7 +323,7 @@ const CounselingModal = () => {
                 <div className="relative">
                   <div
                     ref={scrollRef}
-                    className="grid grid-cols-1 gap-2 max-h-64 overflow-y-auto border rounded-lg p-2 scrollbar-hide"
+                    className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-64 overflow-y-auto border rounded-lg p-2 scrollbar-hide"
                     onScroll={checkScrollIndicator}
                   >
                     {Object.entries(
@@ -420,7 +425,7 @@ const CounselingModal = () => {
             </div>
             <Button
               type="submit"
-              className="w-full mt-4"
+              className="w-full h-12 text-base md:h-14 md:text-lg mt-4"
               disabled={
                 !formData.name ||
                 !validatePhone(formData.phone) ||
@@ -438,7 +443,7 @@ const CounselingModal = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="text-center p-8"
+            className="text-center p-4 md:p-8"
           >
             <motion.div
               initial={{ scale: 0 }}

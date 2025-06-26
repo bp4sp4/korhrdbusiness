@@ -12,9 +12,9 @@ const nationalCertificates = [
 ];
 
 const educationServices = [
-  "/images/eduservice/Frame1.png",
-  "/images/eduservice/Frame2.png",
-  "/images/eduservice/Frame3.png",
+  "/images/eduservice/Frame5.png",
+  "/images/eduservice/Frame6.png",
+  "/images/eduservice/Frame7.png",
 ];
 
 const extraCompetitiveness = [
@@ -32,7 +32,7 @@ const SectionCards = ({
   images: string[];
 }) => (
   <div className="mb-12">
-    <h2 className="text-[32px] md:text-[40px] font-extrabold text-left leading-tight mb-6">
+    <h2 className="text-[32px] md:text-[40px] font-extrabold text-left leading-tight mb-8">
       {title}
     </h2>
     <div className="flex flex-wrap gap-6 justify-start">
@@ -64,14 +64,14 @@ const CategoryTabs: React.FC = () => {
     <div className="w-full max-w-6xl mx-auto p-6 bg-background">
       <SectionCards title="국가자격증" images={nationalCertificates} />
       <div className="mb-12">
-        <h2 className="text-[32px] md:text-[40px] font-extrabold text-left leading-tight mb-6 ">
+        <h2 className="text-[32px] md:text-[40px] font-extrabold text-left leading-tight mb-8 ">
           교육서비스
         </h2>
-        <div className="flex flex-row gap-6 justify-start">
+        <div className="flex flex-col md:flex-row gap-6 md:gap-6 justify-start items-center md:items-start">
           {educationServices.map((img, idx) => (
             <Card
               key={img + idx}
-              className="relative h-[374px] w-[282px] sm:w-[calc(50%-1.5rem)] lg:w-[calc(25%-1.5rem)]"
+              className="relative h-[374Px] w-[100%] sm:h-[320px] sm:w-[220px] md:h-[374px] md:w-[282px]"
             >
               <img
                 src={img}
