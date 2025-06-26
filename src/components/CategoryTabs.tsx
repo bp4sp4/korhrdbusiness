@@ -1,167 +1,83 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { Card } from "@/components/ui/card";
 import "../app/main.css";
 
-interface CategoryItem {
-  id: number;
-  image?: string;
-}
+const nationalCertificates = [
+  "/images/eduservice/Frame1.png",
+  "/images/eduservice/Frame2.png",
+  "/images/eduservice/Frame3.png",
+  "/images/eduservice/Frame4.png",
+];
 
-interface CategoryData {
-  [key: string]: CategoryItem[];
-}
+const educationServices = [
+  "/images/eduservice/Frame1.png",
+  "/images/eduservice/Frame2.png",
+  "/images/eduservice/Frame3.png",
+];
+
+const extraCompetitiveness = [
+  "/images/eduservice/Frame4.png",
+  "/images/eduservice/Frame3.png",
+  "/images/eduservice/Frame2.png",
+  "/images/eduservice/Frame1.png",
+];
+
+const getImage = (section: string, id: number) =>
+  `/images/eduservice/${section}-${id}.png`;
+
+const SectionCards = ({
+  title,
+  images,
+}: {
+  title: string;
+  images: string[];
+}) => (
+  <div className="mb-12">
+    <h2 className="text-[32px] md:text-[40px] font-extrabold text-left leading-tight mb-6">
+      {title}
+    </h2>
+    <div className="flex flex-wrap gap-6 justify-start">
+      {images.map((img, idx) => (
+        <Card
+          key={img + idx}
+          className="relative h-[374px] w-[282px] sm:w-[calc(50%-1.5rem)] lg:w-[calc(25%-1.5rem)]"
+        >
+          <img
+            src={img}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover object-center z-0"
+            style={{
+              objectPosition: "center center",
+              borderRadius: "12px",
+            }}
+            onError={(e) => {
+              e.currentTarget.style.display = "none";
+            }}
+          />
+        </Card>
+      ))}
+    </div>
+  </div>
+);
 
 const CategoryTabs: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<string>("자격증");
-
-  const categories = ["자격증", "커리어", "취업", "창업"];
-
-  const categoryData: CategoryData = {
-    자격증: [
-      {
-        id: 1,
-        image: "/images/eduservice/Frame1.png",
-      },
-      {
-        id: 2,
-        image: "/images/eduservice/Frame3.png",
-      },
-      {
-        id: 3,
-
-        image: "/images/eduservice/Frame4.png",
-      },
-      {
-        id: 4,
-
-        image: "/images/eduservice/Frame2.png",
-      },
-    ],
-    커리어: [
-      {
-        id: 5,
-
-        image: "",
-      },
-      {
-        id: 6,
-
-        image: "",
-      },
-      {
-        id: 7,
-
-        image: "",
-      },
-      {
-        id: 8,
-
-        image: "",
-      },
-    ],
-    취업: [
-      {
-        id: 9,
-
-        image: "",
-      },
-      {
-        id: 10,
-
-        image: "",
-      },
-      {
-        id: 11,
-
-        image: "",
-      },
-      {
-        id: 12,
-
-        image: "",
-      },
-    ],
-    창업: [
-      {
-        id: 13,
-
-        image: "",
-      },
-      {
-        id: 14,
-
-        image: "",
-      },
-      {
-        id: 15,
-
-        image: "",
-      },
-      {
-        id: 16,
-
-        image: "",
-      },
-    ],
-  };
-
   return (
     <div className="w-full max-w-6xl mx-auto p-6 bg-background">
-      <div className="flex flex-col mb-15 ">
-        <h2 className="text-2xl md:text-[54px] font-extrabold flex items-center">
-          <span>
-            <img
-              src="/images/eduservice/internet.png"
-              width={40}
-              height={20}
-              alt=""
-              className="md:w-[66px] md:h-[30px] w-[32px] h-[16px]"
-            />
-          </span>
+      <SectionCards title="국가자격증" images={nationalCertificates} />
+      <div className="mb-12">
+        <h2 className="text-[32px] md:text-[40px] font-extrabold text-left leading-tight mb-6 ">
           교육서비스
         </h2>
-        <p className="text-base md:text-[36px] font-normal">
-          교육으로 세상을 바꾸는 힘
-        </p>
-      </div>
-      {/* Category Tabs */}
-      <div className="flex flex-wrap gap-3 mb-8 ">
-        {categories.map((category) => (
-          <button
-            key={category}
-            onClick={() => setActiveTab(category)}
-            className={`
-              block px-6 py-3 rounded-full transition-all duration-200
-              font-medium text-[17px] leading-[27px] tracking-[-0.5px] font-bold
-              ${
-                activeTab === category
-                  ? "bg-[#000000] text-white  shadow-lg"
-                  : "bg-muted text-muted-foreground hover:bg-blue-100 hover:text-white-100"
-              }
-            `}
-            style={{
-              fontWeight: "bold",
-            }}
-          >
-            {category}
-          </button>
-        ))}
-      </div>
-      {/* Category Cards Grid */}
-      <div className="flex flex-wrap gap-6 justify-center">
-        {categoryData[activeTab]?.map((item) => (
-          <Card
-            key={item.id}
-            className="
-              relative  
-              h-[374px] w-[282px] sm:w-[calc(50%-1.5rem)] lg:w-[calc(25%-1.5rem)] w-full mx-auto 
-            "
-          >
-            {item.image && item.image !== "" && (
+        <div className="flex flex-row gap-6 justify-start">
+          {educationServices.map((img, idx) => (
+            <Card
+              key={img + idx}
+              className="relative h-[374px] w-[282px] sm:w-[calc(50%-1.5rem)] lg:w-[calc(25%-1.5rem)]"
+            >
               <img
-                src={item.image}
+                src={img}
                 alt=""
                 className="absolute inset-0 w-full h-full object-cover object-center z-0"
                 style={{
@@ -172,100 +88,11 @@ const CategoryTabs: React.FC = () => {
                   e.currentTarget.style.display = "none";
                 }}
               />
-            )}
-          </Card>
-        ))}
-      </div>
-      <hr className="w-full border-t-2 border-gray-300 my-12" />
-      <div className="w-full max-w-6xl mx-auto mt-12 bg-background">
-        <h2 className="text-[32px] md:text-[48px] font-extrabold text-left leading-tight mb-6">
-          국가자격증
-        </h2>
-        <div className="flex flex-wrap gap-6 justify-center">
-          {categoryData["자격증"].map((item) => (
-            <Card
-              key={item.id}
-              className="
-                relative  
-                h-[374px] w-[282px] sm:w-[calc(50%-1.5rem)] lg:w-[calc(25%-1.5rem)] w-full mx-auto 
-              "
-            >
-              {item.image && item.image !== "" && (
-                <img
-                  src={item.image}
-                  alt=""
-                  className="absolute inset-0 w-full h-full object-cover object-center z-0"
-                  style={{
-                    objectPosition: "center center",
-                    borderRadius: "12px",
-                  }}
-                  onError={(e) => {
-                    e.currentTarget.style.display = "none";
-                  }}
-                />
-              )}
-            </Card>
-          ))}
-        </div>
-        <h2 className="text-[32px] md:text-[48px] mt-12 font-extrabold text-left leading-tight mb-6">
-          교육서비스
-        </h2>
-        <div className="flex flex-wrap gap-6 justify-center">
-          {categoryData["자격증"].map((item) => (
-            <Card
-              key={item.id}
-              className="
-                relative  
-                h-[374px] w-[282px] sm:w-[calc(50%-1.5rem)] lg:w-[calc(25%-1.5rem)] w-full mx-auto 
-              "
-            >
-              {item.image && item.image !== "" && (
-                <img
-                  src={item.image}
-                  alt=""
-                  className="absolute inset-0 w-full h-full object-cover object-center z-0"
-                  style={{
-                    objectPosition: "center center",
-                    borderRadius: "12px",
-                  }}
-                  onError={(e) => {
-                    e.currentTarget.style.display = "none";
-                  }}
-                />
-              )}
-            </Card>
-          ))}
-        </div>
-        <h2 className="text-[32px] md:text-[48px] mt-12 font-extrabold text-left leading-tight mb-6">
-          취업자격증
-        </h2>
-        <div className="flex flex-wrap gap-6 justify-center">
-          {categoryData["자격증"].map((item) => (
-            <Card
-              key={item.id}
-              className="
-                relative  
-                h-[374px] w-[282px] sm:w-[calc(50%-1.5rem)] lg:w-[calc(25%-1.5rem)] w-full mx-auto 
-              "
-            >
-              {item.image && item.image !== "" && (
-                <img
-                  src={item.image}
-                  alt=""
-                  className="absolute inset-0 w-full h-full object-cover object-center z-0"
-                  style={{
-                    objectPosition: "center center",
-                    borderRadius: "12px",
-                  }}
-                  onError={(e) => {
-                    e.currentTarget.style.display = "none";
-                  }}
-                />
-              )}
             </Card>
           ))}
         </div>
       </div>
+      <SectionCards title="추가경쟁력" images={extraCompetitiveness} />
     </div>
   );
 };
