@@ -1,10 +1,7 @@
 "use client";
 import CategoryTabs from "@/components/CategoryTabs";
 import { ThreeDMarquee } from "@/components/ui/3d-marquee";
-import { Card } from "@/components/ui/card";
-
 import { motion } from "framer-motion";
-import Link from "next/link";
 
 export default function Eduservice() {
   const images = [
