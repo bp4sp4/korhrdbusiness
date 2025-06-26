@@ -22,22 +22,21 @@ const CategoryTabs: React.FC = () => {
     자격증: [
       {
         id: 1,
-        image: "/images/eduservice/Frame.png",
+        image: "/images/eduservice/Frame1.png",
       },
       {
         id: 2,
-
-        image: "",
+        image: "/images/eduservice/Frame3.png",
       },
       {
         id: 3,
 
-        image: "",
+        image: "/images/eduservice/Frame4.png",
       },
       {
         id: 4,
 
-        image: "",
+        image: "/images/eduservice/Frame2.png",
       },
     ],
     커리어: [
