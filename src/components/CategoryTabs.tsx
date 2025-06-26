@@ -110,18 +110,21 @@ const CategoryTabs: React.FC = () => {
   return (
     <div className="w-full max-w-6xl mx-auto p-6 bg-background">
       <div className="flex flex-col mb-15 ">
-        <h2 className="text-[54px] font-extrabold flex items-center">
+        <h2 className="text-2xl md:text-[54px] font-extrabold flex items-center">
           <span>
             <img
               src="/images/eduservice/internet.png"
-              width={66}
-              height={30}
+              width={40}
+              height={20}
               alt=""
+              className="md:w-[66px] md:h-[30px] w-[32px] h-[16px]"
             />
           </span>
           교육서비스
         </h2>
-        <p className="text-[36px] font-normal">교육으로 세상을 바꾸는 힘</p>
+        <p className="text-base md:text-[36px] font-normal">
+          교육으로 세상을 바꾸는 힘
+        </p>
       </div>
       {/* Category Tabs */}
       <div className="flex flex-wrap gap-3 mb-8 ">
