@@ -173,7 +173,7 @@ const CategoryTabs: React.FC = () => {
           </Card>
         ))}
       </div>
-      <hr className="w-full border-t-2 border-gray-200 my-12" />
+      <hr className="w-full border-t-2 border-gray-300 my-12" />
       <div className="w-full max-w-6xl mx-auto mt-12 bg-background">
         <h2 className="text-[32px] md:text-[48px] font-extrabold text-left leading-tight mb-6">
           국가자격증
