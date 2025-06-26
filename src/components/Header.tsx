@@ -177,7 +177,7 @@ export default function Header() {
               </Link>
               <button
                 onClick={handleOpenCounselModal}
-                className="w-full py-3 px-2 text-lg font-semibold text-white hover:bg-[#22304a] rounded transition bg-transparent border-none text-center"
+                className="w-full py-3 px-2 text-lg font-semibold text-white hover:bg-[#22304a] rounded transition bg-transparent border-none text-left md:text-left"
               >
                 교육상담받기
               </button>

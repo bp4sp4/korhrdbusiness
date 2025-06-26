@@ -173,6 +173,96 @@ const CategoryTabs: React.FC = () => {
           </Card>
         ))}
       </div>
+      <hr className="w-full border-t-2 border-gray-200 my-12" />
+      <div className="w-full max-w-6xl mx-auto mt-12 bg-background">
+        <h2 className="text-[32px] md:text-[48px] font-extrabold text-left leading-tight mb-6">
+          국가자격증
+        </h2>
+        <div className="flex flex-wrap gap-6 justify-center">
+          {categoryData["자격증"].map((item) => (
+            <Card
+              key={item.id}
+              className="
+                relative  
+                h-[374px] w-[282px] sm:w-[calc(50%-1.5rem)] lg:w-[calc(25%-1.5rem)] w-full mx-auto 
+              "
+            >
+              {item.image && item.image !== "" && (
+                <img
+                  src={item.image}
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover object-center z-0"
+                  style={{
+                    objectPosition: "center center",
+                    borderRadius: "12px",
+                  }}
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                  }}
+                />
+              )}
+            </Card>
+          ))}
+        </div>
+        <h2 className="text-[32px] md:text-[48px] mt-12 font-extrabold text-left leading-tight mb-6">
+          교육서비스
+        </h2>
+        <div className="flex flex-wrap gap-6 justify-center">
+          {categoryData["자격증"].map((item) => (
+            <Card
+              key={item.id}
+              className="
+                relative  
+                h-[374px] w-[282px] sm:w-[calc(50%-1.5rem)] lg:w-[calc(25%-1.5rem)] w-full mx-auto 
+              "
+            >
+              {item.image && item.image !== "" && (
+                <img
+                  src={item.image}
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover object-center z-0"
+                  style={{
+                    objectPosition: "center center",
+                    borderRadius: "12px",
+                  }}
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                  }}
+                />
+              )}
+            </Card>
+          ))}
+        </div>
+        <h2 className="text-[32px] md:text-[48px] mt-12 font-extrabold text-left leading-tight mb-6">
+          취업자격증
+        </h2>
+        <div className="flex flex-wrap gap-6 justify-center">
+          {categoryData["자격증"].map((item) => (
+            <Card
+              key={item.id}
+              className="
+                relative  
+                h-[374px] w-[282px] sm:w-[calc(50%-1.5rem)] lg:w-[calc(25%-1.5rem)] w-full mx-auto 
+              "
+            >
+              {item.image && item.image !== "" && (
+                <img
+                  src={item.image}
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover object-center z-0"
+                  style={{
+                    objectPosition: "center center",
+                    borderRadius: "12px",
+                  }}
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                  }}
+                />
+              )}
+            </Card>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

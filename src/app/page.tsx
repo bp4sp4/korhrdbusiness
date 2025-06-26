@@ -31,9 +31,9 @@ export default function Home() {
         }}
       >
         <div className="main__hero-content flex-1 flex flex-col items-start z-10 rounded-lg md:bg-transparent md:p-0">
-          <div className="main__hero-title text-white text-2xl md:text-7xl mb-6 flex flex-col gap-3">
+          <div className="main__hero-title text-white text-xl md:text-7xl mb-6 flex flex-col gap-3">
             <motion.p
-              className="text-white text-3xl md:text-4xl font-normal"
+              className="text-white text-2xl md:text-4xl font-normal"
               variants={textVariants}
               initial="hidden"
               animate="visible"
@@ -41,7 +41,7 @@ export default function Home() {
               EP.1 취업난 해결 프로젝트
             </motion.p>
             <motion.h2
-              className="text-white text-5xl md:text-5xl font-bold"
+              className="text-white text-4xl md:text-5xl font-bold"
               variants={textVariants}
               initial="hidden"
               animate="visible"

@@ -1,6 +1,7 @@
 "use client";
 import CategoryTabs from "@/components/CategoryTabs";
 import { ThreeDMarquee } from "@/components/ui/3d-marquee";
+import { Card } from "@/components/ui/card";
 
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -29,13 +30,11 @@ export default function Eduservice() {
     "/images/eduservice/edumain/eduservice018.png",
     "/images/eduservice/edumain/eduservice019.png",
     "/images/eduservice/edumain/eduservice020.png",
-    "/images/eduservice/edumain/eduservice021.png",
-    "/images/eduservice/edumain/eduservice022.png",
   ];
 
   return (
     <>
-      <div className="relative flex h-[80vh] w-full flex-col items-center justify-center overflow-hidden">
+      <div className="relative flex h-[40vh] w-full flex-col items-center justify-center overflow-hidden">
         <h2 className="relative z-20 mx-auto max-w-4xl text-center text-3xl font-extrabold text-white md:text-5xl lg:text-6xl leading-tight">
           한평생에듀바이저와 함께
           <span className="relative inline-block mx-2 align-middle">
@@ -50,21 +49,6 @@ export default function Eduservice() {
           <br />
           인생의 방향성과 성장의 여정을 함께합니다.
         </p>
-
-        <div className="relative z-20 flex flex-wrap items-center justify-center gap-4 pt-4">
-          <Link
-            href="/counsel"
-            className="rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700 focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:outline-none shadow"
-          >
-            상담 신청하기
-          </Link>
-          <Link
-            href="/about"
-            className="rounded-md border border-blue-600 bg-white px-6 py-2.5 text-sm font-semibold text-blue-600 transition-colors hover:bg-blue-50 focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:outline-none shadow"
-          >
-            서비스 소개 보기
-          </Link>
-        </div>
 
         {/* overlay */}
         <div className="absolute inset-0 z-10 h-full w-full bg-black/80 dark:bg-black/40" />
