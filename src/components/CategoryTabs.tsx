@@ -24,9 +24,6 @@ const extraCompetitiveness = [
   "/images/eduservice/Frame1.png",
 ];
 
-const getImage = (section: string, id: number) =>
-  `/images/eduservice/${section}-${id}.png`;
-
 const SectionCards = ({
   title,
   images,
