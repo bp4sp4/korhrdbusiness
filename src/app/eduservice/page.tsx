@@ -108,7 +108,8 @@ export default function Eduservice() {
             muted
             loop
             playsInline
-            className="absolute z-10 w-[93%] h-[97%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[10px]  object-cover overflow-hidden"
+            className="absolute z-10 w-[93%] h-[97%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover overflow-hidden rounded-[20px]"
+            style={{ border: "6px solid #767676" }}
           />
         </motion.div>
       </section>
@@ -135,8 +136,9 @@ export default function Eduservice() {
               autoPlay
               muted
               loop
-              playsInline // Add for iOS compatibility
-              className="absolute z-10 w-[93%] h-[97%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[10px] object-cover overflow-hidden"
+              playsInline
+              className="absolute z-10 w-[93%] h-[97%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover overflow-hidden rounded-[20px]"
+              style={{ border: "6px solid #767676" }}
             />
           </motion.div>
           {/* 텍스트 - 나중에 등장 */}
