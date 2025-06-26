@@ -59,7 +59,7 @@ export default function Eduservice() {
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.1 }}
           className="w-full md:w-auto mb-8 md:mb-0 md:mr-8 flex-shrink-0 px-4"
           style={{ padding: "72px 32px 0" }}
         >
