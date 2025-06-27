@@ -71,7 +71,7 @@ const CategoryTabs: React.FC = () => {
           {educationServices.map((img, idx) => (
             <Card
               key={img + idx}
-              className="relative h-[374Px] w-[100%] sm:h-[320px] sm:w-[220px] md:h-[374px] md:w-[282px]"
+              className="relative h-[374Px] w-[100%] sm:h-[320px] sm:w-[220px] md:h-[374px] md:w-[252px]"
             >
               <img
                 src={img}
