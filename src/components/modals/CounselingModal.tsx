@@ -236,7 +236,7 @@ const CounselingModal = () => {
           p-0
           z-[999]
           h-[68vh] md:h-auto
-          overflow-y-auto md:overflow-y-visible
+          md:overflow-y-visible
         "
         onPointerDownOutside={(e) => e.preventDefault()}
       >
