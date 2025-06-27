@@ -235,7 +235,7 @@ const CounselingModal = () => {
           max-w-full sm:max-w-[500px]
           p-0
           z-[999]
-          h-[68vh] md:h-auto
+          h-[75vh] md:h-auto
           md:overflow-y-visible
         "
         onPointerDownOutside={(e) => e.preventDefault()}
