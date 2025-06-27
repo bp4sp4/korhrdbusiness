@@ -231,7 +231,7 @@ const CounselingModal = () => {
   return (
     <Dialog open={isOpen} onOpenChange={closeModal}>
       <DialogContent
-        className="max-w-full sm:max-w-[500px] p-0 z-999"
+        className="max-w-full sm:max-w-[500px] p-0 z-999 h-[80vh] overflow-y-auto"
         onPointerDownOutside={(e) => e.preventDefault()}
       >
         <DialogHeader className="p-4 md:p-4 pb-0">
@@ -287,7 +287,7 @@ const CounselingModal = () => {
                   <p className="text-red-500 text-xs mt-1">{phoneError}</p>
                 )}
               </div>
-              <div className="space-y-1">
+              <div className="space-y-2">
                 <Label className="text-sm font-medium">
                   최종학력 *
                   <span className="text-xs text-gray-400">
