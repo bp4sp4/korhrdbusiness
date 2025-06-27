@@ -235,7 +235,7 @@ const CounselingModal = () => {
           max-w-full sm:max-w-[500px]
           p-0
           z-[999]
-          h-[85vh] md:h-auto
+          h-[68vh] md:h-auto
           overflow-y-auto md:overflow-y-visible
         "
         onPointerDownOutside={(e) => e.preventDefault()}
@@ -251,7 +251,7 @@ const CounselingModal = () => {
             onSubmit={handleSubmit}
           >
             <div className="space-y-2">
-              <div className="space-y-1">
+              <div className="md:space-y-1">
                 <div className="w-full md:h-10  flex items-center justify-between">
                   <Label htmlFor="name" className="text-sm font-medium">
                     이름 *
@@ -277,7 +277,7 @@ const CounselingModal = () => {
                   required
                 />
               </div>
-              <div className="space-y-2">
+              <div className="md:space-y-2">
                 <Label htmlFor="phone" className="text-sm font-medium">
                   연락처 *
                 </Label>
@@ -293,7 +293,7 @@ const CounselingModal = () => {
                   <p className="text-red-500 text-xs mt-1">{phoneError}</p>
                 )}
               </div>
-              <div className="space-y-2">
+              <div className="md:space-y-2">
                 <Label className="text-sm font-medium">
                   최종학력 *
                   <span className="text-xs text-gray-400">
@@ -319,7 +319,7 @@ const CounselingModal = () => {
                   </SelectContent>
                 </Select>
               </div>
-              <div className="space-y-2">
+              <div className="md:space-y-2">
                 <Label className="text-sm font-medium">
                   관심 분야*
                   <span className="text-xs text-gray-400">
@@ -408,7 +408,7 @@ const CounselingModal = () => {
                   )}
                 </div>
               </div>
-              <div className="p-4 bg-gray-50 rounded-lg border">
+              <div className="p-2 bg-gray-50 rounded-lg border">
                 <label className="flex items-center gap-2 text-sm font-medium">
                   <input
                     type="checkbox"
