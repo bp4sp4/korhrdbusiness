@@ -329,7 +329,7 @@ const CounselingModal = () => {
                 <div className="relative">
                   <div
                     ref={scrollRef}
-                    className="grid grid-cols-1 sm:grid-cols-1 gap-2 max-h-64 overflow-y-auto border rounded-lg p-2 scrollbar-hide"
+                    className="grid grid-cols-1 sm:grid-cols-1 gap-2 md:max-h-60 max-h-40 overflow-y-auto border rounded-lg p-2 scrollbar-hide"
                     onScroll={checkScrollIndicator}
                   >
                     {Object.entries(
