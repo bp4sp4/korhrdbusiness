@@ -12,9 +12,9 @@ const nationalCertificates = [
 ];
 
 const educationServices = [
-  "/images/eduservice/Frame5.png",
-  "/images/eduservice/Frame6.png",
   "/images/eduservice/Frame7.png",
+  "/images/eduservice/Frame6.png",
+  "/images/eduservice/Frame5.png",
 ];
 
 const extraCompetitiveness = [
