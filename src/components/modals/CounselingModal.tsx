@@ -234,7 +234,7 @@ const CounselingModal = () => {
         className="max-w-full sm:max-w-[500px] p-0 z-999"
         onPointerDownOutside={(e) => e.preventDefault()}
       >
-        <DialogHeader className="p-4 md:p-6 pb-0">
+        <DialogHeader className="p-4 md:p-4 pb-0">
           <DialogTitle className="text-lg md:text-2xl">
             교육 상담 신청
           </DialogTitle>
@@ -244,9 +244,9 @@ const CounselingModal = () => {
             className="p-4 md:p-6 space-y-4 md:space-y-6"
             onSubmit={handleSubmit}
           >
-            <div className="space-y-4">
-              <div className="space-y-2">
-                <div className="w-full h-10  flex items-center justify-between">
+            <div className="space-y-2">
+              <div className="space-y-1">
+                <div className="w-full md:h-10  flex items-center justify-between">
                   <Label htmlFor="name" className="text-sm font-medium">
                     이름 *
                   </Label>
@@ -267,7 +267,7 @@ const CounselingModal = () => {
                   placeholder="홍길동"
                   value={formData.name}
                   onChange={(e) => handleInputChange("name", e.target.value)}
-                  className="w-full h-10 text-base md:h-12 md:text-lg"
+                  className="w-full text-base md:h-10 md:text-lg"
                   required
                 />
               </div>
@@ -280,14 +280,14 @@ const CounselingModal = () => {
                   placeholder="- 없이 숫자만 입력"
                   value={formData.phone}
                   onChange={(e) => handleInputChange("phone", e.target.value)}
-                  className="w-full h-10 text-base md:h-12 md:text-lg"
+                  className="w-full  text-base md:h-12 md:text-lg"
                   required
                 />
                 {phoneError && (
                   <p className="text-red-500 text-xs mt-1">{phoneError}</p>
                 )}
               </div>
-              <div className="space-y-2">
+              <div className="space-y-1">
                 <Label className="text-sm font-medium">
                   최종학력 *
                   <span className="text-xs text-gray-400">
@@ -323,7 +323,7 @@ const CounselingModal = () => {
                 <div className="relative">
                   <div
                     ref={scrollRef}
-                    className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-64 overflow-y-auto border rounded-lg p-2 scrollbar-hide"
+                    className="grid grid-cols-1 sm:grid-cols-1 gap-2 max-h-64 overflow-y-auto border rounded-lg p-2 scrollbar-hide"
                     onScroll={checkScrollIndicator}
                   >
                     {Object.entries(
@@ -402,7 +402,7 @@ const CounselingModal = () => {
                   )}
                 </div>
               </div>
-              <div className="mt-6 p-4 bg-gray-50 rounded-lg border">
+              <div className="mt-6 p-4 md:p-4 bg-gray-50 rounded-lg border">
                 <label className="flex items-center gap-2 text-sm font-medium">
                   <input
                     type="checkbox"
