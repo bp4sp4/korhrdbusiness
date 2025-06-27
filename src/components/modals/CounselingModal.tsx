@@ -235,7 +235,7 @@ const CounselingModal = () => {
           max-w-full sm:max-w-[500px]
           p-0
           z-[999]
-          h-[90vh] md:h-auto
+          h-[85vh] md:h-auto
           overflow-y-auto md:overflow-y-visible
         "
         onPointerDownOutside={(e) => e.preventDefault()}
@@ -358,7 +358,7 @@ const CounselingModal = () => {
                                 handleInputChange("field", option.value)
                               }
                               className={cn(
-                                "w-full text-left p-3 rounded-lg border transition-all duration-200 hover:border-primary/50 flex items-center gap-3",
+                                "w-full text-left p-2 rounded-lg border transition-all duration-200 hover:border-primary/50 flex items-center gap-3",
                                 formData.field === option.value
                                   ? "border-primary bg-primary/5 text-primary"
                                   : "border-border"
@@ -408,7 +408,7 @@ const CounselingModal = () => {
                   )}
                 </div>
               </div>
-              <div className="mt-6 p-4 bg-gray-50 rounded-lg border">
+              <div className="p-4 bg-gray-50 rounded-lg border">
                 <label className="flex items-center gap-2 text-sm font-medium">
                   <input
                     type="checkbox"
@@ -431,7 +431,7 @@ const CounselingModal = () => {
             </div>
             <Button
               type="submit"
-              className="w-full h-12 text-base md:h-14 md:text-lg mt-4"
+              className="w-full text-base md:h-14 md:text-lg "
               disabled={
                 !formData.name ||
                 !validatePhone(formData.phone) ||
