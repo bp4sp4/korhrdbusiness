@@ -231,7 +231,13 @@ const CounselingModal = () => {
   return (
     <Dialog open={isOpen} onOpenChange={closeModal}>
       <DialogContent
-        className="max-w-full sm:max-w-[500px] p-0 z-999 h-[80vh] overflow-y-auto"
+        className="
+          max-w-full sm:max-w-[500px]
+          p-0
+          z-[999]
+          h-[90vh] md:h-auto
+          overflow-y-auto md:overflow-y-visible
+        "
         onPointerDownOutside={(e) => e.preventDefault()}
       >
         <DialogHeader className="p-4 md:p-4 pb-0">
