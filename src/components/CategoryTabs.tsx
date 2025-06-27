@@ -35,11 +35,11 @@ const SectionCards = ({
     <h2 className="text-[32px] md:text-[40px] font-extrabold text-left leading-tight mb-8">
       {title}
     </h2>
-    <div className="grid grid-cols-2 gap-6 lg:grid-cols-4">
+    <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 ">
       {images.map((img, idx) => (
         <Card
           key={img + idx}
-          className="relative h-[180px] w-full sm:h-[220px] lg:h-[374px]"
+          className="relative h-[265px] w-full sm:h-[260px] lg:h-[374px] p-0"
         >
           <img
             src={img}

@@ -60,8 +60,7 @@ export default function Eduservice() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.1 }}
-          className="w-full md:w-auto mb-8 md:mb-0 md:mr-8 flex-shrink-0 px-4"
-          style={{ padding: "72px 32px 0" }}
+          className="w-full md:w-auto mb-8 mt-8 md:mb-0 md:mr-8 flex-shrink-0 px-4"
         >
           <CategoryTabs />
         </motion.div>
