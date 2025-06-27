@@ -144,8 +144,8 @@ export default function Header() {
             transition-all duration-500
             ${
               menuOpen
-                ? "bg-black/80 opacity-100 pointer-events-auto"
-                : "bg-black/0 opacity-0 pointer-events-none"
+                ? " opacity-100 pointer-events-auto"
+                : " opacity-0 pointer-events-none"
             }
           `}
         >
