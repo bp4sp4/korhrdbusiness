@@ -402,7 +402,7 @@ const CounselingModal = () => {
                   )}
                 </div>
               </div>
-              <div className="mt-6 p-4 md:p-4 bg-gray-50 rounded-lg border">
+              <div className="mt-6 p-4 bg-gray-50 rounded-lg border">
                 <label className="flex items-center gap-2 text-sm font-medium">
                   <input
                     type="checkbox"
