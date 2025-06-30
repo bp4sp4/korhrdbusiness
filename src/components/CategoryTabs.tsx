@@ -18,10 +18,10 @@ const educationServices = [
 ];
 
 const extraCompetitiveness = [
-  "/images/eduservice/Frame4.png",
-  "/images/eduservice/Frame3.png",
-  "/images/eduservice/Frame2.png",
-  "/images/eduservice/Frame1.png",
+  "/images/eduservice/Frame8.png",
+  "/images/eduservice/Frame9.png",
+  "/images/eduservice/Frame10.png",
+  "/images/eduservice/Frame11.png",
 ];
 
 const SectionCards = ({
@@ -67,11 +67,11 @@ const CategoryTabs: React.FC = () => {
         <h2 className="text-[32px] md:text-[40px] font-extrabold text-left leading-tight mb-8 ">
           교육서비스
         </h2>
-        <div className="flex flex-col md:flex-row gap-6 md:gap-6 justify-start items-center md:items-start">
+        <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 ">
           {educationServices.map((img, idx) => (
             <Card
               key={img + idx}
-              className="relative h-[374Px] w-[100%] sm:h-[320px] sm:w-[220px] md:h-[374px] md:w-[252px]"
+              className="relative h-[265px] w-[100%] sm:h-[320px] sm:w-[220px] md:h-[374px] md:w-[252px]"
             >
               <img
                 src={img}
