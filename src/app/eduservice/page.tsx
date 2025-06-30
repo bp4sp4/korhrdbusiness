@@ -35,9 +35,7 @@ export default function Eduservice() {
         <h2 className="relative z-20 mx-auto max-w-4xl text-center text-3xl font-extrabold text-white md:text-5xl lg:text-6xl leading-tight">
           한평생에듀바이저와 함께
           <span className="relative inline-block mx-2 align-middle">
-            <span className="bg-blue-600/80 px-4 py-1 rounded-lg text-white font-extrabold shadow-lg">
-              당신의 인생 방향
-            </span>
+            당신의 인생 방향
           </span>
           을 찾으세요
         </h2>
@@ -107,13 +105,13 @@ export default function Eduservice() {
             muted
             loop
             playsInline
-            className="absolute z-10 w-[93%] h-[97%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover overflow-hidden rounded-[20px]"
+            className="absolute z-10 w-[80%] h-[90%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover overflow-hidden rounded-[20px]"
             style={{ border: "6px solid #767676" }}
           />
         </motion.div>
       </section>
       <div className="bg-gray-100">
-        <section className="flex flex-col md:flex-row items-center justify-between min-h-[600px] md:min-h-[880px] max-w-[801px] mx-auto p-0 w-full overflow-hidden">
+        <section className="flex flex-col md:flex-row items-center justify-between min-h-[600px] md:min-h-[680px] max-w-[801px] mx-auto p-0 w-full overflow-hidden">
           {/* 아이폰 모형 - 먼저 등장 */}
           <motion.div
             initial={{ opacity: 0, y: 60 }}
@@ -122,21 +120,19 @@ export default function Eduservice() {
             viewport={{ once: true, amount: 0.3 }}
             className="w-full max-w-[340px] mx-auto h-[420px] md:h-[650px] flex items-center justify-center order-2 md:order-1 translate-y-[40px] md:translate-y-0 z-10 relative"
           >
-            {/* The phone frame image acts as the background */}
             <img
               src="/images/eduservice/phone_14_01.png"
               alt="iPhone Frame"
               className="relative z-0 h-full w-full object-contain"
             />
 
-            {/* The video is absolutely positioned on top of the image */}
             <video
               src="/images/eduservice/recruit.mp4"
               autoPlay
               muted
               loop
               playsInline
-              className="absolute z-10 w-[93%] h-[97%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover overflow-hidden rounded-[20px]"
+              className="absolute z-10 w-[80%] h-[90%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover overflow-hidden rounded-[20px]"
               style={{ border: "6px solid #767676" }}
             />
           </motion.div>
@@ -161,7 +157,7 @@ export default function Eduservice() {
         </section>
       </div>
       <section className="px-[32px] mt-[20px] mb-[20px] md:px-0 md:mt-0 md:mb-0">
-        <div className="flex items-center min-h-[600px] md:h-[880px]  mx-auto p-0 w-full">
+        <div className="flex items-center min-h-[600px] md:h-[680px]  mx-auto p-0 w-full">
           <div className="mx-auto w-full">
             <motion.h2
               className="pt-[20px] pb-[20px] text-[28px] md:text-[48px] text-center mb-6 md:mb-10 font-extrabold leading-tight"
@@ -183,7 +179,7 @@ export default function Eduservice() {
                 viewport={{ once: true, amount: 0.3 }}
                 className="rounded-xl shadow-lg p-10 md:p-8 flex flex-col items-start w-[90vw] max-w-[320px] h-[240px] md:w-[300px] md:h-[300px] bg-blue-800"
               >
-                <h3 className="text-lg md:text-xl text-white font-bold mb-2 text-left">
+                <h3 className="text-lg md:text-xl text-white font-extrabold mb-2 text-left">
                   맞춤형 커리큘럼 설계
                 </h3>
                 <img
@@ -191,7 +187,7 @@ export default function Eduservice() {
                   alt=""
                   className="w-[90px] h-[90px] md:w-[150px] md:h-[150px] mx-auto"
                 />
-                <p className="text-[#f7f8fb] text-left text-sm md:text-base mt-2">
+                <p className="text-[#f7f8fb] text-left font-bold text-sm md:text-base mt-2">
                   개인별 목표와 역량에 맞춘 교육 로드맵을 제공합니다.
                 </p>
               </motion.div>
@@ -203,7 +199,7 @@ export default function Eduservice() {
                 viewport={{ once: true, amount: 0.3 }}
                 className="bg-blue-600 rounded-xl shadow-lg p-10 md:p-8 flex flex-col items-start w-[90vw] max-w-[320px] h-[240px] md:w-[300px] md:h-[300px]"
               >
-                <h3 className="text-lg md:text-xl text-white font-bold mb-2 text-left">
+                <h3 className="text-lg md:text-xl text-white font-extrabold mb-2 text-left">
                   전문가 1:1 커리어 상담
                 </h3>
                 <img
@@ -211,7 +207,7 @@ export default function Eduservice() {
                   alt=""
                   className="w-[90px] h-[90px] md:w-[150px] md:h-[150px] mx-auto"
                 />
-                <p className="text-[#f7f8fb] text-left text-sm md:text-base mt-2">
+                <p className="text-[#f7f8fb] font-bold text-left text-sm md:text-base mt-2">
                   경력 설계부터 실전 취업까지, 전문가가 함께합니다.
                 </p>
               </motion.div>
@@ -223,7 +219,7 @@ export default function Eduservice() {
                 viewport={{ once: true, amount: 0.3 }}
                 className="bg-blue-200 rounded-xl shadow-lg p-10 md:p-8 flex flex-col items-start w-[90vw] max-w-[320px] h-[240px] md:w-[300px] md:h-[300px]"
               >
-                <h3 className="text-lg md:text-xl font-bold mb-2 text-left">
+                <h3 className="text-lg md:text-xl font-extrabold mb-2 text-left">
                   365일 교육상담 지원
                 </h3>
                 <img
@@ -231,7 +227,7 @@ export default function Eduservice() {
                   alt=""
                   className="w-[90px] h-[90px] md:w-[150px] md:h-[150px] mx-auto"
                 />
-                <p className="text-gray-500 text-left text-sm md:text-base mt-2">
+                <p className="text-gray-500 font-bold text-left text-sm md:text-base mt-2">
                   언제든 궁금한 점을 문의하세요. 연중무휴로 도와드립니다.
                 </p>
               </motion.div>

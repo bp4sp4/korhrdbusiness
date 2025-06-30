@@ -25,7 +25,6 @@ export default function Home() {
           backgroundImage: "url('/images/main__banner2.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
-
           height: "80vh",
           maxWidth: "100%",
         }}
@@ -56,7 +55,7 @@ export default function Home() {
       </section>
       <section className="main__service w-full mx-auto flex bg-white">
         <p className="main__service_desc text-black">
-          <strong className="block font-bold text-[25px] md:text-[45px] mb-4">
+          <strong className="block text-[#1e1e25] font-bold text-[25px] md:text-[45px] mb-4">
             <img
               src="/images/main/tf.png"
               alt=""
@@ -72,13 +71,14 @@ export default function Home() {
           <span className="hidden md:block" />
           시작조차 어려워하는 경우가 많다는 사실을 확인했습니다.
           <span className="hidden md:block" />
+          <br />
           &apos;시작부터 현장까지&apos;책임지는 맞춤형 실무교육을 실현하고
           있습니다.
         </p>
         <div className="main__service__items flex flex-col md:flex-row gap-8 w-full justify-center">
           <div className="main__service__item flex-1 text-center md:text-left">
             <h3
-              className="main__service__item-title text-[21px] font-semibold mb-4 text-gray-600"
+              className="main__service__item-title text-[21px] font-semibold mb-4 text-gray-800"
               style={{ letterSpacing: "-1px", fontSize: "20px" }}
             >
               <img
@@ -97,7 +97,7 @@ export default function Home() {
           </div>
           <div className="main__service__item flex-1 text-center md:text-left">
             <h3
-              className="main__service__item-title text-[21px] font-semibold mb-4 text-gray-600"
+              className="main__service__item-title text-[21px] font-semibold mb-4 text-gray-800"
               style={{ letterSpacing: "-1px", fontSize: "20px" }}
             >
               <img
@@ -116,7 +116,7 @@ export default function Home() {
           </div>
           <div className="main__service__item flex-1 text-center md:text-left">
             <h3
-              className="main__service__item-title text-[21px] font-semibold mb-4 text-gray-600"
+              className="main__service__item-title text-[21px] font-semibold mb-4 text-gray-800"
               style={{ letterSpacing: "-1px", fontSize: "20px" }}
             >
               <img
