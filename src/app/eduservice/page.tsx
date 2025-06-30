@@ -231,23 +231,6 @@ export default function Eduservice() {
           </div>
         </div>
       </section>
-      {/* 국가자격증 섹션 시작 */}
-      <section className="w-full bg-white py-16">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-extrabold mb-8">국가자격증</h2>
-          <div className="flex flex-row gap-8">
-            {/* 자격증 카드 예시 */}
-            <div className="bg-white rounded-xl shadow p-4 w-60">
-              <img src="/images/cert1.png" alt="자격증1" className="mb-2" />
-              <div className="font-bold">신뢰받는 복지 전문가</div>
-              <div className="text-gray-500 text-sm">
-                공감과 실력을 갖춘 국가자격
-              </div>
-            </div>
-            {/* ...다른 자격증 카드들... */}
-          </div>
-        </div>
-      </section>
     </>
   );
 }
