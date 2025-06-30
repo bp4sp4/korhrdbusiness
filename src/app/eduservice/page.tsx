@@ -31,21 +31,17 @@ export default function Eduservice() {
 
   return (
     <>
-      <div className="relative flex h-[40vh] w-full flex-col items-center justify-center overflow-hidden">
-        <h2 className="relative z-20 mx-auto max-w-4xl text-center text-3xl font-extrabold text-white md:text-5xl lg:text-6xl leading-tight">
-          한평생에듀바이저와 함께
-          <span className="relative inline-block mx-2 align-middle">
-            당신의 인생 방향
-          </span>
-          을 찾으세요
-        </h2>
-        <p className="relative z-20 mx-auto max-w-2xl py-8 text-center text-base text-neutral-200 md:text-lg">
-          우리는 단순한 교육이 아닌,
-          <br />
-          인생의 방향성과 성장의 여정을 함께합니다.
-        </p>
-
-        {/* overlay */}
+      <div className="relative flex h-[40vh] w-full flex-col justify-center overflow-hidden">
+        <div className="w-full max-w-6xl mx-auto  p-6 bg-background">
+          <h2 className="relative z-20 text-3xl font-extrabold text-white md:text-5xl lg:text-6xl leading-tight">
+            한평생 에듀바이저와 함께
+            <br />
+            당신의 인생 방향 을 찾으세요
+          </h2>
+          <p className="relative z-20 py-8 text-left text-base text-neutral-200 md:text-lg ">
+            우리는 단순한 교육이 아닌, 인생의 방향성과 성장의 여정을 함께합니다.
+          </p>
+        </div>
         <div className="absolute inset-0 z-10 h-full w-full bg-black/80 dark:bg-black/40" />
         <ThreeDMarquee
           className="pointer-events-none absolute inset-0 h-full w-full"
@@ -232,6 +228,23 @@ export default function Eduservice() {
                 </p>
               </motion.div>
             </div>
+          </div>
+        </div>
+      </section>
+      {/* 국가자격증 섹션 시작 */}
+      <section className="w-full bg-white py-16">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-3xl font-extrabold mb-8">국가자격증</h2>
+          <div className="flex flex-row gap-8">
+            {/* 자격증 카드 예시 */}
+            <div className="bg-white rounded-xl shadow p-4 w-60">
+              <img src="/images/cert1.png" alt="자격증1" className="mb-2" />
+              <div className="font-bold">신뢰받는 복지 전문가</div>
+              <div className="text-gray-500 text-sm">
+                공감과 실력을 갖춘 국가자격
+              </div>
+            </div>
+            {/* ...다른 자격증 카드들... */}
           </div>
         </div>
       </section>

@@ -17,8 +17,8 @@ export default function EduServicePage() {
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
 
-  const bgY = useTransform(scrollY, [0, 500], [0, 80]); // 배경은 느리게
-  const textY = useTransform(scrollY, [0, 500], [0, -120]); // 텍스트는 더 빠르게
+  const bgY = useTransform(scrollY, [0, 500], [0, 80]);
+  const textY = useTransform(scrollY, [0, 500], [0, -120]);
 
   return (
     <div className=" text-white w-full min-h-screen">
@@ -40,14 +40,13 @@ export default function EduServicePage() {
             priority
           />
         </motion.div>
-        {/* 텍스트에 parallax */}
         <motion.div
           style={{ y: textY }}
           className="relative z-10 flex flex-col w-[1200px] mx-auto pl-[40px]"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.1 }}
         >
           <h2
             className="text-4xl md:text-6xl font-extrabold mb-2"
@@ -105,7 +104,7 @@ export default function EduServicePage() {
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10 max-w-[1200px] mx-auto mb-10 px-2">
             {/* 주부 */}
-            <div className="bg-white rounded-3xl shadow-2xl flex flex-col items-center p-5 sm:p-8 md:p-10 text-center">
+            <div className="bg-white rounded-3xl shadow-xl flex flex-col items-center p-5 sm:p-8 md:p-10 text-center">
               <div className="text-gray-500 text-base sm:text-lg md:text-xl mb-1 sm:mb-2">
                 아기 엄마도 쉽게!
               </div>
@@ -119,7 +118,7 @@ export default function EduServicePage() {
               />
             </div>
             {/* 대학생 */}
-            <div className="bg-white rounded-3xl shadow-2xl flex flex-col items-center p-5 sm:p-8 md:p-10 text-center">
+            <div className="bg-white rounded-3xl shadow-xl flex flex-col items-center p-5 sm:p-8 md:p-10 text-center">
               <div className="text-gray-500 text-base sm:text-lg md:text-xl mb-1 sm:mb-2">
                 경쟁력을 원해요
               </div>
@@ -133,7 +132,7 @@ export default function EduServicePage() {
               />
             </div>
             {/* 중장년층 */}
-            <div className="bg-white rounded-3xl shadow-2xl flex flex-col items-center p-5 sm:p-8 md:p-10 text-center">
+            <div className="bg-white rounded-3xl shadow-xl flex flex-col items-center p-5 sm:p-8 md:p-10 text-center">
               <div className="text-gray-500 text-base sm:text-lg md:text-xl mb-1 sm:mb-2">
                 제2의직업 대비
               </div>
@@ -147,7 +146,7 @@ export default function EduServicePage() {
               />
             </div>
             {/* 노년층 */}
-            <div className="bg-white rounded-3xl shadow-2xl flex flex-col items-center p-5 sm:p-8 md:p-10 text-center">
+            <div className="bg-white rounded-3xl shadow-xl flex flex-col items-center p-5 sm:p-8 md:p-10 text-center">
               <div className="text-gray-500 text-base sm:text-lg md:text-xl mb-1 sm:mb-2">
                 정말 쓸모있는 교육
               </div>
@@ -309,7 +308,7 @@ const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                 className="flex justify-start pt-10 md:pt-30 md:gap-10"
               >
                 <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
-                  <div className="h-10 absolute left-3 md:left-3 w-10 rounded-full bg-white flex items-center justify-center">
+                  <div className="h-10 absolute left-3 md:left-3 w-10 rounded-full  flex items-center justify-center">
                     <div className="h-4 w-4 rounded-full bg-blue-500 border border-blue-600 p-2" />
                   </div>
                   <h3 className="hidden md:block text-xl md:pl-20 md:text-5xl font-bold text-blue-400">
