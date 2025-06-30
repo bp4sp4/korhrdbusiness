@@ -35,16 +35,16 @@ const SectionCards = ({
     <h2 className="text-[32px] md:text-[40px] font-extrabold text-left leading-tight mb-8">
       {title}
     </h2>
-    <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 ">
+    <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 service__card ">
       {images.map((img, idx) => (
         <Card
           key={img + idx}
-          className="relative h-[265px] w-full sm:h-[260px] lg:h-[374px] p-0"
+          className="relative h-[265px] w-full sm:h-[260px] lg:h-[374px] p-0 service__card"
         >
           <img
             src={img}
             alt=""
-            className="absolute inset-0 w-full h-full object-cover object-center z-0"
+            className="absolute inset-0 w-full h-[90%] md:h-full object-cover object-center z-0"
             style={{
               objectPosition: "center center",
               borderRadius: "12px",
@@ -67,7 +67,7 @@ const CategoryTabs: React.FC = () => {
         <h2 className="text-[32px] md:text-[40px] font-extrabold text-left leading-tight mb-8 ">
           교육서비스
         </h2>
-        <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 ">
+        <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 service__card">
           {educationServices.map((img, idx) => (
             <Card
               key={img + idx}
@@ -76,10 +76,11 @@ const CategoryTabs: React.FC = () => {
               <img
                 src={img}
                 alt=""
-                className="absolute inset-0 w-full h-full object-cover object-center z-0"
+                className="absolute inset-0 w-full h-[90%] md:h-full  object-cover object-center z-0"
                 style={{
                   objectPosition: "center center",
                   borderRadius: "12px",
+                  boxShadow: "none",
                 }}
                 onError={(e) => {
                   e.currentTarget.style.display = "none";
