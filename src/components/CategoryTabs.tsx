@@ -103,7 +103,7 @@ const SectionCards = ({
               {card.title}
             </div>
             <img
-              src="/images/eduservice/Rectangle27.png"
+              src="/images/eduservice/badge.png"
               alt=""
               className="absolute top-[-100px] right-0 w-[100px] h-[auto] object-cover object-center"
             />
