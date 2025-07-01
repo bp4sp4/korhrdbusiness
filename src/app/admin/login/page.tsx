@@ -4,8 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Download, History } from "lucide-react";
-
+import { History } from "lucide-react";
 export default function AdminLoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,7 +13,7 @@ export default function AdminLoginPage() {
   const logoutTimer = useRef<NodeJS.Timeout | null>(null);
   const [role, setRole] = useState<string | null>(null);
   const [roleLoading, setRoleLoading] = useState(true);
-  const [showHistory, setShowHistory] = useState(false);
+  const [, setShowHistory] = useState(false);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
