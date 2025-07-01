@@ -4,7 +4,13 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Download, CheckCircle, XCircle, AlertCircle } from "lucide-react";
+import {
+  Download,
+  CheckCircle,
+  XCircle,
+  AlertCircle,
+  History,
+} from "lucide-react";
 import * as XLSX from "xlsx";
 import React from "react";
 import AdminAuthGuard from "@/components/admin/AdminAuthGuard";
@@ -32,6 +38,13 @@ interface Job {
   title: string;
 }
 
+function statusToKorean(status: string) {
+  if (status === "approved") return "합격";
+  if (status === "rejected") return "불합격";
+  if (status === "pending") return "대기";
+  return status;
+}
+
 export default function RecruitApplicationsPage() {
   const [applications, setApplications] = useState<Application[]>([]);
   const [jobs, setJobs] = useState<Job[]>([]);
@@ -41,6 +54,8 @@ export default function RecruitApplicationsPage() {
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+  const [showHistory, setShowHistory] = useState(false);
+  const [historyLogs, setHistoryLogs] = useState<any[]>([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -67,6 +82,20 @@ export default function RecruitApplicationsPage() {
     setApplications((prev) =>
       prev.map((a) => (a.id === id ? { ...a, status } : a))
     );
+
+    // 로그 저장
+    await supabase.from("admin_action_logs").insert([
+      {
+        action_type: "상태변경",
+        target_id: id,
+        target_name: applications.find((a) => a.id === id)?.name || "",
+        prev_status: applications.find((a) => a.id === id)?.status || "",
+        new_status: status,
+        created_at: new Date().toISOString(),
+        admin_email:
+          (await supabase.auth.getUser()).data.user?.email || "unknown",
+      },
+    ]);
   };
 
   const handleDelete = async (id: number) => {
@@ -91,6 +120,21 @@ export default function RecruitApplicationsPage() {
     // 2. DB에서 지원자 삭제
     await supabase.from("recruit_applications").delete().eq("id", id);
     setApplications((prev) => prev.filter((a) => a.id !== id));
+
+    // 3. 삭제 로그 저장 (로그인한 계정 이메일로)
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    const adminEmail = user?.email || "unknown";
+    await supabase.from("admin_action_logs").insert([
+      {
+        action_type: "삭제",
+        target_id: id,
+        target_name: app.name,
+        created_at: new Date().toISOString(),
+        admin_email: adminEmail,
+      },
+    ]);
   };
 
   // 검색/필터/페이지네이션
@@ -131,6 +175,17 @@ export default function RecruitApplicationsPage() {
     XLSX.writeFile(workbook, "recruit_applications.xlsx");
   };
 
+  useEffect(() => {
+    if (showHistory) {
+      supabase
+        .from("admin_action_logs")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .limit(30)
+        .then(({ data }) => setHistoryLogs(data || []));
+    }
+  }, [showHistory]);
+
   if (loading) return <div className="p-8 text-center text-lg">로딩 중...</div>;
 
   return (
@@ -147,10 +202,20 @@ export default function RecruitApplicationsPage() {
                 총 {filteredData.length}명의 지원자가 있습니다.
               </p>
             </div>
-            <Button className="gap-2" onClick={handleExcelDownload}>
-              <Download className="w-4 h-4" />
-              엑셀 다운로드
-            </Button>
+            <div className="flex gap-2">
+              <Button className="gap-2" onClick={handleExcelDownload}>
+                <Download className="w-4 h-4" />
+                엑셀 다운로드
+              </Button>
+              <Button
+                variant="outline"
+                className="gap-2"
+                onClick={() => setShowHistory(true)}
+              >
+                <History className="w-4 h-4" />
+                히스토리 보기
+              </Button>
+            </div>
           </div>
 
           {/* Stats Cards */}
@@ -502,6 +567,59 @@ export default function RecruitApplicationsPage() {
                   </div>
                   <div>지원일: {selected.created_at?.split("T")[0]}</div>
                 </div>
+              </div>
+            </div>
+          )}
+
+          {/* 히스토리 모달 */}
+          {showHistory && (
+            <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+              <div className="bg-white rounded-lg p-6 w-full max-w-lg shadow-lg relative">
+                <button
+                  className="absolute top-2 right-2 text-xl"
+                  onClick={() => setShowHistory(false)}
+                >
+                  ×
+                </button>
+                <h2 className="text-xl font-bold mb-2">최근 작업 내역</h2>
+                <ul className="text-sm text-gray-700 max-h-96 overflow-y-auto space-y-3">
+                  {historyLogs.length === 0 && <li>작업 내역이 없습니다.</li>}
+                  {historyLogs.map((log) => (
+                    <li
+                      key={log.id}
+                      className="flex flex-col gap-1 border-b pb-2 last:border-b-0"
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs text-gray-400">
+                          {new Date(log.created_at).toLocaleString()}
+                        </span>
+                        <span className="font-semibold text-blue-700">
+                          {log.admin_email}
+                        </span>
+                      </div>
+                      <div>
+                        <span className="font-medium text-gray-900">
+                          {log.action_type}
+                        </span>
+                        <span className="mx-1">-</span>
+                        <span className="font-semibold">{log.target_name}</span>
+                        {log.action_type === "상태변경" && (
+                          <span className="ml-2 text-gray-600">
+                            (
+                            <span className="font-medium">
+                              {statusToKorean(log.prev_status)}
+                            </span>
+                            <span className="mx-1">→</span>
+                            <span className="font-medium">
+                              {statusToKorean(log.new_status)}
+                            </span>
+                            )
+                          </span>
+                        )}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           )}
