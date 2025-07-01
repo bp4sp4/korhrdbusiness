@@ -38,6 +38,18 @@ interface Job {
   title: string;
 }
 
+interface AdminActionLog {
+  id: number;
+  action_type: string;
+  target_id: number;
+  target_name: string;
+  prev_status?: string;
+  new_status?: string;
+  memo?: string;
+  admin_email: string;
+  created_at: string;
+}
+
 function statusToKorean(status: string) {
   if (status === "approved") return "합격";
   if (status === "rejected") return "불합격";
@@ -55,7 +67,7 @@ export default function RecruitApplicationsPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   const [showHistory, setShowHistory] = useState(false);
-  const [historyLogs, setHistoryLogs] = useState<any[]>([]);
+  const [historyLogs, setHistoryLogs] = useState<AdminActionLog[]>([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -607,11 +619,11 @@ export default function RecruitApplicationsPage() {
                           <span className="ml-2 text-gray-600">
                             (
                             <span className="font-medium">
-                              {statusToKorean(log.prev_status)}
+                              {statusToKorean(log.prev_status || "")}
                             </span>
                             <span className="mx-1">→</span>
                             <span className="font-medium">
-                              {statusToKorean(log.new_status)}
+                              {statusToKorean(log.new_status || "")}
                             </span>
                             )
                           </span>

@@ -79,10 +79,10 @@ const SectionCards = ({
     <h2 className="text-[32px] md:text-[40px] font-extrabold text-center leading-tight mb-8 px-6">
       {title}
     </h2>
-    <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 service__card text-left px-6">
+    <div className="grid grid-cols-2 gap-29 lg:grid-cols-4 service__card text-left px-2 md:px-6">
       {cards.map((card, idx) => (
         <Card
-          className="relative h-[350px] w-full flex flex-col justify-end overflow-hidden rounded-2xl shadow-lg border border-gray-200"
+          className="relative h-[314px] w-[274px] flex flex-col justify-end overflow-hidden rounded-2xl shadow-lg border border-gray-200"
           key={card.img + idx}
         >
           <img
@@ -102,11 +102,6 @@ const SectionCards = ({
             <div className="relative text-lg font-bold  text-gray-900">
               {card.title}
             </div>
-            <img
-              src="/images/eduservice/badge.png"
-              alt=""
-              className="absolute top-[-100px] right-0 w-[100px] h-[auto] object-cover object-center"
-            />
             <div className="text-sm text-gray-700 mt-1">{card.desc}</div>
           </div>
         </Card>
