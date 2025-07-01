@@ -455,18 +455,19 @@ export default function RecruitListPage() {
   return (
     <div className="min-h-screen mb-30 bg-background">
       <div className="w-full bg-[url('/images/recruit/recruit__banner.png')] bg-cover bg-center bg-no-repeat">
-        <main className="max-w-6xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-          <section className="mb-8">
+        <main className="max-w-6xl mx-auto p-[28px_20px_32px] md:py-8 md:px-4 sm:px-6 lg:px-8">
+          <section className="md:mb-8">
             <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6">
               <div className="flex-1">
                 <h1
-                  className="text-3xl sm:text-4xl lg:text-4xl  font-bold mb-4 text-[#191f28] leading-tight"
-                  style={{ letterSpacing: "-2px" }}
+                  className="text-[21px] md:text-[30px] sm:text-4xl lg:text-4xl  font-bold text-[#191f28] leading-tight"
+                  style={{ letterSpacing: "-1px" }}
                 >
                   대한민국 교육과 취업의 연결
-                  <br />그 위대한 도전을 한평생에서 함께해보세요.
+                  <br />그 위대한 도전을 한평생에서 함께해보세요
                 </h1>
-                <p className="text-[#797979] mb-[30px] mt-[30px] text-sm sm:text-base leading-relaxed">
+
+                <p className="text-[#797979] mb-[30px] mt-[30px] text-sm sm:text-base leading-relaxed hidden sm:block">
                   한평생에듀바이저는 단순히 교육서비스를 판매하는곳이 아닙니다.
                   고객이 현재 처한 상황을 면밀히 분석하여
                   <br className="hidden sm:block" />
@@ -476,7 +477,7 @@ export default function RecruitListPage() {
                   이제는 정말 교육시장을 사명감 있게 주도하는 기업이 나와야
                   합니다.
                 </p>
-
+                <div className="h-[24px] md:hidden"></div>
                 <div className="flex flex-col sm:flex-row gap-3  pb-[10px]">
                   <div className="relative flex-1">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />

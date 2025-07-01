@@ -64,8 +64,8 @@ export default function Header() {
         zIndex: 100,
       }}
     >
-      <div className="w-full max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
-        <Link href="/" className="header__logo flex items-center gap-2">
+      <div className="w-full max-w-6xl mx-auto flex items-center justify-between px-4 md:px-4 py-4">
+        <Link href="/" className="header__logo z-9999 flex items-center gap-2">
           <Image
             src="/images/logo2.png"
             alt="로고"
@@ -158,36 +158,15 @@ export default function Header() {
           >
             {/* 상단 바: 로고(왼쪽) + 햄버거/닫기(오른쪽) */}
             <div className="flex items-center justify-between w-full px-4 py-4">
-              {/* 로고+이름 묶음 */}
-              <div className="flex items-center gap-2">
-                <Image
-                  src="/images/logo2.png"
-                  alt="로고"
-                  width={29}
-                  height={28}
-                />
-                <span className="text-[16px] font-bold text-white">
-                  Eduvisors
-                </span>
-              </div>
               {/* 오른쪽 버튼: 메뉴 상태에 따라 변경 */}
-              {menuOpen ? (
-                <button
-                  className="text-3xl text-white"
-                  onClick={() => setMenuOpen(false)}
-                  aria-label="메뉴 닫기"
-                >
-                  ×
-                </button>
-              ) : (
-                <button
-                  className="text-3xl text-white"
-                  onClick={() => setMenuOpen(true)}
-                  aria-label="메뉴 열기"
-                >
-                  <span className="header__menu-icon">☰</span>
-                </button>
-              )}
+              <div />
+              <button
+                className="text-3xl text-white ml-auto "
+                onClick={() => setMenuOpen(false)}
+                aria-label="메뉴 닫기"
+              >
+                ×
+              </button>
             </div>
             {/* 메뉴 */}
             <nav className="w-full flex flex-col items-center gap-2 mb-6 px-4">
