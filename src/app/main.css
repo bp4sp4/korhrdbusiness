@@ -192,19 +192,16 @@
     }
 
     .footer__logo img,
-    .footer__logo .main__logo-img {
+    .footer__logo {
         width: 28px !important;
         height: 28px !important;
     }
 
-    .header__logo-img {
-        width: 28px !important;
-        height: 28px !important;
-    }
 
-    .header__logo span {
-        font-size: 1.1rem;
-    }
+
+
+
+
 
     .main__recruit {
         flex-direction: column !important;
@@ -319,9 +316,7 @@
         font-size: 1rem;
     }
 
-    .header__logo span {
-        font-size: 1rem;
-    }
+
 }
 
 @media (max-width: 767px) {
