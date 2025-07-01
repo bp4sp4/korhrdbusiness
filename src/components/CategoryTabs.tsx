@@ -8,7 +8,7 @@ import "swiper/css";
 
 const nationalCertificates = [
   {
-    img: "/images/eduservice/Frame1.png",
+    img: "/images/eduservice/Frame_1.png",
     title: "신뢰받는 복지 전문가",
     desc: "공감과 실력을 갖춘 국가자격",
   },
@@ -18,12 +18,12 @@ const nationalCertificates = [
     desc: "순수함을 돌보는 전문직의 시작",
   },
   {
-    img: "/images/eduservice/Frame3.png",
+    img: "/images/eduservice/Frame_3.png",
     title: "배움의 가치를 전하다",
     desc: "학습 설계부터 교육 운영까지",
   },
   {
-    img: "/images/eduservice/Frame4.png",
+    img: "/images/eduservice/Frame_4.png",
     title: "한글로 세상을 만나다",
     desc: "세계가 주목하는 자격증",
   },
@@ -94,11 +94,11 @@ const SectionCards = ({
 
   if (swipeOnMobile && isMobile) {
     return (
-      <div className="mb-12 p-2">
+      <div className="mb-12">
         <Swiper
           spaceBetween={10}
           slidesPerView="auto"
-          centeredSlides={false}
+          centeredSlides={true}
           loop={true}
           className="w-full px-2"
           style={{ paddingLeft: 0, paddingRight: 0 }}
@@ -110,7 +110,7 @@ const SectionCards = ({
               className="!w-[240px] md:!w-[274px]"
             >
               <div className="flex justify-center">
-                <Card className="relative h-[314px] w-[240px] md:w-[274px] flex flex-col justify-end overflow-hidden rounded-2xl">
+                <Card className="relative h-[314px] w-[240px] md:w-[274px] flex flex-col justify-end overflow-hidden rounded-2xl ">
                   <img
                     src={card.img}
                     alt=""
@@ -161,7 +161,7 @@ const SectionCards = ({
 
 const CategoryTabs: React.FC = () => {
   return (
-    <div className="w-full max-w-6xl mx-auto  p-6">
+    <div className="w-full max-w-6xl mx-auto">
       <h2 className="text-[32px] md:text-[40px] font-extrabold text-center leading-tight mb-8 px-6">
         국가자격증
       </h2>
