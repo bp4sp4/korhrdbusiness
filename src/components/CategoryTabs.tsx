@@ -110,7 +110,7 @@ const SectionCards = ({
               className="!w-[240px] md:!w-[274px]"
             >
               <div className="flex justify-center">
-                <Card className="relative h-[314px] w-[240px] md:w-[274px] flex flex-col justify-end overflow-hidden rounded-2xl shadow-lg">
+                <Card className="relative h-[314px] w-[240px] md:w-[274px] flex flex-col justify-end overflow-hidden rounded-2xl ">
                   <img
                     src={card.img}
                     alt=""
@@ -137,7 +137,7 @@ const SectionCards = ({
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-29 service__card text-left px-2 md:px-6">
         {cards.map((card, idx) => (
           <Card
-            className="relative h-[314px] w-[274px] flex flex-col justify-end overflow-hidden rounded-2xl shadow-lg"
+            className="relative h-[314px] w-[274px] flex flex-col justify-end overflow-hidden rounded-2xl"
             key={card.img + idx}
           >
             <img
@@ -161,7 +161,7 @@ const SectionCards = ({
 
 const CategoryTabs: React.FC = () => {
   return (
-    <div className="w-full max-w-6xl mx-auto  p-6 bg-background">
+    <div className="w-full max-w-6xl mx-auto  p-6">
       <h2 className="text-[32px] md:text-[40px] font-extrabold text-center leading-tight mb-8 px-6">
         국가자격증
       </h2>

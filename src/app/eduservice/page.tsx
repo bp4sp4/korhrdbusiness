@@ -48,17 +48,18 @@ export default function Eduservice() {
           images={images}
         />
       </div>
-      <section className="w-full">
+      <section className="w-full bg-gradient-to-b from-[hsla(0, 0.00%, 85.10%, 0.20)] to-[#D8F6FF,0]">
         <motion.div
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.1 }}
-          className="w-full md:w-auto mb-8 mt-8 md:mb-0 md:mr-8 flex-shrink-0 px-4"
+          className="w-full md:w-auto mb-8  md:mb-0 md:mr-8 flex-shrink-0 px-4"
         >
           <CategoryTabs />
         </motion.div>
       </section>
+
       <section className="relative flex flex-col md:flex-row items-center justify-between min-h-[600px] md:min-h-[880px] max-w-[801px] mx-auto p-0 w-full overflow-hidden">
         {/* 텍스트 영역 */}
         <motion.div
