@@ -48,7 +48,7 @@ export default function Eduservice() {
           images={images}
         />
       </div>
-      <section className="w-full bg-gradient-to-b from-[hsla(0, 0.00%, 85.10%, 0.20)] to-[#D8F6FF,0]">
+      <section className="w-full bg-gradient-to-t from-[#D8F6FF,0.2] to-[hsla(0,0%,85.10%]">
         <motion.div
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}

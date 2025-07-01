@@ -98,7 +98,7 @@ const SectionCards = ({
         <Swiper
           spaceBetween={10}
           slidesPerView="auto"
-          centeredSlides={true}
+          centeredSlides={false}
           loop={true}
           className="w-full px-2"
           style={{ paddingLeft: 0, paddingRight: 0 }}
@@ -110,7 +110,7 @@ const SectionCards = ({
               className="!w-[240px] md:!w-[274px]"
             >
               <div className="flex justify-center">
-                <Card className="relative h-[314px] w-[240px] md:w-[274px] flex flex-col justify-end overflow-hidden rounded-2xl ">
+                <Card className="relative h-[314px] w-[240px] md:w-[274px] flex flex-col justify-end overflow-hidden rounded-2xl">
                   <img
                     src={card.img}
                     alt=""
