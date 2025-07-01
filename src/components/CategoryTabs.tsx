@@ -166,14 +166,15 @@ const CategoryTabs: React.FC = () => {
         국가자격증
       </h2>
       <SectionCards cards={nationalCertificates} swipeOnMobile={true} />
-      <h2 className="text-[32px] md:text-[40px] font-extrabold text-center leading-tight mb-8 px-6">
-        교육서비스
-      </h2>
-      <SectionCards cards={educationServices} />
+
       <h2 className="text-[32px] md:text-[40px] font-extrabold text-center leading-tight mb-8 px-6">
         추가경쟁력
       </h2>
       <SectionCards cards={extraCompetitiveness} swipeOnMobile={true} />
+      <h2 className="text-[32px] md:text-[40px] font-extrabold text-center leading-tight mb-8 px-6">
+        교육서비스
+      </h2>
+      <SectionCards cards={educationServices} />
     </div>
   );
 };
