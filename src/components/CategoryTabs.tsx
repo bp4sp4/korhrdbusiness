@@ -11,7 +11,7 @@ const nationalCertificates = [
     desc: "공감과 실력을 갖춘 국가자격",
   },
   {
-    img: "/images/eduservice/Frame2.png",
+    img: "/images/eduservice/Frame_2.png",
     title: "마음을 키우는 직업",
     desc: "순수함을 돌보는 전문직의 시작",
   },
@@ -68,27 +68,18 @@ const extraCompetitiveness = [
   },
 ];
 
-const SectionCards = ({
-  title,
-  cards,
-}: {
-  title: string;
-  cards: { img: string; title: string; desc: string }[];
-}) => (
+const SectionCards = ({ cards }: { cards: { img: string }[] }) => (
   <div className="mb-12">
-    <h2 className="text-[32px] md:text-[40px] font-extrabold text-center leading-tight mb-8 px-6">
-      {title}
-    </h2>
     <div className="grid grid-cols-2 gap-29 lg:grid-cols-4 service__card text-left px-2 md:px-6">
       {cards.map((card, idx) => (
         <Card
-          className="relative h-[314px] w-[274px] flex flex-col justify-end overflow-hidden rounded-2xl shadow-lg border border-gray-200"
+          className="relative h-[314px] w-[274px] flex flex-col justify-end overflow-hidden rounded-2xl shadow-lg"
           key={card.img + idx}
         >
           <img
             src={card.img}
             alt=""
-            className="w-full h-[100%] object-cover object-center"
+            className="w-full h] object-cover object-center"
             style={{
               borderTopLeftRadius: "16px",
               borderTopRightRadius: "16px",
@@ -97,13 +88,6 @@ const SectionCards = ({
               e.currentTarget.style.display = "none";
             }}
           />
-
-          <div className="relative z-10 bg-white rounded-b-2xl p-4 w-full mt-0 mb-0">
-            <div className="relative text-lg font-bold  text-gray-900">
-              {card.title}
-            </div>
-            <div className="text-sm text-gray-700 mt-1">{card.desc}</div>
-          </div>
         </Card>
       ))}
     </div>
@@ -113,11 +97,11 @@ const SectionCards = ({
 const CategoryTabs: React.FC = () => {
   return (
     <div className="w-full max-w-6xl mx-auto  p-6 bg-background">
-      <SectionCards title="국가자격증" cards={nationalCertificates} />
+      <SectionCards cards={nationalCertificates} />
       <div className="mb-12">
-        <SectionCards title="교육서비스" cards={educationServices} />
+        <SectionCards cards={educationServices} />
       </div>
-      <SectionCards title="추가경쟁력" cards={extraCompetitiveness} />
+      <SectionCards cards={extraCompetitiveness} />
     </div>
   );
 };
