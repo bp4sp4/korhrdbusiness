@@ -68,6 +68,8 @@ export default function RecruitApplicationsPage() {
   const itemsPerPage = 10;
   const [showHistory, setShowHistory] = useState(false);
   const [historyLogs, setHistoryLogs] = useState<AdminActionLog[]>([]);
+  const [role, setRole] = useState<string | null>(null);
+  const [roleLoading, setRoleLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
@@ -84,6 +86,28 @@ export default function RecruitApplicationsPage() {
       setLoading(false);
     }
     fetchData();
+  }, []);
+
+  useEffect(() => {
+    async function fetchRole() {
+      setRoleLoading(true);
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (!user) {
+        setRole(null);
+        setRoleLoading(false);
+        return;
+      }
+      const { data: admin } = await supabase
+        .from("admins")
+        .select("role")
+        .eq("email", user.email)
+        .single();
+      setRole(admin?.role || null);
+      setRoleLoading(false);
+    }
+    fetchRole();
   }, []);
 
   const getJobTitle = (job_id: number) =>
@@ -219,14 +243,17 @@ export default function RecruitApplicationsPage() {
                 <Download className="w-4 h-4" />
                 엑셀 다운로드
               </Button>
-              <Button
-                variant="outline"
-                className="gap-2"
-                onClick={() => setShowHistory(true)}
-              >
-                <History className="w-4 h-4" />
-                히스토리 보기
-              </Button>
+              {/* 히스토리 버튼: super만 노출 */}
+              {role === "super" && (
+                <Button
+                  variant="outline"
+                  className="gap-2"
+                  onClick={() => setShowHistory(true)}
+                >
+                  <History className="w-4 h-4" />
+                  히스토리 보기
+                </Button>
+              )}
             </div>
           </div>
 
@@ -384,12 +411,14 @@ export default function RecruitApplicationsPage() {
                       )}
                     </td>
                     <td className="p-2">
+                      {/* 상태수정 드롭다운: role이 있으면 활성화, 없으면 disabled */}
                       <select
                         value={a.status}
                         onChange={(e) =>
                           handleStatusChange(a.id, e.target.value)
                         }
                         className="border rounded px-2 py-1"
+                        disabled={roleLoading || !role}
                       >
                         <option value="pending">대기</option>
                         <option value="approved">합격</option>
@@ -397,13 +426,16 @@ export default function RecruitApplicationsPage() {
                       </select>
                     </td>
                     <td className="p-2">
-                      <Button
-                        size="sm"
-                        variant="destructive"
-                        onClick={() => handleDelete(a.id)}
-                      >
-                        삭제
-                      </Button>
+                      {/* 삭제 버튼: super, manager만 노출 */}
+                      {(role === "super" || role === "manager") && (
+                        <Button
+                          size="sm"
+                          variant="destructive"
+                          onClick={() => handleDelete(a.id)}
+                        >
+                          삭제
+                        </Button>
+                      )}
                     </td>
                     <td className="p-2">
                       <Button

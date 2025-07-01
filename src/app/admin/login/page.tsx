@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Download, History } from "lucide-react";
 
 export default function AdminLoginPage() {
   const [email, setEmail] = useState("");
@@ -10,6 +12,9 @@ export default function AdminLoginPage() {
   const [error, setError] = useState("");
   const router = useRouter();
   const logoutTimer = useRef<NodeJS.Timeout | null>(null);
+  const [role, setRole] = useState<string | null>(null);
+  const [roleLoading, setRoleLoading] = useState(true);
+  const [showHistory, setShowHistory] = useState(false);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,7 +33,11 @@ export default function AdminLoginPage() {
       return;
     }
     // 관리자 이메일만 허용 (예시)
-    if (email !== "korhrd@guidance.com") {
+    if (
+      email !== "korhrd@guidance.com" &&
+      email !== "viewer@guidance.com" &&
+      email !== "super@guidance.com"
+    ) {
       setError("관리자만 접근할 수 있습니다.");
       await supabase.auth.signOut();
       return;
@@ -56,10 +65,11 @@ export default function AdminLoginPage() {
 
     const isAdmin = admins && admins.length > 0;
     if (isAdmin) {
-      // 관리자 권한 있음
+      setRole("super");
     } else {
       // 관리자 아님 (작성/수정/삭제 버튼 숨기기 등)
     }
+    setRoleLoading(false);
   };
 
   useEffect(() => {
@@ -87,12 +97,25 @@ export default function AdminLoginPage() {
           className="w-full border p-2 rounded"
         />
         {error && <div className="text-red-500">{error}</div>}
-        <button
-          type="submit"
-          className="w-full bg-blue-600 text-white p-2 rounded"
-        >
-          로그인
-        </button>
+        <div className="flex gap-2">
+          <Button
+            type="submit"
+            className="w-full bg-blue-600 text-white p-2 rounded"
+          >
+            로그인
+          </Button>
+          {/* 히스토리 버튼: super만 노출, roleLoading 중엔 렌더링 X */}
+          {!roleLoading && role === "super" && (
+            <Button
+              variant="outline"
+              className="gap-2"
+              onClick={() => setShowHistory(true)}
+            >
+              <History className="w-4 h-4" />
+              히스토리 보기
+            </Button>
+          )}
+        </div>
       </form>
     </div>
   );
