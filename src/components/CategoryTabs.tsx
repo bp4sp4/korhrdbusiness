@@ -3,6 +3,8 @@
 import React from "react";
 import { Card } from "@/components/ui/card";
 import "../app/main.css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
 const nationalCertificates = [
   {
@@ -68,40 +70,110 @@ const extraCompetitiveness = [
   },
 ];
 
-const SectionCards = ({ cards }: { cards: { img: string }[] }) => (
-  <div className="mb-12">
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-29 lg:grid-cols-4 gap-8 service__card text-left px-2 md:px-6">
-      {cards.map((card, idx) => (
-        <Card
-          className="relative h-[314px] w-[274px] flex flex-col justify-end overflow-hidden rounded-2xl shadow-lg"
-          key={card.img + idx}
+const SectionCards = ({
+  cards,
+  swipeOnMobile = false,
+}: {
+  cards: { img: string }[];
+  swipeOnMobile?: boolean;
+}) => {
+  const [hydrated, setHydrated] = React.useState(false);
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    setHydrated(true);
+    if (typeof window !== "undefined") {
+      const check = () => setIsMobile(window.innerWidth < 768);
+      check();
+      window.addEventListener("resize", check);
+      return () => window.removeEventListener("resize", check);
+    }
+  }, []);
+
+  if (!hydrated) return null;
+
+  if (swipeOnMobile && isMobile) {
+    return (
+      <div className="mb-12 p-2">
+        <Swiper
+          spaceBetween={10}
+          slidesPerView="auto"
+          centeredSlides={true}
+          loop={true}
+          className="w-full px-2"
+          style={{ paddingLeft: 0, paddingRight: 0 }}
         >
-          <img
-            src={card.img}
-            alt=""
-            className="w-full h-full object-cover object-center"
-            style={{
-              borderTopLeftRadius: "16px",
-              borderTopRightRadius: "16px",
-            }}
-            onError={(e) => {
-              e.currentTarget.style.display = "none";
-            }}
-          />
-        </Card>
-      ))}
+          {cards.map((card, idx) => (
+            <SwiperSlide
+              key={card.img + idx}
+              style={{ width: 240, maxWidth: 274 }}
+              className="!w-[240px] md:!w-[274px]"
+            >
+              <div className="flex justify-center">
+                <Card className="relative h-[314px] w-[240px] md:w-[274px] flex flex-col justify-end overflow-hidden rounded-2xl shadow-lg">
+                  <img
+                    src={card.img}
+                    alt=""
+                    className="w-full h-full object-cover object-center"
+                    style={{
+                      borderTopLeftRadius: "16px",
+                      borderTopRightRadius: "16px",
+                    }}
+                    onError={(e) => {
+                      e.currentTarget.style.display = "none";
+                    }}
+                  />
+                </Card>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+    );
+  }
+
+  return (
+    <div className="mb-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-29 service__card text-left px-2 md:px-6">
+        {cards.map((card, idx) => (
+          <Card
+            className="relative h-[314px] w-[274px] flex flex-col justify-end overflow-hidden rounded-2xl shadow-lg"
+            key={card.img + idx}
+          >
+            <img
+              src={card.img}
+              alt=""
+              className="w-full h-full object-cover object-center"
+              style={{
+                borderTopLeftRadius: "16px",
+                borderTopRightRadius: "16px",
+              }}
+              onError={(e) => {
+                e.currentTarget.style.display = "none";
+              }}
+            />
+          </Card>
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const CategoryTabs: React.FC = () => {
   return (
     <div className="w-full max-w-6xl mx-auto  p-6 bg-background">
-      <SectionCards cards={nationalCertificates} />
-      <div className="mb-12">
-        <SectionCards cards={educationServices} />
-      </div>
-      <SectionCards cards={extraCompetitiveness} />
+      <h2 className="text-[32px] md:text-[40px] font-extrabold text-center leading-tight mb-8 px-6">
+        국가자격증
+      </h2>
+      <SectionCards cards={nationalCertificates} swipeOnMobile={true} />
+      <h2 className="text-[32px] md:text-[40px] font-extrabold text-center leading-tight mb-8 px-6">
+        교육서비스
+      </h2>
+      <SectionCards cards={educationServices} />
+      <h2 className="text-[32px] md:text-[40px] font-extrabold text-center leading-tight mb-8 px-6">
+        추가경쟁력
+      </h2>
+      <SectionCards cards={extraCompetitiveness} swipeOnMobile={true} />
     </div>
   );
 };
