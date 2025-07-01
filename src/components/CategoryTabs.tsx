@@ -70,7 +70,7 @@ const extraCompetitiveness = [
 
 const SectionCards = ({ cards }: { cards: { img: string }[] }) => (
   <div className="mb-12">
-    <div className="grid grid-cols-2 gap-29 lg:grid-cols-4 service__card text-left px-2 md:px-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-29 lg:grid-cols-4 gap-8 service__card text-left px-2 md:px-6">
       {cards.map((card, idx) => (
         <Card
           className="relative h-[314px] w-[274px] flex flex-col justify-end overflow-hidden rounded-2xl shadow-lg"
@@ -79,7 +79,7 @@ const SectionCards = ({ cards }: { cards: { img: string }[] }) => (
           <img
             src={card.img}
             alt=""
-            className="w-full h] object-cover object-center"
+            className="w-full h-full object-cover object-center"
             style={{
               borderTopLeftRadius: "16px",
               borderTopRightRadius: "16px",
