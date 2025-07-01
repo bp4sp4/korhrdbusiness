@@ -235,12 +235,12 @@ const CounselingModal = () => {
           max-w-full sm:max-w-[500px]
           p-0
           z-[999]
-          h-[80vh] md:h-auto
+          h-[85vh] md:h-auto
           md:overflow-y-visible
         "
         onPointerDownOutside={(e) => e.preventDefault()}
       >
-        <DialogHeader className="p-4 md:p-4 pb-0">
+        <DialogHeader className="p-2 md:pt-4 pb-0">
           <DialogTitle className="text-lg md:text-2xl">
             교육 상담 신청
           </DialogTitle>
@@ -273,7 +273,7 @@ const CounselingModal = () => {
                   placeholder="홍길동"
                   value={formData.name}
                   onChange={(e) => handleInputChange("name", e.target.value)}
-                  className="w-full text-base md:h-10 md:text-lg"
+                  className="w-full text-base md:h-10 md:text-lg placeholder:text-[13px]"
                   required
                 />
               </div>
@@ -286,7 +286,7 @@ const CounselingModal = () => {
                   placeholder="- 없이 숫자만 입력"
                   value={formData.phone}
                   onChange={(e) => handleInputChange("phone", e.target.value)}
-                  className="w-full  text-base md:h-12 md:text-lg"
+                  className="w-full text-base md:h-10 md:text-lg placeholder:text-[13px]"
                   required
                 />
                 {phoneError && (
@@ -431,7 +431,7 @@ const CounselingModal = () => {
             </div>
             <Button
               type="submit"
-              className="w-full text-base md:h-14 md:text-lg "
+              className="w-full text-base md:h-11 md:text-lg "
               disabled={
                 !formData.name ||
                 !validatePhone(formData.phone) ||
