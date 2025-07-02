@@ -168,13 +168,7 @@ const SectionCards = ({
 const CategoryTabs: React.FC = () => {
   return (
     <>
-      <div
-        className="w-full"
-        style={{
-          background:
-            "linear-gradient(180deg, #d9d9d9 0%, rgba(216,246,255,0.2) 100%)",
-        }}
-      >
+      <div className="w-full bg-[linear-gradient(to_bottom,rgba(217,217,217,0.2),rgba(216,246,255,0.2))]">
         <div className="flex flex-col max-w-6xl mx-auto">
           <h2 className="text-[24px] md:text-[32px] md:text-[40px] mt-[83px] text-[#1E1E1E] font-extrabold text-center leading-tight mb-[47px] px-6 flex flex-col items-center">
             국가 자격증
