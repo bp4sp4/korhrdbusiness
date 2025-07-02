@@ -83,7 +83,10 @@ export default function Header() {
             height={28}
             className="header__logo-img w-[23px] h-[23px] md:w-[28px] md:h-[28px]"
           />
-          <span className="font-bold text-white text-[20px] md:text-[28px]">
+          <span
+            className="font-bold text-white text-[20px] md:text-[28px]"
+            style={{ fontFamily: "Toss Product Sans, Pretendard, sans-serif" }}
+          >
             Eduvisors
           </span>
         </Link>
