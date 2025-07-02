@@ -95,7 +95,7 @@ export default function Eduservice() {
             z-10"
         >
           <img
-            src="/images/eduservice/eduform.gif"
+            src="/images/eduservice/eduform_1.gif"
             alt="iPhone Frame"
             className="relative z-0 w-[100%] h-[100%] md:w-[560px] md:h-[560px] object-cover"
           />
@@ -112,7 +112,7 @@ export default function Eduservice() {
           className="w-full  mx-auto h-[420px] md:h-[400px] flex items-center justify-center order-2 md:order-1 translate-y-[40px] md:translate-y-0 z-10 relative"
         >
           <img
-            src="/images/eduservice/recruit.gif"
+            src="/images/eduservice/recruit_1.gif"
             alt="iPhone Frame"
             className="relative z-0  w-[100%] h-[100%] md:w-[560px] md:h-[560px]"
           />
