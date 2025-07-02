@@ -33,13 +33,17 @@ export default function Eduservice() {
     <>
       <div className="relative flex h-[40vh] w-full flex-col justify-center overflow-hidden">
         <div className="w-full max-w-6xl mx-auto  p-6 bg-background">
-          <h2 className="relative z-20 text-3xl font-extrabold text-white md:text-5xl lg:text-6xl leading-tight">
-            한평생 에듀바이저와 함께
+          <h2 className="relative z-20 text-2xl text-white md:text-[50px] leading-tight">
+            <strong>한평생 에듀바이저</strong>
+            와함께
             <br />
-            당신의 인생 방향 을 찾으세요
+            당신의 <strong> 인생 방향</strong>을 찾으세요
           </h2>
-          <p className="relative z-20 py-8 text-left text-base text-neutral-200 md:text-lg ">
-            우리는 단순한 교육이 아닌, 인생의 방향성과 성장의 여정을 함께합니다.
+          <p className="relative z-20 py-8 text-left text-base text-neutral-200 md:text-[20px] ">
+            우리는 단순한 교육이 아닌,
+            <strong className="font-extrabold">
+              인생의 방향성과 성장의 여정을 함께합니다.
+            </strong>
           </p>
         </div>
         <div className="absolute inset-0 z-10 h-full w-full bg-black/80 dark:bg-black/40" />

@@ -73,9 +73,15 @@ const extraCompetitiveness = [
 const SectionCards = ({
   cards,
   swipeOnMobile = false,
+  cardWidth = 274,
+  cardHeight = 314,
+  gridClassName = "grid grid-cols-1 md:grid-cols-2 mt-[47px] mb-[158px] lg:grid-cols-4 gap-29 service__card text-left px-2 md:px-6",
 }: {
   cards: { img: string }[];
   swipeOnMobile?: boolean;
+  cardWidth?: number;
+  cardHeight?: number;
+  gridClassName?: string;
 }) => {
   const [hydrated, setHydrated] = React.useState(false);
   const [isMobile, setIsMobile] = React.useState(false);
@@ -94,87 +100,103 @@ const SectionCards = ({
 
   if (swipeOnMobile && isMobile) {
     return (
-      <div className="mb-12">
-        <Swiper
-          spaceBetween={10}
-          slidesPerView="auto"
-          centeredSlides={true}
-          loop={true}
-          className="w-full px-2"
-          style={{ paddingLeft: 0, paddingRight: 0 }}
-        >
-          {cards.map((card, idx) => (
-            <SwiperSlide
-              key={card.img + idx}
-              style={{ width: 240, maxWidth: 274 }}
-              className="!w-[240px] md:!w-[274px]"
-            >
-              <div className="flex justify-center">
-                <Card className="relative h-[314px] w-[240px] md:w-[274px] flex flex-col justify-end overflow-hidden rounded-2xl ">
-                  <img
-                    src={card.img}
-                    alt=""
-                    className="w-full h-full object-cover object-center"
-                    style={{
-                      borderTopLeftRadius: "16px",
-                      borderTopRightRadius: "16px",
-                    }}
-                    onError={(e) => {
-                      e.currentTarget.style.display = "none";
-                    }}
-                  />
-                </Card>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+      <Swiper
+        spaceBetween={10}
+        slidesPerView="auto"
+        centeredSlides={true}
+        loop={true}
+        className="w-full px-2"
+        style={{ paddingLeft: 0, paddingRight: 0 }}
+      >
+        {cards.map((card, idx) => (
+          <SwiperSlide
+            key={card.img + idx}
+            style={{ width: cardWidth, maxWidth: cardWidth }}
+            className={`!w-[${cardWidth}px] md:!w-[${cardWidth}px]`}
+          >
+            <div className="flex justify-center">
+              <Card
+                className="relative flex flex-col justify-end overflow-hidden rounded-2xl"
+                style={{ width: cardWidth, height: cardHeight }}
+              >
+                <img
+                  src={card.img}
+                  alt=""
+                  className="w-full h-full object-cover object-center"
+                  style={{
+                    borderTopLeftRadius: "16px",
+                    borderTopRightRadius: "16px",
+                  }}
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                  }}
+                />
+              </Card>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     );
   }
 
   return (
-    <div className="mb-12">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-29 service__card text-left px-2 md:px-6">
-        {cards.map((card, idx) => (
-          <Card
-            className="relative h-[314px] w-[274px] flex flex-col justify-end overflow-hidden rounded-2xl"
-            key={card.img + idx}
-          >
-            <img
-              src={card.img}
-              alt=""
-              className="w-full h-full object-cover object-center"
-              style={{
-                borderTopLeftRadius: "16px",
-                borderTopRightRadius: "16px",
-              }}
-              onError={(e) => {
-                e.currentTarget.style.display = "none";
-              }}
-            />
-          </Card>
-        ))}
-      </div>
+    <div className={gridClassName}>
+      {cards.map((card, idx) => (
+        <Card
+          className="relative flex flex-col justify-end overflow-hidden rounded-2xl"
+          style={{ width: cardWidth, height: cardHeight }}
+          key={card.img + idx}
+        >
+          <img
+            src={card.img}
+            alt=""
+            className="w-full h-full object-cover object-center"
+            style={{
+              borderTopLeftRadius: "16px",
+              borderTopRightRadius: "16px",
+            }}
+            onError={(e) => {
+              e.currentTarget.style.display = "none";
+            }}
+          />
+        </Card>
+      ))}
     </div>
   );
 };
 
 const CategoryTabs: React.FC = () => {
   return (
-    <div className="w-full max-w-6xl mx-auto">
-      <h2 className="text-[32px] md:text-[40px] font-extrabold text-center leading-tight mb-8 px-6">
-        국가자격증
+    <div className="w-full flex flex-col max-w-6xl mx-auto">
+      <h2 className="text-[32px] md:text-[40px] mt-[83px] font-extrabold text-center leading-tight mb-[47px] px-6 flex flex-col items-center">
+        국가 자격증
+        <span className="text-[20px] mt-[8px] text-[#979797] font-normal">
+          공감과 실력을 갖춘 국가자격
+        </span>
       </h2>
+
       <SectionCards cards={nationalCertificates} swipeOnMobile={true} />
 
-      <h2 className="text-[32px] md:text-[40px] font-extrabold text-center leading-tight mb-8 px-6">
+      <h2 className="text-[32px] md:text-[40px] font-extrabold text-center leading-tight mb-8 px-6 flex flex-col items-center">
         추가경쟁력
+        <span className="text-[20px] mt-[8px] text-[#979797] font-normal">
+          다양한 실력을 갖춘 추가경쟁력
+        </span>
       </h2>
       <SectionCards cards={extraCompetitiveness} swipeOnMobile={true} />
-      <h2 className="text-[32px] md:text-[40px] font-extrabold text-center leading-tight mb-8 px-6">
+      <h2 className="text-[32px] md:text-[40px] font-extrabold text-center leading-tight mb-8 px-6 flex flex-col items-center">
         교육서비스
+        <span className="text-[20px] mt-[8px] text-[#979797] font-normal">
+          한평생 에듀바이저만의 교육 여정
+        </span>
       </h2>
-      <SectionCards cards={educationServices} />
+
+      <SectionCards
+        cards={educationServices}
+        cardWidth={368}
+        cardHeight={384}
+        gridClassName="grid grid-cols-1 md:grid-cols-2 mt-[47px] mb-[158px] lg:grid-cols-3 gap-35 service__card text-left px-2 md:px-6"
+      />
     </div>
   );
 };
