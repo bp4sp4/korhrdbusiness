@@ -78,7 +78,7 @@ export default function Eduservice() {
           <h2 className="text-[32px] md:text-[40px] text-[#1E1E1E] font-extrabold text-left md:text-Left leading-tight mb-4">
             전문가와 내 커리어 설계
           </h2>
-          <p className="text-[16px] md:text-[20px] text-[#1E1E1E] text-left md:text-center">
+          <p className="text-[16px] md:text-[20px] text-[#1E1E1E] text-left md:text-left">
             나의 <strong>목표와 꿈을 현실로</strong> 만들어 드립니다.
           </p>
         </motion.div>
