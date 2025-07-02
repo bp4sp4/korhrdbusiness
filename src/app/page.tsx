@@ -54,8 +54,8 @@ export default function Home() {
         </div>
       </section>
       <section className="main__service w-full mx-auto flex bg-white">
-        <p className="main__service_desc text-black">
-          <strong className="block text-[#1e1e25] font-bold text-[25px] md:text-[45px] mb-4">
+        <p className="main__service_desc text-[#1E1E1E]">
+          <strong className="block text-[#1E1E1E] font-bold text-[25px] md:text-[45px] mb-4">
             <img
               src="/images/main/tf.png"
               alt=""
@@ -78,7 +78,7 @@ export default function Home() {
         <div className="main__service__items flex flex-col md:flex-row gap-8 w-full justify-center">
           <div className="main__service__item flex-1 text-center md:text-left">
             <h3
-              className="main__service__item-title text-[21px] font-semibold mb-4 text-gray-800"
+              className="main__service__item-title text-[21px] font-semibold mb-4 text-[#1E1E1E]"
               style={{ letterSpacing: "-1px", fontSize: "20px" }}
             >
               <img
@@ -88,7 +88,7 @@ export default function Home() {
               />
               학생분들이 처한 환경부터 확인합니다.
             </h3>
-            <p className="main__service__item-desc text-gray-500 text-base leading-relaxed">
+            <p className="main__service__item-desc text-[#979797] text-base leading-relaxed">
               한평생의 교육은 &apos;어디서부터 시작하느냐&apos;가 무엇보다
               중요하다고 생각합니다. 학습자 각자의 환경과 여건을 먼저 이해하고,
               그에 걸맞은 최적의 교육과정을 제공함으로써 진짜 필요한 교육을
@@ -97,7 +97,7 @@ export default function Home() {
           </div>
           <div className="main__service__item flex-1 text-center md:text-left">
             <h3
-              className="main__service__item-title text-[21px] font-semibold mb-4 text-gray-800"
+              className="main__service__item-title text-[21px] font-semibold mb-4 text-[#1E1E1E]"
               style={{ letterSpacing: "-1px", fontSize: "20px" }}
             >
               <img
@@ -107,7 +107,7 @@ export default function Home() {
               />
               꼼꼼하고 세밀하게 관리합니다.
             </h3>
-            <p className="main__service__item-desc text-gray-500 text-base leading-relaxed">
+            <p className="main__service__item-desc text-[#979797] text-base leading-relaxed">
               한평생에듀바이저는 학습자의 중도 포기를 철저히 방지하기 위해, 전문
               양성과정을 거친 설계사들이 체계적인 학습관리 시스템으로 학습
               완료까지 책임지고 동행합니다. 학습자 한사람 한 사람의 끝맺음을
@@ -116,7 +116,7 @@ export default function Home() {
           </div>
           <div className="main__service__item flex-1 text-center md:text-left">
             <h3
-              className="main__service__item-title text-[21px] font-semibold mb-4 text-gray-800"
+              className="main__service__item-title text-[21px] font-semibold mb-4 text-[#1E1E1E]"
               style={{ letterSpacing: "-1px", fontSize: "20px" }}
             >
               <img
@@ -126,7 +126,7 @@ export default function Home() {
               />
               실기와 취업은 저희 몫입니다.
             </h3>
-            <p className="main__service__item-desc text-gray-500 text-base leading-relaxed">
+            <p className="main__service__item-desc text-[#979797] text-base leading-relaxed">
               꼼꼼하고 한평생은 교육의 끝이 아닌, 취업까지 연결되는 실질적인
               결과를 중요하게 생각합니다. 실기 능력 향상부터 취업 연계까지 전
               과정을 지원하며, 교육이 현장으로 자연스럽게 이어질 수 있도록

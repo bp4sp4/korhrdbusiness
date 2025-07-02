@@ -33,9 +33,9 @@ export default function Eduservice() {
     <>
       <div className="relative flex h-[40vh] w-full flex-col justify-center overflow-hidden">
         <div className="w-full max-w-6xl mx-auto  p-6 bg-background">
-          <h2 className="relative z-20 text-2xl text-white md:text-[50px] leading-tight">
+          <h2 className="relative z-20 text-2xl text-white md:text-[45px] leading-tight">
             <strong>한평생 에듀바이저</strong>
-            와함께
+            와 함께
             <br />
             당신의 <strong> 인생 방향</strong>을 찾으세요
           </h2>
@@ -94,10 +94,13 @@ export default function Eduservice() {
             translate-y-[40px] md:translate-y-0
             z-10"
         >
-          <img
-            src="/images/eduservice/eduform.gif"
-            alt="iPhone Frame"
+          <video
+            src="/images/eduservice/eduform.mp4"
             className="relative z-0 w-[100%] h-[100%] md:w-[560px] md:h-[560px] object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
           />
         </motion.div>
       </section>
@@ -111,10 +114,13 @@ export default function Eduservice() {
           viewport={{ once: true, amount: 0.3 }}
           className="w-full  mx-auto h-[420px] md:h-[400px] flex items-center justify-center order-2 md:order-1 translate-y-[40px] md:translate-y-0 z-10 relative"
         >
-          <img
-            src="/images/eduservice/recruit.gif"
-            alt="iPhone Frame"
-            className="relative z-0  w-[100%] h-[100%] md:w-[560px] md:h-[560px]"
+          <video
+            src="/images/eduservice/recruit.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="relative z-0  w-[100%] h-[100%] md:w-[560px] md:h-[560px] mb-[130px] md:mb-0"
           />
         </motion.div>
         {/* 텍스트 - 나중에 등장 */}

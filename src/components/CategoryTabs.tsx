@@ -75,7 +75,7 @@ const SectionCards = ({
   swipeOnMobile = false,
   cardWidth = 274,
   cardHeight = 314,
-  gridClassName = "grid grid-cols-1 md:grid-cols-2 mt-[47px] mb-[148px] lg:grid-cols-4 gap-29 service__card text-left px-2 md:px-6",
+  gridClassName = "grid grid-cols-1 md:grid-cols-2 mb-[148px] lg:grid-cols-4 gap-29 service__card text-left px-2 md:px-6",
 }: {
   cards: { img: string }[];
   swipeOnMobile?: boolean;
@@ -168,7 +168,7 @@ const SectionCards = ({
 const CategoryTabs: React.FC = () => {
   return (
     <>
-      <div className="w-full bg-[linear-gradient(to_bottom,rgba(217,217,217,0.2),rgba(216,246,255,0.2))]">
+      <div className="w-full bg-[linear-gradient(to_top,rgba(217,217,217,0.2),rgba(216,246,255,0.2))]">
         <div className="flex flex-col max-w-6xl mx-auto">
           <h2 className="text-[24px] md:text-[32px] md:text-[40px] mt-[83px] text-[#1E1E1E] font-extrabold text-center leading-tight mb-[47px] px-6 flex flex-col items-center">
             국가 자격증
