@@ -66,14 +66,14 @@ export default function Eduservice() {
         </motion.div>
       </section>
 
-      <section className="relative flex flex-col md:flex-row items-center justify-between min-h-[600px] md:min-h-[880px] max-w-[1100px] mx-auto p-0 w-full overflow-hidden">
+      <section className="relative flex flex-col md:flex-row items-center justify-between min-h-[600px] md:min-h-[880px] max-w-[1200px] mx-auto p-0 w-full overflow-hidden">
         {/* 텍스트 영역 */}
         <motion.div
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.3 }}
-          className="w-full md:w-auto md:mb-8 md:mb-0 md:mr-8 flex-shrink-0 px-4 pt-[72px] pb-0 pl-[32px] pr-[32px] md:pl-[50px] md:pr-[150px]"
+          className="w-full md:w-auto md:mb-8 md:mb-0 md:mr-13 flex-shrink-0 px-4 pt-[72px] pb-0 pl-[32px] pr-[32px] md:pl-[50px] md:pr-[150px]"
         >
           <h2 className="text-[32px] md:text-[40px] text-[#1E1E1E] font-extrabold text-left md:text-Left leading-tight mb-4">
             전문가와 내 커리어 설계
