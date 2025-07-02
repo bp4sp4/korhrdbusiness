@@ -74,11 +74,11 @@ export default function Eduservice() {
           className="w-full md:w-auto mb-8 md:mb-0 md:mr-8 flex-shrink-0 px-4"
           style={{ padding: "72px 32px 0" }}
         >
-          <h2 className="text-[32px] md:text-[48px] font-extrabold text-left md:text-Left leading-tight mb-4">
+          <h2 className="text-[32px] md:text-[48px] text-[#1E1E1E] font-extrabold text-left md:text-Left leading-tight mb-4">
             전문가와
             <br />내 커리어 설계
           </h2>
-          <p className="text-[16px] md:text-[20px] text-gray-400 text-left md:text-center">
+          <p className="text-[16px] md:text-[20px] text-[#979797] text-left md:text-center">
             나의 목표와 꿈을 현실로 만들어 드립니다.
           </p>
         </motion.div>
@@ -148,10 +148,10 @@ export default function Eduservice() {
               padding: "72px 32px 0",
             }}
           >
-            <h2 className="text-[32px] md:text-[48px] font-extrabold text-left md:text-left leading-tight mb-4">
+            <h2 className="text-[32px] md:text-[48px] text-[#1E1E1E] font-extrabold text-left md:text-left leading-tight mb-4">
               내일의 전문가 <br /> 오늘 지원하세요
             </h2>
-            <p className="text-[16px] md:text-[20px] text-gray-400 text-left md:text-right">
+            <p className="text-[16px] md:text-[20px] text-[#979797]  text-left md:text-right">
               목표를 현실로, 한평생이 도와드립니다.
             </p>
           </motion.div>
@@ -161,7 +161,7 @@ export default function Eduservice() {
         <div className="flex items-center min-h-[600px] md:h-[680px]  mx-auto p-0 w-full">
           <div className="mx-auto w-full">
             <motion.h2
-              className="pt-[20px] pb-[20px] text-[28px] md:text-[48px] text-center mb-6 md:mb-10 font-extrabold leading-tight"
+              className="pt-[20px] pb-[20px] text-[28px] md:text-[48px] text-[#1E1E1E] text-center mb-6 md:mb-10 font-extrabold leading-tight"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}

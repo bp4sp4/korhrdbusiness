@@ -168,7 +168,7 @@ const SectionCards = ({
 const CategoryTabs: React.FC = () => {
   return (
     <div className="w-full flex flex-col max-w-6xl mx-auto">
-      <h2 className="text-[32px] md:text-[40px] mt-[83px] font-extrabold text-center leading-tight mb-[47px] px-6 flex flex-col items-center">
+      <h2 className="text-[32px] md:text-[40px] mt-[83px] text-[#1E1E1E] font-extrabold text-center leading-tight mb-[47px] px-6 flex flex-col items-center">
         국가 자격증
         <span className="text-[20px] mt-[8px] text-[#979797] font-normal">
           공감과 실력을 갖춘 국가자격
@@ -177,14 +177,14 @@ const CategoryTabs: React.FC = () => {
 
       <SectionCards cards={nationalCertificates} swipeOnMobile={true} />
 
-      <h2 className="text-[32px] md:text-[40px] font-extrabold text-center leading-tight mb-8 px-6 flex flex-col items-center">
+      <h2 className="text-[32px] md:text-[40px] text-[#1E1E1E] font-extrabold text-center leading-tight mb-8 px-6 flex flex-col items-center">
         추가경쟁력
         <span className="text-[20px] mt-[8px] text-[#979797] font-normal">
           다양한 실력을 갖춘 추가경쟁력
         </span>
       </h2>
       <SectionCards cards={extraCompetitiveness} swipeOnMobile={true} />
-      <h2 className="text-[32px] md:text-[40px] font-extrabold text-center leading-tight mb-8 px-6 flex flex-col items-center">
+      <h2 className="text-[32px] md:text-[40px] text-[#1E1E1E] font-extrabold text-center leading-tight mb-8 px-6 flex flex-col items-center">
         교육서비스
         <span className="text-[20px] mt-[8px] text-[#979797] font-normal">
           한평생 에듀바이저만의 교육 여정
