@@ -52,34 +52,34 @@ export default function Eduservice() {
           images={images}
         />
       </div>
-      <section className="w-full bg-gradient-to-t from-[#D8F6FF,0.2] to-[hsla(0,0%,85.10%]">
+      <section className="w-full ">
         <motion.div
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.1 }}
-          className="w-full md:w-auto mb-8  md:mb-0 md:mr-8 flex-shrink-0"
+          className="w-full md:w-auto mb-8  md:mb-0 md:
+          
+          flex-shrink-0"
         >
           <CategoryTabs />
         </motion.div>
       </section>
 
-      <section className="relative flex flex-col md:flex-row items-center justify-between min-h-[600px] md:min-h-[880px] max-w-[801px] mx-auto p-0 w-full overflow-hidden">
+      <section className="relative flex flex-col md:flex-row items-center justify-between min-h-[600px] md:min-h-[880px] max-w-[1100px] mx-auto p-0 w-full overflow-hidden">
         {/* 텍스트 영역 */}
         <motion.div
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.3 }}
-          className="w-full md:w-auto mb-8 md:mb-0 md:mr-8 flex-shrink-0 px-4"
-          style={{ padding: "72px 32px 0" }}
+          className="w-full md:w-auto mb-8 md:mb-0 md:mr-8 flex-shrink-0 px-4 pt-[72px] pb-0 pl-[32px] pr-[32px] md:pl-[50px] md:pr-[150px]"
         >
-          <h2 className="text-[32px] md:text-[48px] text-[#1E1E1E] font-extrabold text-left md:text-Left leading-tight mb-4">
-            전문가와
-            <br />내 커리어 설계
+          <h2 className="text-[32px] md:text-[40px] text-[#1E1E1E] font-extrabold text-left md:text-Left leading-tight mb-4">
+            전문가와 내 커리어 설계
           </h2>
-          <p className="text-[16px] md:text-[20px] text-[#979797] text-left md:text-center">
-            나의 목표와 꿈을 현실로 만들어 드립니다.
+          <p className="text-[16px] md:text-[20px] text-[#1E1E1E] text-left md:text-center">
+            나의 <strong>목표와 꿈을 현실로</strong> 만들어 드립니다.
           </p>
         </motion.div>
         {/* 아이폰/비디오 영역 */}
@@ -88,75 +88,55 @@ export default function Eduservice() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: "easeOut", delay: 0.4 }}
           viewport={{ once: true, amount: 0.3 }}
-          className="w-full max-w-[340px] mx-auto h-[420px] md:h-[650px]
+          className="w-full  mx-auto h-[420px] md:h-[400px]
             flex items-center justify-center
             relative
             translate-y-[40px] md:translate-y-0
             z-10"
         >
           <img
-            src="/images/eduservice/phone_14_01.png"
+            src="/images/eduservice/eduform.gif"
             alt="iPhone Frame"
-            className="relative z-0 h-full w-full object-contain"
-          />
-
-          <video
-            src="/images/eduservice/consult.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="absolute z-10 w-[80%] h-[90%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover overflow-hidden rounded-[20px]"
-            style={{ border: "6px solid #767676" }}
+            className="relative z-0 w-[100%] h-[100%] md:w-[560px] md:h-[560px] object-cover"
           />
         </motion.div>
       </section>
-      <div className="bg-gray-100">
-        <section className="flex flex-col md:flex-row items-center justify-between min-h-[600px] md:min-h-[680px] max-w-[801px] mx-auto p-0 w-full overflow-hidden">
-          {/* 아이폰 모형 - 먼저 등장 */}
-          <motion.div
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, ease: "easeOut" }}
-            viewport={{ once: true, amount: 0.3 }}
-            className="w-full max-w-[340px] mx-auto h-[420px] md:h-[650px] flex items-center justify-center order-2 md:order-1 translate-y-[40px] md:translate-y-0 z-10 relative"
-          >
-            <img
-              src="/images/eduservice/phone_14_01.png"
-              alt="iPhone Frame"
-              className="relative z-0 h-full w-full object-contain"
-            />
 
-            <video
-              src="/images/eduservice/recruit.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="absolute z-10 w-[80%] h-[90%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover overflow-hidden rounded-[20px]"
-              style={{ border: "6px solid #767676" }}
-            />
-          </motion.div>
-          {/* 텍스트 - 나중에 등장 */}
-          <motion.div
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, ease: "easeOut", delay: 0.4 }}
-            viewport={{ once: true, amount: 0.3 }}
-            className="w-full md:w-auto mb-8 md:mb-0 md:ml-16 flex-shrink-0 px-4 order-1 md:order-2"
-            style={{
-              padding: "72px 32px 0",
-            }}
-          >
-            <h2 className="text-[32px] md:text-[48px] text-[#1E1E1E] font-extrabold text-left md:text-left leading-tight mb-4">
-              내일의 전문가 <br /> 오늘 지원하세요
-            </h2>
-            <p className="text-[16px] md:text-[20px] text-[#979797]  text-left md:text-right">
-              목표를 현실로, 한평생이 도와드립니다.
-            </p>
-          </motion.div>
-        </section>
-      </div>
+      <section className="flex flex-col md:flex-row items-center justify-between min-h-[600px] md:min-h-[680px] max-w-[1200px] mx-auto p-0 w-full overflow-hidden">
+        {/* 아이폰 모형 - 먼저 등장 */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="w-full  mx-auto h-[420px] md:h-[400px] flex items-center justify-center order-2 md:order-1 translate-y-[40px] md:translate-y-0 z-10 relative"
+        >
+          <img
+            src="/images/eduservice/recruit.gif"
+            alt="iPhone Frame"
+            className="relative z-0  w-[100%] h-[100%] md:w-[560px] md:h-[560px]"
+          />
+        </motion.div>
+        {/* 텍스트 - 나중에 등장 */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut", delay: 0.4 }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="w-full md:w-auto mb-8 md:mb-0 md:ml-16 flex-shrink-0 px-4 order-1 md:order-2"
+          style={{
+            padding: "72px 32px 0",
+          }}
+        >
+          <h2 className="text-[32px] md:text-[40px] text-[#1E1E1E] font-extrabold text-left md:text-right leading-tight mb-4">
+            내일의 전문가, 오늘 지원하세요
+          </h2>
+          <p className="text-[16px] md:text-[20px] text-[#979797]  text-left md:text-left">
+            목표를 현실로, 한평생이 도와드립니다.
+          </p>
+        </motion.div>
+      </section>
+
       <section className="px-[32px] mt-[20px] mb-[20px] md:px-0 md:mt-0 md:mb-0">
         <div className="flex items-center min-h-[600px] md:h-[680px]  mx-auto p-0 w-full">
           <div className="mx-auto w-full">

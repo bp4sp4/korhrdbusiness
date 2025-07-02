@@ -70,6 +70,7 @@ export default function RecruitApplicationsPage() {
   const [historyLogs, setHistoryLogs] = useState<AdminActionLog[]>([]);
   const [role, setRole] = useState<string | null>(null);
   const [roleLoading, setRoleLoading] = useState(true);
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -137,7 +138,6 @@ export default function RecruitApplicationsPage() {
   const handleDelete = async (id: number) => {
     const app = applications.find((a) => a.id === id);
     if (!app) return;
-    if (!confirm("정말 삭제하시겠습니까?")) return;
 
     // 1. Storage 파일 삭제
     const filesToDelete = [];
@@ -222,6 +222,14 @@ export default function RecruitApplicationsPage() {
     }
   }, [showHistory]);
 
+  const handleBulkDelete = async () => {
+    if (!window.confirm("정말 선택한 지원자를 모두 삭제하시겠습니까?")) return;
+    for (const id of selectedIds) {
+      await handleDelete(id);
+    }
+    setSelectedIds([]);
+  };
+
   if (loading) return <div className="p-8 text-center text-lg">로딩 중...</div>;
 
   return (
@@ -243,6 +251,16 @@ export default function RecruitApplicationsPage() {
                 <Download className="w-4 h-4" />
                 엑셀 다운로드
               </Button>
+              {selectedIds.length > 0 &&
+                (role === "super" || role === "manager") && (
+                  <Button
+                    variant="destructive"
+                    onClick={handleBulkDelete}
+                    className="gap-2"
+                  >
+                    선택 삭제
+                  </Button>
+                )}
               {/* 히스토리 버튼: super만 노출 */}
               {role === "super" && (
                 <Button
@@ -258,47 +276,45 @@ export default function RecruitApplicationsPage() {
           </div>
 
           {/* Stats Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <Card>
-              <CardContent className="p-4">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-blue-100 rounded-lg">
-                    <CheckCircle className="w-5 h-5 text-blue-600" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">합격</p>
-                    <p className="text-2xl font-bold">
-                      {statusCounts.approved}
-                    </p>
-                  </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 bg-gray-50 border border-gray-200 shadow-lg p-6 rounded-2xl">
+            <Card className="transition-shadow rounded-xl">
+              <CardContent className="p-6 flex items-center gap-4">
+                <div className="p-3 bg-blue-50 rounded-full">
+                  <CheckCircle className="w-7 h-7 text-blue-600" />
+                </div>
+                <div>
+                  <p className="text-base text-blue-700 font-semibold">합격</p>
+                  <p className="text-3xl font-extrabold">
+                    {statusCounts.approved}
+                  </p>
                 </div>
               </CardContent>
             </Card>
-            <Card>
-              <CardContent className="p-4">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-red-100 rounded-lg">
-                    <XCircle className="w-5 h-5 text-red-600" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">불합격</p>
-                    <p className="text-2xl font-bold">
-                      {statusCounts.rejected}
-                    </p>
-                  </div>
+            <Card className="transition-shadow  rounded-xl">
+              <CardContent className="p-6 flex items-center gap-4">
+                <div className="p-3 bg-red-50 rounded-full">
+                  <XCircle className="w-7 h-7 text-red-600" />
+                </div>
+                <div>
+                  <p className="text-base text-red-700 font-semibold">불합격</p>
+                  <p className="text-3xl font-extrabold">
+                    {statusCounts.rejected}
+                  </p>
                 </div>
               </CardContent>
             </Card>
-            <Card>
-              <CardContent className="p-4">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-yellow-100 rounded-lg">
-                    <AlertCircle className="w-5 h-5 text-yellow-600" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">대기</p>
-                    <p className="text-2xl font-bold">{statusCounts.pending}</p>
-                  </div>
+            <Card className="-shadow  rounded-xl">
+              <CardContent className="p-6 flex items-center gap-4">
+                <div className="p-3 bg-yellow-50 rounded-full">
+                  <AlertCircle className="w-7 h-7 text-yellow-600" />
+                </div>
+                <div>
+                  <p className="text-base text-yellow-700 font-semibold">
+                    대기
+                  </p>
+                  <p className="text-3xl font-extrabold">
+                    {statusCounts.pending}
+                  </p>
                 </div>
               </CardContent>
             </Card>
@@ -330,6 +346,22 @@ export default function RecruitApplicationsPage() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-gray-100">
+                  <th className="p-2">
+                    <input
+                      type="checkbox"
+                      checked={
+                        paginatedData.length > 0 &&
+                        paginatedData.every((a) => selectedIds.includes(a.id))
+                      }
+                      onChange={(e) => {
+                        if (e.target.checked) {
+                          setSelectedIds(paginatedData.map((a) => a.id));
+                        } else {
+                          setSelectedIds([]);
+                        }
+                      }}
+                    />
+                  </th>
                   <th className="p-2">지원일</th>
                   <th className="p-2">공고명</th>
                   <th className="p-2">이름</th>
@@ -347,6 +379,21 @@ export default function RecruitApplicationsPage() {
               <tbody>
                 {paginatedData.map((a) => (
                   <tr key={a.id} className="border-b hover:bg-gray-50">
+                    <td className="p-2">
+                      <input
+                        type="checkbox"
+                        checked={selectedIds.includes(a.id)}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setSelectedIds((prev) => [...prev, a.id]);
+                          } else {
+                            setSelectedIds((prev) =>
+                              prev.filter((id) => id !== a.id)
+                            );
+                          }
+                        }}
+                      />
+                    </td>
                     <td className="p-2">{a.created_at?.split("T")[0]}</td>
                     <td className="p-2">{getJobTitle(a.job_id)}</td>
                     <td className="p-2">{a.name}</td>
