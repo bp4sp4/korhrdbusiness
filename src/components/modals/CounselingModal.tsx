@@ -226,8 +226,10 @@ const CounselingModal = () => {
           max-w-full sm:max-w-[500px]
           p-0
           z-[999]
-          h-[75vh] md:h-auto
+          h-[78vh] md:h-auto
           md:overflow-y-visible
+          w-[350px]
+          md:w-[500px]
         "
         onPointerDownOutside={(e) => e.preventDefault()}
         aria-describedby="counsel-modal-desc"
@@ -257,10 +259,10 @@ const CounselingModal = () => {
                     <img
                       src="/images/logo2.png"
                       alt="logo"
-                      className="w-4 h-4"
+                      className="w-4 h-4 md:w-5 md:h-5"
                     />
                     <span
-                      className="ml-1 font-bold text-xl text-gray-800 tracking-wide"
+                      className="ml-1 font-bold  text-gray-800 tracking-wide text-[14px] md:text-[18px]"
                       style={{ fontFamily: "Toss Product Sans" }}
                     >
                       Eduvisors
@@ -432,7 +434,7 @@ const CounselingModal = () => {
             <Button
               id="counsel-submit-btn"
               type="submit"
-              className="w-full text-base md:h-11  md:text-lg bg-[#2B7FFF] hover:bg-[#2B7FFF]/80"
+              className="w-full text-base md:h-11 h-11 md:text-lg bg-[#2B7FFF] hover:bg-[#2B7FFF]/80"
               disabled={
                 !formData.name ||
                 !validatePhone(formData.phone) ||
