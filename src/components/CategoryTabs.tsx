@@ -31,17 +31,17 @@ const nationalCertificates = [
 
 const educationServices = [
   {
-    img: "/images/eduservice/Frame5.png",
+    img: "/images/eduservice/edu/edu001.png",
     title: "실습 설외 서비스",
     desc: "전국 실습기관 섭외 가능해요",
   },
   {
-    img: "/images/eduservice/Frame6.png",
+    img: "/images/eduservice/edu/edu002.png",
     title: "취업 지원 서비스",
     desc: "걱정되는 취업준비 1:1 코칭",
   },
   {
-    img: "/images/eduservice/Frame7.png",
+    img: "/images/eduservice/edu/edu003.png",
     title: "취업 연계 서비스",
     desc: "자격증 최종 목표까지 연계",
   },
@@ -49,22 +49,22 @@ const educationServices = [
 
 const extraCompetitiveness = [
   {
-    img: "/images/eduservice/Frame8.png",
+    img: "/images/eduservice/plus/plus001.png",
     title: "추가 경쟁력 1",
     desc: "설명 텍스트 1",
   },
   {
-    img: "/images/eduservice/Frame9.png",
+    img: "/images/eduservice/plus/plus002.png",
     title: "추가 경쟁력 2",
     desc: "설명 텍스트 2",
   },
   {
-    img: "/images/eduservice/Frame10.png",
+    img: "/images/eduservice/plus/plus003.png",
     title: "추가 경쟁력 3",
     desc: "설명 텍스트 3",
   },
   {
-    img: "/images/eduservice/Frame11.png",
+    img: "/images/eduservice/plus/plus001.png",
     title: "추가 경쟁력 4",
     desc: "설명 텍스트 4",
   },
