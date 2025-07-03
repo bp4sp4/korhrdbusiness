@@ -75,7 +75,7 @@ const SectionCards = ({
   swipeOnMobile = false,
   cardWidth = 274,
   cardHeight = 314,
-  gridClassName = "grid grid-cols-1 md:grid-cols-2 mb-[148px] lg:grid-cols-4 gap-29 service__card text-left px-2 md:px-6",
+  gridClassName = "grid grid-cols-1 md:grid-cols-2 mb-[71px] lg:grid-cols-4 gap-29 service__card text-left px-2 md:px-6",
 }: {
   cards: { img: string }[];
   swipeOnMobile?: boolean;
@@ -167,46 +167,38 @@ const SectionCards = ({
 
 const CategoryTabs: React.FC = () => {
   return (
-    <>
-      <div className="w-full bg-[linear-gradient(to_top,rgba(217,217,217,0.2),rgba(216,246,255,0.2))]">
-        <div className="flex flex-col max-w-6xl mx-auto">
-          <h2 className="text-[24px] md:text-[32px] md:text-[40px] mt-[83px] text-[#1E1E1E] font-extrabold text-center leading-tight mb-[47px] px-6 flex flex-col items-center">
-            국가 자격증
-            <span className="text-[16px] md:text-[20px] mt-[8px] text-[#979797] font-normal">
-              공감과 실력을 갖춘 국가자격
-            </span>
-          </h2>
+    <div className="w-full bg-[linear-gradient(to_top,rgba(217,217,217,0.2),rgba(216,246,255,0.2))]">
+      <div className="flex flex-col max-w-6xl mx-auto">
+        <h2 className="text-[24px] md:text-[32px] md:text-[40px] mt-[113px] text-[#1E1E1E] font-extrabold text-center leading-tight mb-[35px] px-6 flex flex-col items-center">
+          국가 자격증
+          <span className="text-[16px] md:text-[20px] mt-[8px] text-[#979797] font-normal">
+            공감과 실력을 갖춘 국가자격
+          </span>
+        </h2>
+        <SectionCards cards={nationalCertificates} swipeOnMobile={true} />
 
-          <SectionCards cards={nationalCertificates} swipeOnMobile={true} />
+        <h2 className="text-[24px] md:text-[32px] md:text-[40px] text-[#1E1E1E] font-extrabold text-center leading-tight mt-[82px] md:mt-[0px] mb-[35px] md:mb-[47px] px-6 flex flex-col items-center">
+          추가자격증
+          <span className="text-[16px] md:text-[20px] mt-[8px] text-[#979797] font-normal">
+            다양한 실력을 갖춘 추가경쟁력
+          </span>
+        </h2>
+        <SectionCards cards={extraCompetitiveness} swipeOnMobile={true} />
 
-          <h2 className="text-[24px] md:text-[32px] md:text-[40px] text-[#1E1E1E] font-extrabold text-center leading-tight mt-[82px] mb-[47px] md:mb-[47px] px-6 flex flex-col items-center">
-            추가경쟁력
-            <span className="text-[16px] md:text-[20px] mt-[8px] text-[#979797] font-normal">
-              다양한 실력을 갖춘 추가경쟁력
-            </span>
-          </h2>
-
-          <SectionCards cards={extraCompetitiveness} swipeOnMobile={true} />
-        </div>
+        <h2 className="text-[24px] md:text-[32px] md:text-[40px] text-[#1E1E1E] font-extrabold text-center leading-tight mb-8 px-6 mt-[176px] md:mt-[0px] flex flex-col items-center">
+          교육서비스
+          <span className="text-[16px] md:text-[20px] mt-[8px] text-[#979797] font-normal">
+            한평생 에듀바이저만의 교육 여정
+          </span>
+        </h2>
+        <SectionCards
+          cards={educationServices}
+          cardWidth={368}
+          cardHeight={384}
+          gridClassName="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center mt-[35px] mb-[192px] gap-10 md:gap-30 gap-10 service__card text-left px-2 md:px-6"
+        />
       </div>
-      {/* 교육서비스는 배경색 없이 */}
-      <div className=" w-full margin-0">
-        <div className="flex flex-col max-w-6xl mx-auto">
-          <h2 className="text-[24px] md:text-[32px] md:text-[40px] text-[#1E1E1E] font-extrabold text-center leading-tight mb-8 px-6 mt-[176px] flex flex-col items-center">
-            교육서비스
-            <span className="text-[16px] md:text-[20px] mt-[8px] text-[#979797] font-normal">
-              한평생 에듀바이저만의 교육 여정
-            </span>
-          </h2>
-          <SectionCards
-            cards={educationServices}
-            cardWidth={368}
-            cardHeight={384}
-            gridClassName="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center mt-[47px] mb-[158px] gap-10 md:gap-30 gap-10 service__card text-left px-2 md:px-6"
-          />
-        </div>
-      </div>
-    </>
+    </div>
   );
 };
 
