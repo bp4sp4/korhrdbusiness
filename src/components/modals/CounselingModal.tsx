@@ -226,7 +226,7 @@ const CounselingModal = () => {
           max-w-full sm:max-w-[500px]
           p-0
           z-[999]
-          h-[85vh] md:h-auto
+          h-[70vh] md:h-auto
           md:overflow-y-visible
         "
         onPointerDownOutside={(e) => e.preventDefault()}
@@ -247,7 +247,7 @@ const CounselingModal = () => {
             onSubmit={handleSubmit}
           >
             <div className="space-y-2">
-              <div className="md:space-y-1">
+              <div className="md:space-y-2">
                 <div className="w-full md:h-10  flex items-center justify-between">
                   <Label htmlFor="name" className="text-sm font-medium">
                     이름 *
@@ -259,7 +259,10 @@ const CounselingModal = () => {
                       alt="logo"
                       className="w-4 h-4"
                     />
-                    <span className="ml-1 font-bold text-xl text-gray-800 tracking-wide font-sans">
+                    <span
+                      className="ml-1 font-bold text-xl text-gray-800 tracking-wide"
+                      style={{ fontFamily: "Toss Product Sans" }}
+                    >
                       Eduvisors
                     </span>
                   </div>
@@ -269,7 +272,7 @@ const CounselingModal = () => {
                   placeholder="홍길동"
                   value={formData.name}
                   onChange={(e) => handleInputChange("name", e.target.value)}
-                  className="w-full text-base md:h-10 md:text-lg placeholder:text-[13px]"
+                  className="w-full text-base h-10 text-[14px] placeholder:text-[14px]"
                   required
                 />
               </div>
@@ -282,7 +285,7 @@ const CounselingModal = () => {
                   placeholder="- 없이 숫자만 입력"
                   value={formData.phone}
                   onChange={(e) => handleInputChange("phone", e.target.value)}
-                  className="w-full text-base md:h-10 md:text-lg placeholder:text-[13px]"
+                  className="w-full text-base md:h-10 font-[14px] placeholder:text-[14px]"
                   required
                 />
                 {phoneError && (
@@ -429,7 +432,7 @@ const CounselingModal = () => {
             <Button
               id="counsel-submit-btn"
               type="submit"
-              className="w-full text-base md:h-11 md:text-lg "
+              className="w-full text-base md:h-11  md:text-lg bg-[#2B7FFF] hover:bg-[#2B7FFF]/80"
               disabled={
                 !formData.name ||
                 !validatePhone(formData.phone) ||
@@ -466,7 +469,7 @@ const CounselingModal = () => {
               <p>• 상담 확정 안내를 보내드립니다</p>
               <p>• 상담 전 준비사항을 미리 안내해드립니다</p>
             </div>
-            <Button onClick={closeModal} className="mt-6">
+            <Button onClick={closeModal} className="mt-6 ">
               닫기
             </Button>
           </motion.div>
@@ -486,7 +489,10 @@ const CounselingModal = () => {
               <li>동의 거부 시 상담 신청이 제한될 수 있습니다.</li>
             </ul>
           </div>
-          <Button onClick={() => setShowTerms(false)} className="w-full mt-4">
+          <Button
+            onClick={() => setShowTerms(false)}
+            className="w-full mt-4 bg-[#2B7FFF] hover:bg-[#2B7FFF]/80"
+          >
             닫기
           </Button>
         </DialogContent>

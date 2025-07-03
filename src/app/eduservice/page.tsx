@@ -73,7 +73,7 @@ export default function Eduservice() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.3 }}
-          className="w-full md:w-auto md:mb-8 md:mb-0 md:mr-13 flex-shrink-0 px-4 pt-[72px] pb-0 pl-[32px] pr-[32px] md:pl-[50px] md:pr-[150px]"
+          className="w-full md:w-auto md:mb-8 md:mb-0 md:mr-10 flex-shrink-0 px-4 pt-[72px] pb-0 pl-[32px] pr-[32px] md:pl-[50px] md:pr-[100px]"
         >
           <h2 className="text-[32px] md:text-[40px] text-[#1E1E1E] font-extrabold text-left md:text-Left leading-tight mb-4">
             전문가와 내 커리어 설계
@@ -156,7 +156,7 @@ export default function Eduservice() {
         <div className="flex items-center min-h-[600px] md:h-[680px]  mx-auto p-0 w-full">
           <div className="mx-auto w-full">
             <motion.h2
-              className="pt-[20px] pb-[20px] text-[28px] md:text-[48px] text-[#1E1E1E] text-center mb-6 md:mb-10 font-extrabold leading-tight"
+              className=" text-[28px] md:text-[48px] text-[#1E1E1E] mt-[83px] text-center mb-6 md:mb-[66px] font-bold leading-tight"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
@@ -166,7 +166,7 @@ export default function Eduservice() {
               <br className="hidden md:block" /> 성장의 시작
             </motion.h2>
 
-            <div className="flex flex-col md:flex-row gap-6 md:gap-8 justify-center items-center md:items-stretch w-full">
+            <div className="flex flex-col md:flex-row gap-6 md:gap-8 mb-[159px] justify-center items-center md:items-stretch w-full">
               {/* 맞춤형 커리큘럼 설계 */}
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
