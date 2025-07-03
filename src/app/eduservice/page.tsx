@@ -123,9 +123,9 @@ export default function Eduservice() {
             style={{
               marginBottom: "10px",
               display: "block",
-              border: "none",
-              outline: "none",
-              boxShadow: "none",
+              border: "none !important",
+              outline: "none !important",
+              boxShadow: "none !important",
               lineHeight: 0,
               verticalAlign: "bottom",
             }}
