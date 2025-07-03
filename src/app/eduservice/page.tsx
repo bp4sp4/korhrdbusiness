@@ -190,7 +190,7 @@ export default function Eduservice() {
                 className="flex flex-col items-start w-[90vw] max-w-[367px] h-[240px] md:w-[367px] md:h-[384px] mb-30 md:mb-0"
               >
                 <img
-                  src="/images/eduservice/grow/grow001.png"
+                  src="/images/eduservice/grow/Grow001.png"
                   alt="grow001"
                   className="w-[350px] h-[350px] md:w-[367px] md:h-[384px] mx-auto"
                 />
@@ -204,7 +204,7 @@ export default function Eduservice() {
                 className="flex flex-col items-start w-[90vw] max-w-[367px] h-[240px] md:w-[367px] md:h-[384px] mb-30 md:mb-0"
               >
                 <img
-                  src="/images/eduservice/grow/grow002.png"
+                  src="/images/eduservice/grow/Grow002.png"
                   alt="grow002"
                   className="w-[350px] h-[350px] md:w-[367px] md:h-[384px] mx-auto"
                 />
@@ -218,7 +218,7 @@ export default function Eduservice() {
                 className="flex flex-col items-start w-[90vw] max-w-[367px] h-[240px] md:w-[367px] md:h-[384px]"
               >
                 <img
-                  src="/images/eduservice/grow/grow003.png"
+                  src="/images/eduservice/grow/Grow003.png"
                   alt="grow003"
                   className="w-[350px] h-[350px] md:w-[367px] md:h-[384px] mx-auto"
                 />
