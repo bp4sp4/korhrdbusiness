@@ -27,6 +27,7 @@ const ConsultationAdminPage = () => {
   const [fieldFilter, setFieldFilter] = useState<string>("all");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+  const [selectedIds, setSelectedIds] = useState<(string | number)[]>([]);
 
   // Fetch data from Supabase
   useEffect(() => {
@@ -89,6 +90,38 @@ const ConsultationAdminPage = () => {
     XLSX.writeFile(workbook, "consultations.xlsx");
   };
 
+  // 전체 선택 핸들러
+  const handleSelectAll = (checked: boolean) => {
+    if (checked) {
+      setSelectedIds(paginatedData.map((item) => item.id));
+    } else {
+      setSelectedIds([]);
+    }
+  };
+
+  // 개별 선택 핸들러
+  const handleSelectOne = (id: string | number, checked: boolean) => {
+    setSelectedIds((prev) =>
+      checked ? [...prev, id] : prev.filter((itemId) => itemId !== id)
+    );
+  };
+
+  // 선택 삭제 핸들러
+  const handleDeleteSelected = async () => {
+    if (selectedIds.length === 0) return;
+    if (!confirm("선택한 항목을 모두 삭제하시겠습니까?")) return;
+    const { error } = await supabase
+      .from("consultations")
+      .delete()
+      .in("id", selectedIds);
+    if (!error) {
+      setData((prev) => prev.filter((row) => !selectedIds.includes(row.id)));
+      setSelectedIds([]);
+    } else {
+      alert("삭제 실패: " + error.message);
+    }
+  };
+
   if (loading) {
     return <div className="p-8 text-center text-lg">Loading...</div>;
   }
@@ -107,10 +140,19 @@ const ConsultationAdminPage = () => {
                 총 {filteredData.length}개의 상담 신청이 있습니다.
               </p>
             </div>
-            <Button className="gap-2" onClick={handleExcelDownload}>
-              <Download className="w-4 h-4" />
-              엑셀 다운로드
-            </Button>
+            <div className="flex gap-2">
+              <Button className="gap-2" onClick={handleExcelDownload}>
+                <Download className="w-4 h-4" />
+                엑셀 다운로드
+              </Button>
+              <Button
+                variant="destructive"
+                disabled={selectedIds.length === 0}
+                onClick={handleDeleteSelected}
+              >
+                선택 삭제
+              </Button>
+            </div>
           </div>
 
           <FilterBar
@@ -124,6 +166,18 @@ const ConsultationAdminPage = () => {
           <table className="w-full text-sm mt-6">
             <thead>
               <tr className="bg-gray-100">
+                <th className="p-2">
+                  <input
+                    type="checkbox"
+                    checked={
+                      paginatedData.length > 0 &&
+                      paginatedData.every((item) =>
+                        selectedIds.includes(item.id)
+                      )
+                    }
+                    onChange={(e) => handleSelectAll(e.target.checked)}
+                  />
+                </th>
                 <th className="p-2">이름</th>
                 <th className="p-2">연락처</th>
                 <th className="p-2">학력</th>
@@ -136,6 +190,15 @@ const ConsultationAdminPage = () => {
             <tbody className="text-center">
               {paginatedData.map((item) => (
                 <tr key={item.id} className="border-b hover:bg-gray-50">
+                  <td className="p-2">
+                    <input
+                      type="checkbox"
+                      checked={selectedIds.includes(item.id)}
+                      onChange={(e) =>
+                        handleSelectOne(item.id, e.target.checked)
+                      }
+                    />
+                  </td>
                   <td className="p-2">{item.name}</td>
                   <td className="p-2">{item.phone}</td>
                   <td className="p-2">{item.experience}</td>
@@ -155,6 +218,9 @@ const ConsultationAdminPage = () => {
                         if (!error) {
                           setData((prev) =>
                             prev.filter((row) => row.id !== item.id)
+                          );
+                          setSelectedIds((prev) =>
+                            prev.filter((id) => id !== item.id)
                           );
                         } else {
                           alert("삭제 실패: " + error.message);

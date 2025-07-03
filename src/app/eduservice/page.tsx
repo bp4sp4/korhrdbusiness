@@ -96,7 +96,7 @@ export default function Eduservice() {
         >
           <video
             src="/images/eduservice/eduform.mp4"
-            className="relative z-0 w-[100%] h-[100%] md:w-[560px] md:h-[560px] object-cover"
+            className="relative z-0 w-[100%] h-[100%] md:w-[560px] md:h-[560px] object-cover  mb-[135px] md:mb-0"
             autoPlay
             loop
             muted
@@ -120,7 +120,7 @@ export default function Eduservice() {
             loop
             muted
             playsInline
-            className="relative z-0  w-[100%] h-[100%] md:w-[560px] md:h-[560px] mb-[130px] md:mb-0"
+            className="relative z-0  w-[100%] h-[100%] md:w-[560px] md:h-[560px] mb-[10px] md:mb-0"
           />
         </motion.div>
         {/* 텍스트 - 나중에 등장 */}

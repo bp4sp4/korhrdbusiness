@@ -343,6 +343,7 @@ export default function RecruitListPage() {
   const [deletingJobId, setDeletingJobId] = useState<number | null>(null);
   const [jobs, setJobs] = useState<Job[]>([]);
   const router = useRouter();
+  const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
     async function fetchJobs() {
@@ -371,6 +372,10 @@ export default function RecruitListPage() {
       setIsAdmin(Array.isArray(admins) && admins.length > 0);
     }
     checkAdmin();
+  }, []);
+
+  useEffect(() => {
+    setHydrated(true);
   }, []);
 
   const filteredJobs = jobs.filter((job) => {
@@ -555,11 +560,11 @@ export default function RecruitListPage() {
                 </div>
               </div>
 
-              {isAdmin && (
+              {hydrated && isAdmin && !showAddForm && (
                 <div className="flex-shrink-0">
                   <Button
-                    onClick={() => setShowAddForm(!showAddForm)}
-                    className="bg-green-600 hover:bg-green-700 text-white"
+                    onClick={() => setShowAddForm(true)}
+                    className="bg-blue-200 hover:bg-blue-700 text-white"
                   >
                     <Plus className="h-4 w-4 mr-2" />
                     채용공고 등록
