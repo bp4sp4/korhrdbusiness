@@ -337,7 +337,8 @@ export default function RecruitListPage() {
   const [keyword, setKeyword] = useState("");
   const [company, setCompany] = useState("all");
   const [type, setType] = useState("all");
-  const [isAdmin, setIsAdmin] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [roleLoading, setRoleLoading] = useState(true);
   const [showAddForm, setShowAddForm] = useState(false);
   const [editingJobId, setEditingJobId] = useState<number | null>(null);
   const [deletingJobId, setDeletingJobId] = useState<number | null>(null);
@@ -363,13 +364,19 @@ export default function RecruitListPage() {
       } = await supabase.auth.getUser();
       if (!user) {
         setIsAdmin(false);
+        setRoleLoading(false);
         return;
       }
       const { data: admins } = await supabase
         .from("admins")
-        .select("email")
+        .select("role")
         .eq("email", user.email);
-      setIsAdmin(Array.isArray(admins) && admins.length > 0);
+      setIsAdmin(
+        Array.isArray(admins) &&
+          admins.length > 0 &&
+          (admins[0].role === "super" || admins[0].role === "manager")
+      );
+      setRoleLoading(false);
     }
     checkAdmin();
   }, []);
@@ -560,11 +567,11 @@ export default function RecruitListPage() {
                 </div>
               </div>
 
-              {hydrated && isAdmin && !showAddForm && (
+              {hydrated && !roleLoading && isAdmin && !showAddForm && (
                 <div className="flex-shrink-0">
                   <Button
                     onClick={() => setShowAddForm(true)}
-                    className="bg-blue-200 hover:bg-blue-700 text-white"
+                    className="bg-blue-500 hover:bg-blue-700 text-white"
                   >
                     <Plus className="h-4 w-4 mr-2" />
                     채용공고 등록
