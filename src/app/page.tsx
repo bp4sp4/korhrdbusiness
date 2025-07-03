@@ -20,13 +20,13 @@ export default function Home() {
   return (
     <main className="main w-full min-h-screen flex flex-col items-center bg-white">
       <section
-        className="main__hero w-full max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between py-12 relative overflow-hidden"
+        className="main__hero w-full min-w-0 flex flex-col md:flex-row items-center justify-between py-12 relative overflow-hidden"
         style={{
-          backgroundImage: "url('/images/main__banner3.jpg')",
+          backgroundImage: "url('/images/main/main__banner.png')",
           backgroundSize: "cover",
-          backgroundPosition: "80% 0",
+          backgroundPosition: "80% 20%",
           height: "80vh",
-          maxWidth: "100%",
+          width: "100vw",
         }}
       >
         <div className="main__hero-content flex-1 flex flex-col items-start z-10 rounded-lg md:bg-transparent md:p-0">
