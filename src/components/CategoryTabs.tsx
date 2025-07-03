@@ -175,7 +175,13 @@ const CategoryTabs: React.FC = () => {
             공감과 실력을 갖춘 국가자격
           </span>
         </h2>
-        <SectionCards cards={nationalCertificates} swipeOnMobile={true} />
+        <SectionCards
+          cards={nationalCertificates}
+          swipeOnMobile={true}
+          cardWidth={274}
+          cardHeight={314}
+          gridClassName="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 place-items-center mt-[47px] mb-[158px] gap-10 px-6"
+        />
 
         <h2 className="text-[24px] md:text-[32px] md:text-[40px] text-[#1E1E1E] font-extrabold text-center leading-tight mt-[82px] md:mt-[0px] mb-[35px] md:mb-[47px] px-6 flex flex-col items-center">
           추가자격증
@@ -183,7 +189,13 @@ const CategoryTabs: React.FC = () => {
             다양한 실력을 갖춘 추가경쟁력
           </span>
         </h2>
-        <SectionCards cards={extraCompetitiveness} swipeOnMobile={true} />
+        <SectionCards
+          cards={extraCompetitiveness}
+          swipeOnMobile={true}
+          cardWidth={274}
+          cardHeight={314}
+          gridClassName="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 place-items-center mt-[47px] mb-[158px] gap-10 px-6"
+        />
 
         <h2 className="text-[24px] md:text-[32px] md:text-[40px] text-[#1E1E1E] font-extrabold text-center leading-tight mb-8 px-6 mt-[176px] md:mt-[0px] flex flex-col items-center">
           교육서비스
@@ -195,7 +207,7 @@ const CategoryTabs: React.FC = () => {
           cards={educationServices}
           cardWidth={368}
           cardHeight={384}
-          gridClassName="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center mt-[35px] mb-[192px] gap-10 md:gap-30 gap-10 service__card text-left px-2 md:px-6"
+          gridClassName="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center mt-[47px] mb-[158px] gap-10 px-6"
         />
       </div>
     </div>

@@ -75,10 +75,17 @@ export default function Eduservice() {
           viewport={{ once: true, amount: 0.3 }}
           className="w-full md:w-auto md:mb-8 md:mb-0 md:mr-10 flex-shrink-0 px-4 pt-[72px] pb-0 pl-[32px] pr-[32px] md:pl-[50px] md:pr-[100px]"
         >
-          <h2 className="text-[32px] md:text-[40px] text-[#1E1E1E] font-extrabold text-left md:text-Left leading-tight mb-4">
+          <h2 className="text-[32px] md:text-[40px] text-[#1E1E1E] font-extrabold text-left md:text-Left leading-tight mb-4 flex items-center justify-start md:justify-center">
+            <span className="hidden md:flex">
+              <img
+                src="/images/eduservice/expert.png"
+                alt="career"
+                className="w-[30px] h-[30px] md:w-[50px] md:h-[50px] mr-1 md:m-0"
+              />
+            </span>
             전문가와 내 커리어 설계
           </h2>
-          <p className="text-[16px] md:text-[20px] text-[#1E1E1E] text-left md:text-left">
+          <p className="text-[16px] md:text-[20px] text-[#1E1E1E] text-left md:text-center md:ml-[8px]">
             나의 <strong>목표와 꿈을 현실로</strong> 만들어 드립니다.
           </p>
         </motion.div>
@@ -143,10 +150,17 @@ export default function Eduservice() {
             padding: "72px 32px 0",
           }}
         >
-          <h2 className="text-[32px] md:text-[40px] text-[#1E1E1E] font-extrabold text-left md:text-right leading-tight mb-4">
+          <h2 className="text-[32px] md:text-[40px] text-[#1E1E1E] font-extrabold text-left md:text-right leading-tight mb-4 flex items-center justify-center">
+            <span className="hidden md:flex items-center justify-center">
+              <img
+                src="/images/eduservice/career.png"
+                alt="career"
+                className="w-[30px] h-[30px] md:w-[50px] md:h-[50px] mr-1"
+              />
+            </span>
             내일의 전문가, 오늘 지원하세요
           </h2>
-          <p className="text-[16px] md:text-[20px] text-[#1E1E1E]  text-left md:text-left">
+          <p className="text-[16px] md:text-[20px] text-[#1E1E1E] ml-[0px] md:ml-[55px] md:text-left">
             목표를 현실로, <strong>한평생이 도와드립니다.</strong>
           </p>
         </motion.div>
@@ -173,19 +187,13 @@ export default function Eduservice() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
                 viewport={{ once: true, amount: 0.3 }}
-                className="rounded-xl shadow-lg p-10 md:p-8 flex flex-col items-start w-[90vw] max-w-[320px] h-[240px] md:w-[300px] md:h-[300px] bg-blue-800"
+                className="flex flex-col items-start w-[90vw] max-w-[367px] h-[240px] md:w-[367px] md:h-[384px] mb-30 md:mb-0"
               >
-                <h3 className="text-lg md:text-xl text-white font-extrabold mb-2 text-left">
-                  맞춤형 커리큘럼 설계
-                </h3>
                 <img
-                  src="/images/eduservice/FOLDER.png"
-                  alt=""
-                  className="w-[90px] h-[90px] md:w-[150px] md:h-[150px] mx-auto"
+                  src="/images/eduservice/grow/grow001.png"
+                  alt="grow001"
+                  className="w-[350px] h-[350px] md:w-[367px] md:h-[384px] mx-auto"
                 />
-                <p className="text-[#f7f8fb] text-left font-bold text-sm md:text-base mt-2">
-                  개인별 목표와 역량에 맞춘 교육 로드맵을 제공합니다.
-                </p>
               </motion.div>
               {/* 전문가 1:1 커리어 상담 */}
               <motion.div
@@ -193,19 +201,13 @@ export default function Eduservice() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
                 viewport={{ once: true, amount: 0.3 }}
-                className="bg-blue-600 rounded-xl shadow-lg p-10 md:p-8 flex flex-col items-start w-[90vw] max-w-[320px] h-[240px] md:w-[300px] md:h-[300px]"
+                className="flex flex-col items-start w-[90vw] max-w-[367px] h-[240px] md:w-[367px] md:h-[384px] mb-30 md:mb-0"
               >
-                <h3 className="text-lg md:text-xl text-white font-extrabold mb-2 text-left">
-                  전문가 1:1 커리어 상담
-                </h3>
                 <img
-                  src="/images/eduservice/PASSPORT.png"
-                  alt=""
-                  className="w-[90px] h-[90px] md:w-[150px] md:h-[150px] mx-auto"
+                  src="/images/eduservice/grow/grow002.png"
+                  alt="grow002"
+                  className="w-[350px] h-[350px] md:w-[367px] md:h-[384px] mx-auto"
                 />
-                <p className="text-[#f7f8fb] font-bold text-left text-sm md:text-base mt-2">
-                  경력 설계부터 실전 취업까지, 전문가가 함께합니다.
-                </p>
               </motion.div>
               {/* 365일 교육상담 지원 */}
               <motion.div
@@ -213,19 +215,13 @@ export default function Eduservice() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
                 viewport={{ once: true, amount: 0.3 }}
-                className="bg-blue-200 rounded-xl shadow-lg p-10 md:p-8 flex flex-col items-start w-[90vw] max-w-[320px] h-[240px] md:w-[300px] md:h-[300px]"
+                className="flex flex-col items-start w-[90vw] max-w-[367px] h-[240px] md:w-[367px] md:h-[384px]"
               >
-                <h3 className="text-lg md:text-xl font-extrabold mb-2 text-left">
-                  365일 교육상담 지원
-                </h3>
                 <img
-                  src="/images/eduservice/CLOCK.png"
-                  alt=""
-                  className="w-[90px] h-[90px] md:w-[150px] md:h-[150px] mx-auto"
+                  src="/images/eduservice/grow/grow003.png"
+                  alt="grow003"
+                  className="w-[350px] h-[350px] md:w-[367px] md:h-[384px] mx-auto"
                 />
-                <p className="text-gray-500 font-bold text-left text-sm md:text-base mt-2">
-                  언제든 궁금한 점을 문의하세요. 연중무휴로 도와드립니다.
-                </p>
               </motion.div>
             </div>
           </div>
