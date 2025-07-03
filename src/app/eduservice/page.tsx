@@ -120,8 +120,16 @@ export default function Eduservice() {
             loop
             muted
             playsInline
-            style={{ marginBottom: "10px" }}
-            className="relative z-0  w-[100%] h-[100%] md:w-[560px] md:h-[560px]"
+            style={{
+              marginBottom: "10px",
+              display: "block",
+              border: "none",
+              outline: "none",
+              boxShadow: "none",
+              lineHeight: 0,
+              verticalAlign: "bottom",
+            }}
+            className="relative z-0 w-[100%] h-[100%] md:w-[560px] md:h-[560px]"
           />
         </motion.div>
         {/* 텍스트 - 나중에 등장 */}
