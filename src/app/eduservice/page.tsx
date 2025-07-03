@@ -120,7 +120,8 @@ export default function Eduservice() {
             loop
             muted
             playsInline
-            className="relative z-0  w-[100%] h-[100%] md:w-[560px] md:h-[560px] mb-[10px] md:mb-0"
+            style={{ marginBottom: "10px" }}
+            className="relative z-0  w-[100%] h-[100%] md:w-[560px] md:h-[560px]"
           />
         </motion.div>
         {/* 텍스트 - 나중에 등장 */}
@@ -222,6 +223,13 @@ export default function Eduservice() {
           </div>
         </div>
       </section>
+      <style jsx>{`
+        @media (min-width: 768px) {
+          video[playsinline] {
+            margin-bottom: 0 !important;
+          }
+        }
+      `}</style>
     </>
   );
 }

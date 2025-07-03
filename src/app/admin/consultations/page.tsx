@@ -140,7 +140,7 @@ const ConsultationAdminPage = () => {
                 총 {filteredData.length}개의 상담 신청이 있습니다.
               </p>
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 md:mb-0">
               <Button className="gap-2" onClick={handleExcelDownload}>
                 <Download className="w-4 h-4" />
                 엑셀 다운로드
