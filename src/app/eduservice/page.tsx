@@ -188,7 +188,7 @@ export default function Eduservice() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
                 viewport={{ once: true, amount: 0.3 }}
-                className="flex flex-col items-start w-[90vw] max-w-[367px] h-[240px] md:w-[367px] md:h-[384px] mb-30 md:mb-0"
+                className="flex flex-col items-start w-[90vw] max-w-[367px] h-[240px] md:w-[367px] md:h-[384px] mb-15 md:mb-0"
               >
                 <img
                   src="/images/eduservice/grow/Grow001.png"
@@ -202,7 +202,7 @@ export default function Eduservice() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
                 viewport={{ once: true, amount: 0.3 }}
-                className="flex flex-col items-start w-[90vw] max-w-[367px] h-[240px] md:w-[367px] md:h-[384px] mb-30 md:mb-0"
+                className="flex flex-col items-start w-[90vw] max-w-[367px] h-[240px] md:w-[367px] md:h-[384px] mb-15 md:mb-0"
               >
                 <img
                   src="/images/eduservice/grow/Grow002.png"

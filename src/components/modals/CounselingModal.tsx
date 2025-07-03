@@ -141,7 +141,7 @@ const CounselingModal = () => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
-    experience: "고졸",
+    experience: "고등학교 졸업",
     field: "사회복지사 자격증",
     consent: false,
   });
@@ -199,7 +199,7 @@ const CounselingModal = () => {
 
   const validatePhone = (phone: string) => /^\d{9,11}$/.test(phone);
 
-  const educationLevels = ["고졸", "초대졸", "전문대졸", "4년제대졸"];
+  const educationLevels = ["고등학교 졸업", "2/3년제 대졸", "4년제 대졸"];
 
   const handleSubmit = async (e?: React.FormEvent<HTMLFormElement>) => {
     if (e) e.preventDefault();
@@ -259,10 +259,10 @@ const CounselingModal = () => {
                     <img
                       src="/images/logo2.png"
                       alt="logo"
-                      className="w-4 h-4 md:w-5 md:h-5"
+                      className="w-3 h-3 md:w-3 md:h-3"
                     />
                     <span
-                      className="ml-1 font-bold  text-gray-800 tracking-wide text-[14px] md:text-[18px]"
+                      className="ml-1 font-bold  text-gray-800 tracking-wide text-[14px] md:text-[14px]"
                       style={{ fontFamily: "Toss Product Sans" }}
                     >
                       Eduvisors
@@ -444,8 +444,7 @@ const CounselingModal = () => {
                 isSubmitting
               }
             >
-              {isSubmitting ? "신청 중..." : "신청 완료"}
-              <CheckCircle className="w-4 h-4 ml-2" />
+              {isSubmitting ? "신청 중..." : "신청하기"}
             </Button>
           </form>
         ) : (
