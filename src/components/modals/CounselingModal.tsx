@@ -23,7 +23,6 @@ import {
 } from "@/components/ui/dialog";
 import { supabase } from "@/lib/supabase";
 import { useCounselModal } from "@/store/useCounselModal";
-import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
 
 interface FieldOption {
@@ -152,7 +151,6 @@ const CounselingModal = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [showScrollIndicator, setShowScrollIndicator] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
-  const [hasShownGuide, setHasShownGuide] = useState(false);
 
   useEffect(() => {
     if (!isOpen) {
@@ -170,19 +168,6 @@ const CounselingModal = () => {
       return () => clearTimeout(timer);
     }
   }, [isOpen]);
-
-  // 모달이 열릴 때 스크롤 인디케이터 바로 보이게
-  useEffect(() => {
-    if (isOpen && !hasShownGuide) {
-      setTimeout(() => {
-        const el = document.querySelector("#counsel-name-input");
-        if (el) {
-          startCounselTour();
-          setHasShownGuide(true);
-        }
-      }, 500);
-    }
-  }, [isOpen, hasShownGuide]);
 
   const checkScrollIndicator = () => {
     const el = scrollRef.current;
@@ -232,89 +217,6 @@ const CounselingModal = () => {
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  const startCounselTour = () => {
-    console.log("driver.js startCounselTour 실행됨");
-    if (!document.querySelector("#counsel-name-input")) {
-      alert("가이드 타겟 요소가 없습니다.");
-      return;
-    }
-    // 1. 모든 required 속성 임시 제거
-    const requiredInputs = document.querySelectorAll(
-      "#counsel-name-input, #counsel-phone-input"
-    );
-    requiredInputs.forEach((el) => el.removeAttribute("required"));
-
-    const driverObj = driver({
-      showProgress: true,
-      showButtons: ["next", "previous"],
-      nextBtnText: "다음",
-      prevBtnText: "이전",
-      steps: [
-        {
-          element: "#counsel-name-input",
-          popover: {
-            title: "이름 입력",
-            description: "여기에 본인의 이름을 입력하세요.",
-            side: "bottom",
-            align: "start",
-          },
-        },
-        {
-          element: "#counsel-phone-input",
-          popover: {
-            title: "연락처 입력",
-            description: "연락 가능한 휴대폰 번호를 -(제외) 숫자만 입력하세요.",
-            side: "bottom",
-            align: "start",
-          },
-        },
-        {
-          element: "#counsel-experience-select",
-          popover: {
-            title: "최종학력 선택",
-            description: "본인의 최종학력을 선택하세요.",
-            side: "bottom",
-            align: "start",
-          },
-        },
-        {
-          element: "#counsel-field-select",
-          popover: {
-            title: "관심분야 선택",
-            description: "관심 있는 분야를 아래로 스크롤해 선택하세요.",
-            side: "bottom",
-            align: "start",
-          },
-        },
-        {
-          element: "#counsel-consent-checkbox",
-          popover: {
-            title: "개인정보 수집 동의",
-            description: "상담을 위해 개인정보 수집에 동의해 주세요.",
-            side: "bottom",
-            align: "start",
-          },
-        },
-        {
-          element: "#counsel-submit-btn",
-          popover: {
-            title: "신청 완료",
-            description: "모든 정보를 입력하셨으면 이 버튼을 눌러주세요.",
-            side: "bottom",
-            align: "start",
-          },
-        },
-      ],
-    });
-
-    driverObj.drive();
-
-    // 2. 일정 시간(예: 5초) 후 required 복구 (가이드가 짧을 때만 권장)
-    setTimeout(() => {
-      requiredInputs.forEach((el) => el.setAttribute("required", "true"));
-    }, 5000);
   };
 
   return (

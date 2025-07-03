@@ -22,9 +22,9 @@ export default function Home() {
       <section
         className="main__hero w-full max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between py-12 relative overflow-hidden"
         style={{
-          backgroundImage: "url('/images/main__banner2.png')",
+          backgroundImage: "url('/images/main__banner3.jpg')",
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundPosition: "80% 0",
           height: "80vh",
           maxWidth: "100%",
         }}
@@ -141,7 +141,7 @@ export default function Home() {
         <div
           className="flex-1 h-[300px] md:h-full flex flex-col justify-center bg-[#aeb2a3]"
           style={{
-            backgroundImage: "url('/images/metting.png')",
+            backgroundImage: "url('/images/metting2.jpg')",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -171,7 +171,7 @@ export default function Home() {
       <section className="relative w-full h-[100vh] flex md:hidden">
         {/* 배경 이미지 */}
         <img
-          src="/images/main/meeting_mobile.png"
+          src="/images/metting2.jpg"
           alt="채용 미팅"
           className="w-full h-full object-cover"
           style={{ height: "100vh" }}

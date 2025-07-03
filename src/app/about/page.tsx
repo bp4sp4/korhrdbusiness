@@ -33,7 +33,7 @@ export default function EduServicePage() {
           className="absolute inset-0 w-full h-full z-0"
         >
           <Image
-            src="/images/about/office-bg.png"
+            src="/images/metting.jpg"
             alt="오피스 배경"
             fill
             className="object-cover opacity-30"
