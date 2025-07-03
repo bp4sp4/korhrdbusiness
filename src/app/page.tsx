@@ -24,7 +24,7 @@ export default function Home() {
         style={{
           backgroundImage: "url('/images/main/main__banner.png')",
           backgroundSize: "cover",
-          backgroundPosition: "80% 20%",
+          backgroundPosition: "80% 15%",
           height: "80vh",
           width: "100vw",
         }}
