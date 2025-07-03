@@ -41,6 +41,7 @@ export default function Eduservice() {
           </h2>
           <p className="relative z-20 py-8 text-left text-base text-neutral-200 md:text-[20px] ">
             우리는 단순한 교육이 아닌,
+            <br className="block md:hidden" />
             <strong className="font-extrabold">
               인생의 방향성과 성장의 여정을 함께합니다.
             </strong>
@@ -75,7 +76,7 @@ export default function Eduservice() {
           viewport={{ once: true, amount: 0.3 }}
           className="w-full md:w-auto md:mb-8 md:mb-0 md:mr-10 flex-shrink-0 px-4 pt-[72px] pb-0 pl-[32px] pr-[32px] md:pl-[50px] md:pr-[100px]"
         >
-          <h2 className="text-[32px] md:text-[40px] text-[#1E1E1E] font-extrabold text-left md:text-Left leading-tight mb-4 flex items-center justify-start md:justify-center">
+          <h2 className="text-[24px] md:text-[40px] text-[#1E1E1E] font-extrabold text-left md:text-Left leading-tight mb-2 md:mb-4  flex items-center justify-center md:justify-center">
             <span className="hidden md:flex">
               <img
                 src="/images/eduservice/expert.png"
@@ -85,7 +86,7 @@ export default function Eduservice() {
             </span>
             전문가와 내 커리어 설계
           </h2>
-          <p className="text-[16px] md:text-[20px] text-[#1E1E1E] text-left md:text-center md:ml-[8px]">
+          <p className="text-[16px] md:text-[20px] text-[#1E1E1E] text-center md:text-center md:ml-[8px]">
             나의 <strong>목표와 꿈을 현실로</strong> 만들어 드립니다.
           </p>
         </motion.div>
@@ -103,7 +104,7 @@ export default function Eduservice() {
         >
           <video
             src="/images/eduservice/video/eduform.mp4"
-            className="relative z-0 w-[100%] h-[100%] md:w-[560px] md:h-[560px] object-cover  mb-[135px] md:mb-0"
+            className="relative z-0 w-[85%] h-[85%] md:w-[560px] md:h-[560px] object-cover  mb-[135px] md:mb-0"
             autoPlay
             loop
             muted
@@ -136,7 +137,7 @@ export default function Eduservice() {
               lineHeight: 0,
               verticalAlign: "bottom",
             }}
-            className="relative z-0 w-[100%] h-[100%] md:w-[560px] md:h-[560px]"
+            className="relative z-0 w-[85%] h-[85%] md:w-[560px] md:h-[560px]"
           />
         </motion.div>
         {/* 텍스트 - 나중에 등장 */}
@@ -150,7 +151,7 @@ export default function Eduservice() {
             padding: "72px 32px 0",
           }}
         >
-          <h2 className="text-[32px] md:text-[40px] text-[#1E1E1E] font-extrabold text-left md:text-right leading-tight mb-4 flex items-center justify-center">
+          <h2 className="text-[24px] md:text-[40px] text-[#1E1E1E] font-extrabold text-left md:text-right leading-tight mb-2 md:mb-4 flex items-center justify-center">
             <span className="hidden md:flex items-center justify-center">
               <img
                 src="/images/eduservice/career.png"
@@ -160,7 +161,7 @@ export default function Eduservice() {
             </span>
             내일의 전문가, 오늘 지원하세요
           </h2>
-          <p className="text-[16px] md:text-[20px] text-[#1E1E1E] ml-[0px] md:ml-[55px] md:text-left">
+          <p className="text-[16px] md:text-[20px] text-[#1E1E1E] ml-[0px] md:ml-[55px] md:text-left text-center">
             목표를 현실로, <strong>한평생이 도와드립니다.</strong>
           </p>
         </motion.div>
@@ -170,7 +171,7 @@ export default function Eduservice() {
         <div className="flex items-center min-h-[600px] md:h-[680px]  mx-auto p-0 w-full">
           <div className="mx-auto w-full">
             <motion.h2
-              className=" text-[28px] md:text-[48px] text-[#1E1E1E] mt-[83px] text-center mb-6 md:mb-[66px] font-bold leading-tight"
+              className=" text-[24px] md:text-[48px] text-[#1E1E1E] mt-[83px] text-center mb-6 md:mb-[66px] font-bold leading-tight"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
@@ -192,7 +193,7 @@ export default function Eduservice() {
                 <img
                   src="/images/eduservice/grow/Grow001.png"
                   alt="grow001"
-                  className="w-[350px] h-[350px] md:w-[367px] md:h-[384px] mx-auto"
+                  className="w-[290px] h-[290px] md:w-[367px] md:h-[384px] mx-auto"
                 />
               </motion.div>
               {/* 전문가 1:1 커리어 상담 */}
@@ -206,7 +207,7 @@ export default function Eduservice() {
                 <img
                   src="/images/eduservice/grow/Grow002.png"
                   alt="grow002"
-                  className="w-[350px] h-[350px] md:w-[367px] md:h-[384px] mx-auto"
+                  className="w-[290px] h-[290px] md:w-[367px] md:h-[384px] mx-auto"
                 />
               </motion.div>
               {/* 365일 교육상담 지원 */}
@@ -220,7 +221,7 @@ export default function Eduservice() {
                 <img
                   src="/images/eduservice/grow/Grow003.png"
                   alt="grow003"
-                  className="w-[350px] h-[350px] md:w-[367px] md:h-[384px] mx-auto"
+                  className="w-[290px] h-[290px] md:w-[367px] md:h-[384px] mx-auto"
                 />
               </motion.div>
             </div>

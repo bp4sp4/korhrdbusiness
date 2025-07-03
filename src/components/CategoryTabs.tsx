@@ -98,6 +98,9 @@ const SectionCards = ({
 
   if (!hydrated) return null;
 
+  // educationServices 카드인지 판별
+  const isEducationServices = cards === educationServices;
+
   if (swipeOnMobile && isMobile) {
     return (
       <Swiper
@@ -143,8 +146,13 @@ const SectionCards = ({
     <div className={gridClassName}>
       {cards.map((card, idx) => (
         <Card
-          className="relative flex flex-col justify-end overflow-hidden rounded-2xl"
-          style={{ width: cardWidth, height: cardHeight }}
+          className={
+            isEducationServices
+              ? "relative flex flex-col justify-end overflow-hidden rounded-2xl w-[300px] h-[320px] md:w-[348px] md:h-[384px] mx-auto"
+              : `relative flex flex-col justify-end overflow-hidden rounded-2xl${
+                  cardWidth ? ` w-[${cardWidth}px]` : ""
+                }${cardHeight ? ` h-[${cardHeight}px]` : ""}`
+          }
           key={card.img + idx}
         >
           <img
@@ -205,7 +213,7 @@ const CategoryTabs: React.FC = () => {
         </h2>
         <SectionCards
           cards={educationServices}
-          cardWidth={368}
+          cardWidth={348}
           cardHeight={384}
           gridClassName="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center mt-[47px] mb-[158px] gap-10 px-6"
         />
