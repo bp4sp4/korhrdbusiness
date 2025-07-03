@@ -158,7 +158,7 @@ const CounselingModal = () => {
         setFormData({
           name: "",
           phone: "",
-          experience: "고졸",
+          experience: "고등학교 졸업",
           field: "사회복지사 자격증",
           consent: false,
         });
@@ -166,6 +166,11 @@ const CounselingModal = () => {
         setPhoneError("");
       }, 300);
       return () => clearTimeout(timer);
+    }
+    if (isOpen) {
+      setTimeout(() => {
+        checkScrollIndicator();
+      }, 100);
     }
   }, [isOpen]);
 
