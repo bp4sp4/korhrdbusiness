@@ -95,7 +95,7 @@ export default function Eduservice() {
             z-10"
         >
           <video
-            src="/images/eduservice/eduform.mp4"
+            src="/images/eduservice/video/eduform.mp4"
             className="relative z-0 w-[100%] h-[100%] md:w-[560px] md:h-[560px] object-cover  mb-[135px] md:mb-0"
             autoPlay
             loop
@@ -115,7 +115,7 @@ export default function Eduservice() {
           className="w-full  mx-auto h-[420px] md:h-[400px] flex items-center justify-center order-2 md:order-1 translate-y-[40px] md:translate-y-0 z-10 relative"
         >
           <video
-            src="/images/eduservice/recruit.mp4"
+            src="/images/eduservice/video/recruit.mp4"
             autoPlay
             loop
             muted

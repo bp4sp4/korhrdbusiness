@@ -8,22 +8,22 @@ import "swiper/css";
 
 const nationalCertificates = [
   {
-    img: "/images/eduservice/Frame_1.png",
+    img: "/images/eduservice/national/national001.png",
     title: "신뢰받는 복지 전문가",
     desc: "공감과 실력을 갖춘 국가자격",
   },
   {
-    img: "/images/eduservice/Frame_2.png",
+    img: "/images/eduservice/national/national002.png",
     title: "마음을 키우는 직업",
     desc: "순수함을 돌보는 전문직의 시작",
   },
   {
-    img: "/images/eduservice/Frame_3.png",
+    img: "/images/eduservice/national/national003.png",
     title: "배움의 가치를 전하다",
     desc: "학습 설계부터 교육 운영까지",
   },
   {
-    img: "/images/eduservice/Frame_4.png",
+    img: "/images/eduservice/national/national004.png",
     title: "한글로 세상을 만나다",
     desc: "세계가 주목하는 자격증",
   },
