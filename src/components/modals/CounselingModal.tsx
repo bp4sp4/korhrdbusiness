@@ -439,7 +439,7 @@ const CounselingModal = () => {
             <Button
               id="counsel-submit-btn"
               type="submit"
-              className="w-full text-base md:h-11 h-11 md:text-lg bg-[#2B7FFF] hover:bg-[#2B7FFF]/80"
+              className="w-full text-base text-[14px] md:h-11 h-11 md:text-[16px] bg-[#2B7FFF] hover:bg-[#2B7FFF]/80"
               disabled={
                 !formData.name ||
                 !validatePhone(formData.phone) ||
