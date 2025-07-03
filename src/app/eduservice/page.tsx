@@ -231,13 +231,6 @@ export default function Eduservice() {
           </div>
         </div>
       </section>
-      <style jsx>{`
-        @media (min-width: 768px) {
-          video[playsinline] {
-            margin-bottom: 0 !important;
-          }
-        }
-      `}</style>
     </>
   );
 }
