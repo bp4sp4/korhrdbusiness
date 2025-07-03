@@ -158,3 +158,10 @@ body {
   border-radius: 12px !important;
 
 }
+
+video {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  display: block;
+}
