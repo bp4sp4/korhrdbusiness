@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import React, { useRef, useEffect, useState } from "react";
 import { useScroll, useTransform } from "framer-motion";
 import { motion } from "framer-motion";
@@ -78,20 +77,20 @@ export default function EduServicePage() {
       {/* 1. 히어로/인트로 */}
       <div
         ref={heroRef}
-        className="relative w-full bg-[#181d23] h-[100vh] flex items-center justify-center overflow-hidden"
+        className="relative w-full  h-[100vh] flex items-center justify-center overflow-hidden"
       >
         {/* 배경 이미지에 parallax */}
         <motion.div
           style={{ y: bgY }}
           className="absolute inset-0 w-full h-full z-0"
         >
-          <Image
-            src="/images/metting.jpg"
-            alt="오피스 배경"
-            fill
-            className="object-cover opacity-30"
-            priority
-          />
+          <div className="absolute inset-0 w-full h-full z-0">
+            <img
+              src="/images/about/about_main_banner.png"
+              alt="eduservice001"
+              className="w-full h-full object-cover"
+            />
+          </div>
         </motion.div>
         <motion.div
           style={{ y: textY }}
@@ -342,13 +341,13 @@ export default function EduServicePage() {
 
       {/* 6. CEO 메시지 */}
       <motion.section
-        className="bg-white text-black py-16"
+        className="bg-red-100 text-black py-16 "
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
         viewport={{ once: true, amount: 0.2 }}
       >
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center  gap-12">
+        <div className="max-w-6xl mx-auto  flex flex-col md:flex-row items-center  gap-12">
           {/* 메시지 영역 */}
           <div className="flex-1 text-left">
             <div className="font-extrabold text-2xl md:text-3xl mb-6">

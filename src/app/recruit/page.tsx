@@ -26,6 +26,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import Link from "next/link";
 
 interface Job {
   id: number;
@@ -472,22 +473,22 @@ export default function RecruitListPage() {
             <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6">
               <div className="flex-1">
                 <h1
-                  className="text-[21px] md:text-[30px] sm:text-4xl lg:text-4xl mt-[20px]  font-bold text-[#191f28] leading-tight"
+                  className="text-[21px] md:text-[30px] sm:text-4xl lg:text-4xl  font-bold text-[#191f28] leading-tight"
                   style={{ letterSpacing: "-1px" }}
                 >
-                  대한민국 교육과 취업의 연결
-                  <br />그 위대한 도전을 한평생에서 함께해보세요
+                  한평생교육원과 함께하는 성장
+                  <br />
+                  교육의 새로운 미래를 만들어갑니다
                 </h1>
 
                 <p className="text-[#797979] mb-[30px] mt-[30px] text-sm sm:text-base leading-relaxed hidden sm:block">
-                  한평생에듀바이저는 단순히 교육서비스를 판매하는곳이 아닙니다.
-                  고객이 현재 처한 상황을 면밀히 분석하여
+                  한평생교육원은 단순한 교육기관이 아닙니다. 모두가 평생 성장할
+                  수 있도록 돕는 교육의 장입니다.
                   <br className="hidden sm:block" />
-                  실제 대한민국이 직면한 문제인 교육과 취업이 연결되지 않는다는
-                  문제를 해결하는 팀 입니다.
+                  학생, 교사, 교직원이 함께 만들어가는 따뜻한 교육 공동체를
+                  지향합니다.
                   <br />
-                  이제는 정말 교육시장을 사명감 있게 주도하는 기업이 나와야
-                  합니다.
+                  새로운 교육의 미래, 한평생교육원에서 시작하세요.
                 </p>
                 <div className="h-[24px] md:hidden"></div>
                 <div className="flex flex-col sm:flex-row gap-3  pb-[10px]">
@@ -584,11 +585,16 @@ export default function RecruitListPage() {
       </div>
 
       <main className="max-w-6xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-        <div className="mb-6">
+        <div className="mb-6 flex justify-between">
           <h2 className="text-xl font-bold">
             <span className="text-blue-500">{recruitList.length}개</span>의
             포지션이 열려있어요.
           </h2>
+          <Link href="/recruit/interview">
+            <span className="text-gray-500 cursor-pointer hover:underline">
+              더보기
+            </span>
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
@@ -689,30 +695,54 @@ export default function RecruitListPage() {
 
           <div className="lg:col-span-1">
             <div className="sticky top-6 space-y-4 max-h-[calc(100vh-8rem)] overflow-y-auto">
-              <Card
-                className="min-h-[100px] bg-muted/50 flex flex-col justify-between"
-                style={{ padding: "18px 18px 10px" }}
-              >
-                <div>
-                  <div className="font-bold text-base text-gray-900 mb-1 line-clamp-2">
-                    한평생에듀바이저 채용팀의 이야기
+              <Link href="/recruit/interview/eunhye">
+                <Card
+                  className="min-h-[100px] bg-muted/50 flex flex-col mb-5 justify-between hover:bg-muted cursor-pointer transition"
+                  style={{ padding: "18px 18px 10px" }}
+                >
+                  <div>
+                    <div className="font-bold text-base text-gray-900 mb-1 line-clamp-2">
+                      한평생교육원 이야기
+                    </div>
+                    <div className="text-sm text-gray-500">
+                      영업 3팀 | 장은혜 대리
+                    </div>
                   </div>
-                  <div className="text-sm text-gray-500">한평생 채용팀</div>
-                </div>
-                <div className="text-xs text-gray-400 mb-1">2025.06.17</div>
-              </Card>
-              <Card
-                className="min-h-[100px] bg-muted/50 flex flex-col justify-between"
-                style={{ padding: "18px 18px 10px" }}
-              >
-                {/* 나중에 내용을 추가할 수 있는 빈 카드 */}
-              </Card>
-              <Card
-                className="min-h-[100px] bg-muted/50 flex flex-col justify-between"
-                style={{ padding: "18px 18px 10px" }}
-              >
-                {/* 나중에 내용을 추가할 수 있는 빈 카드 */}
-              </Card>
+                  <div className="text-xs text-gray-400 mb-1">2025.06.17</div>
+                </Card>
+              </Link>
+              <Link href="/recruit/interview/hanpyeongsaeng2">
+                <Card
+                  className="min-h-[100px] bg-muted/50 mb-5 flex flex-col justify-between hover:bg-muted cursor-pointer transition"
+                  style={{ padding: "18px 18px 10px" }}
+                >
+                  <div>
+                    <div className="font-bold text-base text-gray-900 mb-1 line-clamp-2">
+                      한평생교육원 성장 스토리
+                    </div>
+                    <div className="text-sm text-gray-500">
+                      교직원 | 한평생교육원
+                    </div>
+                  </div>
+                  <div className="text-xs text-gray-400 mb-1">2025.06.17</div>
+                </Card>
+              </Link>
+              <Link href="/recruit/interview/hanpyeongsaeng3">
+                <Card
+                  className="min-h-[100px] bg-muted/50 flex flex-col justify-between hover:bg-muted cursor-pointer transition"
+                  style={{ padding: "18px 18px 10px" }}
+                >
+                  <div>
+                    <div className="font-bold text-base text-gray-900 mb-1 line-clamp-2">
+                      한평생교육원과 함께하는 미래
+                    </div>
+                    <div className="text-sm text-gray-500">
+                      학생 | 한평생교육원
+                    </div>
+                  </div>
+                  <div className="text-xs text-gray-400 mb-1">2025.06.17</div>
+                </Card>
+              </Link>
             </div>
           </div>
         </div>

@@ -24,7 +24,7 @@ export default function Home() {
         style={{
           width: "100vw",
           height: "80vh",
-          backgroundImage: "url('/images/main/main.png')",
+          backgroundImage: "url('/images/main/main__banner.png')",
           backgroundSize: "cover",
           backgroundPosition: "80% 0",
           backgroundRepeat: "no-repeat",
