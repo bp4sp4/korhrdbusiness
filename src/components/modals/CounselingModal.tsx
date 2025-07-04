@@ -151,6 +151,7 @@ const CounselingModal = () => {
   const [showScrollIndicator, setShowScrollIndicator] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const nameInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (!isOpen) {
@@ -176,6 +177,9 @@ const CounselingModal = () => {
   useEffect(() => {
     if (isOpen && inputRef.current) {
       inputRef.current.blur();
+    }
+    if (isOpen && nameInputRef.current) {
+      nameInputRef.current.blur();
     }
   }, [isOpen]);
 
@@ -271,12 +275,14 @@ const CounselingModal = () => {
                   </div>
                 </div>
                 <Input
+                  ref={nameInputRef}
                   id="counsel-name-input"
                   placeholder="홍길동"
                   value={formData.name}
                   onChange={(e) => handleInputChange("name", e.target.value)}
                   className="w-full text-base h-10 text-[14px] placeholder:text-[14px]"
                   required
+                  autoComplete="off"
                 />
               </div>
               <div className="md:space-y-2">
