@@ -151,6 +151,7 @@ const CounselingModal = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [showScrollIndicator, setShowScrollIndicator] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (!isOpen) {
@@ -174,6 +175,12 @@ const CounselingModal = () => {
     }
   }, [isOpen]);
 
+  useEffect(() => {
+    if (isOpen && inputRef.current) {
+      inputRef.current.blur();
+    }
+  }, [isOpen]);
+
   const checkScrollIndicator = () => {
     const el = scrollRef.current;
     if (el) {
@@ -194,17 +201,16 @@ const CounselingModal = () => {
       [field]: value,
     }));
     if (field === "phone" && typeof value === "string") {
-      setPhoneError(
-        validatePhone(value)
-          ? ""
-          : "연락처는 숫자만 입력해주세요.(-)빼고 예: 01012345678"
-      );
+      setPhoneError(validatePhone(value) ? "" : "");
     }
   };
 
-  const validatePhone = (phone: string) => /^\d{9,11}$/.test(phone);
+  const validatePhone = (phone: string) => {
+    // 01012345678 또는 010-1234-5678 형식 모두 허용
+    return /^(\d{9,11}|(\d{2,3}-\d{3,4}-\d{4}))$/.test(phone);
+  };
 
-  const educationLevels = ["고등학교 졸업", "2/3년제 대졸", "4년제 대졸"];
+  const educationLevels = ["고등학교 졸업", "2·3년제 대졸", "4년제 대졸"];
 
   const handleSubmit = async (e?: React.FormEvent<HTMLFormElement>) => {
     if (e) e.preventDefault();
@@ -288,16 +294,18 @@ const CounselingModal = () => {
                   연락처 *
                 </Label>
                 <Input
+                  ref={inputRef}
                   id="counsel-phone-input"
-                  placeholder="- 없이 숫자만 입력"
+                  type="tel"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  autoFocus={false}
+                  placeholder="정확한 연락처를 작성해주세요."
                   value={formData.phone}
                   onChange={(e) => handleInputChange("phone", e.target.value)}
                   className="w-full text-base md:h-10 font-[14px] placeholder:text-[14px]"
                   required
                 />
-                {phoneError && (
-                  <p className="text-red-500 text-xs mt-1">{phoneError}</p>
-                )}
               </div>
               <div className="md:space-y-2">
                 <Label className="text-sm font-medium">
