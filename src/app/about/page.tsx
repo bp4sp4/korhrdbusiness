@@ -102,12 +102,12 @@ export default function EduServicePage() {
           viewport={{ once: true, amount: 0.1 }}
         >
           <h2
-            className="text-4xl md:text-6xl font-extrabold mb-2"
+            className="text-3xl md:text-6xl font-extrabold mb-2"
             style={{ letterSpacing: "-2px" }}
           >
             누구도 끝까지 책임지지 않던
           </h2>
-          <p className="text-3xl font-bold md:text-5xl ">
+          <p className="text-2xl font-bold md:text-5xl ">
             교육의 본질을 바꿉니다.
           </p>
           <p className="text-lg font-bold md:text-3xl text-gray-200 mt-10">
@@ -137,7 +137,7 @@ export default function EduServicePage() {
       </motion.section>
 
       {/* 3. 교육 철학/슬로건 */}
-      <motion.section className="bg-white text-black mt-[268px]  relative">
+      <motion.section className="bg-white text-black mt-[134px]  relative">
         <div className="max-w-2xl mx-auto text-center">
           <h3 className="md:text-[40px] text-2xl font-extrabold mb-[133px]">
             &apos;<span className="text-blue-600">왜?</span>&apos; 교육은
@@ -229,8 +229,10 @@ export default function EduServicePage() {
               <br />
               <strong>
                 <span className="text-[#2B7FFF]">&apos;되는 방법&apos;</span> 을
-                알고,{" "}
-                <span className="text-[#2B7FFF]">&apos;실제로 되게&apos;</span>{" "}
+                알고, <br className="md:hidden" />
+                <span className="text-[#2B7FFF]">
+                  &apos;실제로 되게&apos;
+                </span>{" "}
                 만듭니다.
               </strong>
             </p>
@@ -330,7 +332,7 @@ export default function EduServicePage() {
           })()}
         </motion.div>
         <div className="flex flex-col items-center justify-center">
-          <p className="mb-[247px] md:text-[32px] text-2xl  text-center">
+          <p className="mb-[247px] md:text-[32px] text-[20px]  text-center">
             한평생 에듀바이저는 단순한 교육이 아닌,
             <br />
             <span className="font-bold">
@@ -407,7 +409,7 @@ const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
   return (
-    <section className="bg-[#191f28] py-16">
+    <section className="bg-[#191f28] py-[30px]">
       <div className="max-w-4xl mx-auto">
         <h3 className="text-2xl md:text-4xl font-bold mb-12 text-center text-white">
           한평생교육은 매일,
