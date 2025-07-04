@@ -147,7 +147,6 @@ const CounselingModal = () => {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [phoneError, setPhoneError] = useState("");
   const scrollRef = useRef<HTMLDivElement>(null);
   const [showScrollIndicator, setShowScrollIndicator] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
@@ -164,7 +163,6 @@ const CounselingModal = () => {
           consent: false,
         });
         setIsSubmitted(false);
-        setPhoneError("");
       }, 300);
       return () => clearTimeout(timer);
     }
@@ -200,14 +198,6 @@ const CounselingModal = () => {
       ...prev,
       [field]: value,
     }));
-    if (field === "phone" && typeof value === "string") {
-      setPhoneError(validatePhone(value) ? "" : "");
-    }
-  };
-
-  const validatePhone = (phone: string) => {
-    // 01012345678 또는 010-1234-5678 형식 모두 허용
-    return /^(\d{9,11}|(\d{2,3}-\d{3,4}-\d{4}))$/.test(phone);
   };
 
   const educationLevels = ["고등학교 졸업", "2·3년제 대졸", "4년제 대졸"];
@@ -450,7 +440,6 @@ const CounselingModal = () => {
               className="w-full text-base text-[14px] md:h-11 h-11 md:text-[16px] bg-[#2B7FFF] hover:bg-[#2B7FFF]/80"
               disabled={
                 !formData.name ||
-                !validatePhone(formData.phone) ||
                 !formData.experience ||
                 !formData.field ||
                 !formData.consent ||
