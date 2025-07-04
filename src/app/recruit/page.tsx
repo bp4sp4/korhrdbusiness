@@ -472,7 +472,7 @@ export default function RecruitListPage() {
             <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6">
               <div className="flex-1">
                 <h1
-                  className="text-[21px] md:text-[30px] sm:text-4xl lg:text-4xl  font-bold text-[#191f28] leading-tight"
+                  className="text-[21px] md:text-[30px] sm:text-4xl lg:text-4xl mt-[20px]  font-bold text-[#191f28] leading-tight"
                   style={{ letterSpacing: "-1px" }}
                 >
                   대한민국 교육과 취업의 연결

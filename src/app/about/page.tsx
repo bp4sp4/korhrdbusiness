@@ -224,7 +224,7 @@ export default function EduServicePage() {
             );
           })()}
           <div className="flex flex-col items-center justify-center">
-            <p className="mb-[247px] md:text-[32px] text-2xl text-center">
+            <p className="mb-[123px] md:text-[32px] text-2xl text-center">
               수많은 학생분들을 만나오면서
               <br />
               <strong>

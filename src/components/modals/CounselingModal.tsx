@@ -302,7 +302,7 @@ const CounselingModal = () => {
                   inputMode="numeric"
                   pattern="[0-9]*"
                   autoFocus={false}
-                  placeholder="정확한 연락처를 작성해주세요."
+                  placeholder="연락처를 다시 한 번 확인해 주세요"
                   value={formData.phone}
                   onChange={(e) => handleInputChange("phone", e.target.value)}
                   className="w-full text-base md:h-10 font-[14px] placeholder:text-[14px]"
