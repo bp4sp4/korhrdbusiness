@@ -181,6 +181,12 @@ const CounselingModal = () => {
     if (isOpen && nameInputRef.current) {
       nameInputRef.current.blur();
     }
+    if (isOpen) {
+      setTimeout(() => {
+        if (nameInputRef.current) nameInputRef.current.blur();
+        if (inputRef.current) inputRef.current.blur();
+      }, 150);
+    }
   }, [isOpen]);
 
   const checkScrollIndicator = () => {
