@@ -378,8 +378,8 @@ export default function EduServicePage() {
             <img
               src="/images/chart.jpg"
               alt="CEO 서명"
-              className="w-64 max-w-full h-auto object-contain"
-              style={{ minWidth: 400, minHeight: 400 }}
+              className="w-64 max-w-full h-auto object-contain md:w-[400px] md:h-[400px]"
+              style={{ minWidth: 300, minHeight: 300 }}
             />
           </div>
         </div>
