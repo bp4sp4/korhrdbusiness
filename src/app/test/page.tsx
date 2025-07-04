@@ -1,6 +1,6 @@
 "use client";
 import CategoryTabs from "@/components/CategoryTabs";
-import { ThreeDMarquee } from "@/components/ui/3d-marquee";
+
 import { motion } from "framer-motion";
 
 export default function Eduservice() {
