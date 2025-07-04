@@ -4,6 +4,10 @@ import React, { useRef, useEffect, useState } from "react";
 import { useScroll, useTransform } from "framer-motion";
 import { motion } from "framer-motion";
 import "../main.css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import { Card } from "@/components/ui/card";
+import { Autoplay } from "swiper/modules";
 
 interface TimelineEntry {
   year: string;
@@ -19,6 +23,30 @@ export default function EduServicePage() {
 
   const bgY = useTransform(scrollY, [0, 500], [0, 80]);
   const textY = useTransform(scrollY, [0, 500], [0, -120]);
+
+  // Swiper autoplay 제어용
+  const eduTopSwiperRef = useRef<HTMLDivElement>(null);
+  const eduCardsSwiperRef = useRef<HTMLDivElement>(null);
+  const [eduTopAutoplay, setEduTopAutoplay] = useState(false);
+  const [eduCardsAutoplay, setEduCardsAutoplay] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const observer1 = new window.IntersectionObserver(
+      ([entry]) => setEduTopAutoplay(entry.isIntersecting),
+      { threshold: 0.1 }
+    );
+    if (eduTopSwiperRef.current) observer1.observe(eduTopSwiperRef.current);
+    const observer2 = new window.IntersectionObserver(
+      ([entry]) => setEduCardsAutoplay(entry.isIntersecting),
+      { threshold: 0.1 }
+    );
+    if (eduCardsSwiperRef.current) observer2.observe(eduCardsSwiperRef.current);
+    return () => {
+      observer1.disconnect();
+      observer2.disconnect();
+    };
+  }, []);
 
   return (
     <div className=" text-white w-full min-h-screen">
@@ -84,17 +112,12 @@ export default function EduServicePage() {
       </motion.section>
 
       {/* 3. 교육 철학/슬로건 */}
-      <motion.section className="bg-white text-black py-16 relative">
+      <motion.section className="bg-white text-black mt-[268px]  relative">
         <div className="max-w-2xl mx-auto text-center">
-          <h3 className="text-2xl md:text-4xl font-extrabold mb-10">
+          <h3 className="md:text-[40px] text-2xl font-extrabold mb-[133px]">
             &apos;<span className="text-blue-600">왜?</span>&apos; 교육은
             어렵게만 느껴질까?
           </h3>
-          <p className="mb-23 text-2xl">
-            수많은 학생분들을 만나오면서
-            <br />
-            &apos;되는 방법&apos;을 알고, 실제로 &apos;되게&apos; 만듭니다.
-          </p>
         </div>
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -102,127 +125,189 @@ export default function EduServicePage() {
           transition={{ duration: 0.7, ease: "easeOut", delay: 0.5 }}
           viewport={{ once: true, amount: 0.2 }}
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10 max-w-[1200px] mx-auto mb-10 px-2">
-            {/* 주부 */}
-            <div className="bg-white rounded-3xl shadow-xl flex flex-col items-center p-5 sm:p-8 md:p-10 text-center">
-              <div className="text-gray-500 text-base sm:text-lg md:text-xl mb-1 sm:mb-2">
-                아기 엄마도 쉽게!
-              </div>
-              <div className="font-extrabold text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-6">
-                주부
-              </div>
-              <img
-                src="/images/about/004.png"
-                alt="주부"
-                className="w-[120px] h-auto sm:w-[150px] md:w-full object-contain mb-2 drop-shadow-[0_8px_12px_rgba(0,0,0,0.18)]"
-              />
-            </div>
-            {/* 대학생 */}
-            <div className="bg-white rounded-3xl shadow-xl flex flex-col items-center p-5 sm:p-8 md:p-10 text-center">
-              <div className="text-gray-500 text-base sm:text-lg md:text-xl mb-1 sm:mb-2">
-                경쟁력을 원해요
-              </div>
-              <div className="font-extrabold text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-6">
-                대학생
-              </div>
-              <img
-                src="/images/about/001.png"
-                alt="대학생"
-                className="w-[120px] h-auto sm:w-[150px] md:w-full object-contain mb-2 drop-shadow-[0_8px_12px_rgba(0,0,0,0.18)]"
-              />
-            </div>
-            {/* 중장년층 */}
-            <div className="bg-white rounded-3xl shadow-xl flex flex-col items-center p-5 sm:p-8 md:p-10 text-center">
-              <div className="text-gray-500 text-base sm:text-lg md:text-xl mb-1 sm:mb-2">
-                제2의직업 대비
-              </div>
-              <div className="font-extrabold text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-6">
-                중장년층
-              </div>
-              <img
-                src="/images/about/002.png"
-                alt="중장년층"
-                className="w-[120px] h-auto sm:w-[150px] md:w-full object-contain mb-2 drop-shadow-[0_8px_12px_rgba(0,0,0,0.18)]"
-              />
-            </div>
-            {/* 노년층 */}
-            <div className="bg-white rounded-3xl shadow-xl flex flex-col items-center p-5 sm:p-8 md:p-10 text-center">
-              <div className="text-gray-500 text-base sm:text-lg md:text-xl mb-1 sm:mb-2">
-                정말 쓸모있는 교육
-              </div>
-              <div className="font-extrabold text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-6">
-                노년층
-              </div>
-              <img
-                src="/images/about/003.png"
-                alt="노년층"
-                className="w-[120px] h-auto sm:w-[150px] md:w-full object-contain mb-2 drop-shadow-[0_8px_12px_rgba(0,0,0,0.18)]"
-              />
-            </div>
+          {/* 카드 더미 보일때 카드 데이터 배열*/}
+          {(() => {
+            const eduTopCards = [
+              { img: "/images/about/edu001.png" },
+              { img: "/images/about/edu002.png" },
+              { img: "/images/about/edu003.png" },
+              { img: "/images/about/edu004.png" },
+            ];
+            return (
+              <>
+                {/* 모바일 Swiper */}
+                <div
+                  className="block md:hidden mb-[178px]"
+                  ref={eduTopSwiperRef}
+                >
+                  <Swiper
+                    modules={[Autoplay]}
+                    spaceBetween={10}
+                    slidesPerView="auto"
+                    centeredSlides={true}
+                    loop={true}
+                    autoplay={
+                      eduTopAutoplay
+                        ? { delay: 2000, disableOnInteraction: false }
+                        : false
+                    }
+                    className="w-full px-2"
+                    style={{ paddingLeft: 0, paddingRight: 0 }}
+                  >
+                    {eduTopCards.map((card, idx) => (
+                      <SwiperSlide
+                        key={card.img + idx}
+                        style={{ width: 270, maxWidth: 270 }}
+                        className="!w-[270px]"
+                      >
+                        <div className="flex justify-center">
+                          <Card
+                            className="relative flex flex-col justify-end overflow-hidden r h-[380px] w-[270px]"
+                            style={{ width: 270, height: 380 }}
+                          >
+                            <img
+                              src={card.img}
+                              alt=""
+                              className="w-full h-full object-cover object-center "
+                              style={{ borderRadius: "16px" }}
+                              onError={(e) => {
+                                e.currentTarget.style.display = "none";
+                              }}
+                            />
+                          </Card>
+                        </div>
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+                </div>
+                {/* 데스크탑 기존 그리드 */}
+                <div className="hidden md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10 max-w-[1200px] mx-auto mb-[178px] px-2">
+                  {eduTopCards.map((card, idx) => (
+                    <div
+                      className="flex flex-col items-center"
+                      key={card.img + idx}
+                    >
+                      <img
+                        src={card.img}
+                        alt=""
+                        className="w-[270px] h-[380px] md:w-full object-contain rounded-2xl"
+                        style={{ borderRadius: "16px" }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </>
+            );
+          })()}
+          <div className="flex flex-col items-center justify-center">
+            <p className="mb-[247px] md:text-[32px] text-2xl text-center">
+              수많은 학생분들을 만나오면서
+              <br />
+              <strong>
+                <span className="text-[#2B7FFF]">&apos;되는 방법&apos;</span> 을
+                알고,{" "}
+                <span className="text-[#2B7FFF]">&apos;실제로 되게&apos;</span>{" "}
+                만듭니다.
+              </strong>
+            </p>
           </div>
         </motion.div>
         <div className="max-w-2xl mx-auto text-center">
-          <h3 className="text-2xl md:text-4xl font-extrabold font-extragray-50mt-[200px] mt-30 mb-4 ">
+          <h3 className="text-2xl md:text-4xl font-bold font-extragray-50mt-[200px] mt-[198px] mb-[106px] ">
             교육은 진짜{" "}
             <span className="bg-blue-500 text-white ">써먹어야 합니다</span>
           </h3>
-          <p className="mb-8 text-2xl mt-10">
-            수많은 학생분들을 만나오면서
-            <br />
-            &apos;되는 방법&apos;을 알고, 실제로 &apos;되게&apos; 만듭니다.
-          </p>
         </div>
-      </motion.section>
-
-      {/* 5. 실제 교육 사례(카드) */}
-      <motion.section
-        className="bg-white py-16"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
-        viewport={{ once: true, amount: 0.2 }}
-      >
-        <div className="max-w-6xl mx-auto flex flex-col gap-16">
-          {/* 1번째 카드 */}
-          <div className="flex flex-col md:flex-row items-center gap-8">
-            <div className="flex-1 text-left">
-              <div className="font-extrabold text-black text-2xl md:text-3xl mb-2">
-                검증된 에듀바이저
-                <br />
-                1:1 배정
+        {/* 아래 educard 카드들도 이미지만 카드에 표시 (텍스트/내부 div 제거) */}
+        {(() => {
+          const eduCards = [
+            { img: "/images/about/educard001.png" },
+            { img: "/images/about/educard002.png" },
+            { img: "/images/about/educard003.png" },
+            { img: "/images/about/educard004.png" },
+          ];
+          return (
+            <>
+              {/* 모바일 Swiper */}
+              <div
+                className="block md:hidden mb-[178px]"
+                ref={eduCardsSwiperRef}
+              >
+                <Swiper
+                  modules={[Autoplay]}
+                  spaceBetween={10}
+                  slidesPerView="auto"
+                  centeredSlides={true}
+                  loop={true}
+                  autoplay={
+                    eduCardsAutoplay
+                      ? { delay: 2000, disableOnInteraction: false }
+                      : false
+                  }
+                  className="w-full px-2"
+                  style={{ paddingLeft: 0, paddingRight: 0 }}
+                >
+                  {eduCards.map((card, idx) => (
+                    <SwiperSlide
+                      key={card.img + idx}
+                      style={{ width: 300, maxWidth: 300 }}
+                      className="!w-[300px]"
+                    >
+                      <div className="flex justify-center">
+                        <Card
+                          className="relative flex flex-col justify-end overflow-hidden r h-[380px] w-[270px]"
+                          style={{ width: 274, height: 317 }}
+                        >
+                          <img
+                            src={card.img}
+                            alt=""
+                            className="w-full h-full object-cover object-center "
+                            style={{ borderRadius: "16px" }}
+                            onError={(e) => {
+                              e.currentTarget.style.display = "none";
+                            }}
+                          />
+                        </Card>
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
               </div>
-              <div className="text-gray-400 text-lg md:text-xl">
-                한평생교육 정식 소속
+              {/* 데스크탑 기존 그리드 */}
+              <div className="hidden md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-[1200px] mx-auto mb-[178px] px-2">
+                {eduCards.map((card, idx) => (
+                  <div
+                    className="flex flex-col items-center"
+                    key={card.img + idx}
+                  >
+                    <Card
+                      className="relative flex flex-col justify-end overflow-hidden bg-white h-[310px] w-[270px]"
+                      style={{ width: 270, height: 310 }}
+                    >
+                      <img
+                        src={card.img}
+                        alt=""
+                        className="w-full h-full object-cover object-center rounded-2xl"
+                        style={{ borderRadius: "16px" }}
+                        onError={(e) => {
+                          e.currentTarget.style.display = "none";
+                        }}
+                      />
+                    </Card>
+                  </div>
+                ))}
               </div>
-            </div>
-            <div className="flex-1">
-              <img
-                src="/images/chart.jpg"
-                alt="에듀바이저 상담"
-                className="w-full h-auto aspect-[4/3] object-cover rounded-2xl shadow-xl"
-              />
-            </div>
-          </div>
-          {/* 2번째 카드 */}
-          <div className="flex flex-col md:flex-row items-center gap-8">
-            <div className="flex-1 text-left">
-              <div className="font-extrabold text-black text-2xl md:text-3xl mb-2">
-                검증된 에듀바이저
-                <br />
-                1:1 배정
-              </div>
-              <div className="text-gray-400 text-lg md:text-xl">
-                한평생교육 정식 소속
-              </div>
-            </div>
-            <div className="flex-1">
-              <img
-                src="/images/chart.jpg"
-                alt="교육기관"
-                className="w-full h-auto aspect-[4/3] object-cover rounded-2xl shadow-xl"
-              />
-            </div>
-          </div>
+            </>
+          );
+        })()}
+        <div className="flex flex-col items-center justify-center">
+          <p className="mb-[247px] md:text-[32px] text-2xl  text-center">
+            한평생 에듀바이저는 단순한 교육이 아닌,
+            <br />
+            <span className="font-bold">
+              인생의 방향성과 성장을 함께 하겠습니다.
+            </span>
+          </p>
         </div>
       </motion.section>
 
@@ -323,7 +408,7 @@ const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                     <h4 className="text-xl md:text-2xl font-bold mb-4 text-white">
                       {item.title}
                     </h4>
-                    <p className="text-gray-300 text-sm md:text-base mb-6  leading-relaxed">
+                    <p className="text-gray-300 text-sm md:text-base mb-6 leading-relaxed w-[300px]">
                       {item.description}
                     </p>
                     <div className="space-y-2">

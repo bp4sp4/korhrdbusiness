@@ -1,34 +1,9 @@
 "use client";
 import CategoryTabs from "@/components/CategoryTabs";
-import { ThreeDMarquee } from "@/components/ui/3d-marquee";
+
 import { motion } from "framer-motion";
 
 export default function Eduservice() {
-  const images = [
-    "/images/eduservice/edumain/eduservice001.png",
-    "/images/eduservice/edumain/eduservice001.png",
-    "/images/eduservice/edumain/eduservice001.png",
-    "/images/eduservice/edumain/eduservice002.png",
-    "/images/eduservice/edumain/eduservice003.png",
-    "/images/eduservice/edumain/eduservice004.png",
-    "/images/eduservice/edumain/eduservice005.png",
-    "/images/eduservice/edumain/eduservice006.png",
-    "/images/eduservice/edumain/eduservice007.png",
-    "/images/eduservice/edumain/eduservice008.png",
-    "/images/eduservice/edumain/eduservice009.png",
-    "/images/eduservice/edumain/eduservice010.png",
-    "/images/eduservice/edumain/eduservice011.png",
-    "/images/eduservice/edumain/eduservice012.png",
-    "/images/eduservice/edumain/eduservice013.png",
-    "/images/eduservice/edumain/eduservice014.png",
-    "/images/eduservice/edumain/eduservice015.png",
-    "/images/eduservice/edumain/eduservice016.png",
-    "/images/eduservice/edumain/eduservice017.png",
-    "/images/eduservice/edumain/eduservice018.png",
-    "/images/eduservice/edumain/eduservice019.png",
-    "/images/eduservice/edumain/eduservice020.png",
-  ];
-
   return (
     <>
       <div className="relative flex h-[40vh] w-full flex-col justify-center overflow-hidden">
@@ -48,10 +23,13 @@ export default function Eduservice() {
           </p>
         </div>
         <div className="absolute inset-0 z-10 h-full w-full bg-black/80 dark:bg-black/40" />
-        <ThreeDMarquee
-          className="pointer-events-none absolute inset-0 h-full w-full"
-          images={images}
-        />
+        <div className="absolute inset-0 z-10 h-full w-full ">
+          <img
+            src="/images/edumain__banner2.png"
+            alt="eduservice001"
+            className="w-full h-full object-cover"
+          />
+        </div>
       </div>
       <section className="w-full ">
         <motion.div
