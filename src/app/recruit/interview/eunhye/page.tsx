@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+
 export default function InterviewDetail() {
   return (
     <div className="max-w-3xl mx-auto py-12 px-4">
@@ -64,10 +67,25 @@ export default function InterviewDetail() {
           무엇보다도, 고객의 입장에서 생각하고 더 나은 서비스를 만들기 위해
           고민하는 분과 함께하고 싶습니다.
         </p>
+        <div className="flex justify-center gap-4 mt-8">
+          <Link href="/recruit/interview">
+            <Button
+              variant="outline"
+              className="w-[100px] h-[40px] border-gray-300 text-gray-700 rounded-xl font-bold hover:bg-gray-50"
+            >
+              뒤로가기
+            </Button>
+          </Link>
+          <Link href="/recruit/20">
+            <Button
+              variant="outline"
+              className="w-[100px] h-[40px] bg-[#2B7FFF] text-white rounded-xl font-bold hover:bg-[#1B6FEF]"
+            >
+              합류하기
+            </Button>
+          </Link>
+        </div>
       </section>
-
-      {/* === 하단: 직접 작성 === */}
-      {/* 여기에 직접 원하는 내용을 추가하세요 */}
     </div>
   );
 }
