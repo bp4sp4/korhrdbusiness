@@ -8,6 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Card } from "@/components/ui/card";
 import { Autoplay } from "swiper/modules";
+import type { Swiper as SwiperClass } from "swiper";
 
 interface TimelineEntry {
   year: string;
@@ -24,29 +25,53 @@ export default function EduServicePage() {
   const bgY = useTransform(scrollY, [0, 500], [0, 80]);
   const textY = useTransform(scrollY, [0, 500], [0, -120]);
 
-  // Swiper autoplay 제어용
-  const eduTopSwiperRef = useRef<HTMLDivElement>(null);
-  const eduCardsSwiperRef = useRef<HTMLDivElement>(null);
-  const [eduTopAutoplay, setEduTopAutoplay] = useState(false);
-  const [eduCardsAutoplay, setEduCardsAutoplay] = useState(false);
+  // Swiper autoplay 제어용 (Intersection Observer + Swiper 인스턴스)
+  const eduTopSwiperRef = useRef<SwiperClass | null>(null);
+  const eduTopContainerRef = useRef<HTMLDivElement | null>(null);
+  const [eduTopActive, setEduTopActive] = useState(false);
+  const eduCardsSwiperRef = useRef<SwiperClass | null>(null);
+  const eduCardsContainerRef = useRef<HTMLDivElement | null>(null);
+  const [eduCardsActive, setEduCardsActive] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
     const observer1 = new window.IntersectionObserver(
-      ([entry]) => setEduTopAutoplay(entry.isIntersecting),
+      ([entry]) => setEduTopActive(entry.isIntersecting),
       { threshold: 0.1 }
     );
-    if (eduTopSwiperRef.current) observer1.observe(eduTopSwiperRef.current);
+    if (eduTopContainerRef.current)
+      observer1.observe(eduTopContainerRef.current);
     const observer2 = new window.IntersectionObserver(
-      ([entry]) => setEduCardsAutoplay(entry.isIntersecting),
+      ([entry]) => setEduCardsActive(entry.isIntersecting),
       { threshold: 0.1 }
     );
-    if (eduCardsSwiperRef.current) observer2.observe(eduCardsSwiperRef.current);
+    if (eduCardsContainerRef.current)
+      observer2.observe(eduCardsContainerRef.current);
     return () => {
       observer1.disconnect();
       observer2.disconnect();
     };
   }, []);
+
+  useEffect(() => {
+    if (eduTopSwiperRef.current && eduTopSwiperRef.current.autoplay) {
+      if (eduTopActive) {
+        eduTopSwiperRef.current.autoplay.start();
+      } else {
+        eduTopSwiperRef.current.autoplay.stop();
+      }
+    }
+  }, [eduTopActive]);
+
+  useEffect(() => {
+    if (eduCardsSwiperRef.current && eduCardsSwiperRef.current.autoplay) {
+      if (eduCardsActive) {
+        eduCardsSwiperRef.current.autoplay.start();
+      } else {
+        eduCardsSwiperRef.current.autoplay.stop();
+      }
+    }
+  }, [eduCardsActive]);
 
   return (
     <div className=" text-white w-full min-h-screen">
@@ -138,7 +163,7 @@ export default function EduServicePage() {
                 {/* 모바일 Swiper */}
                 <div
                   className="block md:hidden mb-[178px]"
-                  ref={eduTopSwiperRef}
+                  ref={eduTopContainerRef}
                 >
                   <Swiper
                     modules={[Autoplay]}
@@ -146,11 +171,10 @@ export default function EduServicePage() {
                     slidesPerView="auto"
                     centeredSlides={true}
                     loop={true}
-                    autoplay={
-                      eduTopAutoplay
-                        ? { delay: 2000, disableOnInteraction: false }
-                        : false
-                    }
+                    autoplay={{ delay: 2000, disableOnInteraction: false }}
+                    onSwiper={(swiper) => {
+                      eduTopSwiperRef.current = swiper;
+                    }}
                     className="w-full px-2"
                     style={{ paddingLeft: 0, paddingRight: 0 }}
                   >
@@ -214,92 +238,97 @@ export default function EduServicePage() {
         </motion.div>
         <div className="max-w-2xl mx-auto text-center">
           <h3 className="text-2xl md:text-4xl font-bold font-extragray-50mt-[200px] mt-[198px] mb-[106px] ">
-            교육은 진짜{" "}
-            <span className="bg-blue-500 text-white ">써먹어야 합니다</span>
+            교육은 <span className="text-[#2B7FFF] ">진짜 써먹어야 합니다</span>
           </h3>
         </div>
-        {/* 아래 educard 카드들도 이미지만 카드에 표시 (텍스트/내부 div 제거) */}
-        {(() => {
-          const eduCards = [
-            { img: "/images/about/educard001.png" },
-            { img: "/images/about/educard002.png" },
-            { img: "/images/about/educard003.png" },
-            { img: "/images/about/educard004.png" },
-          ];
-          return (
-            <>
-              {/* 모바일 Swiper */}
-              <div
-                className="block md:hidden mb-[178px]"
-                ref={eduCardsSwiperRef}
-              >
-                <Swiper
-                  modules={[Autoplay]}
-                  spaceBetween={10}
-                  slidesPerView="auto"
-                  centeredSlides={true}
-                  loop={true}
-                  autoplay={
-                    eduCardsAutoplay
-                      ? { delay: 2000, disableOnInteraction: false }
-                      : false
-                  }
-                  className="w-full px-2"
-                  style={{ paddingLeft: 0, paddingRight: 0 }}
+        {/* 아래 educard 카드들도 motion.div로 감싸서 등장 애니메이션 적용 */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          {(() => {
+            const eduCards = [
+              { img: "/images/about/educard001.png" },
+              { img: "/images/about/educard002.png" },
+              { img: "/images/about/educard003.png" },
+              { img: "/images/about/educard004.png" },
+            ];
+            return (
+              <>
+                {/* 모바일 Swiper */}
+                <div
+                  className="block md:hidden mb-[178px]"
+                  ref={eduCardsContainerRef}
                 >
-                  {eduCards.map((card, idx) => (
-                    <SwiperSlide
-                      key={card.img + idx}
-                      style={{ width: 300, maxWidth: 300 }}
-                      className="!w-[300px]"
-                    >
-                      <div className="flex justify-center">
-                        <Card
-                          className="relative flex flex-col justify-end overflow-hidden r h-[380px] w-[270px]"
-                          style={{ width: 274, height: 317 }}
-                        >
-                          <img
-                            src={card.img}
-                            alt=""
-                            className="w-full h-full object-cover object-center "
-                            style={{ borderRadius: "16px" }}
-                            onError={(e) => {
-                              e.currentTarget.style.display = "none";
-                            }}
-                          />
-                        </Card>
-                      </div>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-              </div>
-              {/* 데스크탑 기존 그리드 */}
-              <div className="hidden md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-[1200px] mx-auto mb-[178px] px-2">
-                {eduCards.map((card, idx) => (
-                  <div
-                    className="flex flex-col items-center"
-                    key={card.img + idx}
+                  <Swiper
+                    modules={[Autoplay]}
+                    spaceBetween={10}
+                    slidesPerView="auto"
+                    centeredSlides={true}
+                    loop={true}
+                    autoplay={{ delay: 2000, disableOnInteraction: false }}
+                    onSwiper={(swiper) => {
+                      eduCardsSwiperRef.current = swiper;
+                    }}
+                    className="w-full px-2"
+                    style={{ paddingLeft: 0, paddingRight: 0 }}
                   >
-                    <Card
-                      className="relative flex flex-col justify-end overflow-hidden bg-white h-[310px] w-[270px]"
-                      style={{ width: 270, height: 310 }}
+                    {eduCards.map((card, idx) => (
+                      <SwiperSlide
+                        key={card.img + idx}
+                        style={{ width: 274, maxWidth: 317 }}
+                        className="!w-[300px]"
+                      >
+                        <div className="flex justify-center">
+                          <Card
+                            className="relative flex flex-col justify-end overflow-hidden r h-[380px] w-[270px]"
+                            style={{ width: 274, height: 317 }}
+                          >
+                            <img
+                              src={card.img}
+                              alt=""
+                              className="w-full h-full object-cover object-center "
+                              style={{ borderRadius: "16px" }}
+                              onError={(e) => {
+                                e.currentTarget.style.display = "none";
+                              }}
+                            />
+                          </Card>
+                        </div>
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+                </div>
+                {/* 데스크탑 기존 그리드 */}
+                <div className="hidden md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-[1200px] mx-auto mb-[178px] px-2">
+                  {eduCards.map((card, idx) => (
+                    <div
+                      className="flex flex-col items-center"
+                      key={card.img + idx}
                     >
-                      <img
-                        src={card.img}
-                        alt=""
-                        className="w-full h-full object-cover object-center rounded-2xl"
-                        style={{ borderRadius: "16px" }}
-                        onError={(e) => {
-                          e.currentTarget.style.display = "none";
-                        }}
-                      />
-                    </Card>
-                  </div>
-                ))}
-              </div>
-            </>
-          );
-        })()}
+                      <Card
+                        className="relative flex flex-col justify-end overflow-hidden bg-white h-[310px] w-[270px]"
+                        style={{ width: 270, height: 310 }}
+                      >
+                        <img
+                          src={card.img}
+                          alt=""
+                          className="w-full h-full object-cover object-center rounded-2xl"
+                          style={{ borderRadius: "16px" }}
+                          onError={(e) => {
+                            e.currentTarget.style.display = "none";
+                          }}
+                        />
+                      </Card>
+                    </div>
+                  ))}
+                </div>
+              </>
+            );
+          })()}
+        </motion.div>
         <div className="flex flex-col items-center justify-center">
           <p className="mb-[247px] md:text-[32px] text-2xl  text-center">
             한평생 에듀바이저는 단순한 교육이 아닌,
