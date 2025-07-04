@@ -265,12 +265,10 @@ export default function EduServicePage() {
                   ref={eduCardsContainerRef}
                 >
                   <Swiper
-                    modules={[Autoplay]}
                     spaceBetween={10}
                     slidesPerView="auto"
                     centeredSlides={true}
                     loop={true}
-                    autoplay={{ delay: 2000, disableOnInteraction: false }}
                     onSwiper={(swiper) => {
                       eduCardsSwiperRef.current = swiper;
                     }}
@@ -286,12 +284,12 @@ export default function EduServicePage() {
                         <div className="flex justify-center">
                           <Card
                             className="relative flex flex-col justify-end overflow-hidden r h-[380px] w-[270px]"
-                            style={{ width: 274, height: 317 }}
+                            style={{ width: 310, height: 317 }}
                           >
                             <img
                               src={card.img}
                               alt=""
-                              className="w-full h-full object-cover object-center "
+                              className="w-full h-full object-cover "
                               style={{ borderRadius: "16px" }}
                               onError={(e) => {
                                 e.currentTarget.style.display = "none";
