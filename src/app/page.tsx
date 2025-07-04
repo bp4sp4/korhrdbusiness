@@ -18,15 +18,16 @@ export default function Home() {
   };
 
   return (
-    <main className="main w-full min-h-screen flex flex-col items-center bg-white">
+    <main className="main w-screen min-h-screen flex flex-col items-center bg-white">
       <section
-        className="main__hero w-full min-w-0 flex flex-col md:flex-row items-center justify-between py-12 relative overflow-hidden"
+        className="main__hero absolute inset-0 w-full h-full flex items-center justify-center relative"
         style={{
-          backgroundImage: "url('/images/main/main__banner.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "80% 15%",
-          height: "80vh",
           width: "100vw",
+          height: "80vh",
+          backgroundImage: "url('/images/main/main.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "80% 0",
+          backgroundRepeat: "no-repeat",
         }}
       >
         <div className="main__hero-content flex-1 flex flex-col items-start z-10 rounded-lg md:bg-transparent md:p-0">

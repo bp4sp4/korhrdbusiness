@@ -323,7 +323,7 @@ const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                     <h4 className="text-xl md:text-2xl font-bold mb-4 text-white">
                       {item.title}
                     </h4>
-                    <p className="text-gray-300 text-sm md:text-base mb-6 leading-relaxed">
+                    <p className="text-gray-300 text-sm md:text-base mb-6  leading-relaxed">
                       {item.description}
                     </p>
                     <div className="space-y-2">
@@ -367,51 +367,32 @@ const Timeline = ({ data }: { data: TimelineEntry[] }) => {
 const TimelineSection = () => {
   const timelineData: TimelineEntry[] = [
     {
-      year: "2022",
-      title: "디지털 금융의 새로운 기준",
+      year: "2025",
+      title: "교육플랫폼의 새로운 기준",
       description:
-        "코로나19 팬데믹 속에서도 토스는 디지털 금융 서비스의 새로운 기준을 제시하며 성장을 이어갔습니다.",
+        "한평생교육은 파편화된 교육 시장을 통합하고, '한평생에듀바이저스' 플랫폼으로 교육 접근성과 안정성을 획기적으로 개선하며, 교육 산업의 새로운 표준을 제시하고 있습니다.",
+      achievements: ["한평생 에듀바이저스 정식출범"],
+    },
+    {
+      year: "2024",
+      title: "교육플랫폼으로의 도약",
+      description:
+        "한평생교육은 기존 교육의 한계를 넘어서, 학습부터 자격 취득, 취업 연계까지 아우르는 종합 교육 플랫폼으로 진화하며 업계 내 확고한 지위를 확보하였습니다.",
       achievements: [
-        "토스뱅크 예비인가 획득",
-        "토스증권 출범",
-        "간편송금 누적 거래액 100조원 돌파",
-        "토스 신용카드 출시",
+        "(주)한평생교육 법인 설립",
+        "교육브랜드 정식 플랫폼화 실시",
+        "취업연계 서비스 구축",
       ],
     },
     {
-      year: "2021",
-      title: "금융 슈퍼앱으로의 도약",
+      year: "2023",
+      title: "평생교육의 첫 서비스화",
       description:
-        "토스는 단순한 송금 앱을 넘어 종합 금융 플랫폼으로 진화하며 금융 슈퍼앱의 지위를 확립했습니다.",
+        "교육과 취업을 연결하는 사명을 바탕으로, 교육을 하나의 서비스로 혁신하여 실질적인 가치를 제공하는 여정을 시작하였습니다.",
       achievements: [
-        "시리즈 E 투자 유치 완료",
-        "토스페이 출시",
-        "토스보험 서비스 시작",
-        "월 활성 사용자 1,500만명 돌파",
-      ],
-    },
-    {
-      year: "2020",
-      title: "비대면 금융의 선두주자",
-      description:
-        "코로나19로 인한 비대면 서비스 수요 증가와 함께 토스는 디지털 금융의 선두주자로 자리매김했습니다.",
-      achievements: [
-        "토스 투자 서비스 출시",
-        "간편송금 일일 거래량 신기록 달성",
-        "토스 대출 서비스 확대",
-        "누적 가입자 2,000만명 돌파",
-      ],
-    },
-    {
-      year: "2019",
-      title: "금융 혁신의 가속화",
-      description:
-        "토스는 기존 금융권의 한계를 뛰어넘는 혁신적인 서비스들을 연이어 출시하며 금융 혁신을 가속화했습니다.",
-      achievements: [
-        "토스 가계부 서비스 출시",
-        "AI 기반 개인 신용 평가 시스템 도입",
-        "오픈뱅킹 서비스 연동",
-        "월 활성 사용자 1,000만명 돌파",
+        "한국평생교육지원센터 설립",
+        "한국실습지원센터 설립",
+        "전국단위 실습섭외 서비스 구축",
       ],
     },
   ];
