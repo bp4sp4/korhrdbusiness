@@ -374,12 +374,12 @@ export default function Home() {
             <br />
             업무 환경과 최고의 복리후생을 제공합니다.
           </p>
-          <a
+          <Link
             href="/recruit"
             className="bg-[#2B7FFF] text-white px-6 py-3 rounded-full font-semibold shadow-md transition text-center text-[16px] w-full max-w-[260px]"
           >
             채용중인 공고 보기
-          </a>
+          </Link>
         </div>
       </section>
     </main>
