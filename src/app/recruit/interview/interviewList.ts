@@ -11,4 +11,10 @@ export const interviews = [
     subtitle: "영업 3팀 | 장은혜 대리",
     image: "/images/recruit/interview/eunhye3/main001.jpg",
   },
+  {
+    name: "eunhye2",
+    title: "영업3팀의 비전과 이야기",
+    subtitle: "영업 3팀 | 장은혜 대리",
+    image: "/images/recruit/interview/eunhye3/main001.jpg",
+  },
 ];

@@ -80,7 +80,7 @@ export default function InterviewDetail() {
               variant="outline"
               className="w-[100px] h-[40px] border-gray-300 text-gray-700 rounded-xl font-bold hover:bg-gray-50"
             >
-              뒤로가기
+              목록보기
             </Button>
           </Link>
           <Link href="/recruit/20">
