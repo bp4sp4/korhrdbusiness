@@ -21,7 +21,6 @@ import {
   Trash2,
   Save,
   X,
-  ArrowRight,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "@/lib/supabase";
