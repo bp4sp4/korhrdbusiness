@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { interviews } from "@/app/recruit/interview/interviewList";
-import { usePathname } from "next/navigation";
 
 type NavItem = { name: string; title: string } | null;
 

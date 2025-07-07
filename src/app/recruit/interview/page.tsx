@@ -6,8 +6,8 @@ export default function InterviewListPage() {
   return (
     <div className="max-w-5xl mx-auto py-12 px-4">
       <div className="text-center mb-12 ">
-        <div className="text-sm text-gray-500 mb-2">한평생교육원의 사람들</div>
-        <h1 className="text-4xl font-extrabold mb-2">한평생교육원 이야기</h1>
+        <div className="text-lg text-gray-500 mb-2">한평생그룹 사람들</div>
+        <h1 className="text-4xl font-extrabold mb-2">에듀바이저스 이야기</h1>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         {interviews.map((item) => (

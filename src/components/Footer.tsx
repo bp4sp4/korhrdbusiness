@@ -114,6 +114,9 @@ export default function Footer() {
                 개인정보 처리방침
               </Link>
             </div>
+            <div className="mt-2 text-[12px]">
+              2025 © EDUVISORS All rights reserved.
+            </div>
           </div>
         </div>
       </div>
