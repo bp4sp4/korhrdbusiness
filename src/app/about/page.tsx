@@ -339,14 +339,33 @@ export default function EduServicePage() {
 
       {/* 6. CEO 메시지 */}
       <motion.section
-        className="text-black py-16 "
+        className="text-black py-16 relative"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
         viewport={{ once: true, amount: 0.2 }}
-        style={{ backgroundImage: "url('/images/about/ceo_bg.png')" }}
       >
-        <div className="max-w-6xl mx-auto  flex flex-col md:flex-row items-center  gap-12">
+        {/* 데스크탑 배경 */}
+        <div
+          className="hidden md:block absolute inset-0 w-full h-full z-0"
+          style={{
+            backgroundImage: "url('/images/about/ceo_bg.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+          aria-hidden="true"
+        />
+        {/* 모바일 배경 */}
+        <div
+          className="block md:hidden absolute inset-0 w-full h-full z-0"
+          style={{
+            backgroundImage: "url('/images/about/ceo_mobile_bg.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+          aria-hidden="true"
+        />
+        <div className="relative max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
           {/* 메시지 영역 */}
           <div className="flex-1 text-left">
             <div className="font-extrabold text-2xl md:text-3xl mb-6 text-white">

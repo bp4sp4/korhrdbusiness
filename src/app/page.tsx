@@ -27,7 +27,7 @@ export default function Home() {
       return () => clearInterval(interval);
     }, []);
     return (
-      <span className="absolute bottom-0 left-1/2 -translate-x-1/2 flex flex-col items-center w-[22px] h-[30px]">
+      <span className="absolute bottom-[-30px] left-1/2 -translate-x-1/2 flex flex-col items-center w-[22px] h-[30px]">
         <img
           src="/images/main/arrow_action.png"
           width={22}
@@ -66,7 +66,7 @@ export default function Home() {
         className="main__hero absolute inset-0 w-full h-full flex items-center justify-center relative"
         style={{
           width: "100vw",
-          height: "80vh",
+          height: "75vh",
           backgroundImage: "url('/images/main/main__banner.png')",
           backgroundSize: "cover",
           backgroundPosition: "80% 0",
@@ -100,8 +100,8 @@ export default function Home() {
         </div>
       </section>
       <section className="main__hero-btn-wrap w-full h-[10vh] flex bg-[#040D33] justify-center items-center">
-        <div className="flex items-center flex-col relative w-full h-full mt-10">
-          <div className="relative flex items-center gap-2">
+        <div className="flex items-center flex-col justify-center relative w-full h-full mt-10">
+          <div className="relative flex items-center justify-center gap-2">
             <img src="/images/logo2.png" width={41} height={37} alt="로고" />
             <span className="text-white text-2xl font-bold">
               한평생 에듀바이저의 시작
@@ -171,11 +171,11 @@ export default function Home() {
                 alt=""
               />
             </div>
-            <div className="w-[380px]">
+            <div className="md:w-[380px]">
               <div className="text-[24px] font-bold text-[#2B7FFF] mb-2">
                 학생분들이 처한 환경부터 확인합니다.
               </div>
-              <div className="text-[#1e1e1e] text-[20px] leading-relaxed">
+              <div className="text-[#1e1e1e] text-[20px] leading-[1.5]">
                 <br />
                 한평생의 교육은 <strong>&#39;어디서부터 시작하느냐&#39;</strong>
                 가
@@ -207,11 +207,11 @@ export default function Home() {
                 alt=""
               />
             </div>
-            <div className="w-[518px]">
+            <div className="md:w-[518px]">
               <div className="text-[24px] font-bold text-[#2B7FFF] mb-2">
                 꼼꼼하고 세밀하게 관리합니다.
               </div>
-              <div className="text-[#1e1e1e] text-[20px] leading-relaxed">
+              <div className="text-[#1e1e1e] text-[18px] md:text-[20px] leading-[1.5]">
                 <br />
                 한평생 에듀바이저는 학습자의 중도 포기를 철저히 방지하기 위해,
                 전문 양성과정을 거친 설계사들이 체계적인 학습관리 시스템으로
@@ -241,12 +241,12 @@ export default function Home() {
                 alt=""
               />
             </div>
-            <div className="w-[515px]">
+            <div className="md:w-[515px]">
               <div className="text-[24px] font-bold text-[#2B7FFF] mb-2">
                 실기와 취업은 저희 몫입니다.
               </div>
 
-              <div className="text-[#1e1e1e] text-[20px] leading-relaxed">
+              <div className="text-[#1e1e1e] text-[18px] md:text-[20px] leading-[1.5]">
                 <br />
                 한평생은 교육의 끝이 아닌,
                 <br />
@@ -290,7 +290,7 @@ export default function Home() {
             <div className="w-[1000px] mx-auto relative">
               <div className="absolute left-[49px] bottom-[35px] ">
                 <Link
-                  className="bg-blue-600 text-white w-[373px] h-[86px] flex items-center justify-center rounded-[20px] text-[32px] font-semibold hover:bg-blue-700 transition text-center"
+                  className="bg-[#2B7FFF] text-white w-[373px] h-[86px] flex items-center justify-center rounded-[20px] text-[20px] font-semibold hover:bg-blue-700 transition text-center"
                   href="/recruit"
                 >
                   채용중인 공고 보기
@@ -329,7 +329,7 @@ export default function Home() {
           </p>
           <Link
             href="/recruit"
-            className="bg-[#2B7FFF] text-white px-8 py-3 rounded-full font-semibold shadow-md hover:bg-blue-700 transition text-center inline-block"
+            className="bg-[#2B7FFF] text-white px-8 py-3 rounded-full font-semibold shadow-md  transition text-center inline-block"
           >
             채용중인 분야 보기
           </Link>
