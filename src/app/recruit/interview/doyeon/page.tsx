@@ -4,7 +4,7 @@ import { interviews } from "../interviewList";
 import InterviewNav from "@/components/InterviewNav";
 
 export default function InterviewDetail() {
-  const currentIndex = interviews.findIndex((i) => i.name === "eunhye");
+  const currentIndex = interviews.findIndex((i) => i.name === "doyeon");
   const prev = currentIndex > 0 ? interviews[currentIndex - 1] : null;
   const next =
     currentIndex < interviews.length - 1 ? interviews[currentIndex + 1] : null;
@@ -16,11 +16,11 @@ export default function InterviewDetail() {
         한평생교육원의 비전과 이야기
       </h1>
       <p className="text-center text-lg text-gray-600 mb-8">
-        영업 3팀 | 장은혜 대리
+        영업 1팀 | 강도연 대리
       </p>
       <div className="rounded-2xl overflow-hidden mb-12">
         <img
-          src="/images/recruit/interview/eunhye3/main001.jpg"
+          src="/images/recruit/interview/doyeon1/doyeon.jpg"
           alt="한평생교육원 대표 이미지"
           className="w-full w-[311px] h-[211px] md:w-[864px] md:h-[576px] object-cover"
         />
@@ -29,7 +29,7 @@ export default function InterviewDetail() {
       {/* === 본문: 이미지 + 텍스트 섹션 === */}
       <section className="mb-12">
         <h2 className=" font-bold mb-2 md:px-10 text-[20px] md:text-[26px] ">
-          안녕하세요, 은혜대리님 반가워요!
+          안녕하세요, 도연대리님 반가워요!
         </h2>
         <p className="mb-10 md:px-10 text-[17px] md:text-[19px]">
           한평생교육원은 평생교육의 가치를 실현하며, 모두가 성장할 수 있는 교육
@@ -38,7 +38,7 @@ export default function InterviewDetail() {
         </p>
         <div className="rounded-2xl overflow-hidden mb-8">
           <img
-            src="/images/recruit/interview/eunhye3/main002.jpg"
+            src="/images/recruit/interview/doyeon1/doyeon001.jpg"
             alt="한평생교육원 교육 현장"
             className="w-full w-[311px] h-[211px] md:w-[864px] md:h-[576px] object-cover"
           />
@@ -58,7 +58,7 @@ export default function InterviewDetail() {
         </p>
         <div className="rounded-2xl overflow-hidden mb-8">
           <img
-            src="/images/recruit/interview/eunhye3/main003.jpg"
+            src="/images/recruit/interview/doyeon1/doyeon002.jpg"
             alt="한평생교육원 교육 현장"
             className="w-full w-[311px] h-[211px] md:w-[864px] md:h-[576px] object-cover"
           />

@@ -21,6 +21,7 @@ import {
   Trash2,
   Save,
   X,
+  ArrowRight,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "@/lib/supabase";
@@ -208,7 +209,7 @@ const AddJobForm = ({ onAdd, onCancel }: AddJobFormProps) => {
 const EditJobForm = ({ job, onSave, onCancel }: EditJobFormProps) => {
   const [title, setTitle] = useState(job.title);
   const [tags, setTags] = useState(job.tags.join(", "));
-  const [date] = useState(job.date);
+
   const [status, setStatus] = useState(job.status);
   const [location, setLocation] = useState(job.location || "");
   const [salary, setSalary] = useState(job.salary || "");
@@ -226,7 +227,7 @@ const EditJobForm = ({ job, onSave, onCancel }: EditJobFormProps) => {
           .split(",")
           .map((tag) => tag.trim())
           .filter(Boolean),
-        date: date || job.date,
+
         status,
         location,
         salary,
@@ -469,7 +470,7 @@ export default function RecruitListPage() {
     <div className="min-h-screen mb-30 bg-background">
       <div className="w-full bg-[url('/images/recruit/recruit__banner.png')] bg-cover bg-center bg-no-repeat">
         <main className="max-w-6xl mx-auto p-[28px_20px_32px] md:py-8 md:px-4 sm:px-6 lg:px-8">
-          <section className="md:mb-8">
+          <section className="md:mb-8  md:mt-5">
             <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6">
               <div className="flex-1">
                 <h1
@@ -590,9 +591,21 @@ export default function RecruitListPage() {
             <span className="text-blue-500">{recruitList.length}개</span>의
             포지션이 열려있어요.
           </h2>
-          <Link href="/recruit/interview">
-            <span className="text-gray-500 cursor-pointer hover:underline">
+          <Link
+            href="/recruit/interview"
+            className="hover:text-[#1E1E1E] text-[#979797] group"
+          >
+            <span className="flex items-center pb-0.1 transition-all">
               더보기
+              <span style={{ width: 14, height: 14 }}>
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="m7.5 20.4c-.5-.5-.5-1.2 0-1.7l6.7-6.7-6.8-6.7c-.5-.5-.5-1.2 0-1.7s1.2-.5 1.7 0l7.5 7.5c.5.5.5 1.2 0 1.7l-7.5 7.5c-.2.3-.5.4-.8.4s-.6-.1-.8-.3z"
+                    fill="#b0b8c1"
+                    className="transition-colors group-hover:fill-[#1E1E1E]"
+                  ></path>
+                </svg>
+              </span>
             </span>
           </Link>
         </div>
@@ -695,42 +708,50 @@ export default function RecruitListPage() {
 
           <div className="lg:col-span-1">
             <div className="sticky top-6 space-y-4 max-h-[calc(100vh-8rem)] overflow-y-auto">
-              <Link href="/recruit/interview/eunhye">
+              <Link href="/recruit/interview/doyeon">
                 <Card
-                  className="min-h-[100px] bg-muted/50 flex flex-col mb-5 justify-between hover:bg-muted cursor-pointer transition"
-                  style={{ padding: "18px 18px 10px" }}
+                  className="min-h-[100px]  mb-5 flex flex-col justify-between hover:bg-muted cursor-pointer transition"
+                  style={{
+                    padding: "18px 18px 10px",
+                    border: "1px solid rgba(0, 29, 58, 0.18)",
+                  }}
                 >
                   <div>
                     <div className="font-bold text-base text-gray-900 mb-1 line-clamp-2">
-                      한평생교육원 이야기
+                      영업1팀의 비전과 이야기
+                    </div>
+                    <div className="text-sm text-gray-500">
+                      영업 1팀 | 강도연 대리
+                    </div>
+                  </div>
+                </Card>
+              </Link>
+              <Link href="/recruit/interview/eunhye">
+                <Card
+                  className="min-h-[100px]  flex flex-col mb-5 justify-between hover:bg-muted cursor-pointer transition"
+                  style={{
+                    padding: "18px 18px 10px",
+                    border: "1px solid rgba(0, 29, 58, 0.18)",
+                  }}
+                >
+                  <div>
+                    <div className="font-bold text-base text-gray-900 mb-1 line-clamp-2">
+                      영업3팀의 비전과 이야기
                     </div>
                     <div className="text-sm text-gray-500">
                       영업 3팀 | 장은혜 대리
                     </div>
                   </div>
-                  <div className="text-xs text-gray-400 mb-1">2025.06.17</div>
                 </Card>
               </Link>
-              <Link href="/recruit/interview/hanpyeongsaeng2">
-                <Card
-                  className="min-h-[100px] bg-muted/50 mb-5 flex flex-col justify-between hover:bg-muted cursor-pointer transition"
-                  style={{ padding: "18px 18px 10px" }}
-                >
-                  <div>
-                    <div className="font-bold text-base text-gray-900 mb-1 line-clamp-2">
-                      한평생교육원 성장 스토리
-                    </div>
-                    <div className="text-sm text-gray-500">
-                      교직원 | 한평생교육원
-                    </div>
-                  </div>
-                  <div className="text-xs text-gray-400 mb-1">2025.06.17</div>
-                </Card>
-              </Link>
+
               <Link href="/recruit/interview/hanpyeongsaeng3">
                 <Card
-                  className="min-h-[100px] bg-muted/50 flex flex-col justify-between hover:bg-muted cursor-pointer transition"
-                  style={{ padding: "18px 18px 10px" }}
+                  className="min-h-[100px] flex flex-col justify-between hover:bg-muted cursor-pointer transition"
+                  style={{
+                    padding: "18px 18px 10px",
+                    border: "1px solid rgba(0, 29, 58, 0.18)",
+                  }}
                 >
                   <div>
                     <div className="font-bold text-base text-gray-900 mb-1 line-clamp-2">
@@ -740,7 +761,6 @@ export default function RecruitListPage() {
                       학생 | 한평생교육원
                     </div>
                   </div>
-                  <div className="text-xs text-gray-400 mb-1">2025.06.17</div>
                 </Card>
               </Link>
             </div>
