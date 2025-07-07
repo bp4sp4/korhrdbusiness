@@ -27,7 +27,7 @@ export default function Home() {
       return () => clearInterval(interval);
     }, []);
     return (
-      <span className="absolute bottom-15 left-1/2 -translate-x-1/2 flex flex-col items-center w-[22px] h-[30px]">
+      <span className="absolute md:bottom-5 bottom-15 left-1/2 -translate-x-1/2 flex flex-col items-center w-[22px] h-[30px]">
         <img
           src="/images/main/arrow_action.png"
           width={22}
@@ -153,10 +153,10 @@ export default function Home() {
           <div className=" flex items-center justify-center gap-2">
             <img
               src="/images/logo2.png"
-              className="w-[31px] h-[27px] md:w-[60px] md:h-[50px] hidden md:block"
+              className="w-[31px] h-[27px] md:w-[31px] md:h-[27px] hidden md:block"
               alt="로고"
             />
-            <span className="text-white text-[14px] text-2xl font-bold">
+            <span className="text-white text-[14px] md:text-2xl font-bold">
               한평생 에듀바이저의 시작
             </span>
             <ArrowBlink />
@@ -175,16 +175,17 @@ export default function Home() {
         }}
       >
         <section className="main__service w-full mx-auto flex">
-          <div className="main__service__title h-[600px] flex flex-col justify-center">
-            <h2 className="text-[40px] font-bold">
-              교육은 받았지만 <span className="text-[#2B7FFF]">왜</span> 취업은
-              어려울까요?
+          <div className="main__service__title h-[600px] flex flex-col justify-center md:items-start md:px-0 px-10">
+            <h2 className="text-[30px] md:text-[40px] font-bold  md:block">
+              교육은 받았지만
+              <br className="block md:hidden" />
+              <span className="text-[#2B7FFF]">왜</span> 취업은 어려울까요?
             </h2>
-            <p className="text-[26px]">
+            <p className="text-[18px] md:text-[26px] flex flex-col md:items-center md:justify-center md:block">
               <br />
-              한평생 에듀바이저는 많은이들이{" "}
+              한평생 에듀바이저는 많은이들이
               <strong>자신과 맞지 않는 교육을 선택</strong>하거나 복잡해진
-              <br /> 실무·취업 환경에 적응하지 못해{" "}
+              <br className="hidden md:block" /> 실무·취업 환경에 적응하지 못해
               <strong>시작조차 어려운하는 경우가 많다</strong>는 사실을
               확인했습니다.
               <br />
@@ -206,7 +207,7 @@ export default function Home() {
           한평생 에듀바이저는 다릅니다.
         </h2>
         {/* STEP 1 */}
-        <div className="flex flex-col md:flex-row items-center mb-[158px] md:gap-[160px]">
+        <div className="flex flex-col md:flex-row items-center mb-[70px] md:mb-[158px] md:gap-[160px] md:px-0 px-10">
           <img
             src="/images/main/main001.png"
             width={391}
@@ -214,7 +215,7 @@ export default function Home() {
             alt="상담 장면"
             className="rounded-2xl shadow-md object-cover mb-4 md:mb-0"
           />
-          <div className="flex-1">
+          <div className="flex-1 md:mt-0 mt-5">
             <div className="w-[60px] h-[26px]bg-[#CBE0FF] mb-[17px] flex items-center justify-center">
               <img
                 className=" border-radius-[7px] "
@@ -223,10 +224,10 @@ export default function Home() {
               />
             </div>
             <div className="md:w-[380px]">
-              <div className="text-[24px] font-bold text-[#2B7FFF] mb-2">
+              <div className="text-[20px] md:text-[24px] font-bold text-[#2B7FFF] mb-2">
                 학생분들이 처한 환경부터 확인합니다.
               </div>
-              <div className="text-[#1e1e1e] text-[20px] leading-[1.5]">
+              <div className="text-[#1e1e1e] text-[16px] md:text-[20px] leading-[1.5]">
                 <br />
                 한평생의 교육은 <strong>&#39;어디서부터 시작하느냐&#39;</strong>
                 가
@@ -321,7 +322,6 @@ export default function Home() {
           style={{
             backgroundImage: "url('/images/main/metting.png')",
             backgroundSize: "cover",
-            backgroundPosition: "center",
           }}
         >
           <div className="w-[1180px] mx-auto flex text-left">

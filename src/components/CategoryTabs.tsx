@@ -18,7 +18,7 @@ const nationalCertificates = [
     desc: "순수함을 돌보는 전문직의 시작",
   },
   {
-    img: "/images/eduservice/national/national003.png",
+    img: "/images/eduservice/national/national003.jpg",
     title: "배움의 가치를 전하다",
     desc: "학습 설계부터 교육 운영까지",
   },
