@@ -84,11 +84,14 @@
 }
 
 .main__hero-btn {
-    padding: 1.5rem 9.5rem;
-    border-radius: 20Px;
+    width: 373px;
+    height: 86px;
     background: #2B7FFF;
+    border-radius: 20px;
     text-align: center;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: #fff;
     font-size: 20px;
     font-weight: 500;
@@ -125,8 +128,48 @@
 
         margin: 0 auto;
     }
+
+
+    .main__hero-btn {
+        width: 283px;
+        height: 65px;
+        background: #2B7FFF;
+        border-radius: 20px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-size: 20px;
+        font-weight: 500;
+        cursor: pointer;
+    }
 }
 
+
+@media (max-width: 376px) {
+
+    .text-4xl {
+        font-size: 1.8rem;
+    }
+
+
+
+    .main__hero-btn {
+        width: 263px;
+        height: 65px;
+        background: #2B7FFF;
+        border-radius: 20px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-size: 20px;
+        font-weight: 500;
+        cursor: pointer;
+    }
+}
 
 
 
@@ -143,10 +186,7 @@
         font-size: 2.2rem;
     }
 
-    .main__hero-btn {
-        padding: 1.2rem 4rem;
-        font-size: 1.1rem;
-    }
+
 
 
 
@@ -155,12 +195,6 @@
 @media (max-width: 768px) {
     .main__hero-title {
         font-size: 2.5rem;
-    }
-
-    .main__hero-btn {
-        padding: 1rem 7.5rem;
-        font-size: 1rem;
-
     }
 
 

@@ -23,11 +23,11 @@ export default function Home() {
     useEffect(() => {
       const interval = setInterval(() => {
         setActive((prev) => !prev);
-      }, 700);
+      }, 2000);
       return () => clearInterval(interval);
     }, []);
     return (
-      <span className="absolute bottom-[-30px] left-1/2 -translate-x-1/2 flex flex-col items-center w-[22px] h-[30px]">
+      <span className="absolute bottom-15 left-1/2 -translate-x-1/2 flex flex-col items-center w-[22px] h-[30px]">
         <img
           src="/images/main/arrow_action.png"
           width={22}
@@ -36,7 +36,7 @@ export default function Home() {
           style={{
             opacity: active ? 1 : 0,
             transform: active ? "translateY(0px)" : "translateY(-10px)",
-            transition: "opacity 1s, transform 1s",
+            transition: "opacity 2S, transform 2s",
             position: "absolute",
             top: 0,
             left: 0,
@@ -50,7 +50,7 @@ export default function Home() {
           style={{
             opacity: active ? 0 : 1,
             transform: active ? "translateY(10px)" : "translateY(0px)",
-            transition: "opacity 1s, transform 1s",
+            transition: "opacity 2s, transform 2s",
             position: "absolute",
             top: 0,
             left: 0,
@@ -62,8 +62,9 @@ export default function Home() {
 
   return (
     <main className="main w-screen min-h-screen flex flex-col items-center bg-white">
+      {/* Desktop Hero Section */}
       <section
-        className="main__hero absolute inset-0 w-full h-full flex items-center justify-center relative"
+        className="main__hero hidden md:flex absolute inset-0 w-full h-full items-center justify-center relative"
         style={{
           width: "100vw",
           height: "75vh",
@@ -73,7 +74,7 @@ export default function Home() {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <div className="main__hero-content flex-1 flex flex-col items-start z-10 rounded-lg md:bg-transparent md:p-0">
+        <div className="main__hero-content flex-1 flex flex-col items-start z-10 rounded-lg md:bg-transparent md:p-0 ">
           <div className="main__hero-title text-white text-xl md:text-7xl mb-6 flex flex-col gap-3">
             <motion.p
               className="text-white text-2xl md:text-4xl font-normal"
@@ -99,20 +100,70 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="main__hero-btn-wrap w-full h-[10vh] flex bg-[#040D33] justify-center items-center">
-        <div className="flex items-center flex-col justify-center relative w-full h-full mt-10">
-          <div className="relative flex items-center justify-center gap-2">
-            <img src="/images/logo2.png" width={41} height={37} alt="로고" />
-            <span className="text-white text-2xl font-bold">
-              한평생 에듀바이저의 시작
-            </span>
+      {/* Mobile Hero Section */}
+      <section
+        className="main__hero flex md:hidden absolute inset-0 w-full h-full items-center justify-center relative"
+        style={{
+          width: "100vw",
+          height: "75vh",
+          backgroundImage: "url('/images/main/main__banner__mobile.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className="main__hero-content flex-1 flex flex-col items-start z-10 rounded-lg p-6">
+          <div className="absolute bottom-[40px] left-0 right-0 max-w-[300px] mx-auto">
+            <div className="main__hero-title text-white text-xl mb-4 flex flex-col gap-2 ">
+              <motion.p
+                className="text-white text-2xl font-normal"
+                variants={textVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                취업난 해결 프로젝트
+              </motion.p>
+              <motion.h2
+                className="text-white text-4xl font-bold"
+                variants={textVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                한평생 에듀바이저스
+              </motion.h2>
+            </div>
+            <div className="main__hero-buttons flex">
+              <a href="about" className="main__hero-btn text-base px-4 py-2 ">
+                시작하기
+              </a>
+            </div>
           </div>
-          <ArrowBlink />
         </div>
       </section>
-      <div className="w-full h-[10vh]">
-        <img src="/images/main/main__banner001.png" alt="" />
-      </div>
+      <section
+        className="main__hero-btn-wrap w-full h-[20vh] "
+        style={{
+          backgroundImage: "url('/images/main/main__banner001.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className="flex items-center flex-col justify-center w-full mt-10 md:mt-10">
+          <div className=" flex items-center justify-center gap-2">
+            <img
+              src="/images/logo2.png"
+              className="w-[31px] h-[27px] md:w-[60px] md:h-[50px] hidden md:block"
+              alt="로고"
+            />
+            <span className="text-white text-[14px] text-2xl font-bold">
+              한평생 에듀바이저의 시작
+            </span>
+            <ArrowBlink />
+          </div>
+        </div>
+      </section>
+
       <div
         className="background-image"
         style={{
@@ -301,38 +352,34 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 모바일: 토스 스타일 오버레이 구조 */}
-      <section className="relative w-full h-[100vh] flex md:hidden">
-        {/* 배경 이미지 */}
+      <section className="block md:hidden w-full h-[100vh] relative">
         <img
-          src="/images/main/metting.png"
-          alt="채용 미팅"
+          src="/images/main/main__banner002__mobile.png"
+          alt="채용 미팅 모바일"
           className="w-full h-full object-cover"
-          style={{ height: "100vh" }}
         />
-        {/* 오버레이 텍스트/버튼 */}
-        <div
-          className="absolute inset-0 flex flex-col items-center px-4"
-          style={{
-            padding: "60px 0 0",
-          }}
-        >
-          <h2 className="text-xl text-[#3b2e1a] font-semibold mb-3 text-center text-black drop-shadow">
+        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-6">
+          <h2 className="text-[22px] font-bold mb-3 text-white text-center drop-shadow">
+            한평생 에듀바이저와
+            <br />
             함께하실 분을 찾습니다.
           </h2>
-          <p className="text-base text-[#4b3a1a] mb-6 text-center text-black drop-shadow">
-            판매 실적이 아닌, 고객만족 중심의 파격적인 보상을 드립니다.
+          <p className="text-white text-[15px] mb-6 text-center drop-shadow">
+            판매 실적이 아닌, 고객만족 중심의
             <br />
-            오직 고객 만족에만 집중할 수 있는 업무 환경과
+            파격적인 보상을 드립니다.
             <br />
-            최고의 복리후생을 제공합니다.
+            오직 고객 만족에만 집중할 수 있는
+            <br />
+            업무 환경과 최고의 복리후생을 제공합니다.
           </p>
-          <Link
+          <a
             href="/recruit"
-            className="bg-[#2B7FFF] text-white px-8 py-3 rounded-full font-semibold shadow-md  transition text-center inline-block"
+            className="bg-[#2B7FFF] text-white px-6 py-3 rounded-full font-semibold shadow-md transition text-center text-[16px] w-full max-w-[260px]"
           >
-            채용중인 분야 보기
-          </Link>
+            채용중인 공고 보기
+          </a>
         </div>
       </section>
     </main>
