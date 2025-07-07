@@ -101,20 +101,18 @@ export default function EduServicePage() {
           viewport={{ once: true, amount: 0.1 }}
         >
           <h2
-            className="text-3xl md:text-6xl font-extrabold mb-2"
+            className="text-2xl md:text-5xl font-normal mb-2"
             style={{ letterSpacing: "-2px" }}
           >
             누구도 끝까지 책임지지 않던
           </h2>
-          <p className="text-2xl font-bold md:text-5xl ">
+          <p className="text-3xl font-bold md:text-6xl font-extrabold ">
             교육의 본질을 바꿉니다.
           </p>
-          <p className="text-lg font-bold md:text-3xl text-gray-200 mt-10">
-            한평생교육은 정말{" "}
-            <span className="text-white font-bold border-b-2 border-white-400">
-              한 평생 함께합니다.
-            </span>
-          </p>
+          <div className="text-lg md:text-3xl text-white mt-10">
+            <strong>한평생교육</strong>은 여러분과 정말 한 평생을 함께
+            함께합니다.
+          </div>
         </motion.div>
       </div>
 
@@ -341,44 +339,40 @@ export default function EduServicePage() {
 
       {/* 6. CEO 메시지 */}
       <motion.section
-        className="bg-red-100 text-black py-16 "
+        className="text-black py-16 "
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
         viewport={{ once: true, amount: 0.2 }}
+        style={{ backgroundImage: "url('/images/about/ceo_bg.png')" }}
       >
         <div className="max-w-6xl mx-auto  flex flex-col md:flex-row items-center  gap-12">
           {/* 메시지 영역 */}
           <div className="flex-1 text-left">
-            <div className="font-extrabold text-2xl md:text-3xl mb-6">
+            <div className="font-extrabold text-2xl md:text-3xl mb-6 text-white">
               CEO Message
             </div>
-            <div className="text-gray-700 text-base md:text-lg leading-relaxed mb-8">
-              한평생에듀바이저 홈페이지에 방문해 주신 모든 분께 감사의 말씀을
-              전합니다.
-              <br />
-              한평생에듀바이저는 학생들의 성장과 성공을 최우선으로 생각하며
-              <br />
-              실질적이고 현장감 있는 교육, 그리고 내일을 바꾸는 서비스를
-              제공합니다. 앞으로도 더 많은 분들이 성장의 기회를 잡을 수 있도록
-              혁신을 멈추지 않겠습니다.
+            <div className="text-white text-base md:text-lg leading-relaxed mb-8">
+              한평생에듀바이저 홈페이지에 방문해 주신
+              <br /> 모든 분께 감사의 말씀을 전합니다.
               <br />
               <br />
-              한평생에듀바이저 임직원 일동
-            </div>
-            <div className="text-right text-gray-400  text-sm mt-8">
-              - 한평생에듀바이저 대표 양병웅 -
+              <strong>
+                한평생에듀바이저는 학생들의 성장과 성공을 최우선으로 생각하며
+                <br />
+                실질적이고 현장감 있는 교육, 그리고 내일을 바꾸는 서비스를
+                제공합니다.
+              </strong>
+              <br />
+              <br />
+              앞으로도 더 많은 분들이 성장의 기회를 잡을 수 있도록
+              <br /> 혁신을 멈추지 않겠습니다.
+              <br />
+              <br />
             </div>
           </div>
           {/* 사인 영역 */}
-          <div className="flex-1 flex justify-center md:justify-end items-start w-full">
-            <img
-              src="/images/chart.jpg"
-              alt="CEO 서명"
-              className="w-64 max-w-full h-auto object-contain md:w-[400px] md:h-[400px]"
-              style={{ minWidth: 300, minHeight: 300 }}
-            />
-          </div>
+          <div className="flex-1 flex justify-center md:justify-end items-start w-full"></div>
         </div>
       </motion.section>
     </div>

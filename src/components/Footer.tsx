@@ -115,7 +115,7 @@ export default function Footer() {
               </Link>
             </div>
             <div className="mt-2 text-[12px]">
-              2025 © EDUVISORS All rights reserved.
+              2025 © KORHRD Partners. All rights reserved.
             </div>
           </div>
         </div>
