@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 
 type NavItem = { name: string; title: string } | null;
@@ -11,6 +13,19 @@ export default function InterviewNav({
 }) {
   return (
     <>
+      <div className="fixed bottom-8 right-8 z-50 sm:bottom-8 sm:right-8 bottom-4 right-4">
+        <img
+          src="/images/upbtn.png"
+          alt="upbtn"
+          aria-label="맨 위로 이동"
+          className="w-10 h-10 cursor-pointer sm:w-10 sm:h-10 w-8 h-8"
+          onClick={() => {
+            if (typeof window !== "undefined") {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          }}
+        />
+      </div>
       <hr className="border-[#97979780] my-10" />
       <div className="text-[#1E1E1E] font-bold font-family-pretendard text-[26px] mb-2 relative after:content-[''] after:absolute after:w-[60px] after:h-1 after:bg-[#2B7FFF] after:bottom-[-10px] after:left-0">
         다른 이야기
