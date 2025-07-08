@@ -72,7 +72,7 @@ export default function EduServicePage() {
   return (
     <div className=" text-white w-full min-h-screen">
       {/* 1. 히어로/인트로 */}
-      <div className="relative w-full  h-[100vh] flex items-center justify-center overflow-hidden">
+      <div className="relative w-full h-[87vh]  md:h-[100vh] flex items-center justify-center overflow-hidden">
         {/* 배경 이미지에 parallax */}
         <motion.div className="absolute inset-0 w-full h-full z-0">
           <div className="absolute inset-0 w-full h-full z-0">
