@@ -19,8 +19,6 @@ interface TimelineEntry {
 export default function EduServicePage() {
   // Parallax 관련 ref 및 motion 값 정의
 
-  const { scrollY } = useScroll();
-
   // Swiper autoplay 제어용 (Intersection Observer + Swiper 인스턴스)
   const eduTopSwiperRef = useRef<SwiperClass | null>(null);
   const eduTopContainerRef = useRef<HTMLDivElement | null>(null);
