@@ -194,7 +194,7 @@ export default function Home() {
           </div>
         </section>
         {/* 모바일 전용 */}
-        <section className="md:hidden w-full px-6 py-10 mx-auto px-10">
+        <section className="md:hidden w-full px-6 py-20 mx-auto px-10">
           <h2 className="text-[30px] md:text-[40px] font-bold md:block">
             교육은 받았지만
             <br className="block md:hidden" />
@@ -219,8 +219,8 @@ export default function Home() {
         </section>
       </div>
 
-      <section className="w-full max-w-5xl mx-auto py-20">
-        <h2 className="text-2xl md:text-[40px] mt-[150px] mb-[128px] font-bold text-center">
+      <section className="w-full max-w-5xl mx-auto py-0 md:py-20">
+        <h2 className="text-2xl md:text-[40px] mt-[100px] md:mt-[150px] mb-[128px] font-bold text-center">
           한평생 에듀바이저는 다릅니다.
         </h2>
         {/* STEP 1 */}
