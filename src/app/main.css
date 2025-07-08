@@ -271,13 +271,7 @@
 }
 
 @media (max-width: 480px) {
-    .main__service {
-        max-width: 100vw;
-        padding: 2rem 0.5rem;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-    }
+
 
     .main__service_desc {
         font-size: 1rem;

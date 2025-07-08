@@ -174,12 +174,14 @@ export default function Home() {
           width: "100%",
         }}
       >
-        <section className="main__service w-full mx-auto flex">
+        {/* 데스크탑 전용 */}
+        <section className="hidden md:block main__service w-full mx-auto flex">
           <div className="main__service__title h-[600px] flex flex-col justify-center md:items-start md:px-0 px-10">
             <h2 className="text-[30px] md:text-[40px] font-bold  md:block">
               교육은 받았지만
               <br className="block md:hidden" />
-              <span className="text-[#2B7FFF]">왜</span> 취업은 어려울까요?
+              <span className="text-[#2B7FFF]">&nbsp;왜</span> 취업은
+              어려울까요?
             </h2>
             <p className="text-[18px] md:text-[26px] flex flex-col md:items-center md:justify-center md:block">
               <br />
@@ -200,8 +202,32 @@ export default function Home() {
             </p>
           </div>
         </section>
+        {/* 모바일 전용 */}
+        <section className="md:hidden w-full px-6 py-10 bg-[#F8FAFF] mx-auto px-10">
+          <h2 className="text-[30px] md:text-[40px] font-bold md:block">
+            교육은 받았지만
+            <br className="block md:hidden" />
+            <span className="text-[#2B7FFF]">왜</span> 취업은 어려울까요?
+          </h2>
+          <p className="text-[18px] md:text-[26px] flex flex-col md:items-center md:justify-center md:block">
+            <br />
+            한평생 에듀바이저는 많은이들이
+            <strong>자신과 맞지 않는 교육을 선택 하거나</strong> 복잡해진
+            <br className="hidden md:block" /> 실무·취업 환경에 적응하지 못해
+            <strong>시작조차 어려운하는 경우가 많다는</strong> 사실을
+            확인했습니다.
+            <br />
+            <br />
+            <strong>이에 교육과 취업을 하나로 구축하고,</strong>
+            <strong>&#39;시작부터 현장까지&#39; 책임지는</strong>
+            <span className="text-[#2B7FFF] font-bold">
+              맞춤형 실무교육을 실현
+              <span className="text-[#1e1e1e]"> 하고 있습니다.</span>
+            </span>
+          </p>
+        </section>
       </div>
-      {/* 3-Image Modern Layout Section */}
+
       <section className="w-full max-w-5xl mx-auto py-20">
         <h2 className="text-2xl md:text-[40px] mt-[150px] mb-[128px] font-bold text-center">
           한평생 에듀바이저는 다릅니다.
@@ -220,15 +246,15 @@ export default function Home() {
               <img
                 className=" border-radius-[7px] "
                 src="/images/main/step1.png"
-                alt=""
+                alt="step1"
               />
             </div>
-            <div className="md:w-[380px]">
+            <div className="w-[350px] md:w-[380px]">
               <div className="text-[20px] md:text-[24px] font-bold text-[#2B7FFF] mb-2">
                 학생분들이 처한 환경부터 확인합니다.
               </div>
               <div className="text-[#1e1e1e] text-[16px] md:text-[20px] leading-[1.5]">
-                <br />
+                <br hidden />
                 한평생의 교육은 <strong>&#39;어디서부터 시작하느냐&#39;</strong>
                 가
                 <br />
@@ -243,7 +269,7 @@ export default function Home() {
           </div>
         </div>
         {/* STEP 2 */}
-        <div className="flex flex-col md:flex-row-reverse items-center mb-16 gap-8">
+        <div className="flex flex-col md:flex-row-reverse items-center mb-16 md:gap-8 gap-0 md:px-0 px-10">
           <img
             src="/images/main/main002.png"
             width={391}
@@ -251,33 +277,38 @@ export default function Home() {
             alt="면접 장면"
             className="rounded-2xl shadow-md object-cover mb-4 md:mb-0"
           />
-          <div className="flex-1">
+          <div className="flex-1 md:mt-0 mt-5">
             <div className="w-[60px] h-[26px]bg-[#CBE0FF] mb-[17px] flex items-center justify-center">
               <img
                 className=" border-radius-[7px] "
                 src="/images/main/step2.png"
-                alt=""
+                alt="step2"
               />
             </div>
-            <div className="md:w-[518px]">
-              <div className="text-[24px] font-bold text-[#2B7FFF] mb-2">
+            <div className="w-[350px] md:w-[518px]">
+              <div className="md:text-[24px] text-[20px] font-bold text-[#2B7FFF] mb-2">
                 꼼꼼하고 세밀하게 관리합니다.
               </div>
-              <div className="text-[#1e1e1e] text-[18px] md:text-[20px] leading-[1.5]">
+              <div className="text-[#1e1e1e] text-[16px] md:text-[20px] leading-[1.5]">
                 <br />
-                한평생 에듀바이저는 학습자의 중도 포기를 철저히 방지하기 위해,
-                전문 양성과정을 거친 설계사들이 체계적인 학습관리 시스템으로
+                한평생 에듀바이저는 학습자의 중도 포기를{" "}
+                <br className="md:hidden" />
+                철저히 방지하기 위해, 전문 양성과정을 거친
+                <br className="md:hidden" />
+                설계사들이 체계적인 학습관리 시스템으로
                 <br />
                 <strong>학습 완료까지 책임지고 동행합니다.</strong>
                 <br />
                 <br />
-                학습자 한 사람 한 사람의 끝맺음을 우리의 사명으로 여깁니다.
+                학습자 한 사람 한 사람의 끝맺음을
+                <br className="md:hidden" />
+                우리의 사명으로 여깁니다.
               </div>
             </div>
           </div>
         </div>
         {/* STEP 3 */}
-        <div className="flex flex-col md:flex-row items-center md:gap-[160px] mb-[230px]">
+        <div className="flex flex-col md:flex-row items-center md:gap-[160px] mb-[230px] md:px-0 px-10">
           <img
             src="/images/main/main003.png"
             width={391}
@@ -285,20 +316,20 @@ export default function Home() {
             alt="취업 준비 장면"
             className="rounded-2xl shadow-md object-cover mb-4 md:mb-0"
           />
-          <div className="flex-1">
+          <div className="flex-1 md:mt-0 mt-5">
             <div className="w-[60px] h-[26px]bg-[#CBE0FF] mb-[17px] flex items-center justify-center">
               <img
                 className=" border-radius-[7px] "
                 src="/images/main/step3.png"
-                alt=""
+                alt="step3"
               />
             </div>
-            <div className="md:w-[515px]">
-              <div className="text-[24px] font-bold text-[#2B7FFF] mb-2">
+            <div className="w-[350px] md:w-[515px]">
+              <div className="md:text-[24px] text-[20px] font-bold text-[#2B7FFF] mb-2">
                 실기와 취업은 저희 몫입니다.
               </div>
 
-              <div className="text-[#1e1e1e] text-[18px] md:text-[20px] leading-[1.5]">
+              <div className="text-[#1e1e1e] text-[16px] md:text-[20px] leading-[1.5]">
                 <br />
                 한평생은 교육의 끝이 아닌,
                 <br />
@@ -315,7 +346,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      {/* Recruit Section */}
+      {/* 취업지원 섹션 */}
       <section className="main__recruit w-full flex-col md:flex-row items-stretch h-auto md:h-[400px] hidden md:flex">
         <div
           className="flex-1 h-[300px] md:h-full flex flex-col justify-center bg-[#aeb2a3]"
@@ -352,23 +383,25 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="block md:hidden w-full h-[100vh] relative">
+      {/* 모바일 취업지원 섹션 */}
+      <section className="block md:hidden w-full h-[100vh] relative ">
         <img
           src="/images/main/main__banner002__mobile.png"
           alt="채용 미팅 모바일"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-6">
-          <h2 className="text-[22px] font-bold mb-3 text-white text-center drop-shadow">
+
+        <div className="absolute mt-10 inset-0 flex flex-col max-w-[300px] mx-auto">
+          <h2 className="text-[30px] font-bold mb-3 text-white ">
             한평생 에듀바이저와
             <br />
             함께하실 분을 찾습니다.
           </h2>
-          <p className="text-white text-[15px] mb-6 text-center drop-shadow">
+          <p className="text-white text-[15px] mt-[29px] ">
             판매 실적이 아닌, 고객만족 중심의
             <br />
             파격적인 보상을 드립니다.
+            <br />
             <br />
             오직 고객 만족에만 집중할 수 있는
             <br />
@@ -376,7 +409,7 @@ export default function Home() {
           </p>
           <Link
             href="/recruit"
-            className="bg-[#2B7FFF] text-white px-6 py-3 rounded-full font-semibold shadow-md transition text-center text-[16px] w-full max-w-[260px]"
+            className="bg-[#2B7FFF] text-white rounded-[12px] w-[300px] h-[50px] mt-[37px] font-semibold shadow-md transition text-center text-[20px] flex items-center justify-center"
           >
             채용중인 공고 보기
           </Link>
