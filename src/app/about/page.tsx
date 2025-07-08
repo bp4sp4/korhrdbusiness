@@ -18,11 +18,8 @@ interface TimelineEntry {
 
 export default function EduServicePage() {
   // Parallax 관련 ref 및 motion 값 정의
-  const heroRef = useRef<HTMLDivElement>(null);
-  const { scrollY } = useScroll();
 
-  const bgY = useTransform(scrollY, [0, 500], [0, 80]);
-  const textY = useTransform(scrollY, [0, 500], [0, -120]);
+  const { scrollY } = useScroll();
 
   // Swiper autoplay 제어용 (Intersection Observer + Swiper 인스턴스)
   const eduTopSwiperRef = useRef<SwiperClass | null>(null);
@@ -75,33 +72,34 @@ export default function EduServicePage() {
   return (
     <div className=" text-white w-full min-h-screen">
       {/* 1. 히어로/인트로 */}
-      <div
-        ref={heroRef}
-        className="relative w-full  h-[100vh] flex items-center justify-center overflow-hidden"
-      >
+      <div className="relative w-full  h-[100vh] flex items-center justify-center overflow-hidden">
         {/* 배경 이미지에 parallax */}
-        <motion.div
-          style={{ y: bgY }}
-          className="absolute inset-0 w-full h-full z-0"
-        >
+        <motion.div className="absolute inset-0 w-full h-full z-0">
           <div className="absolute inset-0 w-full h-full z-0">
+            {/* 데스크톱용 이미지 (md 사이즈 이상에서 보임) */}
             <img
               src="/images/about/about_main_banner.png"
-              alt="eduservice001"
-              className="w-full h-full object-cover"
+              alt="메인 배너 이미지"
+              className="hidden md:block w-full h-full object-cover"
+            />
+            {/* 모바일용 이미지 (md 사이즈 미만에서 보임) */}
+            <img
+              src="/images/about/about_main_banner_moblie.png"
+              alt="모바일 메인 배너 이미지"
+              className="block md:hidden w-full h-full object-cover"
             />
           </div>
+          {/* 어두운 오버레이 (모바일만) */}
+          <div className="block md:hidden absolute inset-0 w-full h-full bg-black opacity-50 z-10 pointer-events-none" />
         </motion.div>
         <motion.div
-          style={{ y: textY }}
-          className="relative z-10 flex flex-col w-[1200px] mx-auto pl-[40px]"
-          initial={{ opacity: 0, y: 40 }}
+          className=" z-10 flex flex-col w-full max-w-[1200px] mx-auto px-10 absolute bottom-15 md:relative md:bottom-10"
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.1 }}
         >
           <h2
-            className="text-2xl md:text-5xl font-normal mb-2"
+            className="text-xl md:text-5xl font-normal mb-2"
             style={{ letterSpacing: "-2px" }}
           >
             누구도 끝까지 책임지지 않던
@@ -109,12 +107,9 @@ export default function EduServicePage() {
           <p className="text-3xl font-bold md:text-6xl font-extrabold ">
             교육의 본질을 바꿉니다.
           </p>
-          <p className="text-lg md:text-3xl text-white mt-10">
+          <p className="text-xl md:text-3xl text-white mt-10">
             <strong>한평생교육</strong>은 여러분과{" "}
-            <span className="hidden md:block">
-              <br />
-            </span>
-            정말 한 평생을 함께 함께합니다.
+            <span className="md:hidden block"></span>한 평생을 함께 함께합니다.
           </p>
         </motion.div>
       </div>
