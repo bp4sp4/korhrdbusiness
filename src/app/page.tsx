@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import "./main.css";
 import { motion, Easing } from "framer-motion";
 import Link from "next/link";
@@ -27,34 +28,24 @@ export default function Home() {
       return () => clearInterval(interval);
     }, []);
     return (
-      <span className="absolute md:bottom-5 bottom-15 left-1/2 -translate-x-1/2 flex flex-col items-center w-[22px] h-[30px]">
-        <img
+      <span className="absolute top-full mt-4 left-1/2 -translate-x-1/2 w-[22px] h-[30px]">
+        <Image
           src="/images/main/arrow_action.png"
           width={22}
           height={11}
-          alt="활성"
-          style={{
-            opacity: active ? 1 : 0,
-            transform: active ? "translateY(0px)" : "translateY(-10px)",
-            transition: "opacity 2S, transform 2s",
-            position: "absolute",
-            top: 0,
-            left: 0,
-          }}
+          alt="활성 화살표"
+          className={`absolute top-0 left-0 transition-all ease-in-out duration-[2000ms] ${
+            active ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2.5"
+          }`}
         />
-        <img
+        <Image
           src="/images/main/arrow_beaction.png"
           width={22}
           height={11}
-          alt="비활성"
-          style={{
-            opacity: active ? 0 : 1,
-            transform: active ? "translateY(10px)" : "translateY(0px)",
-            transition: "opacity 2s, transform 2s",
-            position: "absolute",
-            top: 0,
-            left: 0,
-          }}
+          alt="비활성 화살표"
+          className={`absolute top-0 left-0 transition-all ease-in-out duration-[2000ms] ${
+            !active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2.5"
+          }`}
         />
       </span>
     );
@@ -150,7 +141,7 @@ export default function Home() {
         }}
       >
         <div className="flex items-center flex-col justify-center w-full mt-10 md:mt-10">
-          <div className=" flex items-center justify-center gap-2">
+          <div className="relative flex items-center justify-center gap-2">
             <img
               src="/images/logo2.png"
               className="w-[31px] h-[27px] md:w-[31px] md:h-[27px] hidden md:block"
@@ -165,12 +156,12 @@ export default function Home() {
       </section>
 
       <div
-        className="background-image"
+        className="background-image "
         style={{
           backgroundImage: "url('/images/main/main__banner002.png')",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
-          backgroundPosition: "top center",
+          backgroundPosition: "bottom center",
           width: "100%",
         }}
       >
@@ -203,7 +194,7 @@ export default function Home() {
           </div>
         </section>
         {/* 모바일 전용 */}
-        <section className="md:hidden w-full px-6 py-10 bg-[#F8FAFF] mx-auto px-10">
+        <section className="md:hidden w-full px-6 py-10 mx-auto px-10">
           <h2 className="text-[30px] md:text-[40px] font-bold md:block">
             교육은 받았지만
             <br className="block md:hidden" />
@@ -249,12 +240,11 @@ export default function Home() {
                 alt="step1"
               />
             </div>
-            <div className="w-[350px] md:w-[380px]">
-              <div className="text-[20px] md:text-[24px] font-bold text-[#2B7FFF] mb-2">
+            <div className="w-[300px] md:w-[380px]">
+              <div className="text-[20px] md:text-[24px] font-bold text-[#2B7FFF] mb-3">
                 학생분들이 처한 환경부터 확인합니다.
               </div>
               <div className="text-[#1e1e1e] text-[16px] md:text-[20px] leading-[1.5]">
-                <br hidden />
                 한평생의 교육은 <strong>&#39;어디서부터 시작하느냐&#39;</strong>
                 가
                 <br />
@@ -285,12 +275,11 @@ export default function Home() {
                 alt="step2"
               />
             </div>
-            <div className="w-[350px] md:w-[518px]">
-              <div className="md:text-[24px] text-[20px] font-bold text-[#2B7FFF] mb-2">
+            <div className="w-[300px] md:w-[518px]">
+              <div className="md:text-[24px] text-[20px] font-bold text-[#2B7FFF] mb-3">
                 꼼꼼하고 세밀하게 관리합니다.
               </div>
               <div className="text-[#1e1e1e] text-[16px] md:text-[20px] leading-[1.5]">
-                <br />
                 한평생 에듀바이저는 학습자의 중도 포기를{" "}
                 <br className="md:hidden" />
                 철저히 방지하기 위해, 전문 양성과정을 거친
@@ -324,23 +313,20 @@ export default function Home() {
                 alt="step3"
               />
             </div>
-            <div className="w-[350px] md:w-[515px]">
-              <div className="md:text-[24px] text-[20px] font-bold text-[#2B7FFF] mb-2">
+            <div className="w-[300px] md:w-[515px]">
+              <div className="md:text-[24px] text-[20px] font-bold text-[#2B7FFF] mb-3">
                 실기와 취업은 저희 몫입니다.
               </div>
 
               <div className="text-[#1e1e1e] text-[16px] md:text-[20px] leading-[1.5]">
-                <br />
                 한평생은 교육의 끝이 아닌,
-                <br />
                 <strong>
                   취업까지 연결되는 실질적인 결과를 중요하게 생각합니다.
                 </strong>
                 <br />
                 <br />
-                실기 능력 향상부터 취업 연계까지 전 과정을 지원하며,
-                <br />
-                교육이 현장으로 자연스럽게 이어질 수 있도록 끝까지 책임집니다.
+                실기 능력 향상부터 취업 연계까지 전 과정을 지원하며, 교육이
+                현장으로 자연스럽게 이어질 수 있도록 끝까지 책임집니다.
               </div>
             </div>
           </div>
