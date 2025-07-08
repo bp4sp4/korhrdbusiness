@@ -320,6 +320,7 @@ export default function Home() {
 
               <div className="text-[#1e1e1e] text-[16px] md:text-[20px] leading-[1.5]">
                 한평생은 교육의 끝이 아닌,
+                <br className="hidden md:block" />
                 <strong>
                   취업까지 연결되는 실질적인 결과를 중요하게 생각합니다.
                 </strong>

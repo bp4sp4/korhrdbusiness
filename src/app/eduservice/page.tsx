@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 export default function Eduservice() {
   return (
     <>
-      <div className="relative flex h-[40vh] w-full flex-col justify-center overflow-hidden">
+      <div className="relative hidden md:block flex h-[40vh] w-full flex-col justify-center overflow-hidden">
         <div className="w-full max-w-6xl mx-auto  p-6 bg-background">
           <h2 className="relative z-20 text-2xl text-white md:text-[45px] leading-tight">
             <strong>한평생 에듀바이저</strong>
@@ -26,6 +26,32 @@ export default function Eduservice() {
         <div className="absolute inset-0 z-10 h-full w-full ">
           <img
             src="/images/edumain__banner2.png"
+            alt="eduservice001"
+            className="hidden md:block w-full h-full object-cover"
+          />
+        </div>
+      </div>
+      {/* Mobile Banner */}
+      <div className="relative flex md:hidden h-[70vh] w-full flex-col justify-end overflow-hidden">
+        <div className="w-full max-w-6xl mx-auto  p-6 bg-background flex flex-col items-center justify-center">
+          <h2 className="relative z-20 text-2xl text-white leading-tight">
+            <strong>한평생 에듀바이저</strong>
+            와 함께
+            <br />
+            당신의 <strong> 인생 방향</strong>을 찾으세요
+          </h2>
+          <p className="relative z-20 py-8 text-left text-base text-neutral-200 ">
+            우리는 단순한 교육이 아닌,
+            <br className="block" />
+            <strong className="font-extrabold">
+              인생의 방향성과 성장의 여정을 함께합니다.
+            </strong>
+          </p>
+        </div>
+        <div className="absolute inset-0 z-10 h-full w-full bg-black/80 dark:bg-black/40" />
+        <div className="absolute inset-0 z-10 h-full w-full ">
+          <img
+            src="/images/edumain__banner2_mobile.png"
             alt="eduservice001"
             className="w-full h-full object-cover"
           />
@@ -149,7 +175,7 @@ export default function Eduservice() {
         <div className="flex items-center min-h-[600px] md:h-[680px]  mx-auto p-0 w-full">
           <div className="mx-auto w-full">
             <motion.h2
-              className=" text-[24px] md:text-[48px] text-[#1E1E1E] mt-[83px] text-center mb-6 md:mb-[66px] font-bold leading-tight"
+              className=" text-[24px] md:text-[40px] text-[#1E1E1E] mt-[83px] text-center mb-6 md:mb-[66px] font-bold leading-tight"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
