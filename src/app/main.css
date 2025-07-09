@@ -84,10 +84,10 @@
 }
 
 .main__hero-btn {
-    width: 373px;
-    height: 86px;
+    width: 303px;
+    height: 70Px;
     background: #2B7FFF;
-    border-radius: 20px;
+    border-radius: 12px;
     text-align: center;
     display: flex;
     justify-content: center;
