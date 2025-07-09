@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 export default function Eduservice() {
   return (
     <>
-      <div className="relative hidden md:block flex h-[40vh] w-full flex-col justify-center overflow-hidden">
+      <div className="relative hidden md:flex h-[40vh] w-full flex-col justify-center overflow-hidden">
         <div className="w-full max-w-6xl mx-auto  p-6 bg-background">
           <h2 className="relative z-20 text-2xl text-white md:text-[45px] leading-tight">
             <strong>한평생 에듀바이저</strong>
