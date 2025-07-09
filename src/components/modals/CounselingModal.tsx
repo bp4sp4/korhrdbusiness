@@ -1,5 +1,3 @@
-"use client";
-
 import * as React from "react";
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
@@ -38,91 +36,91 @@ const fieldOptions: FieldOption[] = [
     value: "사회복지사 자격증",
     label: "사회복지사 자격증",
     category: "국가자격증",
-    icon: "🏥",
+    icon: "",
     description: "사회복지 전문가 양성",
   },
   {
     value: "보육교사 자격증",
     label: "보육교사 자격증",
     category: "국가자격증",
-    icon: "👶",
+    icon: "",
     description: "영유아 보육 전문가",
   },
   {
     value: "한국어교원 자격증",
     label: "한국어교원 자격증",
     category: "국가자격증",
-    icon: "🇰🇷",
+    icon: "",
     description: "한국어 교육 전문가",
   },
   {
     value: "평생교육사 자격증",
     label: "평생교육사 자격증",
     category: "국가자격증",
-    icon: "📚",
+    icon: "",
     description: "성인 교육 전문가",
   },
   {
     value: "종합미용면허증",
     label: "종합미용면허증",
     category: "국가자격증",
-    icon: "💄",
+    icon: "",
     description: "미용 전문가 면허",
   },
   {
     value: "산업기사/기사 응시자격",
     label: "산업기사/기사 응시자격",
     category: "국가자격증",
-    icon: "🔧",
+    icon: "",
     description: "기술 전문가 자격",
   },
   {
     value: "요양보호사자격증",
     label: "요양보호사자격증",
     category: "국가자격증",
-    icon: "👴",
+    icon: "",
     description: "노인 돌봄 전문가",
   },
   {
     value: "청소년지도사2급",
     label: "청소년지도사2급",
     category: "국가자격증",
-    icon: "🧑‍🎓",
+    icon: "‍",
     description: "청소년 교육 지도",
   },
   {
     value: "장애인영유아보육교사",
     label: "장애인영유아보육교사",
     category: "국가자격증",
-    icon: "🤝",
+    icon: "",
     description: "특수 보육 전문가",
   },
   {
     value: "심리학사",
     label: "심리학사",
     category: "학위/편입",
-    icon: "🧠",
+    icon: "",
     description: "심리학 학사 학위",
   },
   {
     value: "2/4년제 학위취득",
     label: "2/4년제 학위취득",
     category: "학위/편입",
-    icon: "🎓",
+    icon: "",
     description: "대학 학위 취득",
   },
   {
     value: "편입학/대졸자전형",
     label: "편입학/대졸자전형",
     category: "학위/편입",
-    icon: "🏫",
+    icon: "",
     description: "대학 편입 준비",
   },
   {
     value: "노인분야자격증",
     label: "노인분야자격증",
     category: "노인분야자격증",
-    icon: "👴",
+    icon: "",
     description:
       "병원동행매니저1급, 실버인지활동지도사1급, 노인돌봄생활지원사1급",
   },
@@ -130,7 +128,7 @@ const fieldOptions: FieldOption[] = [
     value: "아동분야자격증",
     label: "아동분야자격증",
     category: "아동분야 자격증",
-    icon: "👩‍",
+    icon: "‍",
     description:
       "방과후아동지도사1급, 지역아동교육지도사1급, 방과후돌봄교실지도사1급",
   },
@@ -204,10 +202,18 @@ const CounselingModal = () => {
     field: keyof typeof formData,
     value: string | boolean
   ) => {
-    setFormData((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
+    if (field === "phone" && typeof value === "string") {
+      const sanitizedValue = value.replace(/[^0-9-]/g, "");
+      setFormData((prev) => ({
+        ...prev,
+        [field]: sanitizedValue,
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [field]: value,
+      }));
+    }
   };
 
   const educationLevels = ["고등학교 졸업", "2·3년제 대졸", "4년제 대졸"];
@@ -300,7 +306,6 @@ const CounselingModal = () => {
                   id="counsel-phone-input"
                   type="tel"
                   inputMode="numeric"
-                  pattern="[0-9]*"
                   autoFocus={false}
                   placeholder="연락처를 다시 한 번 확인해 주세요"
                   value={formData.phone}
@@ -452,6 +457,7 @@ const CounselingModal = () => {
               className="w-full text-base text-[14px] md:h-11 h-11 md:text-[16px] bg-[#2B7FFF] hover:bg-[#2B7FFF]/80"
               disabled={
                 !formData.name ||
+                !formData.phone ||
                 !formData.experience ||
                 !formData.field ||
                 !formData.consent ||

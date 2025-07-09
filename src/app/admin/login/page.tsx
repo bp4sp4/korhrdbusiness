@@ -35,7 +35,8 @@ export default function AdminLoginPage() {
     if (
       email !== "korhrd@guidance.com" &&
       email !== "viewer@guidance.com" &&
-      email !== "super@guidance.com"
+      email !== "super@guidance.com" &&
+      email !== "test@test.com"
     ) {
       setError("관리자만 접근할 수 있습니다.");
       await supabase.auth.signOut();
