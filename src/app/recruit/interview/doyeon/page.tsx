@@ -78,15 +78,15 @@ export default function InterviewDetail() {
           <Link href="/recruit/interview">
             <Button
               variant="outline"
-              className="w-[100px] h-[40px] border-gray-300 text-gray-700 rounded-xl font-bold hover:bg-gray-50"
+              className="w-[100px] h-[40px] border-gray-300 text-gray-700 rounded-xl font-bold hover:bg-gray-100"
             >
               목록보기
             </Button>
           </Link>
-          <Link href="/recruit/20">
+          <Link href="/recruit/21">
             <Button
               variant="outline"
-              className="w-[100px] h-[40px] bg-[#2B7FFF] text-white rounded-xl font-bold hover:bg-[#1B6FEF]"
+              className="w-[100px] h-[40px] bg-[#2B7FFF] text-white rounded-xl hover:text-white font-bold hover:bg-[#1459c5]"
             >
               합류하기
             </Button>
