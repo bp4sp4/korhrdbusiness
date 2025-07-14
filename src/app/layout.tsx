@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "에듀바이저 - 당신의 커리어 성장 파트너",
     description:
-      "전문적인 커리어 상담과 맞춤형 교육으로 당신의 커리어 목표 달성을 돕습니다.",
+      "전문적인 커리어 상담과 맞춤형 교육으로 당신의 커리어 목표 달성을 돕습니다. 지금 바로 성공적인 커리어를 시작하세요!",
     images: ["https://www.eduvisor.kr/images/og-image.png"],
   },
   metadataBase: new URL("https://www.eduvisor.kr/"),
