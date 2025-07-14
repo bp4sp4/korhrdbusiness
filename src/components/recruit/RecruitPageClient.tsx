@@ -141,19 +141,16 @@ type JobFormProps = {
       onSave: (data: Omit<Job, "id">) => void;
       initialData?: never;
     }
-  | {
-      mode: "edit";
-      onSave: (data: Job) => void;
-      initialData: Job;
-    }
+  | { mode: "edit"; onSave: (data: Job) => void; initialData: Job }
 );
 
 const JobForm = (props: JobFormProps) => {
-  const { onSave, onCancel, initialData } = props;
+  const { onCancel, initialData } = props;
+
   const [step, setStep] = useState(1);
   const [title, setTitle] = useState(initialData?.title || "");
   const [location, setLocation] = useState(initialData?.location || "");
-  const [tags, setTags] = useState(initialData?.tags.join(", ") || "");
+  const [tags, setTags] = useState(initialData?.tags?.join(", ") || "");
   const [status, setStatus] = useState(initialData?.status || "단기계약직");
   const [salary, setSalary] = useState(initialData?.salary || "");
   const [mainTasks, setMainTasks] = useState(
@@ -168,33 +165,32 @@ const JobForm = (props: JobFormProps) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (title.trim()) {
-      const commonData = {
-        title: title.trim(),
-        tags: tags
-          .split(",")
-          .map((tag) => tag.trim())
-          .filter(Boolean),
-        status,
-        location,
-        salary,
-        main_tasks: mainTasks.filter(Boolean).join("\n"),
-        qualification: qualification.filter(Boolean).join("\n"),
-        welfare: welfare.filter(Boolean).join("\n"),
-      };
+    if (!title.trim()) return;
 
-      if (props.mode === "edit") {
-        props.onSave({ ...props.initialData, ...commonData });
-      } else {
-        props.onSave({
-          ...commonData,
-          date: new Date().toISOString().split("T")[0].replace(/-/g, "."),
-          isEvent: false,
-        });
-      }
+    const commonData = {
+      title: title.trim(),
+      tags: tags
+        .split(",")
+        .map((tag) => tag.trim())
+        .filter(Boolean),
+      status,
+      location,
+      salary,
+      main_tasks: mainTasks.filter(Boolean).join("\n"),
+      qualification: qualification.filter(Boolean).join("\n"),
+      welfare: welfare.filter(Boolean).join("\n"),
+    };
+
+    if (props.mode === "edit") {
+      props.onSave({ ...props.initialData, ...commonData });
+    } else {
+      props.onSave({
+        ...commonData,
+        date: new Date().toISOString().split("T")[0].replace(/-/g, "."),
+        isEvent: false,
+      });
     }
   };
-
 
   const nextStep = () => setStep((s) => Math.min(s + 1, 3));
   const prevStep = () => setStep((s) => Math.max(s - 1, 1));
