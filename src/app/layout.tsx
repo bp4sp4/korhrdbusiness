@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     "에듀바이저스",
   ],
   openGraph: {
-    title: "에듀바이저스 - 당신의 커리어 성장 파트너",
+    title: "에듀바이저스",
     description:
       "전문적인 커리어 상담과 맞춤형 교육으로 당신의 커리어 목표 달성을 돕습니다.",
     url: "https://www.eduvisor.kr/",
