@@ -19,9 +19,9 @@ export const metadata: Metadata = {
     siteName: "에듀바이저스",
     images: [
       {
-        url: "https://www.eduvisor.kr/images/og-about-image.png",
-        width: 800,
-        height: 600,
+        url: "https://www.eduvisor.kr/images/og-image.png",
+        width: 1200,
+        height: 630,
         alt: "에듀바이저스 회사 소개",
       },
     ],
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "에듀바이저스 소개 - 교육의 본질을 바꾸다",
     description: "에듀바이저스의 비전과 교육 철학을 확인하세요.",
-    images: ["https://www.eduvisor.kr/images/og-about-image.png"],
+    images: ["https://www.eduvisor.kr/images/og-image.png"],
   },
   alternates: {
     canonical: "/about",

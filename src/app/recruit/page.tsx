@@ -19,10 +19,10 @@ export const metadata: Metadata = {
     siteName: "에듀바이저스",
     images: [
       {
-        url: "https://www.eduvisor.kr/images/og-recruit-image.png",
-        width: 800,
-        height: 600,
-        alt: "한평생교육원 채용 공고",
+        url: "https://www.eduvisor.kr/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "에듀바이저스 채용 공고",
       },
     ],
     locale: "ko_KR",
@@ -30,9 +30,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "한평생교육원 채용 - 새로운 교육의 미래를 함께 만드세요",
-    description: "한평생교육원에서 당신의 커리어를 시작하세요.",
-    images: ["https://www.eduvisor.kr/images/og-recruit-image.png"],
+    title: "에듀바이저스 채용 - 새로운 교육의 미래를 함께 만드세요",
+    description: "에듀바이저스에서 당신의 커리어를 시작하세요.",
+    images: ["https://www.eduvisor.kr/images/og-image.png"],
   },
   alternates: {
     canonical: "/recruit",

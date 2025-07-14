@@ -19,9 +19,9 @@ export const metadata: Metadata = {
     siteName: "에듀바이저스",
     images: [
       {
-        url: "https://www.eduvisor.kr/images/og-eduservice-image.png",
-        width: 800,
-        height: 600,
+        url: "https://www.eduvisor.kr/images/og-image.png",
+        width: 1200,
+        height: 630,
         alt: "에듀바이저스 교육 서비스",
       },
     ],
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "에듀바이저스 교육 서비스 - 맞춤형 커리어 성장 솔루션",
     description: "전문가와 함께 당신의 커리어를 설계하고 성장하세요.",
-    images: ["https://www.eduvisor.kr/images/og-eduservice-image.png"],
+    images: ["https://www.eduvisor.kr/images/og-image.png"],
   },
   alternates: {
     canonical: "/eduservice",
