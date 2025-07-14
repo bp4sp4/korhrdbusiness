@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "에듀바이저스 | 맞춤형 커리어 교육 및 취업 지원",
+    title: "에듀바이저스",
     description:
       "1:1 맞춤형 상담과 실무 중심 교육으로 당신의 커리어를 설계하세요.",
     images: ["https://www.eduvisor.kr/images/og-image.png"],
