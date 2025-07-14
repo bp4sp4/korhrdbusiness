@@ -133,15 +133,23 @@ const DynamicInputList = ({
   );
 };
 
-const JobForm = ({
-  onSave,
-  onCancel,
-  initialData,
-}: {
-  onSave: (data: any) => void;
+type JobFormProps = {
   onCancel: () => void;
-  initialData?: Job;
-}) => {
+} & (
+  | {
+      mode: "add";
+      onSave: (data: Omit<Job, "id">) => void;
+      initialData?: never;
+    }
+  | {
+      mode: "edit";
+      onSave: (data: Job) => void;
+      initialData: Job;
+    }
+);
+
+const JobForm = (props: JobFormProps) => {
+  const { onSave, onCancel, initialData } = props;
   const [step, setStep] = useState(1);
   const [title, setTitle] = useState(initialData?.title || "");
   const [location, setLocation] = useState(initialData?.location || "");
@@ -161,27 +169,32 @@ const JobForm = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (title.trim()) {
-      const jobData = {
-        ...(initialData || {}),
+      const commonData = {
         title: title.trim(),
         tags: tags
           .split(",")
           .map((tag) => tag.trim())
           .filter(Boolean),
-        date:
-          initialData?.date ||
-          new Date().toISOString().split("T")[0].replace(/-/g, "."),
         status,
-        isEvent: initialData?.isEvent || false,
         location,
         salary,
         main_tasks: mainTasks.filter(Boolean).join("\n"),
         qualification: qualification.filter(Boolean).join("\n"),
         welfare: welfare.filter(Boolean).join("\n"),
       };
-      onSave(jobData);
+
+      if (props.mode === "edit") {
+        props.onSave({ ...props.initialData, ...commonData });
+      } else {
+        props.onSave({
+          ...commonData,
+          date: new Date().toISOString().split("T")[0].replace(/-/g, "."),
+          isEvent: false,
+        });
+      }
     }
   };
+
 
   const nextStep = () => setStep((s) => Math.min(s + 1, 3));
   const prevStep = () => setStep((s) => Math.max(s - 1, 1));
@@ -323,10 +336,10 @@ const JobForm = ({
 };
 
 const AddJobForm = ({ onAdd, onCancel }: AddJobFormProps) => (
-  <JobForm onSave={onAdd} onCancel={onCancel} />
+  <JobForm mode="add" onSave={onAdd} onCancel={onCancel} />
 );
 const EditJobForm = ({ job, onSave, onCancel }: EditJobFormProps) => (
-  <JobForm onSave={onSave} onCancel={onCancel} initialData={job} />
+  <JobForm mode="edit" onSave={onSave} onCancel={onCancel} initialData={job} />
 );
 
 export default function RecruitListPageClient() {
