@@ -259,7 +259,7 @@ export default function HomePageClient() {
           </div>
         </div>
         {/* STEP 2 */}
-        <div className="flex flex-col md:flex-row-reverse items-center mb-16 md:gap-8 gap-0 md:px-0 px-10">
+        <div className="flex flex-col md:flex-row-reverse items-center  mb-[70px] md:mb-[158px] md:gap-8 gap-0 md:px-0 px-10">
           <img
             src="/images/main/main002.png"
             width={391}

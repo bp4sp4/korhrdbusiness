@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import HomePageClient from "@/components/main/HomePageClient";
 
 export const metadata: Metadata = {
-  title: "에듀바이저스 | 당신의 커리어 성장 파트너",
+  title: "에듀바이저스",
   description:
-    "에듀바이저스는 1:1 맞춤형 상담을 통해 커리어 설계를 돕고, 실무 중심의 직무 교육으로 당신의 성공적인 취업을 지원합니다.",
+    "에듀바이저스는 1:1 맞춤형 커리어 설계와 실무 중심 교육을 통해 당신의 성공적인 취업과 커리어 개발을 돕습니다.",
   keywords: [
     "에듀바이저",
     "교육 서비스",
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "에듀바이저스",
     description:
-      "1:1 맞춤형 상담과 실무 중심 교육으로 당신의 커리어를 설계하세요.",
+      "에듀바이저스에서 제공하는 1:1 맞춤형 커리어 설계와 실무 교육을 통해 취업에 성공하세요.",
     url: "https://www.eduvisor.kr",
     siteName: "에듀바이저스",
     images: [
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "에듀바이저스",
     description:
-      "1:1 맞춤형 상담과 실무 중심 교육으로 당신의 커리어를 설계하세요.",
+      "에듀바이저스에서 제공하는 1:1 맞춤형 커리어 설계와 실무 교육을 통해 취업에 성공하세요.",
     images: ["https://www.eduvisor.kr/images/og-image.png"],
   },
   alternates: {
