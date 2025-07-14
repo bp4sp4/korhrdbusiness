@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
@@ -21,11 +21,22 @@ import {
   Trash2,
   Save,
   X,
+  ArrowLeft,
+  ArrowRight,
+  PlusCircle,
+  MinusCircle,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+  DialogTitle,
+  DialogHeader,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import Link from "next/link";
 
 interface Job {
@@ -53,280 +64,270 @@ interface EditJobFormProps {
   onCancel: () => void;
 }
 
-const AddJobForm = ({ onAdd, onCancel }: AddJobFormProps) => {
-  const [title, setTitle] = useState("");
-  const [tags, setTags] = useState("");
-  const [date, setDate] = useState("");
-  const [status, setStatus] = useState("단기계약직");
-  const [location, setLocation] = useState("");
-  const [salary, setSalary] = useState("");
-  const [mainTasks, setMainTasks] = useState("");
-  const [qualification, setQualification] = useState("");
-  const [welfare, setWelfare] = useState("");
+// A new component for handling dynamic list of text inputs.
+// This makes it easy for users to add or remove items like main tasks, qualifications, etc.
+interface DynamicInputListProps {
+  title: string;
+  placeholder: string;
+  items: string[];
+  setItems: (items: string[]) => void;
+}
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (title.trim()) {
-      onAdd({
-        title: title.trim(),
-        tags: tags
-          .split(",")
-          .map((tag) => tag.trim())
-          .filter(Boolean),
-        date: date || new Date().toISOString().split("T")[0].replace(/-/g, "."),
-        status,
-        isEvent: false,
-        location,
-        salary,
-        main_tasks: mainTasks,
-        qualification,
-        welfare,
-      });
-      setTitle("");
-      setTags("");
-      setDate("");
-      setStatus("단기계약직");
-      setLocation("");
-      setSalary("");
-      setMainTasks("");
-      setQualification("");
-      setWelfare("");
+const DynamicInputList = ({
+  title,
+  placeholder,
+  items,
+  setItems,
+}: DynamicInputListProps) => {
+  const handleItemChange = (index: number, value: string) => {
+    const newItems = [...items];
+    newItems[index] = value;
+    setItems(newItems);
+  };
+
+  const handleAddItem = () => {
+    setItems([...items, ""]);
+  };
+
+  const handleRemoveItem = (index: number) => {
+    if (items.length > 1) {
+      const newItems = items.filter((_, i) => i !== index);
+      setItems(newItems);
+    } else {
+      setItems([""]); // Keep at least one input
     }
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      className="border rounded-lg p-4 bg-background"
-    >
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <h4 className="text-sm font-bold mb-2">직무명</h4>
-        </div>
-        <div>
+    <div className="space-y-3">
+      <h4 className="text-sm font-bold">{title}</h4>
+      {items.map((item, index) => (
+        <div key={index} className="flex items-center gap-2">
           <Input
-            placeholder="직무명을 입력하세요"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
+            placeholder={`${placeholder} #${index + 1}`}
+            value={item}
+            onChange={(e) => handleItemChange(index, e.target.value)}
           />
-        </div>
-        <div>
-          <h4 className="text-sm font-bold mb-2">위치</h4>
-        </div>
-        <div>
-          <Input
-            placeholder="위치 (예: 서울 강남지점)"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-          />
-        </div>
-        <div>
-          <h4 className="text-sm font-bold mb-2">태그</h4>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Input
-            placeholder="태그 (쉼표로 구분)"
-            value={tags}
-            onChange={(e) => setTags(e.target.value)}
-          />
-          <Select value={status} onValueChange={setStatus}>
-            <SelectTrigger>
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="단기계약직">단기계약직</SelectItem>
-              <SelectItem value="정규직">정규직</SelectItem>
-              <SelectItem value="계약직">계약직</SelectItem>
-              <SelectItem value="인턴">인턴</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-        <div>
-          <h4 className="text-sm font-bold mb-2">급여</h4>
-        </div>
-        <div>
-          <textarea
-            className="w-full border rounded p-2 min-h-[40px]"
-            placeholder="급여 (예: 연 3,000만원(인센티브 별도))"
-            value={salary}
-            onChange={(e) => setSalary(e.target.value)}
-          />
-        </div>
-        <div>
-          <h4 className="text-sm font-bold mb-2">주요 업무</h4>
-        </div>
-        <div>
-          <textarea
-            className="w-full border rounded p-2 min-h-[48px]"
-            placeholder={`주요 업무\n주요 업무\n주요 업무`}
-            value={mainTasks}
-            onChange={(e) => setMainTasks(e.target.value)}
-          />
-        </div>
-        <div>
-          <h4 className="text-sm font-bold mb-2">자격 요건</h4>
-        </div>
-        <div>
-          <textarea
-            className="w-full border rounded p-2 min-h-[48px]"
-            placeholder={`자격 요건\n자격 요건\n자격 요건`}
-            value={qualification}
-            onChange={(e) => setQualification(e.target.value)}
-          />
-        </div>
-        <div>
-          <h4 className="text-sm font-bold mb-2">복리후생</h4>
-        </div>
-        <div>
-          <textarea
-            className="w-full border rounded p-2 min-h-[48px]"
-            placeholder={`복리후생\n복리후생\n복리후생`}
-            value={welfare}
-            onChange={(e) => setWelfare(e.target.value)}
-          />
-        </div>
-        <div className="flex gap-2 justify-end">
-          <Button type="button" variant="outline" onClick={onCancel}>
-            취소
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            onClick={() => handleRemoveItem(index)}
+            className="text-muted-foreground hover:text-destructive"
+          >
+            <MinusCircle className="h-5 w-5" />
           </Button>
-          <Button type="submit">추가</Button>
         </div>
-      </form>
-    </motion.div>
+      ))}
+      <Button
+        type="button"
+        variant="outline"
+        size="sm"
+        onClick={handleAddItem}
+        className="w-full"
+      >
+        <PlusCircle className="h-4 w-4 mr-2" />
+        항목 추가
+      </Button>
+    </div>
   );
 };
 
-const EditJobForm = ({ job, onSave, onCancel }: EditJobFormProps) => {
-  const [title, setTitle] = useState(job.title);
-  const [tags, setTags] = useState(job.tags.join(", "));
-
-  const [status, setStatus] = useState(job.status);
-  const [location, setLocation] = useState(job.location || "");
-  const [salary, setSalary] = useState(job.salary || "");
-  const [mainTasks, setMainTasks] = useState(job.main_tasks || "");
-  const [qualification, setQualification] = useState(job.qualification || "");
-  const [welfare, setWelfare] = useState(job.welfare || "");
+const JobForm = ({
+  onSave,
+  onCancel,
+  initialData,
+}: {
+  onSave: (data: any) => void;
+  onCancel: () => void;
+  initialData?: Job;
+}) => {
+  const [step, setStep] = useState(1);
+  const [title, setTitle] = useState(initialData?.title || "");
+  const [location, setLocation] = useState(initialData?.location || "");
+  const [tags, setTags] = useState(initialData?.tags.join(", ") || "");
+  const [status, setStatus] = useState(initialData?.status || "단기계약직");
+  const [salary, setSalary] = useState(initialData?.salary || "");
+  const [mainTasks, setMainTasks] = useState(
+    initialData?.main_tasks?.split("\n") || [""]
+  );
+  const [qualification, setQualification] = useState(
+    initialData?.qualification?.split("\n") || [""]
+  );
+  const [welfare, setWelfare] = useState(
+    initialData?.welfare?.split("\n") || [""]
+  );
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (title.trim()) {
-      onSave({
-        ...job,
+      const jobData = {
+        ...(initialData || {}),
         title: title.trim(),
         tags: tags
           .split(",")
           .map((tag) => tag.trim())
           .filter(Boolean),
-
+        date:
+          initialData?.date ||
+          new Date().toISOString().split("T")[0].replace(/-/g, "."),
         status,
+        isEvent: initialData?.isEvent || false,
         location,
         salary,
-        main_tasks: mainTasks,
-        qualification,
-        welfare,
-      });
+        main_tasks: mainTasks.filter(Boolean).join("\n"),
+        qualification: qualification.filter(Boolean).join("\n"),
+        welfare: welfare.filter(Boolean).join("\n"),
+      };
+      onSave(jobData);
     }
   };
 
+  const nextStep = () => setStep((s) => Math.min(s + 1, 3));
+  const prevStep = () => setStep((s) => Math.max(s - 1, 1));
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      className="border rounded-lg p-4 bg-background"
-    >
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <h4 className="text-sm font-bold mb-2">직무명</h4>
-          <Input
-            placeholder="직무명을 입력하세요"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
+    <div className="p-2">
+      <div className="mb-6">
+        <div className="flex justify-between mb-1">
+          <span className="text-sm font-medium text-blue-700">
+            단계 {step} / 3
+          </span>
+        </div>
+        <div className="w-full bg-gray-200 rounded-full h-2">
+          <motion.div
+            className="bg-[#2B7FFF] h-2 rounded-full"
+            animate={{ width: `${(step / 3) * 100}%` }}
+            transition={{ ease: "easeInOut", duration: 0.5 }}
           />
         </div>
-        <div>
-          <h4 className="text-sm font-bold mb-2">위치</h4>
-          <Input
-            placeholder="위치 (예: 서울 강남지점)"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-          />
-        </div>
-        <div>
-          <h4 className="text-sm font-bold mb-2">태그</h4>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Input
-            placeholder="태그 (쉼표로 구분)"
-            value={tags}
-            onChange={(e) => setTags(e.target.value)}
-          />
-          <Select value={status} onValueChange={setStatus}>
-            <SelectTrigger>
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="단기계약직">단기계약직</SelectItem>
-              <SelectItem value="정규직">정규직</SelectItem>
-              <SelectItem value="계약직">계약직</SelectItem>
-              <SelectItem value="인턴">인턴</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-        <div>
-          <h4 className="text-sm font-bold mb-2">급여</h4>
-          <textarea
-            className="w-full border rounded p-2 min-h-[40px]"
-            placeholder="급여 (예: 연 3,000만원\n(인센티브 별도))"
-            value={salary}
-            onChange={(e) => setSalary(e.target.value)}
-          />
-        </div>
-        <div>
-          <h4 className="text-sm font-bold mb-2">주요 업무</h4>
-          <textarea
-            className="w-full border rounded p-2 min-h-[48px]"
-            placeholder="주요 업무"
-            value={mainTasks}
-            onChange={(e) => setMainTasks(e.target.value)}
-          />
-        </div>
-        <div>
-          <h4 className="text-sm font-bold mb-2">자격 요건</h4>
-          <textarea
-            className="w-full border rounded p-2 min-h-[48px]"
-            placeholder="자격 요건"
-            value={qualification}
-            onChange={(e) => setQualification(e.target.value)}
-          />
-        </div>
-        <div>
-          <h4 className="text-sm font-bold mb-2">복리후생</h4>
-          <textarea
-            className="w-full border rounded p-2 min-h-[48px]"
-            placeholder="복리후생"
-            value={welfare}
-            onChange={(e) => setWelfare(e.target.value)}
-          />
-        </div>
-        <div className="flex gap-2 justify-end">
+      </div>
+
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={step}
+            initial={{ x: 30, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: -30, opacity: 0 }}
+            transition={{ ease: "easeInOut", duration: 0.3 }}
+          >
+            {step === 1 && (
+              <div className="space-y-4">
+                <div>
+                  <h4 className="text-sm font-bold mb-2">직무명</h4>
+                  <Input
+                    placeholder="직무명을 입력하세요"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    required
+                  />
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold mb-2">위치</h4>
+                  <Input
+                    placeholder="위치 (예: 서울 강남지점)"
+                    value={location}
+                    onChange={(e) => setLocation(e.target.value)}
+                  />
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <h4 className="text-sm font-bold mb-2">태그</h4>
+                    <Input
+                      placeholder="태그 (쉼표로 구분)"
+                      value={tags}
+                      onChange={(e) => setTags(e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold mb-2">고용 형태</h4>
+                    <Select value={status} onValueChange={setStatus}>
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="단기계약직">단기계약직</SelectItem>
+                        <SelectItem value="정규직">정규직</SelectItem>
+                        <SelectItem value="계약직">계약직</SelectItem>
+                        <SelectItem value="인턴">인턴</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+              </div>
+            )}
+            {step === 2 && (
+              <div className="space-y-6">
+                <DynamicInputList
+                  title="주요 업무"
+                  placeholder="수행할 주요 업무"
+                  items={mainTasks}
+                  setItems={setMainTasks}
+                />
+                <DynamicInputList
+                  title="자격 요건"
+                  placeholder="필요한 자격 요건"
+                  items={qualification}
+                  setItems={setQualification}
+                />
+                <DynamicInputList
+                  title="복리후생"
+                  placeholder="제공되는 복리후생"
+                  items={welfare}
+                  setItems={setWelfare}
+                />
+              </div>
+            )}
+            {step === 3 && (
+              <div className="space-y-6">
+                <div>
+                  <h4 className="text-sm font-bold mb-2">급여</h4>
+                  <Input
+                    placeholder="급여 (예: 연 3,000만원)"
+                    value={salary}
+                    onChange={(e) => setSalary(e.target.value)}
+                  />
+                </div>
+              </div>
+            )}
+          </motion.div>
+        </AnimatePresence>
+
+        <div className="flex gap-2 justify-end pt-4">
           <Button type="button" variant="outline" onClick={onCancel}>
             <X className="h-4 w-4 mr-2" />
             취소
           </Button>
-          <Button type="submit">
-            <Save className="h-4 w-4 mr-2" />
-            저장
-          </Button>
+          {step > 1 && (
+            <Button type="button" variant="outline" onClick={prevStep}>
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              이전
+            </Button>
+          )}
+          {step < 3 ? (
+            <Button type="button" onClick={nextStep}>
+              다음
+              <ArrowRight className="h-4 w-4 ml-2" />
+            </Button>
+          ) : (
+            <Button type="submit">
+              <Save className="h-4 w-4 mr-2" />
+              {initialData ? "저장" : "등록"}
+            </Button>
+          )}
         </div>
       </form>
-    </motion.div>
+    </div>
   );
 };
+
+const AddJobForm = ({ onAdd, onCancel }: AddJobFormProps) => (
+  <JobForm onSave={onAdd} onCancel={onCancel} />
+);
+const EditJobForm = ({ job, onSave, onCancel }: EditJobFormProps) => (
+  <JobForm onSave={onSave} onCancel={onCancel} initialData={job} />
+);
 
 export default function RecruitListPageClient() {
   const [keyword, setKeyword] = useState("");
@@ -605,14 +606,20 @@ export default function RecruitListPageClient() {
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           <div className="lg:col-span-3 space-y-4">
-            <AnimatePresence>
-              {showAddForm && (
+            <Dialog open={showAddForm} onOpenChange={setShowAddForm}>
+              <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto p-0">
+                <DialogHeader className="p-6 pb-4">
+                  <DialogTitle className="text-xl">채용공고 등록</DialogTitle>
+                  <DialogDescription>
+                    새로운 채용공고를 위한 정보를 단계별로 입력해주세요.
+                  </DialogDescription>
+                </DialogHeader>
                 <AddJobForm
                   onAdd={handleAddJob}
                   onCancel={() => setShowAddForm(false)}
                 />
-              )}
-            </AnimatePresence>
+              </DialogContent>
+            </Dialog>
 
             <div className="space-y-4">
               {recruitList.map((job) => (
@@ -629,13 +636,26 @@ export default function RecruitListPageClient() {
                   style={!isAdmin ? { cursor: "pointer" } : {}}
                 >
                   {editingJobId === job.id ? (
-                    <div className="p-4">
-                      <EditJobForm
-                        job={job}
-                        onSave={handleEditJob}
-                        onCancel={() => setEditingJobId(null)}
-                      />
-                    </div>
+                    <Dialog
+                      open={editingJobId === job.id}
+                      onOpenChange={() => setEditingJobId(null)}
+                    >
+                      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto p-0">
+                        <DialogHeader className="p-6 pb-4">
+                          <DialogTitle className="text-xl">
+                            채용공고 수정
+                          </DialogTitle>
+                          <DialogDescription>
+                            채용공고 정보를 수정합니다.
+                          </DialogDescription>
+                        </DialogHeader>
+                        <EditJobForm
+                          job={job}
+                          onSave={handleEditJob}
+                          onCancel={() => setEditingJobId(null)}
+                        />
+                      </DialogContent>
+                    </Dialog>
                   ) : (
                     <div className="p-6">
                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">

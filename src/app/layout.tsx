@@ -19,9 +19,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "에듀바이저 - 당신의 커리어 성장 파트너",
+  title: "에듀바이저스 - 당신의 커리어 성장 파트너",
   description:
-    "에듀바이저는 전문적인 커리어 상담과 맞춤형 교육 프로그램을 통해 당신의 성공적인 취업과 커리어 발전을 돕습니다. 지금바로 커리어 목표를 달성하세요.",
+    "에듀바이저스는 전문적인 커리어 상담과 맞춤형 교육 프로그램을 통해 당신의 성공적인 취업과 커리어 발전을 돕습니다. 지금바로 커리어 목표를 달성하세요.",
   keywords: [
     "커리어 상담",
     "취업 컨설팅",
@@ -30,17 +30,17 @@ export const metadata: Metadata = {
     "면접 준비",
     "직무 교육",
     "커리어 개발",
-    "에듀바이저",
+    "에듀바이저스",
   ],
   openGraph: {
-    title: "에듀바이저 - 당신의 커리어 성장 파트너",
+    title: "에듀바이저스 - 당신의 커리어 성장 파트너",
     description:
       "전문적인 커리어 상담과 맞춤형 교육으로 당신의 커리어 목표 달성을 돕습니다.",
-    url: "https://www.example.com",
-    siteName: "에듀바이저",
+    url: "https://www.eduvisor.kr/",
+    siteName: "에듀바이저스",
     images: [
       {
-        url: "https://www.example.com/og-image.png",
+        url: "https://www.eduvisor.kr/images/og-image.png",
         width: 800,
         height: 600,
         alt: "에듀바이저 로고",
@@ -54,9 +54,9 @@ export const metadata: Metadata = {
     title: "에듀바이저 - 당신의 커리어 성장 파트너",
     description:
       "전문적인 커리어 상담과 맞춤형 교육으로 당신의 커리어 목표 달성을 돕습니다.",
-    images: ["https://www.example.com/twitter-image.png"],
+    images: ["https://www.eduvisor.kr/images/og-image.png"],
   },
-  metadataBase: new URL("https://www.example.com"),
+  metadataBase: new URL("https://www.eduvisor.kr/"),
   alternates: {
     canonical: "/",
   },

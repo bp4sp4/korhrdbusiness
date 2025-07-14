@@ -2,28 +2,27 @@ import type { Metadata } from "next";
 import AboutPageClient from "@/components/about/AboutPageClient";
 
 export const metadata: Metadata = {
-  title: "에듀바이저 소개 - 교육의 본질을 바꾸다",
+  title: "에듀바이저스 소개 | 교육 철학 및 비전",
   description:
-    "에듀바이저는 교육의 새로운 기준을 제시합니다. 연혁, 교육 철학, CEO 메시지를 통해 에듀바이저의 비전을 확인하세요.",
+    "에듀바이저스의 설립 이념과 교육 철학을 알아보세요. 저희는 맞춤형 커리어 설계를 통해 당신의 성장을 돕습니다.",
   keywords: [
-    "에듀바이저 소개",
-    "한평생교육",
+    "에듀바이저스 소개",
     "교육 철학",
-    "회사 연혁",
-    "CEO 메시지",
-    "커리어 교육",
+    "CEO 인사말",
+    "맞춤형 교육 비전",
+    "에듀바이저스 연혁",
   ],
   openGraph: {
-    title: "에듀바이저 소개 - 교육의 본질을 바꾸다",
-    description: "에듀바이저의 비전과 교육 철학을 확인하세요.",
-    url: "https://www.example.com/about",
-    siteName: "에듀바이저",
+    title: "에듀바이저스 소개 - 교육의 본질을 바꾸다",
+    description: "에듀바이저스의 비전과 교육 철학을 확인하세요.",
+    url: "https://www.eduvisor.kr/about",
+    siteName: "에듀바이저스",
     images: [
       {
-        url: "https://www.example.com/og-about-image.png",
+        url: "https://www.eduvisor.kr/images/og-about-image.png",
         width: 800,
         height: 600,
-        alt: "에듀바이저 회사 소개",
+        alt: "에듀바이저스 회사 소개",
       },
     ],
     locale: "ko_KR",
@@ -31,9 +30,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "에듀바이저 소개 - 교육의 본질을 바꾸다",
-    description: "에듀바이저의 비전과 교육 철학을 확인하세요.",
-    images: ["https://www.example.com/twitter-about-image.png"],
+    title: "에듀바이저스 소개 - 교육의 본질을 바꾸다",
+    description: "에듀바이저스의 비전과 교육 철학을 확인하세요.",
+    images: ["https://www.eduvisor.kr/images/og-about-image.png"],
   },
   alternates: {
     canonical: "/about",
