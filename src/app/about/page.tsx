@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     "에듀바이저스 연혁",
   ],
   openGraph: {
-    title: "에듀바이저스 소개 - 교육의 본질을 바꾸다",
+    title: "에듀바이저스",
     description: "에듀바이저스의 비전과 교육 철학을 확인하세요.",
     url: "https://www.eduvisor.kr/about",
     siteName: "에듀바이저스",
