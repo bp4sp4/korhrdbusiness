@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "에듀바이저스",
     description:
-      "전문적인 커리어 상담과 맞춤형 교육으로 당신의 커리어 목표 달성을 돕습니다.",
+      "당신만을 위한 커리어 전략 한평생교육의 에듀바이저가 함께 합니다.",
     url: "https://www.eduvisor.kr/",
     siteName: "에듀바이저스",
     images: [
