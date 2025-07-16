@@ -376,7 +376,7 @@ export default function RecruitApplicationsPage() {
                   <th className="p-2">이름</th>
                   <th className="p-2">이메일</th>
                   <th className="p-2">연락처</th>
-                  
+
                   <th className="p-2">상태</th>
                   <th className="p-2">관리</th>
                   <th className="p-2">상세</th>
@@ -405,7 +405,7 @@ export default function RecruitApplicationsPage() {
                     <td className="p-2">{a.name}</td>
                     <td className="p-2">{a.email}</td>
                     <td className="p-2">{a.phone}</td>
-                    
+
                     <td className="p-2">
                       {/* 상태수정 드롭다운: role이 있으면 활성화, 없으면 disabled */}
                       <select
@@ -523,13 +523,16 @@ export default function RecruitApplicationsPage() {
                   ×
                 </button>
                 <h2 className="text-2xl font-bold mb-6 text-gray-800">
-                  <span className="text-blue-600">{selected.name}</span> 지원 상세 정보
+                  <span className="text-blue-600">{selected.name}</span> 지원
+                  상세 정보
                 </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-gray-700">
                   {/* 기본 정보 */}
                   <div className="space-y-3">
-                    <h3 className="font-semibold text-lg text-gray-900 border-b pb-2 mb-3">개인 정보</h3>
+                    <h3 className="font-semibold text-lg text-gray-900 border-b pb-2 mb-3">
+                      개인 정보
+                    </h3>
                     <div className="flex items-center gap-2">
                       <Mail className="w-5 h-5 text-blue-500" />
                       <span>이메일: {selected.email}</span>
@@ -554,7 +557,9 @@ export default function RecruitApplicationsPage() {
 
                   {/* 지원 정보 */}
                   <div className="space-y-3">
-                    <h3 className="font-semibold text-lg text-gray-900 border-b pb-2 mb-3">지원 정보</h3>
+                    <h3 className="font-semibold text-lg text-gray-900 border-b pb-2 mb-3">
+                      지원 정보
+                    </h3>
                     <div className="flex items-center gap-2">
                       <FileText className="w-5 h-5 text-blue-500" />
                       <span>공고명: {getJobTitle(selected.job_id)}</span>
@@ -571,25 +576,37 @@ export default function RecruitApplicationsPage() {
 
                   {/* 자기소개 및 지원동기 */}
                   <div className="space-y-3 md:col-span-2">
-                    <h3 className="font-semibold text-lg text-gray-900 border-b pb-2 mb-3">자기소개 및 지원동기</h3>
+                    <h3 className="font-semibold text-lg text-gray-900 border-b pb-2 mb-3">
+                      자기소개 및 지원동기
+                    </h3>
                     <div>
                       <p className="font-medium">자기소개:</p>
-                      <p className="text-sm bg-gray-50 p-3 rounded-md whitespace-pre-wrap">{selected.introduction}</p>
+                      <p className="text-sm bg-gray-50 p-3 rounded-md whitespace-pre-wrap">
+                        {selected.introduction}
+                      </p>
                     </div>
                     <div>
                       <p className="font-medium">지원동기:</p>
-                      <p className="text-sm bg-gray-50 p-3 rounded-md whitespace-pre-wrap">{selected.cover_letter}</p>
+                      <p className="text-sm bg-gray-50 p-3 rounded-md whitespace-pre-wrap">
+                        {selected.cover_letter}
+                      </p>
                     </div>
                   </div>
 
                   {/* 첨부 파일 및 링크 */}
                   <div className="space-y-3 md:col-span-2">
-                    <h3 className="font-semibold text-lg text-gray-900 border-b pb-2 mb-3">첨부 파일 및 링크</h3>
+                    <h3 className="font-semibold text-lg text-gray-900 border-b pb-2 mb-3">
+                      첨부 파일 및 링크
+                    </h3>
                     <div className="flex flex-wrap items-center gap-3">
                       <Paperclip className="w-5 h-5 text-blue-500" />
                       <span>이력서:</span>
                       {selected.resume_url ? (
-                        <a href={selected.resume_url} target="_blank" rel="noopener noreferrer">
+                        <a
+                          href={selected.resume_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           <Button size="sm" variant="outline" className="gap-1">
                             <Download className="w-4 h-4" /> 다운로드
                           </Button>
@@ -601,8 +618,13 @@ export default function RecruitApplicationsPage() {
                     <div className="flex flex-wrap items-center gap-3">
                       <Paperclip className="w-5 h-5 text-blue-500" />
                       <span>포트폴리오 파일:</span>
-                      {selected.portfolio_url && !selected.portfolio_url.startsWith("http") ? (
-                        <a href={selected.portfolio_url} target="_blank" rel="noopener noreferrer">
+                      {selected.portfolio_url &&
+                      !selected.portfolio_url.startsWith("http") ? (
+                        <a
+                          href={selected.portfolio_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           <Button size="sm" variant="outline" className="gap-1">
                             <Download className="w-4 h-4" /> 다운로드
                           </Button>
@@ -614,8 +636,13 @@ export default function RecruitApplicationsPage() {
                     <div className="flex flex-wrap items-center gap-3">
                       <LinkIcon className="w-5 h-5 text-blue-500" />
                       <span>포트폴리오 URL:</span>
-                      {selected.portfolio_url && selected.portfolio_url.startsWith("http") ? (
-                        <a href={selected.portfolio_url} target="_blank" rel="noopener noreferrer">
+                      {selected.portfolio_url &&
+                      selected.portfolio_url.startsWith("http") ? (
+                        <a
+                          href={selected.portfolio_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           <Button size="sm" variant="outline" className="gap-1">
                             <LinkIcon className="w-4 h-4" /> 바로가기
                           </Button>
@@ -628,7 +655,11 @@ export default function RecruitApplicationsPage() {
                       <LinkIcon className="w-5 h-5 text-blue-500" />
                       <span>개인 웹사이트:</span>
                       {selected.website_url ? (
-                        <a href={selected.website_url} target="_blank" rel="noopener noreferrer">
+                        <a
+                          href={selected.website_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           <Button size="sm" variant="outline" className="gap-1">
                             <LinkIcon className="w-4 h-4" /> 바로가기
                           </Button>

@@ -16,6 +16,9 @@ export default function Header() {
   const [isMounted, setIsMounted] = useState(false);
   const menuListRef = useRef<HTMLDivElement>(null);
   const [menuHeight, setMenuHeight] = useState(0);
+  const [adminRole, setAdminRole] = useState<
+    null | "super" | "manager" | "none"
+  >(null);
 
   useEffect(() => {
     setIsMounted(true);
@@ -26,13 +29,21 @@ export default function Header() {
       } = await supabase.auth.getUser();
       if (!user) {
         setIsAdmin(false);
+        setAdminRole("none");
         return;
       }
       const { data: admins } = await supabase
         .from("admins")
-        .select("email")
-        .eq("email", user.email);
-      setIsAdmin(Array.isArray(admins) && admins.length > 0);
+        .select("email, role")
+        .eq("email", user.email)
+        .single();
+      if (admins && admins.role) {
+        setIsAdmin(true);
+        setAdminRole(admins.role); // "super" or "manager"
+      } else {
+        setIsAdmin(false);
+        setAdminRole("none");
+      }
     }
     checkAdmin();
 
@@ -114,14 +125,15 @@ export default function Header() {
               설계사채용
             </span>
           </Link>
-          {/* admin 메뉴는 isAdmin === true일 때만 렌더링 */}
-          {isAdmin === true && (
+          {(adminRole === "super" || adminRole === "manager") && (
             <>
-              <Link href="/admin/consultations" className="group">
-                <span className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)] font-bold text-blue-300">
-                  상담 신청 내역
-                </span>
-              </Link>
+              {adminRole === "super" && (
+                <Link href="/admin/consultations" className="group">
+                  <span className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)] font-bold text-blue-300">
+                    상담 신청 내역
+                  </span>
+                </Link>
+              )}
               <Link href="/admin/recruit-applications" className="group">
                 <span className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)] font-bold text-blue-300">
                   설계사 지원자 관리
