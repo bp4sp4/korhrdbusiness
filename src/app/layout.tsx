@@ -63,6 +63,7 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
   },
   metadataBase: new URL("https://www.eduvisor.kr/"),
   alternates: {
