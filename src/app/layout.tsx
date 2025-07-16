@@ -61,6 +61,9 @@ export const metadata: Metadata = {
       "naver-site-verification": "3116447aae95ff904404f6eeb40490049be9e3b9",
     },
   },
+  icons: {
+    icon: "/favicon.ico",
+  },
   metadataBase: new URL("https://www.eduvisor.kr/"),
   alternates: {
     canonical: "/",
