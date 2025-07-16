@@ -422,7 +422,6 @@ export default function RecruitListPageClient() {
       ])
       .select();
     if (error) {
-      console.error(error);
       alert(error.message);
       return;
     }

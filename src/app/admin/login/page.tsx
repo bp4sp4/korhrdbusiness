@@ -56,12 +56,11 @@ export default function AdminLoginPage() {
     const {
       data: { user },
     } = await supabase.auth.getUser();
-    console.log(user?.email); // 실제 로그인된 이메일 확인
+
     const { data: admins } = await supabase
       .from("admins")
       .select("email")
       .eq("email", user?.email);
-    console.log(admins); // 배열이어야 하고, length > 0 이어야 함
 
     const isAdmin = admins && admins.length > 0;
     if (isAdmin) {

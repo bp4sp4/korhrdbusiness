@@ -154,7 +154,6 @@ const JobDetailPage = () => {
         .from("recruit-files")
         .upload(filePath, applicationForm.resume, { upsert: true });
       if (error) {
-        console.log(error);
         alert("이력서 업로드 실패: " + error.message);
         setIsSubmitting(false);
         return;
@@ -183,24 +182,6 @@ const JobDetailPage = () => {
         .getPublicUrl(filePath).data.publicUrl;
     }
 
-    // 2. recruit_applications 테이블에 저장
-    console.log({
-      job_id: jobId,
-      name: applicationForm.name,
-      email: applicationForm.email,
-      phone: applicationForm.phone,
-      address: applicationForm.address,
-      birth_date: applicationForm.birthDate,
-      experience: applicationForm.experience,
-      introduction: applicationForm.introduction,
-      cover_letter: applicationForm.coverLetter,
-      resume_url: resumeUrl,
-      portfolio_file_url: portfolioUrl,
-      portfolio_url: applicationForm.portfolioUrl,
-      website_url: applicationForm.websiteUrl,
-      status: "pending",
-    });
-
     const { error: insertError } = await supabase
       .from("recruit_applications")
       .insert([
@@ -223,7 +204,6 @@ const JobDetailPage = () => {
         },
       ]);
     if (insertError) {
-      console.log(insertError);
       alert("지원서 저장 실패: " + insertError.message);
       setIsSubmitting(false);
       return;

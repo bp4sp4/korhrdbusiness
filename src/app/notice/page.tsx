@@ -206,7 +206,7 @@ function NoticeHomepage() {
         .from("notices")
         .select("*")
         .order("created_at", { ascending: false });
-      console.log("notices data:", data, "error:", error);
+
       if (error) {
         alert(error.message);
         return;
@@ -244,7 +244,7 @@ function NoticeHomepage() {
       .from("notices")
       .select("*")
       .order("created_at", { ascending: false });
-    console.log("notices data:", data, "error:", error);
+
     if (error) {
       alert(error.message);
       return;

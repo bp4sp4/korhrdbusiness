@@ -24,7 +24,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     .select("id");
 
   if (error) {
-    console.error("Error fetching jobs for sitemap:", error);
     return staticRoutes; // 에러 발생 시 정적 경로만 반환
   }
 
