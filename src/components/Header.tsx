@@ -9,7 +9,6 @@ import { useCounselModal } from "@/store/useCounselModal";
 
 export default function Header() {
   // isAdmin: null(아직 확인 전), true(어드민), false(비어있음)
-  const [isAdmin, setIsAdmin] = useState<null | boolean>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
   const { openModal } = useCounselModal();
@@ -28,7 +27,6 @@ export default function Header() {
         data: { user },
       } = await supabase.auth.getUser();
       if (!user) {
-        setIsAdmin(false);
         setAdminRole("none");
         return;
       }
@@ -38,10 +36,8 @@ export default function Header() {
         .eq("email", user.email)
         .single();
       if (admins && admins.role) {
-        setIsAdmin(true);
         setAdminRole(admins.role); // "super" or "manager"
       } else {
-        setIsAdmin(false);
         setAdminRole("none");
       }
     }
