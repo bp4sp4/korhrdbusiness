@@ -56,6 +56,11 @@ export const metadata: Metadata = {
       "전문적인 커리어 상담과 맞춤형 교육으로 당신의 커리어 목표 달성을 돕습니다. 지금 바로 성공적인 커리어를 시작하세요!",
     images: ["https://www.eduvisor.kr/images/og-image.png"],
   },
+  verification: {
+    other: {
+      "naver-site-verification": "3116447aae95ff904404f6eeb40490049be9e3b9",
+    },
+  },
   metadataBase: new URL("https://www.eduvisor.kr/"),
   alternates: {
     canonical: "/",
@@ -69,16 +74,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <head>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, viewport-fit=cover"
-        />
-        <meta
-          name="naver-site-verification"
-          content="3116447aae95ff904404f6eeb40490049be9e3b9"
-        />
-      </head>
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
