@@ -99,6 +99,7 @@ const JobDetailPage = () => {
     websiteUrl: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [consent, setConsent] = useState(false);
   const [showConsentModal, setShowConsentModal] = useState(false);
