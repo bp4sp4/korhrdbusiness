@@ -739,7 +739,7 @@ export default function RecruitListPageClient() {
                 >
                   <div>
                     <div className="font-bold text-base text-gray-900 mb-1 line-clamp-2">
-                      영업1팀의 비전과 이야기
+                      에듀바이저스 북부지점 인터뷰
                     </div>
                     <div className="text-sm text-gray-500">
                       영업 1팀 | 강도연 대리
@@ -757,7 +757,7 @@ export default function RecruitListPageClient() {
                 >
                   <div>
                     <div className="font-bold text-base text-gray-900 mb-1 line-clamp-2">
-                      영업3팀의 비전과 이야기
+                      에듀바이저스 강남지점 인터뷰
                     </div>
                     <div className="text-sm text-gray-500">
                       영업 3팀 | 장은혜 대리
