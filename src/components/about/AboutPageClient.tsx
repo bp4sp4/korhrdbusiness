@@ -322,7 +322,7 @@ export default function AboutPageClient() {
         </motion.div>
         <div className="flex flex-col items-center justify-center">
           <p className="mb-[247px] md:text-[32px] text-[20px]  text-center">
-            한평생 에듀바이저는 단순한 교육이 아닌,
+            한평생 에듀바이저스는 단순한 교육이 아닌,
             <br />
             <span className="font-bold">
               인생의 방향성과 성장을 함께 하겠습니다.
@@ -352,12 +352,12 @@ export default function AboutPageClient() {
               CEO Message
             </div>
             <div className="text-white text-base md:text-lg leading-relaxed ">
-              한평생에듀바이저 홈페이지에 방문해 주신
+              한평생에듀바이저스 홈페이지에 방문해 주신
               <br /> 모든 분께 감사의 말씀을 전합니다.
               <br />
               <br />
               <strong>
-                한평생에듀바이저는 학생들의 성장과 성공을 최우선으로 생각하며
+                한평생에듀바이저스는 학생들의 성장과 성공을 최우선으로 생각하며
                 <br />
                 실질적이고 현장감 있는 교육, 그리고 내일을 바꾸는 서비스를
                 제공합니다.
@@ -395,12 +395,12 @@ export default function AboutPageClient() {
               CEO Message
             </div>
             <div className="text-white text-[14px] md:text-lg leading-relaxed mb-8">
-              한평생에듀바이저 홈페이지에 방문해 주신
+              한평생에듀바이저스 홈페이지에 방문해 주신
               <br /> 모든 분께 감사의 말씀을 전합니다.
               <br />
               <br />
               <strong>
-                한평생에듀바이저는 학생들의 성장과 성공을
+                한평생에듀바이저스는 학생들의 성장과 성공을
                 <br />
                 최우선으로 생각하며 실질적이고 현장감 있는 교육,
                 <br />

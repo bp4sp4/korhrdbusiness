@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import CategoryTabs from "@/components/CategoryTabs";
 import { motion } from "framer-motion";
@@ -9,7 +9,7 @@ export default function EduServicePageClient() {
       <div className="relative hidden md:flex h-[40vh] w-full flex-col justify-center overflow-hidden">
         <div className="w-full max-w-6xl mx-auto  p-6 bg-background">
           <h2 className="relative z-20 text-2xl text-white md:text-[45px] leading-tight">
-            <strong>한평생 에듀바이저</strong>
+            <strong>한평생 에듀바이저스</strong>
             와 함께
             <br />
             당신의 <strong> 인생 방향</strong>을 찾으세요
@@ -35,7 +35,7 @@ export default function EduServicePageClient() {
       <div className="relative flex md:hidden h-[70vh] w-full flex-col justify-end overflow-hidden">
         <div className="w-full max-w-6xl mx-auto  p-6 bg-background flex flex-col items-center justify-center">
           <h2 className="relative z-20 text-2xl text-white leading-tight">
-            <strong>한평생 에듀바이저</strong>
+            <strong>한평생 에듀바이저스</strong>
             와 함께
             <br />
             당신의 <strong> 인생 방향</strong>을 찾으세요

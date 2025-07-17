@@ -208,7 +208,7 @@ const CategoryTabs: React.FC = () => {
         <h2 className="text-[24px] md:text-[32px] md:text-[40px] text-[#1E1E1E] font-extrabold text-center leading-tight mb-4 px-6 mt-[76px] md:mt-[0px] flex flex-col items-center">
           교육서비스
           <span className="text-[16px] md:text-[20px] mt-[8px] text-[#979797] font-normal">
-            한평생 에듀바이저만의 교육 여정
+            한평생 에듀바이저스만의 교육 여정
           </span>
         </h2>
         <SectionCards

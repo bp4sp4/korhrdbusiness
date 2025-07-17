@@ -148,7 +148,7 @@ export default function HomePageClient() {
               alt="로고"
             />
             <span className="text-white text-[14px] md:text-2xl font-bold">
-              한평생 에듀바이저의 시작
+              한평생 에듀바이저스의 시작
             </span>
             <ArrowBlink />
           </div>
@@ -176,7 +176,7 @@ export default function HomePageClient() {
             </h2>
             <p className="text-[18px] md:text-[26px] flex flex-col md:items-center md:justify-center md:block">
               <br />
-              한평생 에듀바이저는 많은이들이
+              한평생 에듀바이저스는 많은이들이
               <strong>자신과 맞지 않는 교육을 선택</strong>하거나 복잡해진
               <br className="hidden md:block" /> 실무·취업 환경에 적응하지 못해
               <strong>시작조차 어려운하는 경우가 많다</strong>는 사실을
@@ -202,7 +202,7 @@ export default function HomePageClient() {
           </h2>
           <p className="text-[18px] md:text-[26px] flex flex-col md:items-center md:justify-center md:block">
             <br />
-            한평생 에듀바이저는 많은이들이
+            한평생 에듀바이저스는 많은이들이
             <strong>자신과 맞지 않는 교육을 선택 하거나</strong> 복잡해진
             <br className="hidden md:block" /> 실무·취업 환경에 적응하지 못해
             <strong>시작조차 어려운하는 경우가 많다는</strong> 사실을
@@ -221,7 +221,7 @@ export default function HomePageClient() {
 
       <section className="w-full max-w-5xl mx-auto py-0 md:py-20">
         <h2 className="text-2xl md:text-[40px] mt-[100px] md:mt-[150px] mb-[128px] font-bold text-center">
-          한평생 에듀바이저는 다릅니다.
+          한평생 에듀바이저스는 다릅니다.
         </h2>
         {/* STEP 1 */}
         <div className="flex flex-col md:flex-row items-center mb-[70px] md:mb-[158px] md:gap-[160px] md:px-0 px-10">
@@ -280,7 +280,7 @@ export default function HomePageClient() {
                 꼼꼼하고 세밀하게 관리합니다.
               </div>
               <div className="text-[#1e1e1e] text-[16px] md:text-[20px] leading-[1.5]">
-                한평생 에듀바이저는 학습자의 중도 포기를{" "}
+                한평생 에듀바이저스는 학습자의 중도 포기를{" "}
                 <br className="md:hidden" />
                 철저히 방지하기 위해, 전문 양성과정을 거친
                 <br className="md:hidden" />
@@ -345,7 +345,7 @@ export default function HomePageClient() {
           <div className="w-[1180px] mx-auto flex text-left">
             <div className="w-full relative">
               <h2 className="text-[40px] font-semibold mb-4 text-white">
-                한평생 에듀바이저와
+                한평생 에듀바이저스와
                 <br />
                 함께하실 분을 찾습니다.
               </h2>
@@ -380,7 +380,7 @@ export default function HomePageClient() {
 
         <div className="absolute mt-10 inset-0 flex flex-col max-w-[300px] mx-auto">
           <h2 className="text-[30px] font-bold mb-3 text-white ">
-            한평생 에듀바이저와
+            한평생 에듀바이저스와
             <br />
             함께하실 분을 찾습니다.
           </h2>
