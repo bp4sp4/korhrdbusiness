@@ -426,10 +426,10 @@ function NoticeHomepage() {
                             className="hover:text-primary transition-colors cursor-pointer text-lg"
                             onClick={() => setSelectedNotice(notice)}
                           >
-                            제목 : {notice.title}
+                            {notice.title}
                           </CardTitle>
                           <CardDescription className="mt-2 text-gray-600">
-                            내용 :{" "}
+                            {" "}
                             {notice.content.length > 100
                               ? `${notice.content.substring(0, 100)}...`
                               : notice.content}

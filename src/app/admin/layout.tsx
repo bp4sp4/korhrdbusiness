@@ -4,11 +4,17 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import AdminSidebar from "@/components/admin/AdminSidebar";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 
-const AUTO_LOGOUT_TIME = 30 * 60 * 1000; // 30 minutes
-const WARNING_TIME = 5 * 60 * 1000; // 5 minutes before logout
+const AUTO_LOGOUT_TIME = 30 * 60 * 1000;
+const WARNING_TIME = 5 * 60 * 1000;
 
 export default function AdminLayout({
   children,
@@ -82,13 +88,22 @@ export default function AdminLayout({
           <DialogHeader>
             <DialogTitle>세션 만료 경고</DialogTitle>
           </DialogHeader>
-          <p>활동이 없어 잠시 후 자동으로 로그아웃됩니다. 세션을 연장하시겠습니까?</p>
+          <p>
+            활동이 없어 잠시 후 자동으로 로그아웃됩니다. 세션을
+            연장하시겠습니까?
+          </p>
           <DialogFooter>
-            <Button variant="outline" onClick={extendSession}>세션 연장</Button>
-            <Button onClick={async () => {
-              await supabase.auth.signOut();
-              router.push("/admin/login");
-            }}>로그아웃</Button>
+            <Button variant="outline" onClick={extendSession}>
+              세션 연장
+            </Button>
+            <Button
+              onClick={async () => {
+                await supabase.auth.signOut();
+                router.push("/admin/login");
+              }}
+            >
+              로그아웃
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
