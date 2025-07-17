@@ -451,7 +451,7 @@ const CounselingModal = () => {
                 </label>
               </div>
             </div>
-            <Button
+            {/* <Button
               id="counsel-submit-btn"
               type="submit"
               className="w-full text-base text-[14px] md:h-11 h-11 md:text-[16px] bg-[#2B7FFF] hover:bg-[#2B7FFF]/80"
@@ -465,6 +465,14 @@ const CounselingModal = () => {
               }
             >
               {isSubmitting ? "신청 중..." : "신청하기"}
+            </Button> */}
+            <Button
+              id="counsel-submit-btn-beta"
+              type="button"
+              className="w-full text-base text-[14px] md:h-11 h-11 md:text-[16px] bg-gray-400 cursor-not-allowed"
+              disabled
+            >
+              서비스 준비 중입니다
             </Button>
           </form>
         ) : (

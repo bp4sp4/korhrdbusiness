@@ -659,12 +659,19 @@ const JobDetailPage = () => {
                     </div>
                   </div>
                   {/* 지원서 제출 버튼 */}
-                  <Button
+                  {/* <Button
                     type="submit"
                     className="w-full"
                     disabled={isSubmitting || !consent}
                   >
                     {isSubmitting ? "제출 중..." : "지원서 제출하기"}
+                  </Button> */}
+                  <Button
+                    type="button"
+                    className="w-full bg-gray-400 cursor-not-allowed"
+                    disabled
+                  >
+                    서비스 준비 중입니다
                   </Button>
                 </form>
               </CardContent>
