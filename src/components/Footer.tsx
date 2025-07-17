@@ -11,15 +11,6 @@ export default function Footer() {
       <div className="footer__wrap max-w-5xl mx-auto py-8">
         <div className="flex flex-col md:flex-row items-start text-[#666] text-[15px] gap-[20px] mb-8">
           <div className="min-w-[120px]">
-            <div className="font-bold mb-2">서비스</div>
-            <Link href="/notice" className="mb-1 block hover:underline">
-              공지사항
-            </Link>
-            <Link href="/faq" className="mb-1 block hover:underline">
-              자주 묻는 질문
-            </Link>
-          </div>
-          <div className="min-w-[120px]">
             <div className="font-bold mb-2">회사</div>
             <Link
               target="_blank"
@@ -57,40 +48,17 @@ export default function Footer() {
               공고
             </Link>
           </div>
-          <div className="min-w-[120px]">
-            <div className="font-bold mb-2">문의</div>
-            <Link
-              href="/contact/partnership"
-              className="mb-1 block hover:underline"
-            >
-              사업 제휴
-            </Link>
-            <Link
-              href="/contact/certification"
-              className="mb-1 block hover:underline"
-            >
-              인증 사업 문의
-            </Link>
-            <Link
-              href="/contact/marketing"
-              className="mb-1 block hover:underline"
-            >
-              마케팅 · PR
-            </Link>
-            <Link href="/contact/ir" className="mb-1 block hover:underline">
-              IR
-            </Link>
-          </div>
+
           <div className="min-w-[180px]">
-            <div className="font-bold mb-2">고객센터</div>
-            <a href="tel:15994905" className="mb-1 block hover:underline">
-              전화: 1599-4905 (평일 10:00 ~ 18:00)
+            <div className="font-bold mb-2">문의</div>
+            <a href="tel:0221356513" className="mb-1 block hover:underline">
+              전화: 02-2135-6513 (평일 10:00 ~ 18:00)
             </a>
             <a
-              href="mailto:korhrdpartners@naver.com"
+              href="mailto:korhrdlicense@korhrdoffice.com"
               className="mb-1 block hover:underline"
             >
-              이메일: korhrdpartners@naver.com
+              이메일: korhrdlicense@korhrdoffice.com
             </a>
           </div>
         </div>
@@ -107,10 +75,10 @@ export default function Footer() {
             </div>
             <div>주소 : 서울시 도봉구 창동 마들로13길 61 씨드큐브 905호</div>
             <div className="mt-2">
-              <Link href="/terms" className="mr-4 hover:underline">
+              <Link href="/policy/terms" className="mr-4 hover:underline">
                 서비스 이용약관
               </Link>
-              <Link href="/privacy" className="hover:underline">
+              <Link href="/policy/privacy" className="hover:underline">
                 개인정보 처리방침
               </Link>
             </div>

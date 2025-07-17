@@ -13,7 +13,7 @@ export default function InterviewDetail() {
     <div className="max-w-3xl mx-auto py-12 px-4">
       {/* === 상단: 직접 작성 === */}
       <h1 className="text-3xl font-bold text-center mb-2">
-        한평생에듀바이저스의 비전과 이야기
+        에듀바이저스 강남지점 인터뷰 질문
       </h1>
       <p className="text-center text-lg text-gray-600 mb-8">
         영업 3팀 | 장은혜 대리
@@ -29,7 +29,7 @@ export default function InterviewDetail() {
       {/* === 본문: 이미지 + 텍스트 섹션 === */}
       <section className="mb-12">
         <h2 className=" font-bold mb-2 md:px-10 text-[20px] md:text-[26px] ">
-          안녕하세요, 은혜대리님 반가워요!
+          자기소개와 지점의 비전이 궁금해요.
         </h2>
         <p className="mb-10 md:px-10 text-[17px] md:text-[19px]">
           한평생에듀바이저스는 평생교육의 가치를 실현하며, 모두가 성장할 수 있는
@@ -45,7 +45,8 @@ export default function InterviewDetail() {
           />
         </div>
         <h2 className=" font-bold mb-2 md:px-10 text-[20px] md:text-[26px]">
-          앞으로의 영업팀의 방향이 궁금해요.
+          팀의 가장 큰 도전이 있다면요?
+          <br /> 그 과정에서 얻은 시너지는 무엇인가요?
         </h2>
         <p className="mb-10 md:px-10 text-[17px] md:text-[19px]">
           한평생에듀바이저스의 영업팀은 각자의 전문성을 살려 다양한 교육
@@ -66,7 +67,26 @@ export default function InterviewDetail() {
           />
         </div>
         <h2 className="font-bold mb-2 md:px-10 text-[20px] md:text-[26px]">
-          어떤 분이 영업팀에 합류하길 바라나요?
+          팀장님의 리더십 철학, 그리고 팀 의사결정의 핵심 원칙은 무엇인가요?
+        </h2>
+        <p className="mb-10 md:px-10 text-[17px] md:text-[19px]">
+          저희 팀은 새로운 도전을 두려워하지 않고, 함께 성장하고자 하는 분을
+          기다리고 있습니다. <br />
+          스스로 배우고자 하는 의지가 강하고, 동료들과 소통하며 긍정적인
+          에너지를 나눌 수 있는 분이라면 누구든 환영이에요. <br />
+          무엇보다도, 고객의 입장에서 생각하고 더 나은 서비스를 만들기 위해
+          고민하는 분과 함께하고 싶습니다.
+        </p>
+        <div className="rounded-2xl overflow-hidden mb-8">
+          <img
+            src="/images/recruit/interview/eunhye3/main004.jpg"
+            alt="한평생에듀바이저스 교육 현장"
+            className="w-full w-[311px] h-[211px] md:w-[864px] md:h-[576px] object-cover"
+          />
+        </div>
+        <h2 className="font-bold mb-2 md:px-10 text-[20px] md:text-[26px]">
+          한평생교육 에듀바이저로서 이루고 싶은 개인적인 목표와, 에듀바이저스에
+          가장 잘 맞는 인재는 무엇인가요?
         </h2>
         <p className="mb-10 md:px-10 text-[17px] md:text-[19px]">
           저희 팀은 새로운 도전을 두려워하지 않고, 함께 성장하고자 하는 분을
