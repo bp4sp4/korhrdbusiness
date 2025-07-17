@@ -601,7 +601,7 @@ const JobDetailPage = () => {
                   {/* 경력 입력란 */}
                   <section className="mb-8">
                     <h3 className="text-xl font-bold mb-4 text-gray-800">
-                      경력(업무경험)
+                      경력
                     </h3>
                     <div className="space-y-4">
                       {applicationForm.experiences.map((exp, idx) => (

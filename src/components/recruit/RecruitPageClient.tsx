@@ -479,19 +479,19 @@ export default function RecruitListPageClient() {
                   className="text-[21px] md:text-[30px] sm:text-4xl lg:text-4xl  font-bold text-[#191f28] leading-tight"
                   style={{ letterSpacing: "-1px" }}
                 >
-                  한평생교육원과 함께하는 성장
+                  한평생에듀바이저스와 함께하는 성장
                   <br />
                   교육의 새로운 미래를 만들어갑니다
                 </h1>
 
                 <p className="text-[#797979] mb-[30px] mt-[30px] text-sm sm:text-base leading-relaxed hidden sm:block">
-                  한평생교육원은 단순한 교육기관이 아닙니다. 모두가 평생 성장할
-                  수 있도록 돕는 교육의 장입니다.
+                  한평생에듀바이저스는 단순한 교육기관이 아닙니다. 모두가 평생
+                  성장할 수 있도록 돕는 교육의 장입니다.
                   <br className="hidden sm:block" />
                   학생, 교사, 교직원이 함께 만들어가는 따뜻한 교육 공동체를
                   지향합니다.
                   <br />
-                  새로운 교육의 미래, 한평생교육원에서 시작하세요.
+                  새로운 교육의 미래, 한평생에듀바이저스에서 시작하세요.
                 </p>
                 <div className="h-[24px] md:hidden"></div>
                 <div className="flex flex-col sm:flex-row gap-3  pb-[10px]">
@@ -761,25 +761,6 @@ export default function RecruitListPageClient() {
                     </div>
                     <div className="text-sm text-gray-500">
                       영업 3팀 | 장은혜 대리
-                    </div>
-                  </div>
-                </Card>
-              </Link>
-
-              <Link href="/recruit/interview/hanpyeongsaeng3">
-                <Card
-                  className="min-h-[100px] flex flex-col justify-between hover:bg-muted cursor-pointer transition"
-                  style={{
-                    padding: "18px 18px 10px",
-                    border: "1px solid rgba(0, 29, 58, 0.18)",
-                  }}
-                >
-                  <div>
-                    <div className="font-bold text-base text-gray-900 mb-1 line-clamp-2">
-                      한평생교육원과 함께하는 미래
-                    </div>
-                    <div className="text-sm text-gray-500">
-                      학생 | 한평생교육원
                     </div>
                   </div>
                 </Card>

@@ -446,7 +446,7 @@ const Timeline = ({ data }: { data: TimelineEntry[] }) => {
     <section className="bg-[#191f28] py-[30px]">
       <div className="max-w-4xl mx-auto">
         <h3 className="text-[20px] md:text-4xl font-bold mb-12 text-center text-white">
-          한평생교육은 매일,
+          은 매일,
           <br />
           누군가의 내일을 바꾸고 있습니다.
         </h3>
