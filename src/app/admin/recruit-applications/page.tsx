@@ -32,14 +32,27 @@ interface Application {
   phone: string;
   address: string;
   birth_date: string;
-  experience: string;
   introduction: string;
   cover_letter: string;
   resume_url: string;
+  portfolio_file_url: string;
   portfolio_url: string;
   website_url?: string;
   created_at: string;
   status: string;
+  educations: {
+    graduationDate: string;
+    type: string;
+    school: string;
+    major: string;
+    score: string;
+  }[];
+  experiences: {
+    period: string;
+    company: string;
+    position: string;
+    description: string;
+  }[];
 }
 
 interface Job {
@@ -154,8 +167,8 @@ export default function RecruitApplicationsPage() {
       const resumePath = app.resume_url.split("/recruit-files/")[1];
       if (resumePath) filesToDelete.push(resumePath);
     }
-    if (app.portfolio_url) {
-      const portfolioPath = app.portfolio_url.split("/recruit-files/")[1];
+    if (app.portfolio_file_url) {
+      const portfolioPath = app.portfolio_file_url.split("/recruit-files/")[1];
       if (portfolioPath) filesToDelete.push(portfolioPath);
     }
     if (filesToDelete.length > 0) {
@@ -515,7 +528,7 @@ export default function RecruitApplicationsPage() {
           {/* 상세 모달 */}
           {selected && (
             <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
-              <div className="bg-white rounded-lg p-6 w-full max-w-2xl shadow-lg relative overflow-y-auto max-h-[90vh]">
+              <div className="bg-white rounded-lg p-6 w-full max-w-4xl shadow-lg relative overflow-y-auto max-h-[90vh]">
                 <button
                   className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl"
                   onClick={() => setSelected(null)}
@@ -523,150 +536,227 @@ export default function RecruitApplicationsPage() {
                   ×
                 </button>
                 <h2 className="text-2xl font-bold mb-6 text-gray-800">
-                  <span className="text-blue-600">{selected.name}</span> 지원
-                  상세 정보
+                  <span className="text-blue-600">{selected.name}</span>님의
+                  지원 정보
                 </h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-gray-700">
-                  {/* 기본 정보 */}
-                  <div className="space-y-3">
-                    <h3 className="font-semibold text-lg text-gray-900 border-b pb-2 mb-3">
-                      개인 정보
-                    </h3>
-                    <div className="flex items-center gap-2">
-                      <Mail className="w-5 h-5 text-blue-500" />
-                      <span>이메일: {selected.email}</span>
+                <div className="space-y-8">
+                  {/* 기본 정보 & 지원 정보 */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-gray-700">
+                    <div className="space-y-3">
+                      <h3 className="font-semibold text-lg text-gray-900 border-b pb-2 mb-3">
+                        기본 정보
+                      </h3>
+                      <div className="flex items-center gap-2">
+                        <Mail className="w-5 h-5 text-blue-500" />
+                        <span>{selected.email}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Phone className="w-5 h-5 text-blue-500" />
+                        <span>{selected.phone}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <MapPin className="w-5 h-5 text-blue-500" />
+                        <span>{selected.address || "-"}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Calendar className="w-5 h-5 text-blue-500" />
+                        <span>{selected.birth_date || "-"}</span>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Phone className="w-5 h-5 text-blue-500" />
-                      <span>연락처: {selected.phone}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <MapPin className="w-5 h-5 text-blue-500" />
-                      <span>주소: {selected.address}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Calendar className="w-5 h-5 text-blue-500" />
-                      <span>생년월일: {selected.birth_date}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Briefcase className="w-5 h-5 text-blue-500" />
-                      <span>경력: {selected.experience}</span>
-                    </div>
-                  </div>
-
-                  {/* 지원 정보 */}
-                  <div className="space-y-3">
-                    <h3 className="font-semibold text-lg text-gray-900 border-b pb-2 mb-3">
-                      지원 정보
-                    </h3>
-                    <div className="flex items-center gap-2">
-                      <FileText className="w-5 h-5 text-blue-500" />
-                      <span>공고명: {getJobTitle(selected.job_id)}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Calendar className="w-5 h-5 text-blue-500" />
-                      <span>지원일: {selected.created_at?.split("T")[0]}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Info className="w-5 h-5 text-blue-500" />
-                      <span>상태: {statusToKorean(selected.status)}</span>
+                    <div className="space-y-3">
+                      <h3 className="font-semibold text-lg text-gray-900 border-b pb-2 mb-3">
+                        지원 정보
+                      </h3>
+                      <div className="flex items-center gap-2">
+                        <Briefcase className="w-5 h-5 text-blue-500" />
+                        <span>{getJobTitle(selected.job_id)}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Calendar className="w-5 h-5 text-blue-500" />
+                        <span>{selected.created_at?.split("T")[0]}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Info className="w-5 h-5 text-blue-500" />
+                        <span>{statusToKorean(selected.status)}</span>
+                      </div>
                     </div>
                   </div>
 
-                  {/* 자기소개 및 지원동기 */}
-                  <div className="space-y-3 md:col-span-2">
+                  {/* 학력 정보 */}
+                  <div>
                     <h3 className="font-semibold text-lg text-gray-900 border-b pb-2 mb-3">
-                      자기소개 및 지원동기
+                      학력
                     </h3>
-                    <div>
-                      <p className="font-medium">자기소개:</p>
-                      <p className="text-sm bg-gray-50 p-3 rounded-md whitespace-pre-wrap">
-                        {selected.introduction}
-                      </p>
+                    <div className="space-y-4">
+                      {selected.educations?.length > 0 ? (
+                        selected.educations.map((edu, index) => (
+                          <div
+                            key={index}
+                            className="grid grid-cols-3 gap-x-4 p-3 bg-gray-50 rounded-md"
+                          >
+                            <p>
+                              <span className="font-medium">졸업(예정)일:</span>{" "}
+                              {edu.graduationDate}
+                            </p>
+                            <p>
+                              <span className="font-medium">학교:</span>{" "}
+                              {edu.school} ({edu.type})
+                            </p>
+                            <p>
+                              <span className="font-medium">전공:</span>{" "}
+                              {edu.major} (학점: {edu.score})
+                            </p>
+                          </div>
+                        ))
+                      ) : (
+                        <p className="text-muted-foreground">
+                          학력 정보가 없습니다.
+                        </p>
+                      )}
                     </div>
-                    <div>
-                      <p className="font-medium">지원동기:</p>
-                      <p className="text-sm bg-gray-50 p-3 rounded-md whitespace-pre-wrap">
-                        {selected.cover_letter}
-                      </p>
+                  </div>
+
+                  {/* 경력 정보 */}
+                  <div>
+                    <h3 className="font-semibold text-lg text-gray-900 border-b pb-2 mb-3">
+                      경력
+                    </h3>
+                    <div className="space-y-4">
+                      {selected.experiences?.length > 0 ? (
+                        selected.experiences.map((exp, index) => (
+                          <div
+                            key={index}
+                            className="p-3 bg-gray-50 rounded-md"
+                          >
+                            <div className="grid grid-cols-3 gap-x-4 mb-2">
+                              <p>
+                                <span className="font-medium">기간:</span>{" "}
+                                {exp.period}
+                              </p>
+                              <p>
+                                <span className="font-medium">회사:</span>{" "}
+                                {exp.company}
+                              </p>
+                              <p>
+                                <span className="font-medium">직책:</span>{" "}
+                                {exp.position}
+                              </p>
+                            </div>
+                            <p className="text-sm whitespace-pre-wrap">
+                              <span className="font-medium">주요업무:</span>{" "}
+                              {exp.description}
+                            </p>
+                          </div>
+                        ))
+                      ) : (
+                        <p className="text-muted-foreground">
+                          경력 정보가 없습니다.
+                        </p>
+                      )}
                     </div>
+                  </div>
+
+                  {/* 자기소개 */}
+                  <div>
+                    <h3 className="font-semibold text-lg text-gray-900 border-b pb-2 mb-3">
+                      자기소개, 지원 동기 및 포부
+                    </h3>
+                    <p className="text-sm bg-gray-50 p-3 rounded-md whitespace-pre-wrap">
+                      {selected.introduction}
+                    </p>
                   </div>
 
                   {/* 첨부 파일 및 링크 */}
-                  <div className="space-y-3 md:col-span-2">
+                  <div>
                     <h3 className="font-semibold text-lg text-gray-900 border-b pb-2 mb-3">
                       첨부 파일 및 링크
                     </h3>
-                    <div className="flex flex-wrap items-center gap-3">
-                      <Paperclip className="w-5 h-5 text-blue-500" />
-                      <span>이력서:</span>
-                      {selected.resume_url ? (
-                        <a
-                          href={selected.resume_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Button size="sm" variant="outline" className="gap-1">
-                            <Download className="w-4 h-4" /> 다운로드
-                          </Button>
-                        </a>
-                      ) : (
-                        <span className="text-muted-foreground">-</span>
-                      )}
-                    </div>
-                    <div className="flex flex-wrap items-center gap-3">
-                      <Paperclip className="w-5 h-5 text-blue-500" />
-                      <span>포트폴리오 파일:</span>
-                      {selected.portfolio_url &&
-                      !selected.portfolio_url.startsWith("http") ? (
-                        <a
-                          href={selected.portfolio_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Button size="sm" variant="outline" className="gap-1">
-                            <Download className="w-4 h-4" /> 다운로드
-                          </Button>
-                        </a>
-                      ) : (
-                        <span className="text-muted-foreground">-</span>
-                      )}
-                    </div>
-                    <div className="flex flex-wrap items-center gap-3">
-                      <LinkIcon className="w-5 h-5 text-blue-500" />
-                      <span>포트폴리오 URL:</span>
-                      {selected.portfolio_url &&
-                      selected.portfolio_url.startsWith("http") ? (
-                        <a
-                          href={selected.portfolio_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Button size="sm" variant="outline" className="gap-1">
-                            <LinkIcon className="w-4 h-4" /> 바로가기
-                          </Button>
-                        </a>
-                      ) : (
-                        <span className="text-muted-foreground">-</span>
-                      )}
-                    </div>
-                    <div className="flex flex-wrap items-center gap-3">
-                      <LinkIcon className="w-5 h-5 text-blue-500" />
-                      <span>개인 웹사이트:</span>
-                      {selected.website_url ? (
-                        <a
-                          href={selected.website_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Button size="sm" variant="outline" className="gap-1">
-                            <LinkIcon className="w-4 h-4" /> 바로가기
-                          </Button>
-                        </a>
-                      ) : (
-                        <span className="text-muted-foreground">-</span>
-                      )}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="flex items-center gap-3">
+                        <Paperclip className="w-5 h-5 text-blue-500" />
+                        <span className="font-medium">이력서:</span>
+                        {selected.resume_url ? (
+                          <a
+                            href={selected.resume_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="gap-1"
+                            >
+                              <Download className="w-4 h-4" /> 다운로드
+                            </Button>
+                          </a>
+                        ) : (
+                          <span className="text-muted-foreground">-</span>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <Paperclip className="w-5 h-5 text-blue-500" />
+                        <span className="font-medium">포트폴리오 파일:</span>
+                        {selected.portfolio_file_url ? (
+                          <a
+                            href={selected.portfolio_file_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="gap-1"
+                            >
+                              <Download className="w-4 h-4" /> 다운로드
+                            </Button>
+                          </a>
+                        ) : (
+                          <span className="text-muted-foreground">-</span>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <LinkIcon className="w-5 h-5 text-blue-500" />
+                        <span className="font-medium">포트폴리오 URL:</span>
+                        {selected.portfolio_url ? (
+                          <a
+                            href={selected.portfolio_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="gap-1"
+                            >
+                              <LinkIcon className="w-4 h-4" /> 바로가기
+                            </Button>
+                          </a>
+                        ) : (
+                          <span className="text-muted-foreground">-</span>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <LinkIcon className="w-5 h-5 text-blue-500" />
+                        <span className="font-medium">개인 웹사이트:</span>
+                        {selected.website_url ? (
+                          <a
+                            href={selected.website_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="gap-1"
+                            >
+                              <LinkIcon className="w-4 h-4" /> 바로가기
+                            </Button>
+                          </a>
+                        ) : (
+                          <span className="text-muted-foreground">-</span>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>

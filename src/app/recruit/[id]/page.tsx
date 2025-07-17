@@ -58,6 +58,19 @@ interface ApplicationForm {
   coverLetter: string;
   portfolioUrl: string;
   websiteUrl: string;
+  educations: {
+    graduationDate: string;
+    type: string;
+    school: string;
+    major: string;
+    score: string;
+  }[];
+  experiences: {
+    period: string;
+    company: string;
+    position: string;
+    description: string;
+  }[];
 }
 
 // 파일명에서 한글, 공백, 특수문자 제거 (영문, 숫자, 언더스코어, 하이픈만 허용)
@@ -97,6 +110,10 @@ const JobDetailPage = () => {
     coverLetter: "",
     portfolioUrl: "",
     websiteUrl: "",
+    educations: [
+      { graduationDate: "", type: "", school: "", major: "", score: "" },
+    ],
+    experiences: [{ period: "", company: "", position: "", description: "" }],
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -132,6 +149,58 @@ const JobDetailPage = () => {
     setApplicationForm((prev) => ({
       ...prev,
       [field]: file,
+    }));
+  };
+
+  const addEducation = () => {
+    setApplicationForm((f) => ({
+      ...f,
+      educations: [
+        ...f.educations,
+        { graduationDate: "", type: "", school: "", major: "", score: "" },
+      ],
+    }));
+  };
+  const removeEducation = (idx: number) => {
+    setApplicationForm((f) => ({
+      ...f,
+      educations: f.educations.filter((_, i) => i !== idx),
+    }));
+  };
+  const handleEducationChange = (idx: number, field: string, value: string) => {
+    setApplicationForm((f) => ({
+      ...f,
+      educations: f.educations.map((edu, i) =>
+        i === idx ? { ...edu, [field]: value } : edu
+      ),
+    }));
+  };
+
+  const addExperience = () => {
+    setApplicationForm((f) => ({
+      ...f,
+      experiences: [
+        ...f.experiences,
+        { period: "", company: "", position: "", description: "" },
+      ],
+    }));
+  };
+  const removeExperience = (idx: number) => {
+    setApplicationForm((f) => ({
+      ...f,
+      experiences: f.experiences.filter((_, i) => i !== idx),
+    }));
+  };
+  const handleExperienceChange = (
+    idx: number,
+    field: string,
+    value: string
+  ) => {
+    setApplicationForm((f) => ({
+      ...f,
+      experiences: f.experiences.map((exp, i) =>
+        i === idx ? { ...exp, [field]: value } : exp
+      ),
     }));
   };
 
@@ -202,6 +271,8 @@ const JobDetailPage = () => {
           website_url: applicationForm.websiteUrl,
           status: "pending",
           consent: consent ? "Y" : "N",
+          educations: applicationForm.educations,
+          experiences: applicationForm.experiences,
         },
       ]);
     if (insertError) {
@@ -426,47 +497,206 @@ const JobDetailPage = () => {
                       />
                     </div>
                   </div>
-                  {/* 경력 및 자기소개 */}
-                  <div className="space-y-4">
-                    <h3 className="text-lg font-semibold">경력 및 자기소개</h3>
-                    <div className="space-y-2">
-                      <Label htmlFor="experience">경력 사항</Label>
-                      <Textarea
-                        id="experience"
-                        placeholder="관련 경력이나 업무 경험을 자세히 작성해주세요"
-                        value={applicationForm.experience}
-                        onChange={(e) =>
-                          handleInputChange("experience", e.target.value)
-                        }
-                        rows={4}
-                      />
+                  {/* 학력 입력란 */}
+                  <section className="mb-8">
+                    <h3 className="text-xl font-bold mb-4 text-gray-800">
+                      학력
+                    </h3>
+                    <div className="space-y-4">
+                      {applicationForm.educations.map((edu, idx) => (
+                        <div key={idx} className=" pb-6 relative">
+                          {applicationForm.educations.length > 1 ? (
+                            <button
+                              type="button"
+                              className="absolute top-0 right-0 text-gray-400 hover:text-red-500 transition-colors"
+                              onClick={() => removeEducation(idx)}
+                            >
+                              <X className="w-5 h-5" />
+                            </button>
+                          ) : null}
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
+                            <input
+                              className="border-0 border-b focus:ring-0 focus:border-primary transition-colors w-full py-2 px-1 bg-transparent"
+                              placeholder="YYYY.MM 졸업(예정)"
+                              value={edu.graduationDate}
+                              onChange={(e) =>
+                                handleEducationChange(
+                                  idx,
+                                  "graduationDate",
+                                  e.target.value
+                                )
+                              }
+                            />
+                            <select
+                              className="border-0 border-b focus:ring-0 focus:border-primary transition-colors w-full py-2 px-1 bg-transparent"
+                              value={edu.type}
+                              onChange={(e) =>
+                                handleEducationChange(
+                                  idx,
+                                  "type",
+                                  e.target.value
+                                )
+                              }
+                            >
+                              <option value="">학력 구분</option>
+                              <option value="고등학교">고등학교</option>
+                              <option value="대학(2,3년)">대학(2,3년)</option>
+                              <option value="대학(4년)">대학(4년)</option>
+                              <option value="대학원(석사)">대학원(석사)</option>
+                              <option value="대학원(박사)">대학원(박사)</option>
+                            </select>
+                            <input
+                              className="border-0 border-b focus:ring-0 focus:border-primary transition-colors w-full py-2 px-1 bg-transparent"
+                              placeholder="학교명"
+                              value={edu.school}
+                              onChange={(e) =>
+                                handleEducationChange(
+                                  idx,
+                                  "school",
+                                  e.target.value
+                                )
+                              }
+                            />
+                            <div className="grid grid-cols-2 gap-x-6">
+                              <input
+                                className="border-0 border-b focus:ring-0 focus:border-primary transition-colors w-full py-2 px-1 bg-transparent"
+                                placeholder="전공"
+                                value={edu.major}
+                                onChange={(e) =>
+                                  handleEducationChange(
+                                    idx,
+                                    "major",
+                                    e.target.value
+                                  )
+                                }
+                              />
+                              <input
+                                className="border-0 border-b focus:ring-0 focus:border-primary transition-colors w-full py-2 px-1 bg-transparent"
+                                placeholder="학점"
+                                value={edu.score}
+                                onChange={(e) =>
+                                  handleEducationChange(
+                                    idx,
+                                    "score",
+                                    e.target.value
+                                  )
+                                }
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="introduction">자기소개 *</Label>
-                      <Textarea
-                        id="introduction"
-                        placeholder="자신을 소개하고 지원 동기를 작성해주세요"
-                        value={applicationForm.introduction}
-                        onChange={(e) =>
-                          handleInputChange("introduction", e.target.value)
-                        }
-                        rows={5}
-                        required
-                      />
+                    <button
+                      type="button"
+                      className="flex items-center gap-2 text-[#2B7FFF] font-semibold hover:text-[#1459c5] mt-6 group"
+                      onClick={addEducation}
+                    >
+                      <span className="w-6 h-6 bg-[#2B7FFF] group-hover:bg-[#1459c5] text-white rounded-full flex items-center justify-center text-lg transition-colors">
+                        +
+                      </span>
+                      <span className="group-hover:underline">학력 추가</span>
+                    </button>
+                  </section>
+
+                  {/* 경력 입력란 */}
+                  <section className="mb-8">
+                    <h3 className="text-xl font-bold mb-4 text-gray-800">
+                      경력(업무경험)
+                    </h3>
+                    <div className="space-y-4">
+                      {applicationForm.experiences.map((exp, idx) => (
+                        <div key={idx} className="pb-6 relative">
+                          {applicationForm.experiences.length > 1 ? (
+                            <button
+                              type="button"
+                              className="absolute top-0 right-0 text-gray-400 hover:text-red-500 transition-colors"
+                              onClick={() => removeExperience(idx)}
+                            >
+                              <X className="w-5 h-5" />
+                            </button>
+                          ) : null}
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5 mb-4">
+                            <input
+                              className="border-0 border-b focus:ring-0 focus:border-primary transition-colors w-full py-2 px-1 bg-transparent"
+                              placeholder="YYYY.MM - YYYY.MM"
+                              value={exp.period}
+                              onChange={(e) =>
+                                handleExperienceChange(
+                                  idx,
+                                  "period",
+                                  e.target.value
+                                )
+                              }
+                            />
+                            <input
+                              className="border-0 border-b focus:ring-0 focus:border-primary transition-colors w-full py-2 px-1 bg-transparent"
+                              placeholder="회사명"
+                              value={exp.company}
+                              onChange={(e) =>
+                                handleExperienceChange(
+                                  idx,
+                                  "company",
+                                  e.target.value
+                                )
+                              }
+                            />
+                            <input
+                              className="border-0 border-b focus:ring-0 focus:border-primary transition-colors w-full py-2 px-1 bg-transparent md:col-span-2"
+                              placeholder="직책"
+                              value={exp.position}
+                              onChange={(e) =>
+                                handleExperienceChange(
+                                  idx,
+                                  "position",
+                                  e.target.value
+                                )
+                              }
+                            />
+                          </div>
+                          <textarea
+                            className="border-0 border-b focus:ring-0 focus:border-primary transition-colors w-full py-2 px-1 bg-transparent"
+                            placeholder="주요업무 및 성과를 작성해 주세요."
+                            value={exp.description}
+                            onChange={(e) =>
+                              handleExperienceChange(
+                                idx,
+                                "description",
+                                e.target.value
+                              )
+                            }
+                            rows={3}
+                          />
+                        </div>
+                      ))}
                     </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="coverLetter">지원 동기 및 포부</Label>
-                      <Textarea
-                        id="coverLetter"
-                        placeholder="이 직무에 지원하는 이유와 향후 포부를 작성해주세요"
-                        value={applicationForm.coverLetter}
-                        onChange={(e) =>
-                          handleInputChange("coverLetter", e.target.value)
-                        }
-                        rows={4}
-                      />
-                    </div>
-                  </div>
+                    <button
+                      type="button"
+                      className="flex items-center gap-2 text-[#2B7fff] font-semibold hover:text-[#1459c5] mt-6 group"
+                      onClick={addExperience}
+                    >
+                      <span className="w-6 h-6 bg-[#2B7FFF] group-hover:bg-[#1459c5] text-white rounded-full flex items-center justify-center text-lg transition-colors">
+                        +
+                      </span>
+                      <span className="group-hover:underline">경력 추가</span>
+                    </button>
+                  </section>
+
+                  {/* 자기소개/지원동기/포부 */}
+                  <section className="mb-8">
+                    <h3 className="text-xl font-bold mb-4 text-gray-800">
+                      자기소개, 지원 동기 및 포부
+                    </h3>
+                    <textarea
+                      className="border rounded px-2 py-2 w-full"
+                      placeholder="자기소개, 지원 동기 및 포부를 자유롭게 작성해 주세요."
+                      value={applicationForm.introduction}
+                      onChange={(e) =>
+                        handleInputChange("introduction", e.target.value)
+                      }
+                      rows={6}
+                    />
+                  </section>
                   {/* 포트폴리오 및 웹사이트 URL */}
                   <div className="space-y-4">
                     <h3 className="text-lg font-semibold flex items-center gap-2">

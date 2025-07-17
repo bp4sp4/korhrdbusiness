@@ -11,64 +11,42 @@ export default function AdminLoginPage() {
   const [error, setError] = useState("");
   const router = useRouter();
   const logoutTimer = useRef<NodeJS.Timeout | null>(null);
-  const [role, setRole] = useState<string | null>(null);
-  const [roleLoading, setRoleLoading] = useState(true);
+  const [role] = useState<string | null>(null);
+  const [roleLoading] = useState(true);
   const [, setShowHistory] = useState(false);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    if (!email || !password) {
+      alert("이메일과 비밀번호를 모두 입력해주세요.");
+      return;
+    }
+
+    // 이메일로 관리자 정보 가져오기
+    const { data: admin, error: adminError } = await supabase
+      .from("admins")
+      .select("*")
+      .eq("email", email)
+      .single();
+
+    if (adminError || !admin) {
+      alert("등록되지 않은 관리자입니다.");
+      return;
+    }
+
+    // 비밀번호는 Supabase Auth를 통해 로그인 시도
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
+
     if (error) {
-      // 에러 메시지 한글로 변환
-      if (error.message === "Invalid login credentials") {
-        setError("이메일 또는 비밀번호가 올바르지 않습니다.");
-      } else {
-        setError(error.message); // 기타 에러는 원문 노출
-      }
+      alert("로그인 실패: " + error.message);
       return;
     }
-    // 관리자 이메일만 허용 (예시)
-    if (
-      email !== "korhrd@guidance.com" &&
-      email !== "viewer@guidance.com" &&
-      email !== "super@guidance.com" &&
-      email !== "test@test.com"
-    ) {
-      setError("관리자만 접근할 수 있습니다.");
-      await supabase.auth.signOut();
-      return;
-    }
-    router.push("/"); // 로그인 후 이동
 
-    // 30분 후 자동 로그아웃 타이머 설정
-    if (logoutTimer.current) clearTimeout(logoutTimer.current);
-    logoutTimer.current = setTimeout(async () => {
-      await supabase.auth.signOut();
-      alert("30분이 지나 자동 로그아웃 되었습니다.");
-      router.push("/admin/login");
-    }, 30 * 60 * 1000); // 30분
-
-    // 로그인 후, 관리자 권한 체크
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-
-    const { data: admins } = await supabase
-      .from("admins")
-      .select("email")
-      .eq("email", user?.email);
-
-    const isAdmin = admins && admins.length > 0;
-    if (isAdmin) {
-      setRole("super");
-    } else {
-      // 관리자 아님 (작성/수정/삭제 버튼 숨기기 등)
-    }
-    setRoleLoading(false);
+    router.push("/");
   };
 
   useEffect(() => {

@@ -289,14 +289,16 @@ function NoticeHomepage() {
   };
 
   const handleDeleteNotice = async (id: number) => {
-    const { error } = await supabase.from("notices").delete().eq("id", id);
-    if (error) {
-      alert("삭제 실패: " + error.message);
-      return;
-    }
-    await fetchNotices();
-    if (selectedNotice?.id === id) {
-      setSelectedNotice(null);
+    if (window.confirm("정말로 삭제하시겠습니까?")) {
+      const { error } = await supabase.from("notices").delete().eq("id", id);
+      if (error) {
+        alert("삭제 실패: " + error.message);
+        return;
+      }
+      await fetchNotices();
+      if (selectedNotice?.id === id) {
+        setSelectedNotice(null);
+      }
     }
   };
 
@@ -317,33 +319,34 @@ function NoticeHomepage() {
   };
 
   return (
-    <div className="min-h-screen bg-background mt-[4rem]">
-      {/* Header */}
-      <header className="border-b bg-card">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
+    <div className="min-h-screen bg-gray-50/50">
+      <div className="max-w-6xl mx-auto mt-[2rem] px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <header className="py-8">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-foreground">공지사항</h1>
-              <p className="text-muted-foreground mt-2">
+              <h1 className="text-3xl font-bold text-gray-900">공지사항</h1>
+              <p className="text-gray-500 mt-2">
                 중요한 소식과 업데이트를 확인하세요
               </p>
             </div>
             {isAdmin && (
-              <Button onClick={() => setIsCreateModalOpen(true)}>
+              <Button
+                onClick={() => setIsCreateModalOpen(true)}
+                className="mt-4 sm:mt-0"
+              >
                 <Plus className="w-4 h-4 mr-2" />새 공지사항
               </Button>
             )}
           </div>
-        </div>
-      </header>
+        </header>
 
-      <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Sidebar */}
           <div className="lg:col-span-1">
-            <Card>
+            <Card className="border-gray-200/75 shadow-sm">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+                <CardTitle className="flex items-center gap-2 text-base">
                   <Filter className="w-4 h-4" />
                   필터
                 </CardTitle>
@@ -351,9 +354,11 @@ function NoticeHomepage() {
               <CardContent className="space-y-6">
                 {/* Search */}
                 <div>
-                  <Label htmlFor="search">검색</Label>
-                  <div className="relative mt-2">
-                    <Search className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" />
+                  <Label htmlFor="search" className="text-sm font-medium">
+                    검색
+                  </Label>
+                  <div className="relative mt-4 mb-4">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                     <Input
                       id="search"
                       placeholder="제목 또는 내용 검색..."
@@ -372,20 +377,20 @@ function NoticeHomepage() {
             {/* View Controls */}
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-4">
-                <span className="text-sm text-muted-foreground">
+                <span className="text-sm text-gray-500">
                   총 {filteredNotices.length}개의 공지사항
                 </span>
               </div>
               <div className="flex items-center gap-2">
                 <Button
-                  variant={viewMode === "list" ? "default" : "outline"}
+                  variant={viewMode === "list" ? "secondary" : "ghost"}
                   size="sm"
                   onClick={() => setViewMode("list")}
                 >
                   <List className="w-4 h-4" />
                 </Button>
                 <Button
-                  variant={viewMode === "grid" ? "default" : "outline"}
+                  variant={viewMode === "grid" ? "secondary" : "ghost"}
                   size="sm"
                   onClick={() => setViewMode("grid")}
                 >
@@ -397,7 +402,7 @@ function NoticeHomepage() {
             {/* Notice List */}
             <div
               className={cn(
-                "space-y-4",
+                "space-y-4 ",
                 viewMode === "grid" &&
                   "grid grid-cols-1 md:grid-cols-2 gap-4 space-y-0"
               )}
@@ -411,36 +416,39 @@ function NoticeHomepage() {
                 >
                   <Card
                     className={cn(
-                      "cursor-pointer transition-all hover:shadow-md"
+                      "cursor-pointer p-5 transition-all hover:shadow-lg hover:border-primary/50 border-gray-200/75 shadow-sm border-1 border-[#d2d2d2]"
                     )}
                   >
                     <CardHeader>
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
                           <CardTitle
-                            className="hover:text-primary transition-colors cursor-pointer"
+                            className="hover:text-primary transition-colors cursor-pointer text-lg"
                             onClick={() => setSelectedNotice(notice)}
                           >
-                            {notice.title}
+                            제목 : {notice.title}
                           </CardTitle>
-                          <CardDescription className="mt-2">
+                          <CardDescription className="mt-2 text-gray-600">
+                            내용 :{" "}
                             {notice.content.length > 100
                               ? `${notice.content.substring(0, 100)}...`
                               : notice.content}
                           </CardDescription>
                         </div>
                         {isAdmin && (
-                          <div className="flex items-center gap-2 ml-4">
+                          <div className="flex items-center gap-1 ml-4">
                             <Button
                               variant="ghost"
-                              size="sm"
+                              size="icon"
+                              className="h-8 w-8"
                               onClick={() => openEditModal(notice)}
                             >
                               <Settings className="w-4 h-4" />
                             </Button>
                             <Button
                               variant="ghost"
-                              size="sm"
+                              size="icon"
+                              className="h-8 w-8 hover:bg-red-50 hover:text-red-600"
                               onClick={() => handleDeleteNotice(notice.id)}
                             >
                               <Trash2 className="w-4 h-4" />
@@ -450,15 +458,15 @@ function NoticeHomepage() {
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <div className="flex items-center justify-between text-sm text-muted-foreground">
+                      <div className="flex items-center justify-between text-sm text-gray-500">
                         <div className="flex items-center gap-4">
-                          <div className="flex items-center gap-1">
+                          <div className="flex items-center gap-1.5">
                             <User className="w-4 h-4" />
                             {notice.author}
                           </div>
-                          <div className="flex items-center gap-1">
+                          <div className="flex items-center gap-1.5">
                             <Calendar className="w-4 h-4" />
-                            {notice.created_at}
+                            {new Date(notice.created_at).toLocaleDateString()}
                           </div>
                         </div>
                       </div>
@@ -489,36 +497,39 @@ function NoticeHomepage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"
+            className="fixed inset-0 bg-black/60 flex items-center justify-center p-4 z-50"
             onClick={() => setSelectedNotice(null)}
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
+              initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-background rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="p-6">
+              <div className="p-8">
                 <div className="flex items-start justify-between mb-6">
                   <div className="flex-1">
-                    <h1 className="text-2xl font-bold mb-4">
+                    <h1 className="text-2xl font-bold mb-4 text-gray-900">
                       {selectedNotice.title}
                     </h1>
-                    <div className="flex items-center gap-6 text-sm text-muted-foreground mb-6">
-                      <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-6 text-sm text-gray-500 mb-6">
+                      <div className="flex items-center gap-1.5">
                         <User className="w-4 h-4" />
                         {selectedNotice.author}
                       </div>
-                      <div className="flex items-center gap-1">
+                      <div className="flex items-center gap-1.5">
                         <Calendar className="w-4 h-4" />
-                        {selectedNotice.created_at}
+                        {new Date(
+                          selectedNotice.created_at
+                        ).toLocaleDateString()}
                       </div>
                     </div>
                   </div>
                   <Button
                     variant="ghost"
-                    size="sm"
+                    size="icon"
+                    className="h-8 w-8"
                     onClick={() => setSelectedNotice(null)}
                   >
                     <X className="w-4 h-4" />
@@ -527,8 +538,8 @@ function NoticeHomepage() {
 
                 <Separator className="mb-6" />
 
-                <div className="prose max-w-none">
-                  <p className="text-foreground leading-relaxed">
+                <div className="prose max-w-none prose-gray">
+                  <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">
                     {selectedNotice.content}
                   </p>
                 </div>
@@ -545,7 +556,7 @@ function NoticeHomepage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"
+            className="fixed inset-0 bg-black/60 flex items-center justify-center p-4 z-50"
             onClick={() => {
               setIsCreateModalOpen(false);
               setIsEditMode(false);
@@ -553,20 +564,21 @@ function NoticeHomepage() {
             }}
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
+              initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-background rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="p-6">
+              <div className="p-8">
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-xl font-bold">
+                  <h2 className="text-xl font-bold text-gray-900">
                     {isEditMode ? "공지사항 수정" : "새 공지사항 작성"}
                   </h2>
                   <Button
                     variant="ghost"
-                    size="sm"
+                    size="icon"
+                    className="h-8 w-8"
                     onClick={() => {
                       setIsCreateModalOpen(false);
                       setIsEditMode(false);
@@ -579,7 +591,9 @@ function NoticeHomepage() {
 
                 <div className="space-y-6">
                   <div>
-                    <Label htmlFor="title">제목</Label>
+                    <Label htmlFor="title" className="font-medium">
+                      제목
+                    </Label>
                     <Input
                       id="title"
                       value={formData.title}
@@ -592,7 +606,9 @@ function NoticeHomepage() {
                   </div>
 
                   <div>
-                    <Label htmlFor="content">내용</Label>
+                    <Label htmlFor="content" className="font-medium">
+                      내용
+                    </Label>
                     <Textarea
                       id="content"
                       value={formData.content}
@@ -600,11 +616,11 @@ function NoticeHomepage() {
                         setFormData({ ...formData, content: e.target.value })
                       }
                       placeholder="공지사항 내용을 입력하세요"
-                      className="mt-2 min-h-[200px]"
+                      className="mt-2 min-h-[250px]"
                     />
                   </div>
 
-                  <div className="flex justify-end gap-4">
+                  <div className="flex justify-end gap-4 pt-4">
                     <Button
                       variant="outline"
                       onClick={() => {
@@ -620,7 +636,7 @@ function NoticeHomepage() {
                         isEditMode ? handleEditNotice : handleCreateNotice
                       }
                     >
-                      {isEditMode ? "수정" : "작성"}
+                      {isEditMode ? "수정 완료" : "작성 완료"}
                     </Button>
                   </div>
                 </div>
