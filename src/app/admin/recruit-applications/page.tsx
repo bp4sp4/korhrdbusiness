@@ -15,7 +15,6 @@ import {
   MapPin, // 주소
   Calendar, // 생년월일, 지원일
   Briefcase, // 경력
-  FileText, // 자기소개, 지원동기
   Paperclip, // 이력서, 포트폴리오 파일
   LinkIcon, // 포트폴리오 URL, 개인 웹사이트
   Info, // 상태
