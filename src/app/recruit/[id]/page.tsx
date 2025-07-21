@@ -954,7 +954,7 @@ const JobDetailPage = () => {
                             handleInputChange("name", e.target.value)
                           }
                           required
-                          className="border-0 border-b focus:ring-0 focus:border-primary bg-transparent py-2 px-1 rounded-none shadow-none"
+                          className="border-0 border-b focus:ring-0 py-2 px-1 rounded-none shadow-none"
                         />
                       </div>
                       <div className="space-y-2">
@@ -968,7 +968,7 @@ const JobDetailPage = () => {
                             handleInputChange("email", e.target.value)
                           }
                           required
-                          className="border-0 border-b focus:ring-0 focus :border-primary bg-transparent py-2 px-1 rounded-none shadow-none"
+                          className="border-0 border-b focus:ring-0  bg-transparent py-2 px-1 rounded-none shadow-none"
                         />
                       </div>
                     </div>
