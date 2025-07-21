@@ -91,7 +91,7 @@ export default function InterviewDetail() {
           한평생교육 에듀바이저로서 이루고 싶은 개인적인 목표와, 에듀바이저스에
           가장 잘 맞는 인재는 무엇인가요?
         </h2>
-        <p className="mb-10 md:px-10 text-[17px] md:text-[19px]">
+        <p className="mb-10 md:px-10 text-[17px] mt-4 md:text-[19px]">
           개인적인 목표로는 글로벌 시대에 발맞춰 한국을 넘어 해외 교육사업까지
           확장하는 게 목표이며 강남 사옥 설립을 이루는게 목표입니다.
           <br />
