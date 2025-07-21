@@ -13,7 +13,7 @@ export default function InterviewDetail() {
     <div className="max-w-3xl mx-auto py-12 px-4">
       {/* === 상단: 직접 작성 === */}
       <h1 className="text-3xl font-bold text-center mb-2">
-        에듀바이저스 강남지점 인터뷰 질문
+        안녕하세요 강남지점 지점장 장은혜입니다!
       </h1>
       <p className="text-center text-lg text-gray-600 mb-8">
         영업 3팀 | 장은혜 대리
@@ -53,10 +53,10 @@ export default function InterviewDetail() {
         <p className="mb-10 md:px-10 text-[17px] mt-4 md:text-[19px]">
           현재 저희가 가장 힘쓰고 있는 부분은 해외 유학 교육 분야의 확장입니다.
           처음은 백지상태에서 시작하여 새로운 구조를 기획하고 실행하는 일이라
-          쉽지 않았지만, <br />
-          팀원들이 자율적으로 역할을 분담하며 각자 성장과 도전에 몰입하게
-          되었습니다.
-          <br /> 이 과정에서 인내와 도전 의식을 실천하고 학습하며 팀원들끼리
+          쉽지 않았지만, 팀원들이 자율적으로 역할을 분담하며 각자 성장과 도전에
+          몰입하게 되었습니다.
+          <br />
+          <br />이 과정에서 인내와 도전 의식을 실천하고 학습하며 팀원들끼리
           협업하는 문화가 자연스럽게 자리 잡혔습니다.
         </p>
         <div className="rounded-2xl overflow-hidden mb-8">
