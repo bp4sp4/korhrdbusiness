@@ -941,7 +941,7 @@ const JobDetailPage = () => {
                             handleInputChange("name", e.target.value)
                           }
                           required
-                          className="border-0 border-b focus:ring-0 focus:border-primary bg-transparent py-2 px-1 rounded-none"
+                          className="border-0 border-b focus:ring-0 focus:border-primary bg-transparent py-2 px-1 rounded-none shadow-none"
                         />
                       </div>
                       <div className="space-y-2">
@@ -955,7 +955,7 @@ const JobDetailPage = () => {
                             handleInputChange("email", e.target.value)
                           }
                           required
-                          className="border-0 border-b focus:ring-0 focus:border-primary bg-transparent py-2 px-1"
+                          className="border-0 border-b focus:ring-0 focus :border-primary bg-transparent py-2 px-1 rounded-none shadow-none"
                         />
                       </div>
                     </div>
@@ -970,10 +970,10 @@ const JobDetailPage = () => {
                             handleInputChange("phone", e.target.value)
                           }
                           required
-                          className="border-0 border-b focus:ring-0 focus:border-primary bg-transparent py-2 px-1 rounded-none"
+                          className="border-0 border-b focus:ring-0 focus:borde r-primary bg-transparent py-2 px-1 rounded-none shadow-none"
                         />
                       </div>
-                      <div className="space-y-2">
+                      <div className="space-y-1">
                         <Label htmlFor="birthDate">생년월일 *</Label>
                         <ReactDatePicker
                           id="birthDate"
@@ -1029,7 +1029,7 @@ const JobDetailPage = () => {
                         onChange={(e) =>
                           handleInputChange("address", e.target.value)
                         }
-                        className="border-0 border-b focus:ring-0 focus:border-primary bg-transparent py-2 px-1"
+                        className="border-0 border-b focus:ring-0 focus:border-primary bg-transparent py-2 px-1 rounded-none  shadow-none"
                       />
                     </div>
                   </div>
