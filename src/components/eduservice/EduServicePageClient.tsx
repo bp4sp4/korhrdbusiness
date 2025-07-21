@@ -2,6 +2,7 @@
 
 import CategoryTabs from "@/components/CategoryTabs";
 import { motion } from "framer-motion";
+import "@/app/main.css";
 
 export default function EduServicePageClient() {
   return (

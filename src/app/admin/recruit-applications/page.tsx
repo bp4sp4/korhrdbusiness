@@ -51,6 +51,8 @@ interface Application {
     company: string;
     position: string;
     description: string;
+    startDate: string;
+    endDate: string;
   }[];
 }
 
@@ -548,19 +550,19 @@ export default function RecruitApplicationsPage() {
                       </h3>
                       <div className="flex items-center gap-2">
                         <Mail className="w-5 h-5 text-blue-500" />
-                        <span>{selected.email}</span>
+                        <span>이메일 : {selected.email}</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <Phone className="w-5 h-5 text-blue-500" />
-                        <span>{selected.phone}</span>
+                        <span>전화번호 : {selected.phone}</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <MapPin className="w-5 h-5 text-blue-500" />
-                        <span>{selected.address || "-"}</span>
+                        <span>주소 : {selected.address || "-"}</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <Calendar className="w-5 h-5 text-blue-500" />
-                        <span>{selected.birth_date || "-"}</span>
+                        <span>생년월일 : {selected.birth_date || "-"}</span>
                       </div>
                     </div>
                     <div className="space-y-3">
@@ -573,11 +575,13 @@ export default function RecruitApplicationsPage() {
                       </div>
                       <div className="flex items-center gap-2">
                         <Calendar className="w-5 h-5 text-blue-500" />
-                        <span>{selected.created_at?.split("T")[0]}</span>
+                        <span>
+                          지원날짜 : {selected.created_at?.split("T")[0]}
+                        </span>
                       </div>
                       <div className="flex items-center gap-2">
                         <Info className="w-5 h-5 text-blue-500" />
-                        <span>{statusToKorean(selected.status)}</span>
+                        <span>{statusToKorean(selected.status)}상태</span>
                       </div>
                     </div>
                   </div>
@@ -631,7 +635,13 @@ export default function RecruitApplicationsPage() {
                             <div className="grid grid-cols-3 gap-x-4 mb-2">
                               <p>
                                 <span className="font-medium">기간:</span>{" "}
-                                {exp.period}
+                                {exp.startDate && exp.endDate
+                                  ? `${exp.startDate} ~ ${exp.endDate}`
+                                  : exp.startDate
+                                  ? `${exp.startDate} ~`
+                                  : exp.endDate
+                                  ? `~ ${exp.endDate}`
+                                  : "-"}
                               </p>
                               <p>
                                 <span className="font-medium">회사:</span>{" "}
@@ -642,7 +652,7 @@ export default function RecruitApplicationsPage() {
                                 {exp.position}
                               </p>
                             </div>
-                            <p className="text-sm whitespace-pre-wrap">
+                            <p className="text-l whitespace-pre-wrap">
                               <span className="font-medium">주요업무:</span>{" "}
                               {exp.description}
                             </p>
@@ -670,6 +680,9 @@ export default function RecruitApplicationsPage() {
                   <div>
                     <h3 className="font-semibold text-lg text-gray-900 border-b pb-2 mb-3">
                       첨부 파일 및 링크
+                      <span className="text-[#979797] text-[16px] font-normal">
+                        (첨부 파일 및 링크 없을시 - 표시됩니다.)
+                      </span>
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="flex items-center gap-3">

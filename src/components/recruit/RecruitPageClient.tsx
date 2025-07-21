@@ -38,6 +38,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import Link from "next/link";
+import "@/app/main.css";
 
 interface Job {
   id: number;

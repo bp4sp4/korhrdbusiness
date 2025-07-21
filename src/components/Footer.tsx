@@ -44,7 +44,7 @@ export default function Footer() {
             >
               블로그
             </a>
-            <Link href="/notice" className="mb-1 block hover:underline">
+            <Link href="/" className="mb-1 block hover:underline">
               공고
             </Link>
           </div>

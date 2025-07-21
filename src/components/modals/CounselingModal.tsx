@@ -451,7 +451,7 @@ const CounselingModal = () => {
                 </label>
               </div>
             </div>
-            {/* <Button
+            <Button
               id="counsel-submit-btn"
               type="submit"
               className="w-full text-base text-[14px] md:h-11 h-11 md:text-[16px] bg-[#2B7FFF] hover:bg-[#2B7FFF]/80"
@@ -465,14 +465,6 @@ const CounselingModal = () => {
               }
             >
               {isSubmitting ? "신청 중..." : "신청하기"}
-            </Button> */}
-            <Button
-              id="counsel-submit-btn-beta"
-              type="button"
-              className="w-full text-base text-[14px] md:h-11 h-11 md:text-[16px] bg-gray-400 cursor-not-allowed"
-              disabled
-            >
-              서비스 준비 중입니다
             </Button>
           </form>
         ) : (
@@ -513,9 +505,14 @@ const CounselingModal = () => {
           <div className="text-xs text-gray-600 space-y-2">
             <ul className="list-disc pl-4 mb-2">
               <li>수집 항목: 이름, 연락처, 학력, 분야</li>
-              <li>이용 목적: 상담 신청 및 관리, 서비스 제공</li>
-              <li>보유 기간: 신청일로부터 1년 또는 관련 법령에 따름</li>
+              <li>이용 목적: 상담 신청 접수 및 관리, 서비스 제공</li>
+              <li>
+                보유 및 이용 기간: 신청일로부터 1년 또는 관련 법령(전자상거래
+                등에서의 소비자 보호에 관한 법률 등)에 따라 보관될 수 있으며,
+                보유 기간 경과 시 즉시 파기합니다.
+              </li>
               <li>동의 거부 시 상담 신청이 제한될 수 있습니다.</li>
+              <li>제3자 제공 및 위탁: 없음</li>
             </ul>
           </div>
           <Button
