@@ -10,7 +10,7 @@ const tabs = [
 ];
 
 // 예시: 시행일 목록
-const effectiveDates = [{ label: "2024.07.01", value: "2024-07-01" }];
+const effectiveDates = [{ label: "2024.07.01", value: "2024-07-11" }];
 
 export default function PolicyLayout({
   children,
