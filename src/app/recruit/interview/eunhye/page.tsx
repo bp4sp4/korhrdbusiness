@@ -31,11 +31,14 @@ export default function InterviewDetail() {
         <h2 className=" font-bold mb-2 md:px-10 text-[20px] md:text-[26px] ">
           자기소개와 지점의 비전이 궁금해요.
         </h2>
-        <p className="mb-10 md:px-10 text-[17px] md:text-[19px]">
-          한평생에듀바이저스는 평생교육의 가치를 실현하며, 모두가 성장할 수 있는
-          교육 환경을 만들어가고 있습니다. 다양한 교육 프로그램과 헌신적인
-          교직원들이 함께하는 이곳에서, 학생과 교사가 함께 성장하는 이야기를
-          전해드립니다.
+        <p className="mb-10 md:px-10 text-[17px] mt-4 md:text-[19px]">
+          안녕하세요, AIO 지점장 장은혜입니다.저희 지점은 인내(Assiduity),
+          도전(Innovate), 겸손(Overcome) 세 가지 핵심 가치를 중심으로 운영되고
+          있으며,
+          <br />
+          <br /> 모든 성별·연령을 넘어서 국내뿐 아니라 글로벌 교육 플랫폼을
+          지향하고 있어 학생들에게 폭넓은 교육 기회를 제공하는 데에 전념하고
+          있습니다.
         </p>
         <div className="rounded-2xl overflow-hidden mb-8">
           <img
@@ -45,19 +48,16 @@ export default function InterviewDetail() {
           />
         </div>
         <h2 className=" font-bold mb-2 md:px-10 text-[20px] md:text-[26px]">
-          팀의 가장 큰 도전이 있다면요?
-          <br /> 그 과정에서 얻은 시너지는 무엇인가요?
+          팀의 가장 큰 도전이 있다면요? 그 과정에서 얻은 시너지는 무엇인가요?
         </h2>
-        <p className="mb-10 md:px-10 text-[17px] md:text-[19px]">
-          한평생에듀바이저스의 영업팀은 각자의 전문성을 살려 다양한 교육
-          프로그램을 많은 분들께 알리고 있습니다. 최근에는 팀원 간의 협업을
-          강화하여, 더 체계적이고 효율적인 상담과 안내가 이루어지도록 노력하고
-          있어요. <br />
-          <br />
-          앞으로도 변화하는 교육 트렌드에 맞춰 새로운 프로그램을 개발하고,
-          학생과 학부모님께 꼭 필요한 정보를 제공하는 것이 저희 팀의 목표입니다.{" "}
-          무엇보다도, 서로를 존중하고 응원하는 분위기 속에서 함께 성장하는
-          영업팀이 되고 싶어요.
+        <p className="mb-10 md:px-10 text-[17px] mt-4 md:text-[19px]">
+          현재 저희가 가장 힘쓰고 있는 부분은 해외 유학 교육 분야의 확장입니다.
+          처음은 백지상태에서 시작하여 새로운 구조를 기획하고 실행하는 일이라
+          쉽지 않았지만, <br />
+          팀원들이 자율적으로 역할을 분담하며 각자 성장과 도전에 몰입하게
+          되었습니다.
+          <br /> 이 과정에서 인내와 도전 의식을 실천하고 학습하며 팀원들끼리
+          협업하는 문화가 자연스럽게 자리 잡혔습니다.
         </p>
         <div className="rounded-2xl overflow-hidden mb-8">
           <img
@@ -69,13 +69,16 @@ export default function InterviewDetail() {
         <h2 className="font-bold mb-2 md:px-10 text-[20px] md:text-[26px]">
           팀장님의 리더십 철학, 그리고 팀 의사결정의 핵심 원칙은 무엇인가요?
         </h2>
-        <p className="mb-10 md:px-10 text-[17px] md:text-[19px]">
-          저희 팀은 새로운 도전을 두려워하지 않고, 함께 성장하고자 하는 분을
-          기다리고 있습니다. <br />
-          스스로 배우고자 하는 의지가 강하고, 동료들과 소통하며 긍정적인
-          에너지를 나눌 수 있는 분이라면 누구든 환영이에요. <br />
-          무엇보다도, 고객의 입장에서 생각하고 더 나은 서비스를 만들기 위해
-          고민하는 분과 함께하고 싶습니다.
+        <p className="mb-10 md:px-10 text-[17px] mt-4 md:text-[19px]">
+          리더십 철학이라고 하면 뭔가 거창한데 사실 되게 간단합니다.
+          간단명료하게 리더는 말에 책임을 지는 사람이기 떄문에 결정한 결과에
+          있어 말보다 행동으로 실천하여 본이 되어야 한다고 생각하기에 부단히
+          애쓰고 있습니다.
+          <br />
+          <br /> 팀의 의사결정 핵심 원칙은 각 팀 리더 중심의 결정 체제 아래
+          진행되며 사전 벤치마킹을 통해 충분한 데이터와 사례를 기반으로 방향을
+          설정하고 있습니다. 이런 철저한 준비는 특히 교육 분야에선 효과적인 전략
+          수립과 실행을 돕고 있습니다.
         </p>
         <div className="rounded-2xl overflow-hidden mb-8">
           <img
@@ -89,12 +92,14 @@ export default function InterviewDetail() {
           가장 잘 맞는 인재는 무엇인가요?
         </h2>
         <p className="mb-10 md:px-10 text-[17px] md:text-[19px]">
-          저희 팀은 새로운 도전을 두려워하지 않고, 함께 성장하고자 하는 분을
-          기다리고 있습니다. <br />
-          스스로 배우고자 하는 의지가 강하고, 동료들과 소통하며 긍정적인
-          에너지를 나눌 수 있는 분이라면 누구든 환영이에요. <br />
-          무엇보다도, 고객의 입장에서 생각하고 더 나은 서비스를 만들기 위해
-          고민하는 분과 함께하고 싶습니다.
+          개인적인 목표로는 글로벌 시대에 발맞춰 한국을 넘어 해외 교육사업까지
+          확장하는 게 목표이며 강남 사옥 설립을 이루는게 목표입니다.
+          <br />
+          <br />
+          에듀바이저스에 가장 이상적인 인재는 핵심 가치인 인내하며 도전하는
+          자세, 겸손하게 배우고 성장하려는 태도를 지닌 인재가 적합합니다.
+          <br /> 이러한 인재는 자연스럽게 팀과 함께 발전하고 성장해 나갈 수
+          있다고 생각합니다.
         </p>
         <div className="flex justify-center gap-4 mt-8">
           <Link href="/recruit/interview">
@@ -105,7 +110,7 @@ export default function InterviewDetail() {
               목록보기
             </Button>
           </Link>
-          <Link href="/recruit/20">
+          <Link href="/recruit/34">
             <Button
               variant="outline"
               className="w-[100px] h-[40px] bg-[#2B7FFF] text-white hover:text-white rounded-xl font-bold hover:bg-[#1459c5]"
