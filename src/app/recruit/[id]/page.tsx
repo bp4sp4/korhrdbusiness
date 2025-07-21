@@ -932,8 +932,12 @@ const JobDetailPage = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Send className="h-5 w-5" />
-                  지원 신청
+                  지원 신청{" "}
                 </CardTitle>
+                <span className="text-sm mt-2">
+                  <span className="text-red-500">*</span> 표시된 곳은 반드시
+                  입력하셔야 제출하기 버튼이 활성화됩니다.
+                </span>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -945,7 +949,9 @@ const JobDetailPage = () => {
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="name">이름 *</Label>
+                        <Label htmlFor="name">
+                          이름<span className="text-red-500">*</span>
+                        </Label>
                         <Input
                           id="name"
                           placeholder="이름을 입력하세요"
@@ -958,7 +964,9 @@ const JobDetailPage = () => {
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="email">이메일 *</Label>
+                        <Label htmlFor="email">
+                          이메일 <span className="text-red-500">*</span>
+                        </Label>
                         <Input
                           id="email"
                           type="email"
@@ -974,7 +982,9 @@ const JobDetailPage = () => {
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="phone">연락처 *</Label>
+                        <Label htmlFor="phone">
+                          연락처 <span className="text-red-500">*</span>
+                        </Label>
                         <Input
                           id="phone"
                           placeholder="연락처를 입력하세요"
@@ -987,7 +997,9 @@ const JobDetailPage = () => {
                         />
                       </div>
                       <div className="space-y-1">
-                        <Label htmlFor="birthDate">생년월일 *</Label>
+                        <Label htmlFor="birthDate">
+                          생년월일 <span className="text-red-500">*</span>
+                        </Label>
                         <ReactDatePicker
                           id="birthDate"
                           selected={
@@ -1034,7 +1046,9 @@ const JobDetailPage = () => {
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="address">주소 *</Label>
+                      <Label htmlFor="address">
+                        주소 <span className="text-red-500">*</span>
+                      </Label>
                       <Input
                         id="address"
                         placeholder="주소를 입력하세요"
@@ -1049,7 +1063,13 @@ const JobDetailPage = () => {
                   {/* 학력 입력란 */}
                   <section className="mb-8">
                     <h3 className="text-xl font-bold mb-4 text-gray-800">
-                      학력&nbsp;*
+                      학력&nbsp;
+                      <span className="text-red-500">*</span>
+                      &nbsp;
+                      <span className="text-sm font-normal text-[#979797]">
+                        (고등학교 선택시 전공 및 학점 적는 칸이 비활성화
+                        됩니다.)
+                      </span>
                     </h3>
                     <div className="space-y-4">
                       {applicationForm.educations.map((edu, idx) => (
@@ -1122,7 +1142,8 @@ const JobDetailPage = () => {
                   {/* 자기소개/지원동기/포부 */}
                   <section className="mb-8">
                     <h3 className="text-xl font-bold mb-4 text-gray-800">
-                      자기소개, 지원 동기 및 포부*
+                      자기소개, 지원 동기 및 포부
+                      <span className="text-red-500">*</span>
                     </h3>
                     <textarea
                       className="border rounded px-2 py-2 w-full"
@@ -1316,7 +1337,8 @@ const JobDetailPage = () => {
                           htmlFor="consent"
                           className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
                         >
-                          개인정보 수집 및 이용에 동의합니다. *
+                          개인정보 수집 및 이용에 동의합니다.
+                          <span className="text-red-500">*</span>
                         </label>
                         <p className="text-xs text-muted-foreground">
                           채용 지원을 위해 개인정보 수집 및 이용에 동의가
