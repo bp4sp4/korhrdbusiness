@@ -115,42 +115,6 @@ function sanitizeFileName(filename: string) {
   return `${name}_${Date.now()}${ext ? "." + ext : ""}`;
 }
 
-// 경력 기간 계산 함수
-function calculateDuration(startDate: string, endDate: string): string {
-  if (!startDate || !endDate) return "";
-
-  const start = new Date(startDate);
-  const end = new Date(endDate);
-
-  if (isNaN(start.getTime()) || isNaN(end.getTime()) || start > end) {
-    return "";
-  }
-
-  const totalMonths =
-    (end.getFullYear() - start.getFullYear()) * 12 +
-    (end.getMonth() - start.getMonth()) +
-    1;
-
-  if (totalMonths <= 0) return "";
-
-  const years = Math.floor(totalMonths / 12);
-  const months = totalMonths % 12;
-
-  let result = "";
-  if (years > 0) {
-    result += `${years}년`;
-  }
-  if (months > 0) {
-    result += ` ${months}개월`;
-  }
-
-  if (years > 0 && months === 0) {
-    return `${years}년`;
-  }
-
-  return result.trim();
-}
-
 // 총 경력 개월 수 계산 함수
 function getTotalCareerDuration(experiences: Experience[]): string {
   let totalMonths = 0;
@@ -1326,7 +1290,7 @@ const JobDetailPage = () => {
                   {/* 지원서 제출 버튼 */}
                   <Button
                     type="submit"
-                    className="w-full"
+                    className="w-full bg-[#2B7FFF]"
                     disabled={isSubmitting || !allFieldsFilled}
                   >
                     {isSubmitting ? "제출 중..." : "지원서 제출하기"}
