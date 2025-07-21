@@ -80,6 +80,24 @@ interface ApplicationForm {
   }[];
 }
 
+interface Experience {
+  startDate: string;
+  endDate: string;
+  company: string;
+  position: string;
+  description: string;
+  employmentStatus: string;
+}
+
+interface Education {
+  graduationDate: string;
+  type: string;
+  school: string;
+  major: string;
+  score: string;
+  graduationStatus: string;
+}
+
 // 파일명에서 한글, 공백, 특수문자 제거 (영문, 숫자, 언더스코어, 하이픈만 허용)
 function sanitizeFileName(filename: string) {
   // 확장자 분리
@@ -134,7 +152,7 @@ function calculateDuration(startDate: string, endDate: string): string {
 }
 
 // 총 경력 개월 수 계산 함수
-function getTotalCareerDuration(experiences: any[]): string {
+function getTotalCareerDuration(experiences: Experience[]): string {
   let totalMonths = 0;
   experiences.forEach((exp) => {
     if (exp.startDate && exp.endDate) {
@@ -175,7 +193,15 @@ function renderYearMonthHeader({
   increaseMonth,
   prevMonthButtonDisabled,
   nextMonthButtonDisabled,
-}: any) {
+}: {
+  date: Date;
+  changeYear: (year: number) => void;
+  changeMonth: (month: number) => void;
+  decreaseMonth: () => void;
+  increaseMonth: () => void;
+  prevMonthButtonDisabled: boolean;
+  nextMonthButtonDisabled: boolean;
+}) {
   return (
     <div className="flex items-center justify-between px-2 py-1 gap-2">
       <button
@@ -228,9 +254,13 @@ function EducationRow({
   educationsLength,
   removeEducation,
 }: {
-  edu: any;
+  edu: Education;
   idx: number;
-  handleEducationChange: any;
+  handleEducationChange: (
+    idx: number,
+    field: keyof Education,
+    value: string
+  ) => void;
   educationsLength: number;
   removeEducation: (idx: number) => void;
 }) {
@@ -264,7 +294,13 @@ function EducationRow({
           showMonthDropdown
           showYearDropdown
           dropdownMode="select"
-          customInput={<DateInputNoIcon />}
+          customInput={
+            <DateInputNoIcon
+              value={edu.graduationDate || ""}
+              onClick={() => {}}
+              placeholder="YYYY.MM.DD"
+            />
+          }
           locale={ko}
           renderCustomHeader={renderYearMonthHeader}
         />
@@ -350,13 +386,16 @@ function ExperienceRow({
   experiencesLength,
   removeExperience,
 }: {
-  exp: any;
+  exp: Experience;
   idx: number;
-  handleExperienceChange: any;
+  handleExperienceChange: (
+    idx: number,
+    field: keyof Experience,
+    value: string
+  ) => void;
   experiencesLength: number;
   removeExperience: (idx: number) => void;
 }) {
-  const duration = calculateDuration(exp.startDate, exp.endDate);
   return (
     <div className="pb-6 relative">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-4 items-start mb-4">
@@ -386,7 +425,13 @@ function ExperienceRow({
             showMonthDropdown
             showYearDropdown
             dropdownMode="select"
-            customInput={<DateInputNoIcon />}
+            customInput={
+              <DateInputNoIcon
+                value={exp.startDate || ""}
+                onClick={() => {}}
+                placeholder="YYYY.MM.DD"
+              />
+            }
             locale={ko}
             renderCustomHeader={renderYearMonthHeader}
           />
@@ -417,7 +462,13 @@ function ExperienceRow({
             showMonthDropdown
             showYearDropdown
             dropdownMode="select"
-            customInput={<DateInputNoIcon />}
+            customInput={
+              <DateInputNoIcon
+                value={exp.endDate || ""}
+                onClick={() => {}}
+                placeholder="YYYY.MM.DD"
+              />
+            }
             locale={ko}
             renderCustomHeader={renderYearMonthHeader}
           />
@@ -529,7 +580,6 @@ const JobDetailPage = () => {
     ],
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [consent, setConsent] = useState(false);
   const [showConsentModal, setShowConsentModal] = useState(false);
@@ -963,7 +1013,13 @@ const JobDetailPage = () => {
                           showMonthDropdown
                           showYearDropdown
                           dropdownMode="select"
-                          customInput={<DateInputNoIcon />}
+                          customInput={
+                            <DateInputNoIcon
+                              value={applicationForm.birthDate || ""}
+                              onClick={() => {}}
+                              placeholder="YYYY.MM.DD"
+                            />
+                          }
                           locale={ko}
                           renderCustomHeader={renderYearMonthHeader}
                         />
@@ -1360,19 +1416,20 @@ const JobDetailPage = () => {
 };
 
 // Custom input for react-datepicker (아이콘 없이, YYYY.MM 포맷)
-const DateInputNoIcon = React.forwardRef(
-  ({ value, onClick, placeholder }: any, ref: any) => (
-    <input
-      className="border-0 border-b focus:ring-0 focus:border-primary transition-colors w-full py-2 px-1 bg-transparent"
-      onClick={onClick}
-      ref={ref}
-      value={value || ""}
-      placeholder={placeholder}
-      readOnly
-      style={{ cursor: "pointer" }}
-    />
-  )
-);
+const DateInputNoIcon = React.forwardRef<
+  HTMLInputElement,
+  { value: string; onClick: () => void; placeholder: string }
+>(({ value, onClick, placeholder }, ref) => (
+  <input
+    className="border-0 border-b focus:ring-0 focus:border-primary transition-colors w-full py-2 px-1 bg-transparent"
+    onClick={onClick}
+    ref={ref}
+    value={value || ""}
+    placeholder={placeholder}
+    readOnly
+    style={{ cursor: "pointer" }}
+  />
+));
 DateInputNoIcon.displayName = "DateInputNoIcon";
 
 export default JobDetailPage;
