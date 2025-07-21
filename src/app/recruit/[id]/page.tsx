@@ -90,12 +90,13 @@ interface Experience {
 }
 
 interface Education {
-  graduationDate: string;
   type: string;
+  graduationStatus: string;
+  entranceYear?: string;
+  graduationYear?: string;
   school: string;
   major: string;
   score: string;
-  graduationStatus: string;
 }
 
 // 파일명에서 한글, 공백, 특수문자 제거 (영문, 숫자, 언더스코어, 하이픈만 허용)
@@ -230,51 +231,20 @@ function EducationRow({
 }) {
   return (
     <div className=" pb-6 relative">
-      <div className="grid grid-cols-4 gap-x-4">
-        {/* 졸업년월 선택기 */}
-        <ReactDatePicker
-          selected={
-            edu.graduationDate
-              ? new Date(edu.graduationDate.replace(/\./g, "-"))
-              : null
-          }
-          onChange={(date) => {
-            if (date) {
-              const year = date.getFullYear();
-              const month = (date.getMonth() + 1).toString().padStart(2, "0");
-              const day = date.getDate().toString().padStart(2, "0");
-              handleEducationChange(
-                idx,
-                "graduationDate",
-                `${year}.${month}.${day}`
-              );
-            } else {
-              handleEducationChange(idx, "graduationDate", "");
-            }
-          }}
-          dateFormat="yyyy.MM.dd"
-          placeholderText="YYYY.MM.DD"
-          className="border-0 border-b focus:ring-0 focus:border-primary transition-colors w-full py-2 px-1 bg-transparent"
-          showMonthDropdown
-          showYearDropdown
-          dropdownMode="select"
-          customInput={
-            <DateInputNoIcon
-              value={edu.graduationDate || ""}
-              onClick={() => {}}
-              placeholder="YYYY.MM.DD"
-            />
-          }
-          locale={ko}
-          renderCustomHeader={renderYearMonthHeader}
-        />
-        {/* 학교명 */}
-        <input
-          className="border-0 border-b focus:ring-0 focus:border-primary transition-colors w-full py-2 px-1 bg-transparent"
-          placeholder="학교명"
-          value={edu.school}
-          onChange={(e) => handleEducationChange(idx, "school", e.target.value)}
-        />
+      <div className="grid grid-cols-4 gap-x-4 items-end">
+        {/* 학력구분 */}
+        <select
+          className="border-0 border-b focus:ring-0 focus:border-primary transition-colors w-full py-2 px-1 bg-transparent appearance-none"
+          value={edu.type}
+          onChange={(e) => handleEducationChange(idx, "type", e.target.value)}
+        >
+          <option value="">학력 구분</option>
+          <option value="고등학교">고등학교</option>
+          <option value="대학(2,3년)">대학(2,3년)</option>
+          <option value="대학(4년)">대학(4년)</option>
+          <option value="대학원(석사)">대학원(석사)</option>
+          <option value="대학원(박사)">대학원(박사)</option>
+        </select>
         {/* 졸업상태 */}
         <select
           className="border-0 border-b focus:ring-0 focus:border-primary transition-colors w-full py-2 px-1 bg-transparent appearance-none"
@@ -288,24 +258,82 @@ function EducationRow({
           <option value="졸업예정">졸업예정</option>
           <option value="재학중">재학중</option>
           <option value="중퇴">중퇴</option>
-          <option value="수료">수료</option>
         </select>
-        {/* 학력 구분 */}
-        <select
-          className="border-0 border-b focus:ring-0 focus:border-primary transition-colors w-full py-2 px-1 bg-transparent appearance-none"
-          value={edu.type}
-          onChange={(e) => handleEducationChange(idx, "type", e.target.value)}
-        >
-          <option value="">학력 구분</option>
-          <option value="고등학교">고등학교</option>
-          <option value="대학(2,3년)">대학(2,3년)</option>
-          <option value="대학(4년)">대학(4년)</option>
-          <option value="대학원(석사)">대학원(석사)</option>
-          <option value="대학원(박사)">대학원(박사)</option>
-        </select>
+        {/* 입학연도 (졸업상태가 재학중/졸업예정일 때만) */}
+        {["재학중", "졸업예정"].includes(edu.graduationStatus) ? (
+          <ReactDatePicker
+            selected={
+              edu.entranceYear
+                ? new Date(edu.entranceYear.replace(/\./g, "-") + "-01")
+                : null
+            }
+            onChange={(date) => {
+              if (date) {
+                const year = date.getFullYear();
+                const month = (date.getMonth() + 1).toString().padStart(2, "0");
+                handleEducationChange(idx, "entranceYear", `${year}.${month}`);
+              } else {
+                handleEducationChange(idx, "entranceYear", "");
+              }
+            }}
+            dateFormat="yyyy.MM"
+            showMonthYearPicker
+            locale={ko}
+            placeholderText="YYYY.MM"
+            customInput={
+              <DateInputNoIcon
+                value={edu.entranceYear || ""}
+                onClick={() => {}}
+                placeholder="YYYY.MM"
+              />
+            }
+            renderCustomHeader={renderYearMonthHeader}
+          />
+        ) : null}
+        {/* 졸업연도 (졸업/졸업예정/재학중 모두) */}
+        {["졸업", "졸업예정", "재학중"].includes(edu.graduationStatus) ? (
+          <ReactDatePicker
+            selected={
+              edu.graduationYear
+                ? new Date(edu.graduationYear.replace(/\./g, "-") + "-01")
+                : null
+            }
+            onChange={(date) => {
+              if (date) {
+                const year = date.getFullYear();
+                const month = (date.getMonth() + 1).toString().padStart(2, "0");
+                handleEducationChange(
+                  idx,
+                  "graduationYear",
+                  `${year}.${month}`
+                );
+              } else {
+                handleEducationChange(idx, "graduationYear", "");
+              }
+            }}
+            dateFormat="yyyy.MM"
+            showMonthYearPicker
+            locale={ko}
+            placeholderText="YYYY.MM"
+            customInput={
+              <DateInputNoIcon
+                value={edu.graduationYear || ""}
+                onClick={() => {}}
+                placeholder="YYYY.MM"
+              />
+            }
+            renderCustomHeader={renderYearMonthHeader}
+          />
+        ) : null}
       </div>
-      {/* 전공, 학점 */}
+      {/* 학교명, 전공, 학점 등 나머지 입력란은 기존대로 */}
       <div className="grid grid-cols-2 gap-x-4 mt-2">
+        <input
+          className="border-0 border-b focus:ring-0 focus:border-primary transition-colors w-full py-2 px-1 bg-transparent"
+          placeholder="학교명"
+          value={edu.school}
+          onChange={(e) => handleEducationChange(idx, "school", e.target.value)}
+        />
         <input
           className="border-0 border-b focus:ring-0 focus:border-primary transition-colors w-full py-2 px-1 bg-transparent"
           placeholder="전공"
@@ -460,7 +488,7 @@ function ExperienceRow({
             <option value="">재직상태</option>
             <option value="재직중">재직중</option>
             <option value="퇴사">퇴사</option>
-            <option value="기타">기타</option>
+            <option value="인턴">인턴</option>
           </select>
         </div>
       </div>
@@ -913,6 +941,7 @@ const JobDetailPage = () => {
                             handleInputChange("name", e.target.value)
                           }
                           required
+                          className="border-0 border-b focus:ring-0 focus:border-primary bg-transparent py-2 px-1 rounded-none"
                         />
                       </div>
                       <div className="space-y-2">
@@ -926,6 +955,7 @@ const JobDetailPage = () => {
                             handleInputChange("email", e.target.value)
                           }
                           required
+                          className="border-0 border-b focus:ring-0 focus:border-primary bg-transparent py-2 px-1"
                         />
                       </div>
                     </div>
@@ -940,6 +970,7 @@ const JobDetailPage = () => {
                             handleInputChange("phone", e.target.value)
                           }
                           required
+                          className="border-0 border-b focus:ring-0 focus:border-primary bg-transparent py-2 px-1 rounded-none"
                         />
                       </div>
                       <div className="space-y-2">
@@ -998,6 +1029,7 @@ const JobDetailPage = () => {
                         onChange={(e) =>
                           handleInputChange("address", e.target.value)
                         }
+                        className="border-0 border-b focus:ring-0 focus:border-primary bg-transparent py-2 px-1"
                       />
                     </div>
                   </div>
