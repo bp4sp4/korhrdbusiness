@@ -770,23 +770,6 @@ export default function RecruitListPageClient() {
           </div>
         </div>
 
-        <div className="fixed bottom-8 right-8 z-50">
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button size="lg" className="rounded-full h-16 w-16 shadow-lg">
-                <MessageCircle className="h-6 w-6" fill="currentColor" />
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="max-w-md">
-              <p className="text-sm text-center text-muted-foreground bg-background/80 backdrop-blur-sm px-3 py-1 rounded-lg border">
-                채용팀에
-                <br />
-                문의하기
-              </p>
-            </DialogContent>
-          </Dialog>
-        </div>
-
         <AnimatePresence>
           {deletingJobId && (
             <motion.div
