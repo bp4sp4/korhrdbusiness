@@ -44,9 +44,6 @@ export default function Footer() {
             >
               블로그
             </a>
-            <Link href="/" className="mb-1 block hover:underline">
-              공고
-            </Link>
           </div>
 
           <div className="min-w-[180px]">
