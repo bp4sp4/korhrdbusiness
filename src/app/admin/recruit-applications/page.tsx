@@ -45,6 +45,9 @@ interface Application {
     school: string;
     major: string;
     score: string;
+    graduationStatus: string;
+    entranceYear: string;
+    graduationYear: string;
   }[];
   experiences: {
     period: string;
@@ -529,7 +532,7 @@ export default function RecruitApplicationsPage() {
           {/* 상세 모달 */}
           {selected && (
             <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
-              <div className="bg-white rounded-lg p-6 w-full max-w-4xl shadow-lg relative overflow-y-auto max-h-[90vh]">
+              <div className="bg-white rounded-lg p-6 w-full max-w-4xl shadow-lg relative overflow-y-auto max-h-[80vh]">
                 <button
                   className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl"
                   onClick={() => setSelected(null)}
@@ -599,8 +602,14 @@ export default function RecruitApplicationsPage() {
                             className="grid grid-cols-3 gap-x-4 p-3 bg-gray-50 rounded-md"
                           >
                             <p>
-                              <span className="font-medium">졸업(예정)일:</span>{" "}
-                              {edu.graduationDate}
+                              <span className="font-medium">기간:</span>{" "}
+                              {["재학중", "졸업예정"].includes(
+                                edu.graduationStatus
+                              )
+                                ? `${edu.entranceYear || "-"} ~ ${
+                                    edu.graduationYear || "-"
+                                  }`
+                                : edu.graduationYear || "-"}
                             </p>
                             <p>
                               <span className="font-medium">학교:</span>{" "}

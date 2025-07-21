@@ -63,12 +63,13 @@ interface ApplicationForm {
   portfolioUrl: string;
   websiteUrl: string;
   educations: {
-    graduationDate: string;
     type: string;
+    graduationStatus: string;
+    entranceYear?: string;
+    graduationYear?: string;
     school: string;
     major: string;
     score: string;
-    graduationStatus: string; // 졸업상태 추가
   }[];
   experiences: {
     startDate: string;
@@ -552,12 +553,13 @@ const JobDetailPage = () => {
     websiteUrl: "",
     educations: [
       {
-        graduationDate: "",
         type: "",
+        graduationStatus: "",
+        entranceYear: "",
+        graduationYear: "",
         school: "",
         major: "",
         score: "",
-        graduationStatus: "",
       },
     ],
     experiences: [
@@ -613,12 +615,13 @@ const JobDetailPage = () => {
       educations: [
         ...f.educations,
         {
-          graduationDate: "",
           type: "",
+          graduationStatus: "",
+          entranceYear: "",
+          graduationYear: "",
           school: "",
           major: "",
           score: "",
-          graduationStatus: "",
         },
       ],
     }));
@@ -796,19 +799,29 @@ const JobDetailPage = () => {
   const isEducationFilled =
     applicationForm.educations.length > 0 &&
     applicationForm.educations.every((edu) => {
-      if (
-        !edu.graduationDate ||
-        !edu.type ||
-        !edu.school ||
-        !edu.graduationStatus
-      )
-        return false;
+      if (!edu.type || !edu.graduationStatus || !edu.school) return false;
+      // 고등학교
       if (edu.type === "고등학교") {
-        // 고등학교는 전공/학점 없어도 됨
-        return true;
+        if (edu.graduationStatus === "졸업") {
+          return !!edu.graduationYear;
+        }
+        if (["재학중", "졸업예정"].includes(edu.graduationStatus)) {
+          return !!edu.entranceYear && !!edu.graduationYear;
+        }
+        // 중퇴, 기타 등은 졸업연도만 체크
+        return !!edu.graduationYear;
       }
-      // 대학/대학원은 전공/학점 필수
-      return edu.major && edu.score;
+      // 대학/대학원
+      if (["재학중", "졸업예정"].includes(edu.graduationStatus)) {
+        return (
+          !!edu.entranceYear &&
+          !!edu.graduationYear &&
+          !!edu.major &&
+          !!edu.score
+        );
+      }
+      // 졸업, 중퇴, 수료 등
+      return !!edu.graduationYear && !!edu.major && !!edu.score;
     });
   const allFieldsFilled =
     applicationForm.name &&
