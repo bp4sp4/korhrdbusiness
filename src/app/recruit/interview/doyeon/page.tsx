@@ -13,7 +13,7 @@ export default function InterviewDetail() {
     <div className="max-w-3xl mx-auto py-12 px-4">
       {/* === 상단: 직접 작성 === */}
       <h1 className="text-3xl font-bold text-center mb-2">
-        에듀바이저스 북부지점 인터뷰 질문
+        함께 성장하는 북부지점, 새로운 동료를 찾습니다!
       </h1>
       <p className="text-center text-lg text-gray-600 mb-8">
         영업 1팀 | 강도연 대리
@@ -34,9 +34,8 @@ export default function InterviewDetail() {
         <p className="mb-10 md:px-10 text-[17px] mt-4 md:text-[19px]">
           안녕하세요. 에듀바이저스 북부지점 위드업 사업단 팀장을 맡고 있는
           강도연입니다. 우리 지점은 이름처럼 &apos;함께 성장 하는
-          곳&apos;이에요.
-          <br /> 학습자 한 분 한 분의 목표를 내 일처럼 생각하고, 끝까지 함께하는
-          것을 가장 중요하게 생각합니다.
+          곳&apos;이에요. 학습자 한 분 한 분의 목표를 내 일처럼 생각하고, 끝까지
+          함께하는 것을 가장 중요하게 생각합니다.
           <br />
           <br /> 처음 상담을 받을 때부터 자격증 취득이나 학위까지의 모든 과정을
           편안하게 걸어갈 수 있도록 든든한 길잡이가 되어드리는 게 북부지점의
@@ -60,6 +59,8 @@ export default function InterviewDetail() {
           <br />
           <br /> 이런 분위기 덕분에 지난해에는 학습자 만족도 1위를 달성했고,
           자격증 취득률과 학위 취득률에서도 전국 최고 성과를 낼 수 있었습니다.
+          <br />
+          <br />
           무엇보다 이 모든 결과가 함께 움직였기에 가능했다는 점이 가장
           자랑스럽습니다.
         </p>

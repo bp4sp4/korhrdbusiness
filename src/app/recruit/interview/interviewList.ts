@@ -1,7 +1,7 @@
 export const interviews = [
   {
     name: "doyeon",
-    title: "에듀바이저스 북부지점 인터뷰",
+    title: "함께 성장하는 북부지점, 새로운 동료를 찾습니다!",
     subtitle: "영업 1팀 | 김도연 대리",
     image: "/images/recruit/interview/doyeon1/doyeon.jpg",
   },
