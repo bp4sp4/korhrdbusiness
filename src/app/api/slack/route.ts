@@ -29,8 +29,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Slack 알림 전송 중 오류:", error);
+    const errorMessage =
+      error instanceof Error ? error.message : "알 수 없는 오류";
     return NextResponse.json(
-      { success: false, error: error.message },
+      { success: false, error: errorMessage },
       { status: 500 }
     );
   }
