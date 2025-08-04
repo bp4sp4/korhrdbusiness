@@ -330,7 +330,7 @@ export default function AboutPageClient() {
             </span>
           </p>
         </div>
-        <div className="mb-[67px]">
+        <div className="mb-[120px]">
           {" "}
           <MarqueeDemo />
         </div>

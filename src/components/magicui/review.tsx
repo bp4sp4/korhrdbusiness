@@ -34,13 +34,13 @@ const reviews = [
   },
   {
     name: "40대여성",
-    username: "#전업주부 #재취업준비 #취업준비",
+    username: "#전업주부 #재취업준비",
     body: "사실 아무것도 모르고 무작정 시작한 느낌이 컸는데, 수업이랑 실습 등등 필요한 것들은 에듀바이저님이 꼼꼼하게 챙겨주셔서 어렵지 않게 마무리할 수 있었어요. 반복되는 일상들을 보냈었지만 요즘은 제가 조금씩 성장하고 있다는 걸 느껴요. 자연스럽게 어디에 취업하고 싶은지도 생각이 들고 있어요! ",
     img: "images/about/review/40w.png",
   },
   {
     name: "60대여성",
-    username: "#자기계발 #취업준비 #육아병행",
+    username: "#자기계발 #취업준비",
     body: "막내까지 대학보내고 저를 위한 시간을 쓰는 게 처음이였어요. 괜히 이 나이에 시작해서 돈만 버릴까봐 싶기도 하고 사실 좀 쑥스럽기도 했고요. 그런데 수업 참여하면서 보니 같은 연령대 수강생도 많아서 저도 힘내서 마칠 수 있었던 것 같아요. 큰 변화까진 아니더라도 작은 자신감을 하나 얻은 느낌이에요.",
     img: "images/about/review/60w.png",
   },
@@ -64,7 +64,7 @@ const ReviewCard = ({
       className={cn(
         "relative h-full w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
         "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
-        "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]"
+        "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15] "
       )}
     >
       <div className="flex flex-row items-center gap-2">
@@ -91,14 +91,14 @@ const ReviewCard = ({
           </p>
         </div>
       </div>
-      <blockquote className="mt-2 text-sm">{body}</blockquote>
+      <blockquote className="mt-2 text-[17px]">{body}</blockquote>
     </figure>
   );
 };
 
 export default function MarqueeDemo() {
   return (
-    <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
+    <div className="relative flex w-full flex-col items-center justify-center overflow-hidden mb-5">
       <Marquee pauseOnHover className="[--duration:30s]">
         {firstRow.map((review) => (
           <ReviewCard key={review.username} {...review} />
