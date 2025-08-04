@@ -21,6 +21,10 @@ import {
 } from "@/components/ui/dialog";
 import { supabase } from "@/lib/supabase";
 import { useCounselModal } from "@/store/useCounselModal";
+import {
+  sendSlackNotification,
+  createCounselingNotification,
+} from "@/lib/slack";
 import "driver.js/dist/driver.css";
 
 interface FieldOption {
@@ -223,10 +227,16 @@ const CounselingModal = () => {
     if (isSubmitting) return;
     setIsSubmitting(true);
     try {
+      // 1. 데이터베이스에 저장
       const { error: dbError } = await supabase
         .from("consultations")
         .insert([{ ...formData, created_at: new Date().toISOString() }]);
       if (dbError) throw new Error(`DB 저장 실패: ${dbError.message}`);
+
+      // 2. Slack 알림 전송
+      const slackMessage = createCounselingNotification(formData);
+      await sendSlackNotification(slackMessage);
+
       setIsSubmitted(true);
     } catch (error) {
       console.error(error);

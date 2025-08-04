@@ -9,6 +9,7 @@ import "swiper/css";
 import { Card } from "@/components/ui/card";
 import { Autoplay } from "swiper/modules";
 import type { Swiper as SwiperClass } from "swiper";
+import MarqueeDemo from "../magicui/review";
 
 interface TimelineEntry {
   year: string;
@@ -321,13 +322,17 @@ export default function AboutPageClient() {
           })()}
         </motion.div>
         <div className="flex flex-col items-center justify-center">
-          <p className="mb-[247px] md:text-[32px] text-[20px]  text-center">
+          <p className="mb-[67px] md:text-[32px] text-[20px]  text-center">
             한평생 에듀바이저스는 단순한 교육이 아닌,
             <br />
             <span className="font-bold">
               인생의 방향성과 성장을 함께 하겠습니다.
             </span>
           </p>
+        </div>
+        <div className="mb-[67px]">
+          {" "}
+          <MarqueeDemo />
         </div>
       </motion.section>
 

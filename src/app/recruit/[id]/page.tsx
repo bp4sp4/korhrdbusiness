@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { supabase } from "@/lib/supabase";
+import { sendSlackNotification } from "@/lib/slack";
 import {
   Dialog,
   DialogContent,
@@ -752,6 +753,60 @@ const JobDetailPage = () => {
       setIsSubmitting(false);
       return;
     }
+
+    // Slack 알림 전송
+    const slackMessage = {
+      text: "📝 새로운 채용 지원서가 접수되었습니다!",
+      blocks: [
+        {
+          type: "header",
+          text: {
+            type: "plain_text",
+            text: "📝 새로운 채용 지원서",
+            emoji: true,
+          },
+        },
+        {
+          type: "section",
+          fields: [
+            {
+              type: "mrkdwn",
+              text: `*지원자:*\n${applicationForm.name}`,
+            },
+            {
+              type: "mrkdwn",
+              text: `*연락처:*\n${applicationForm.phone}`,
+            },
+            {
+              type: "mrkdwn",
+              text: `*이메일:*\n${applicationForm.email}`,
+            },
+            {
+              type: "mrkdwn",
+              text: `*지원 공고:*\n${job?.title || "알 수 없음"}`,
+            },
+          ],
+        },
+        {
+          type: "context",
+          elements: [
+            {
+              type: "mrkdwn",
+              text: `📅 접수시간: ${new Date().toLocaleString("ko-KR", {
+                timeZone: "Asia/Seoul",
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+                hour: "2-digit",
+                minute: "2-digit",
+              })}`,
+            },
+          ],
+        },
+      ],
+    };
+
+    await sendSlackNotification(slackMessage);
 
     setIsSubmitting(false);
     setIsSubmitted(true);
