@@ -5,6 +5,7 @@ import "@/app/main.css";
 import { motion, Easing } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import MarqueeDemo from "../magicui/review";
 
 export default function HomePageClient() {
   const textVariants = {

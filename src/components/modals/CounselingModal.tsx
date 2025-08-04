@@ -512,7 +512,6 @@ const CounselingModal = () => {
                 보유 기간 경과 시 즉시 파기합니다.
               </li>
               <li>동의 거부 시 상담 신청이 제한될 수 있습니다.</li>
-              <li>제3자 제공 및 위탁: 없음</li>
             </ul>
           </div>
           <Button
