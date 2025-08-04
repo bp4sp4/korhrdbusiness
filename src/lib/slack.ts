@@ -1,23 +1,6 @@
-interface SlackBlock {
-  type: string;
-  text?: {
-    type: string;
-    text: string;
-    emoji?: boolean;
-  };
-  fields?: {
-    type: string;
-    text: string;
-  }[];
-  elements?: {
-    type: string;
-    text: string;
-  }[];
-}
-
 interface SlackMessage {
   text: string;
-  blocks?: SlackBlock[];
+  blocks?: any[];
 }
 
 export async function sendSlackNotification(message: SlackMessage) {
@@ -60,7 +43,7 @@ export function createCounselingNotification(data: {
         type: "header",
         text: {
           type: "plain_text",
-          text: "🎓 새로운 교육 상담 신청",
+          text: "교육 상담 신청",
           emoji: true,
         },
       },
@@ -71,10 +54,7 @@ export function createCounselingNotification(data: {
             type: "mrkdwn",
             text: `*이름:*\n${data.name}`,
           },
-          {
-            type: "mrkdwn",
-            text: `*연락처:*\n${data.phone}`,
-          },
+
           {
             type: "mrkdwn",
             text: `*최종학력:*\n${data.experience}`,

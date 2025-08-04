@@ -756,13 +756,13 @@ const JobDetailPage = () => {
 
     // Slack 알림 전송
     const slackMessage = {
-      text: "📝 새로운 채용 지원서가 접수되었습니다!",
+      text: "새로운 설계사 채용 지원서가 접수되었습니다!",
       blocks: [
         {
           type: "header",
           text: {
             type: "plain_text",
-            text: "📝 새로운 채용 지원서",
+            text: "📝 새로운 설계사 채용 지원서",
             emoji: true,
           },
         },
