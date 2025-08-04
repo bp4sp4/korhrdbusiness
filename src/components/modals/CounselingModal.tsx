@@ -494,7 +494,7 @@ const CounselingModal = () => {
               신청이 완료되었습니다!
             </h3>
             <p className="text-gray-600 mb-4">
-              담당자가 24시간 내에 연락드릴 예정입니다.
+              담당자가 일주일 내에 연락드릴 예정입니다.
             </p>
             <div className="text-sm text-gray-500">
               <p>• 상담 확정 안내를 보내드립니다</p>
