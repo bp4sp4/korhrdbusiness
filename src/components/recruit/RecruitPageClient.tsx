@@ -164,7 +164,17 @@ const JobForm = (props: JobFormProps) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("Form submitted, step:", step); // 디버깅용 로그
+
     if (!title.trim()) return;
+
+    // 3단계가 아닌 경우 저장하지 않음
+    if (step !== 3) {
+      console.log("Not step 3, preventing save"); // 디버깅용 로그
+      return;
+    }
+
+    console.log("Saving job..."); // 디버깅용 로그
 
     const commonData = {
       title: title.trim(),
@@ -191,8 +201,16 @@ const JobForm = (props: JobFormProps) => {
     }
   };
 
-  const nextStep = () => setStep((s) => Math.min(s + 1, 3));
-  const prevStep = () => setStep((s) => Math.max(s - 1, 1));
+  const nextStep = (e?: React.MouseEvent) => {
+    e?.preventDefault();
+    e?.stopPropagation();
+    setStep((s) => Math.min(s + 1, 3));
+  };
+  const prevStep = (e?: React.MouseEvent) => {
+    e?.preventDefault();
+    e?.stopPropagation();
+    setStep((s) => Math.max(s - 1, 1));
+  };
 
   return (
     <div className="p-2">
@@ -308,13 +326,17 @@ const JobForm = (props: JobFormProps) => {
             취소
           </Button>
           {step > 1 && (
-            <Button type="button" variant="outline" onClick={prevStep}>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={(e) => prevStep(e)}
+            >
               <ArrowLeft className="h-4 w-4 mr-2" />
               이전
             </Button>
           )}
           {step < 3 ? (
-            <Button type="button" onClick={nextStep}>
+            <Button type="button" onClick={(e) => nextStep(e)}>
               다음
               <ArrowRight className="h-4 w-4 ml-2" />
             </Button>
