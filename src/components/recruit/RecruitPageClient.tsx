@@ -164,17 +164,13 @@ const JobForm = (props: JobFormProps) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted, step:", step); // 디버깅용 로그
 
     if (!title.trim()) return;
 
     // 3단계가 아닌 경우 저장하지 않음
     if (step !== 3) {
-      console.log("Not step 3, preventing save"); // 디버깅용 로그
       return;
     }
-
-    console.log("Saving job..."); // 디버깅용 로그
 
     const commonData = {
       title: title.trim(),
