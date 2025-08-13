@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import AboutPageClient from "@/components/about/AboutPageClient";
 
 export const metadata: Metadata = {
-  title: "에듀바이저스 | 회사 소개",
+  title: "한평생 에듀바이저스 | 회사 소개",
   description:
-    "에듀바이저스는 개인의 잠재력을 최대로 이끌어내는 맞춤형 교육을 통해 당신의 커리어 여정을 함께합니다.",
+    "한평생 에듀바이저스는 개인의 잠재력을 최대로 이끌어내는 맞춤형 교육을 통해 당신의 커리어 여정을 함께합니다.",
   keywords: [
+    "한평생 에듀바이저스",
+    "한평생에듀바이저스",
     "에듀바이저스 소개",
     "교육 철학",
     "CEO 인사말",
@@ -13,16 +15,16 @@ export const metadata: Metadata = {
     "에듀바이저스 연혁",
   ],
   openGraph: {
-    title: "에듀바이저스 | 회사 소개",
-    description: "에듀바이저스의 비전과 교육 철학을 확인하세요.",
+    title: "한평생 에듀바이저스 | 회사 소개",
+    description: "한평생 에듀바이저스의 비전과 교육 철학을 확인하세요.",
     url: "https://www.eduvisor.kr/about",
-    siteName: "에듀바이저스",
+    siteName: "한평생 에듀바이저스",
     images: [
       {
         url: "https://www.eduvisor.kr/images/og-image.png",
         width: 1200,
         height: 630,
-        alt: "에듀바이저스 회사 소개",
+        alt: "한평생 에듀바이저스 회사 소개",
       },
     ],
     locale: "ko_KR",
@@ -30,8 +32,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "에듀바이저스 | 회사 소개",
-    description: "에듀바이저스의 비전과 교육 철학을 확인하세요.",
+    title: "한평생 에듀바이저스 | 회사 소개",
+    description: "한평생 에듀바이저스의 비전과 교육 철학을 확인하세요.",
     images: ["https://www.eduvisor.kr/images/og-image.png"],
   },
   alternates: {

@@ -6,6 +6,8 @@ export const metadata: Metadata = {
   description:
     "한평생 에듀바이저스는 1:1 맞춤형 커리어 설계와 실무 중심 교육을 통해 당신의 성공적인 취업과 커리어 개발을 돕습니다.",
   keywords: [
+    "한평생 에듀바이저스",
+    "한평생에듀바이저스",
     "에듀바이저",
     "교육 서비스",
     "커리어 설계",
@@ -16,22 +18,20 @@ export const metadata: Metadata = {
     "한평생 커리어 설계",
     "한평생 취업 지원",
     "한평생 맞춤형 교육",
-    "한평생에듀바이저스",
-    "한평생 에듀바이저스",
     "한평생 교육",
   ],
   openGraph: {
-    title: "에듀바이저스",
+    title: "한평생 에듀바이저스",
     description:
-      "당신만을 위한 커리어 전략 한평생교육의 에듀바이저가 함께 합니다..",
+      "당신만을 위한 커리어 전략 한평생교육의 에듀바이저가 함께 합니다.",
     url: "https://www.eduvisor.kr",
-    siteName: "에듀바이저스",
+    siteName: "한평생 에듀바이저스",
     images: [
       {
         url: "https://www.eduvisor.kr/images/og-image.png",
         width: 1200,
         height: 630,
-        alt: "에듀바이저스 로고",
+        alt: "한평생 에듀바이저스 로고",
       },
     ],
     locale: "ko_KR",

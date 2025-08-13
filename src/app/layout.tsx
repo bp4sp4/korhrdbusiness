@@ -19,10 +19,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "에듀바이저스 - 당신의 커리어 성장 파트너",
+  title: "한평생 에듀바이저스 - 당신의 커리어 성장 파트너",
   description:
-    "에듀바이저스는 전문적인 커리어 상담과 맞춤형 교육 프로그램을 통해 당신의 성공적인 취업과 커리어 발전을 돕습니다. 지금바로 커리어 목표를 달성하세요.",
+    "한평생 에듀바이저스는 전문적인 커리어 상담과 맞춤형 교육 프로그램을 통해 당신의 성공적인 취업과 커리어 발전을 돕습니다. 지금바로 커리어 목표를 달성하세요.",
   keywords: [
+    "한평생 에듀바이저스",
+    "한평생에듀바이저스",
     "커리어 상담",
     "취업 컨설팅",
     "진로 상담",
@@ -33,17 +35,17 @@ export const metadata: Metadata = {
     "에듀바이저스",
   ],
   openGraph: {
-    title: "에듀바이저스",
+    title: "한평생 에듀바이저스",
     description:
       "당신만을 위한 커리어 전략 한평생교육의 에듀바이저가 함께 합니다.",
     url: "https://www.eduvisor.kr/",
-    siteName: "에듀바이저스",
+    siteName: "한평생 에듀바이저스",
     images: [
       {
         url: "https://www.eduvisor.kr/images/og-image.png",
         width: 800,
         height: 600,
-        alt: "에듀바이저 로고",
+        alt: "한평생 에듀바이저스 로고",
       },
     ],
     locale: "ko_KR",
@@ -51,7 +53,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "에듀바이저 - 당신의 커리어 성장 파트너",
+    title: "한평생 에듀바이저스 - 당신의 커리어 성장 파트너",
     description:
       "전문적인 커리어 상담과 맞춤형 교육으로 당신의 커리어 목표 달성을 돕습니다. 지금 바로 성공적인 커리어를 시작하세요!",
     images: ["https://www.eduvisor.kr/images/og-image.png"],
