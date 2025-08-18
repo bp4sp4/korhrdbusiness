@@ -94,7 +94,7 @@ export default function Header() {
             className="font-bold text-white text-[20px] md:text-[28px]"
             style={{ fontFamily: "Toss Product Sans, Pretendard, sans-serif" }}
           >
-            Eduvisors
+            한평생 에듀바이저스
           </span>
         </Link>
         <nav className="header__nav hidden md:flex gap-3 text-white items-center">

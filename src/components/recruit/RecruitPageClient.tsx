@@ -248,7 +248,7 @@ const JobForm = (props: JobFormProps) => {
                 <div>
                   <h4 className="text-sm font-bold mb-2">위치</h4>
                   <Input
-                    placeholder="위치 (예: 서울 강남지점)"
+                    placeholder="위치 (예: 금천구 가산동)"
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
                   />
