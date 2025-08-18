@@ -144,7 +144,7 @@ export default function HomePageClient() {
           <div className="relative flex items-center justify-center gap-2">
             <img
               src="/images/logo2.png"
-              className="w-[31px] h-[27px] md:w-[31px] md:h-[27px] hidden md:block"
+              className="w-[25px] h-[25px] md:w-[25px] md:h-[25px] hidden md:block"
               alt="로고"
             />
             <span className="text-white text-[14px] md:text-2xl font-bold">

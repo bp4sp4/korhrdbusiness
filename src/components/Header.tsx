@@ -86,12 +86,12 @@ export default function Header() {
           <Image
             src="/images/logo2.png"
             alt="로고"
-            width={28}
+            width={208}
             height={28}
-            className="header__logo-img w-[23px] h-[23px] md:w-[28px] md:h-[28px]"
+            className="header__logo-img w-[23px] h-[23px] md:w-[25px] md:h-[25px]"
           />
           <span
-            className="font-bold text-white text-[20px] md:text-[28px]"
+            className="font-bold text-white text-[20px] md:text-[25px]"
             style={{ fontFamily: "Toss Product Sans, Pretendard, sans-serif" }}
           >
             한평생 에듀바이저스
