@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
 
+# 에듀바이저스, 한평생 에듀바이저스 관련 페이지
+Allow: /about
+Allow: /eduservice
+Allow: /recruit
+Allow: /recruit/interview
+
 Sitemap: https://www.eduvisor.kr/sitemap.xml

@@ -53,6 +53,61 @@ export default function HomePageClient() {
 
   return (
     <main className="main w-screen min-h-screen flex flex-col items-center bg-white">
+      {/* 구조화된 데이터 (JSON-LD) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "EducationalOrganization",
+            name: "에듀바이저스",
+            alternateName: "한평생 에듀바이저스",
+            description:
+              "1:1 맞춤형 커리어 설계와 실무 중심 교육을 통해 성공적인 취업과 커리어 개발을 돕는 교육 서비스",
+            url: "https://www.eduvisor.kr",
+            logo: "https://www.eduvisor.kr/images/logo2.png",
+            address: {
+              "@type": "PostalAddress",
+              addressCountry: "KR",
+              addressLocality: "서울",
+              addressRegion: "서울특별시",
+            },
+            contactPoint: {
+              "@type": "ContactPoint",
+              contactType: "customer service",
+              availableLanguage: "Korean",
+            },
+            sameAs: ["https://www.eduvisor.kr"],
+            hasOfferCatalog: {
+              "@type": "OfferCatalog",
+              name: "교육 서비스",
+              itemListElement: [
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "커리어 설계 상담",
+                  },
+                },
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "자격증 교육",
+                  },
+                },
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "학점은행제",
+                  },
+                },
+              ],
+            },
+          }),
+        }}
+      />
       {/* Desktop Hero Section */}
       <section
         className="main__hero hidden md:flex absolute inset-0 w-full h-full items-center justify-center relative"
