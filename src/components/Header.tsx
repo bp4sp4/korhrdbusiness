@@ -88,7 +88,7 @@ export default function Header() {
             alt="로고"
             width={28}
             height={28}
-            className="header__logo-img w-[23px] h-[23px] md:w-[28px] md:h-[28px]"
+            className="header__logo-img w-[23px] h-[23px] md:w-[25px] md:h-[25px]"
           />
           <span
             className="font-bold text-white text-[20px] md:text-[25px]"
