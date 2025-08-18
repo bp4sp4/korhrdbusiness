@@ -37,6 +37,7 @@ import {
 } from "@/components/ui/dialog";
 import Link from "next/link";
 import "@/app/main.css";
+import NewsSection from "../NewsSection";
 
 interface Job {
   id: number;
@@ -628,7 +629,6 @@ export default function RecruitListPageClient() {
             </span>
           </Link>
         </div>
-
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           <div className="lg:col-span-3 space-y-4">
             <Dialog open={showAddForm} onOpenChange={setShowAddForm}>
@@ -785,7 +785,6 @@ export default function RecruitListPageClient() {
             </div>
           </div>
         </div>
-
         <AnimatePresence>
           {deletingJobId && (
             <motion.div
@@ -825,6 +824,7 @@ export default function RecruitListPageClient() {
             </motion.div>
           )}
         </AnimatePresence>
+        <NewsSection />
       </main>
     </div>
   );
