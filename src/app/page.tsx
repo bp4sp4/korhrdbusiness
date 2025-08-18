@@ -4,7 +4,7 @@ import HomePageClient from "@/components/main/HomePageClient";
 export const metadata: Metadata = {
   title: "한평생 에듀바이저스 - 당신의 커리어 성장 파트너",
   description:
-    "한평생 에듀바이저스는 1:1 맞춤형 커리어 설계와 실무 중심 교육을 통해 당신의 성공적인 취업과 커리어 개발을 돕습니다.",
+    "에듀바이저스는 1:1 맞춤형 커리어 설계와 실무 중심 교육을 통해 당신의 성공적인 취업과 커리어 개발을 돕습니다.",
   keywords: [
     "한평생 에듀바이저스",
     "한평생에듀바이저스",
