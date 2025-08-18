@@ -90,10 +90,7 @@ export default function Header() {
             height={28}
             className="header__logo-img w-[23px] h-[23px] md:w-[25px] md:h-[25px]"
           />
-          <span
-            className="font-bold text-white text-[20px] md:text-[25px]"
-            style={{ fontFamily: "Toss Product Sans, Pretendard, sans-serif" }}
-          >
+          <span className="font-bold text-white text-[20px] md:text-[24px]">
             한평생 에듀바이저스
           </span>
         </Link>
