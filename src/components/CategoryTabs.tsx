@@ -332,7 +332,7 @@ const CategoryTabs: React.FC = () => {
             swipeOnMobile={true}
             cardWidth={274}
             cardHeight={314}
-            gridClassName="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 place-items-center mt-[47px] mb-[50px] gap-10 px-6"
+            gridClassName="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 place-items-center mt-[37px]  gap-10 px-6"
             showBorder={true}
             removeBorderRadius={true}
           />
@@ -345,7 +345,7 @@ const CategoryTabs: React.FC = () => {
             swipeOnMobile={true}
             cardWidth={274}
             cardHeight={314}
-            gridClassName="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 place-items-center mt-[47px] mb-[50px] gap-10 px-6"
+            gridClassName="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 place-items-center mt-[37px] gap-10 px-6"
             showBorder={true}
             removeBorderRadius={true}
           />
