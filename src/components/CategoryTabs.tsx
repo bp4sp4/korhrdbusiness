@@ -320,11 +320,11 @@ const CategoryTabs: React.FC = () => {
     <div className="w-full bg-[linear-gradient(to_top,rgba(217,217,217,0.2),rgba(216,246,255,0.2))]">
       <div className="flex flex-col max-w-6xl mx-auto">
         {/* 업무제휴사 섹션 */}
-        <div className="mt-[50px] mb-[50px]">
+        <div className="mt-[80px] mb-[13px]">
           <h2 className="text-[24px] md:text-[32px] md:text-[40px] text-[#1E1E1E] font-extrabold text-center leading-tight mb-[35px] px-6 flex flex-col items-center">
             업무제휴사
-            <span className="text-[16px] md:text-[20px] mt-[8px] text-[#979797] font-normal">
-              신뢰할 수 있는 업무 제휴 파트너
+            <span className="text-[16px] md:text-[20px] mt-[8px] mb-[40px] text-[#979797] font-normal">
+              한평생과 함께하는 공식 제휴사
             </span>
           </h2>
           <SectionCards
@@ -339,7 +339,7 @@ const CategoryTabs: React.FC = () => {
         </div>
 
         {/* 민간자격증 섹션 */}
-        <div className="mt-[50px] mb-[50px]">
+        <div className="mt-[50px] mb-[20px]">
           <SectionCards
             cards={privateCertificates}
             swipeOnMobile={true}
