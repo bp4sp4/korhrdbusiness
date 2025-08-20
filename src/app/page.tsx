@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     description:
       "에듀바이저스에서 제공하는 당신만을 위한 커리어 전략 한평생교육의 에듀바이저가 함께 합니다.",
     url: "https://www.eduvisor.kr",
-    siteName: "한평생 에듀바이저스",
+    siteName: "에듀바이저스 - 한평생 에듀바이저스",
     images: [
       {
         url: "https://www.eduvisor.kr/images/og-image.png",
