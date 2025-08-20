@@ -118,6 +118,12 @@ export default function Header() {
               설계사채용
             </span>
           </Link>
+          <Link href="/addbranch" className="group">
+            <span className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)]">
+              지점추가
+            </span>
+          </Link>
+
           {(adminRole === "super" || adminRole === "manager") && (
             <>
               {adminRole === "super" && (
@@ -218,6 +224,13 @@ export default function Header() {
                   onClick={() => setMenuOpen(false)}
                 >
                   설계사 채용
+                </Link>
+                <Link
+                  href="/addbranch"
+                  className="w-full py-3 text-lg font-normal text-white hover:bg-[#22304a] rounded transition"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  지점추가
                 </Link>
               </nav>
             </div>
