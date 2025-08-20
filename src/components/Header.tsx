@@ -120,7 +120,7 @@ export default function Header() {
           </Link>
           <Link href="/addbranch" className="group">
             <span className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)]">
-              지점추가
+              지점모집
             </span>
           </Link>
 
@@ -230,7 +230,7 @@ export default function Header() {
                   className="w-full py-3 text-lg font-normal text-white hover:bg-[#22304a] rounded transition"
                   onClick={() => setMenuOpen(false)}
                 >
-                  지점추가
+                  지점모집
                 </Link>
               </nav>
             </div>
