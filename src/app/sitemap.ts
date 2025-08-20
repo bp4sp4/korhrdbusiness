@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 import { supabase } from "@/lib/supabase";
 
-const URL = "https://eduvisor.kr";
+const URL = "https://www.eduvisor.kr";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // 정적 페이지 경로
@@ -11,10 +11,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/eduservice",
     "/recruit",
     "/recruit/interview",
-    "/faq",
+    "/policy/privacy",
+    "/policy/terms",
   ].map((route) => ({
     url: `${URL}${route}`,
     lastModified: new Date().toISOString(),
+    changeFrequency: "weekly" as const,
+    priority: route === "/" ? 1.0 : 0.8,
   }));
 
   // 동적 채용 공고 페이지 경로
@@ -29,6 +32,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const jobRoutes = jobs.map((job) => ({
     url: `${URL}/recruit/${job.id}`,
     lastModified: new Date().toISOString(),
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
   }));
 
   // 인터뷰 페이지 경로 (정적으로 추가)
@@ -39,6 +44,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ].map((route) => ({
     url: `${URL}${route}`,
     lastModified: new Date().toISOString(),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
   }));
 
   return [...staticRoutes, ...jobRoutes, ...interviewRoutes];
