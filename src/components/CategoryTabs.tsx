@@ -205,11 +205,11 @@ const SectionCards = ({
   if (swipeOnMobile && isMobile) {
     return (
       <Swiper
-        spaceBetween={10}
+        spaceBetween={15}
         slidesPerView="auto"
         centeredSlides={true}
         loop={true}
-        className="w-full px-2"
+        className="w-full px-4"
         style={{ paddingLeft: 0, paddingRight: 0, marginBottom: "30px" }}
       >
         {cards.map((card, idx) => (
@@ -224,14 +224,18 @@ const SectionCards = ({
                 style={{
                   width: cardWidth,
                   height: cardHeight,
-                  border: showBorder ? "1px solid #97979742" : "none",
+                  border: showBorder
+                    ? isMobile
+                      ? "none"
+                      : "1px solid #97979742"
+                    : "none",
                   borderRadius: removeBorderRadius ? "0px" : "16px",
                 }}
               >
                 <img
                   src={card.img}
                   alt=""
-                  className="w-full h-full object-cover object-center"
+                  className="w-full h-full object-contain object-center"
                   style={{
                     borderTopLeftRadius: removeBorderRadius ? "0px" : "16px",
                     borderTopRightRadius: removeBorderRadius ? "0px" : "16px",
@@ -258,14 +262,18 @@ const SectionCards = ({
             style={{
               width: cardWidth,
               height: cardHeight,
-              border: showBorder ? "1px solid #97979742" : "none",
+              border: showBorder
+                ? isMobile
+                  ? "none"
+                  : "1px solid #97979742"
+                : "none",
               borderRadius: removeBorderRadius ? "0px" : "16px",
             }}
           >
             <img
               src={card.img}
               alt=""
-              className="w-full h-full object-cover object-center"
+              className="w-full h-full object-contain object-center"
               style={{
                 borderTopLeftRadius: removeBorderRadius ? "0px" : "16px",
                 borderTopRightRadius: removeBorderRadius ? "0px" : "16px",
@@ -293,14 +301,18 @@ const SectionCards = ({
           }
           key={card.img + idx}
           style={{
-            border: showBorder ? "1px solid #97979742" : "none",
+            border: showBorder
+              ? isMobile
+                ? "none"
+                : "1px solid #97979742"
+              : "none",
             borderRadius: removeBorderRadius ? "0px" : "16px",
           }}
         >
           <img
             src={card.img}
             alt=""
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-contain object-center"
             style={{
               borderTopLeftRadius: removeBorderRadius ? "0px" : "16px",
               borderTopRightRadius: removeBorderRadius ? "0px" : "16px",
@@ -320,7 +332,7 @@ const CategoryTabs: React.FC = () => {
     <div className="w-full bg-[linear-gradient(to_top,rgba(217,217,217,0.2),rgba(216,246,255,0.2))]">
       <div className="flex flex-col max-w-6xl mx-auto">
         {/* 업무제휴사 섹션 */}
-        <div className="mt-[80px] mb-[13px]">
+        <div className="mt-[60px] md:mt-[80px] mb-[13px]">
           <h2 className="text-[24px] md:text-[32px] md:text-[40px] text-[#1E1E1E] font-extrabold text-center leading-tight mb-[35px] px-6 flex flex-col items-center">
             업무제휴사
             <span className="text-[16px] md:text-[20px] mt-[8px] mb-[40px] text-[#979797] font-normal">
@@ -330,9 +342,9 @@ const CategoryTabs: React.FC = () => {
           <SectionCards
             cards={creditBankSystem}
             swipeOnMobile={true}
-            cardWidth={274}
-            cardHeight={314}
-            gridClassName="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 place-items-center mt-[37px]  gap-10 px-6"
+            cardWidth={320}
+            cardHeight={360}
+            gridClassName="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 place-items-center mt-[37px] gap-6 md:gap-10 px-4 md:px-6"
             showBorder={true}
             removeBorderRadius={true}
           />
