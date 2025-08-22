@@ -344,7 +344,8 @@ export default function HomePageClient() {
                 철저히 방지하기 위해, 전문 양성과정을 거친
                 <br className="md:hidden" />
                 설계사들이 체계적인 학습관리 시스템으로
-                <br />
+                <br className="md:hidden" />
+                &nbsp;
                 <strong>학습 완료까지 책임지고 동행합니다.</strong>
                 <br />
                 <br />
