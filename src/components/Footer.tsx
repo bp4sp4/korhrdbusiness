@@ -14,7 +14,7 @@ export default function Footer() {
             <div className="font-bold mb-2">회사</div>
             <Link
               target="_blank"
-              href="http://korhrdedugroup.co.kr/"
+              href="https://www.korhrdcorp.co.kr/"
               className="mb-1 block hover:underline"
             >
               한평생교육그룹

@@ -2,7 +2,7 @@ export const interviews = [
   {
     name: "doyeon",
     title: "함께 성장하는 북부지점, 새로운 동료를 찾습니다!",
-    subtitle: "영업 1팀 | 김도연 대리",
+    subtitle: "영업 1팀 | 강도연 대리",
     image: "/images/recruit/interview/doyeon1/doyeon.jpg",
   },
   {
