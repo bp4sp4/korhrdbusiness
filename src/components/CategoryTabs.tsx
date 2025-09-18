@@ -128,6 +128,16 @@ const creditBankSystem = [
     title: "학점은행제 12",
     desc: "학점은행제 설명 12",
   },
+  {
+    img: "/images/eduservice/credit/allteching.png",
+    title: "학점은행제 13",
+    desc: "학점은행제 설명 13",
+  },
+  {
+    img: "/images/eduservice/credit/seoulcyber.png",
+    title: "학점은행제 14",
+    desc: "학점은행제 설명 14",
+  },
 ];
 
 // 민간자격증 4개
