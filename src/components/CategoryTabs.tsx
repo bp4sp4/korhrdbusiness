@@ -342,7 +342,7 @@ const CategoryTabs: React.FC = () => {
     <div className="w-full bg-[linear-gradient(to_top,rgba(217,217,217,0.2),rgba(216,246,255,0.2))]">
       <div className="flex flex-col max-w-6xl mx-auto">
         {/* 업무제휴사 섹션 */}
-        <div className="mt-[60px] md:mt-[80px] mb-[13px]">
+        {/* <div className="mt-[60px] md:mt-[80px] mb-[13px]">
           <h2 className="text-[24px] md:text-[32px] md:text-[40px] text-[#1E1E1E] font-extrabold text-center leading-tight mb-[35px] px-6 flex flex-col items-center">
             업무제휴사
             <span className="text-[16px] md:text-[20px] mt-[8px] mb-[40px] text-[#979797] font-normal">
@@ -358,10 +358,10 @@ const CategoryTabs: React.FC = () => {
             showBorder={true}
             removeBorderRadius={true}
           />
-        </div>
+        </div> */}
 
         {/* 민간자격증 섹션 */}
-        <div className="mt-[50px] mb-[20px]">
+        {/* <div className="mt-[50px] mb-[20px]">
           <SectionCards
             cards={privateCertificates}
             swipeOnMobile={true}
@@ -371,10 +371,10 @@ const CategoryTabs: React.FC = () => {
             showBorder={true}
             removeBorderRadius={true}
           />
-        </div>
+        </div> */}
 
         {/* 유학 섹션 */}
-        <div className="mt-[50px] mb-[50px]">
+        {/* <div className="mt-[50px] mb-[50px]">
           <SectionCards
             cards={studyAbroad}
             swipeOnMobile={true}
@@ -384,10 +384,10 @@ const CategoryTabs: React.FC = () => {
             showBorder={true}
             removeBorderRadius={true}
           />
-        </div>
+        </div> */}
 
         {/* 국가 자격증 섹션 */}
-        <h2 className="text-[24px] md:text-[32px] md:text-[40px] text-[#1E1E1E] font-extrabold text-center leading-tight mb-[35px] px-6 flex flex-col items-center">
+        <h2 className="text-[24px] md:text-[32px] mt-[60px] md:mt-[80px] md:text-[40px] text-[#1E1E1E] font-extrabold text-center leading-tight mb-[35px] px-6 flex flex-col items-center">
           국가 자격증
           <span className="text-[16px] md:text-[20px] mt-[8px] text-[#979797] font-normal">
             공감과 실력을 갖춘 국가자격
