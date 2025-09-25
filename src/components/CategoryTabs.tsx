@@ -71,107 +71,107 @@ const extraCompetitiveness = [
 ];
 
 // 학점은행제 12개
-const creditBankSystem = [
-  {
-    img: "/images/eduservice/credit/eduservice.png",
-    title: "학점은행제 1",
-    desc: "학점은행제 설명 1",
-  },
-  {
-    img: "/images/eduservice/credit/dream.png",
-    title: "학점은행제 2",
-    desc: "학점은행제 설명 2",
-  },
+// const creditBankSystem = [
+//   {
+//     img: "/images/eduservice/credit/eduservice.png",
+//     title: "학점은행제 1",
+//     desc: "학점은행제 설명 1",
+//   },
+//   {
+//     img: "/images/eduservice/credit/dream.png",
+//     title: "학점은행제 2",
+//     desc: "학점은행제 설명 2",
+//   },
 
-  {
-    img: "/images/eduservice/credit/haemeal.png",
-    title: "학점은행제 4",
-    desc: "학점은행제 설명 4",
-  },
-  {
-    img: "/images/eduservice/credit/kstudy.png",
-    title: "학점은행제 5",
-    desc: "학점은행제 설명 5",
-  },
-  {
-    img: "/images/eduservice/credit/allpass.png",
-    title: "학점은행제 6",
-    desc: "학점은행제 설명 6",
-  },
-  {
-    img: "/images/eduservice/credit/line.png",
-    title: "학점은행제 7",
-    desc: "학점은행제 설명 7",
-  },
-  {
-    img: "/images/eduservice/credit/ysu.png",
-    title: "학점은행제 8",
-    desc: "학점은행제 설명 8",
-  },
-  {
-    img: "/images/eduservice/credit/ezen.png",
-    title: "학점은행제 9",
-    desc: "학점은행제 설명 9",
-  },
-  {
-    img: "/images/eduservice/credit/seouledu.png",
-    title: "학점은행제 10",
-    desc: "학점은행제 설명 10",
-  },
-  {
-    img: "/images/eduservice/credit/newm.png",
-    title: "학점은행제 11",
-    desc: "학점은행제 설명 11",
-  },
-  {
-    img: "/images/eduservice/credit/psyedu.png",
-    title: "학점은행제 12",
-    desc: "학점은행제 설명 12",
-  },
-  {
-    img: "/images/eduservice/credit/allteching.png",
-    title: "학점은행제 13",
-    desc: "학점은행제 설명 13",
-  },
-  {
-    img: "/images/eduservice/credit/seoulcyber.png",
-    title: "학점은행제 14",
-    desc: "학점은행제 설명 14",
-  },
-];
+//   {
+//     img: "/images/eduservice/credit/haemeal.png",
+//     title: "학점은행제 4",
+//     desc: "학점은행제 설명 4",
+//   },
+//   {
+//     img: "/images/eduservice/credit/kstudy.png",
+//     title: "학점은행제 5",
+//     desc: "학점은행제 설명 5",
+//   },
+//   {
+//     img: "/images/eduservice/credit/allpass.png",
+//     title: "학점은행제 6",
+//     desc: "학점은행제 설명 6",
+//   },
+//   {
+//     img: "/images/eduservice/credit/line.png",
+//     title: "학점은행제 7",
+//     desc: "학점은행제 설명 7",
+//   },
+//   {
+//     img: "/images/eduservice/credit/ysu.png",
+//     title: "학점은행제 8",
+//     desc: "학점은행제 설명 8",
+//   },
+//   {
+//     img: "/images/eduservice/credit/ezen.png",
+//     title: "학점은행제 9",
+//     desc: "학점은행제 설명 9",
+//   },
+//   {
+//     img: "/images/eduservice/credit/seouledu.png",
+//     title: "학점은행제 10",
+//     desc: "학점은행제 설명 10",
+//   },
+//   {
+//     img: "/images/eduservice/credit/newm.png",
+//     title: "학점은행제 11",
+//     desc: "학점은행제 설명 11",
+//   },
+//   {
+//     img: "/images/eduservice/credit/psyedu.png",
+//     title: "학점은행제 12",
+//     desc: "학점은행제 설명 12",
+//   },
+//   {
+//     img: "/images/eduservice/credit/allteching.png",
+//     title: "학점은행제 13",
+//     desc: "학점은행제 설명 13",
+//   },
+//   {
+//     img: "/images/eduservice/credit/seoulcyber.png",
+//     title: "학점은행제 14",
+//     desc: "학점은행제 설명 14",
+//   },
+// ];
 
 // 민간자격증 4개
-const privateCertificates = [
-  {
-    img: "/images/eduservice/private/edutrain.png",
-    title: "민간자격증 1",
-    desc: "민간자격증 설명 1",
-  },
-  {
-    img: "/images/eduservice/private/koreablack.png",
-    title: "민간자격증 2",
-    desc: "민간자격증 설명 2",
-  },
-  {
-    img: "/images/eduservice/private/koreahuman.png",
-    title: "민간자격증 3",
-    desc: "민간자격증 설명 3",
-  },
-  {
-    img: "/images/eduservice/private/koreanresource.png",
-    title: "민간자격증 4",
-    desc: "민간자격증 설명 4",
-  },
-];
+// const privateCertificates = [
+//   {
+//     img: "/images/eduservice/private/edutrain.png",
+//     title: "민간자격증 1",
+//     desc: "민간자격증 설명 1",
+//   },
+//   {
+//     img: "/images/eduservice/private/koreablack.png",
+//     title: "민간자격증 2",
+//     desc: "민간자격증 설명 2",
+//   },
+//   {
+//     img: "/images/eduservice/private/koreahuman.png",
+//     title: "민간자격증 3",
+//     desc: "민간자격증 설명 3",
+//   },
+//   {
+//     img: "/images/eduservice/private/koreanresource.png",
+//     title: "민간자격증 4",
+//     desc: "민간자격증 설명 4",
+//   },
+// ];
 
 // 유학 1개
-const studyAbroad = [
-  {
-    img: "/images/eduservice/abroad/mk.png",
-    title: "유학 프로그램",
-    desc: "해외 유학 프로그램 설명",
-  },
-];
+// const studyAbroad = [
+//   {
+//     img: "/images/eduservice/abroad/mk.png",
+//     title: "유학 프로그램",
+//     desc: "해외 유학 프로그램 설명",
+//   },
+// ];
 
 const SectionCards = ({
   cards,
