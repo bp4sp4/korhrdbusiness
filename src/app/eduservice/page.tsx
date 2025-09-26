@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "에듀바이저스 | 한평생 에듀바이저스 교육 서비스",
     description:
-      "에듀바이저스(한평생 에듀바이저스)의 전문가와 함께 당신의 커리어를 설계하고 성장하세요. , 자격증, 유학 프로그램까지 모든 교육 서비스를 확인하세요.",
+      "에듀바이저스(한평생 에듀바이저스)의 전문가와 함께 당신의 커리어를 설계하고 성장하세요. 자격증, 유학 프로그램까지 모든 교육 서비스를 확인하세요.",
     url: "https://www.eduvisor.kr/eduservice",
     siteName: "에듀바이저스 | 한평생 에듀바이저스",
     images: [
