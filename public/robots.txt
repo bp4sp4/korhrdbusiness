@@ -4,4 +4,4 @@ Disallow: /
 
 # 관리자 페이지만 예외
 User-agent: *
-Allow: /admin
+Allow: /

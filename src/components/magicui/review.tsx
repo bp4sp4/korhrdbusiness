@@ -28,8 +28,8 @@ const reviews = [
   },
   {
     name: "20대여성",
-    username: "#학사편입 #학벌개선 #학점은행제",
-    body: "처음엔 편입을 어떻게 준비해야 할지 막막했는데, <mark style='background-color: #D9E5FC; padding: 0 4px; border-radius: 4px;'>학점은행제로 방향을 잡고 나니 훨씬 수월해졌어요.</mark> 중간에 포기하고 싶을 때도 있었지만, <mark style='background-color: #D9E5FC; padding: 0 4px; border-radius: 4px;'>에듀바이저스에서 커리큘럼도, 일정 관리도 잘 도와주셔서 끝까지 해낼 수 있었어요.</mark> 결국 원하는 대학에 편입 성공했어요!",
+    username: "#학사편입 #학벌개선",
+    body: "처음엔 편입을 어떻게 준비해야 할지 막막했는데, <mark style='background-color: #D9E5FC; padding: 0 4px; border-radius: 4px;'> 방향을 잡고 나니 훨씬 수월해졌어요.</mark> 중간에 포기하고 싶을 때도 있었지만, <mark style='background-color: #D9E5FC; padding: 0 4px; border-radius: 4px;'>에듀바이저스에서 커리큘럼도, 일정 관리도 잘 도와주셔서 끝까지 해낼 수 있었어요.</mark> 결국 원하는 대학에 편입 성공했어요!",
     img: "images/about/review/20w.png",
   },
   {

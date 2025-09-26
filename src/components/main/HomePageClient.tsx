@@ -63,7 +63,7 @@ export default function HomePageClient() {
             name: "에듀바이저스",
             alternateName: ["한평생 에듀바이저스", "한평생에듀바이저스"],
             description:
-              "에듀바이저스(한평생 에듀바이저스)는 1:1 맞춤형 커리어 설계와 실무 중심 교육을 통해 성공적인 취업과 커리어 개발을 돕는 교육 서비스입니다. 학점은행제, 자격증, 유학 프로그램까지 한평생교육의 전문가가 함께합니다.",
+              "에듀바이저스(한평생 에듀바이저스)는 1:1 맞춤형 커리어 설계와 실무 중심 교육을 통해 성공적인 취업과 커리어 개발을 돕는 교육 서비스입니다. 자격증, 유학 프로그램까지 한평생교육의 전문가가 함께합니다.",
             url: "https://www.eduvisor.kr",
             logo: "https://www.eduvisor.kr/images/logo2.png",
             address: {
@@ -79,7 +79,7 @@ export default function HomePageClient() {
             },
             sameAs: ["https://www.eduvisor.kr"],
             keywords:
-              "에듀바이저스, 한평생 에듀바이저스, 커리어 설계, 자격증 교육, 학점은행제, 유학 프로그램",
+              "에듀바이저스, 한평생 에듀바이저스, 커리어 설계, 자격증 교육, 유학 프로그램",
             hasOfferCatalog: {
               "@type": "OfferCatalog",
               name: "교육 서비스",
@@ -97,14 +97,14 @@ export default function HomePageClient() {
                   itemOffered: {
                     "@type": "Service",
                     name: "자격증 교육",
-                    description: "민간자격증, 국가자격증 교육 프로그램",
+                    description: "민간자격증, 교육 프로그램",
                   },
                 },
                 {
                   "@type": "Offer",
                   itemOffered: {
                     "@type": "Service",
-                    name: "학점은행제",
+                    name: "유학 프로그램",
                   },
                 },
               ],
