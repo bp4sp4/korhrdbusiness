@@ -9,7 +9,7 @@ import "swiper/css";
 import { Card } from "@/components/ui/card";
 import { Autoplay } from "swiper/modules";
 import type { Swiper as SwiperClass } from "swiper";
-import MarqueeDemo from "../magicui/review";
+// import MarqueeDemo from "../magicui/review";
 
 interface TimelineEntry {
   year: string;
