@@ -51,5 +51,19 @@ export const metadata: Metadata = {
 };
 
 export default function Eduservice() {
-  return <EduServicePageClient />;
+  // 교육서비스 페이지 임시 비활성화
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="text-center">
+        <h1 className="text-2xl font-bold text-gray-800 mb-4">서비스 준비중</h1>
+        <p className="text-gray-600 mb-6">교육서비스 페이지가 준비중입니다.</p>
+        <a
+          href="/"
+          className="inline-block bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors"
+        >
+          메인으로 이동
+        </a>
+      </div>
+    </div>
+  );
 }

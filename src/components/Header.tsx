@@ -100,11 +100,12 @@ export default function Header() {
               회사소개
             </span>
           </Link>
-          <Link href="/eduservice" className="group">
+          {/* 교육서비스 임시 비활성화 */}
+          {/* <Link href="/eduservice" className="group">
             <span className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)]">
               교육서비스
             </span>
-          </Link>
+          </Link> */}
           <button
             onClick={handleOpenCounselModal}
             className="group bg-transparent border-none cursor-pointer"
@@ -202,13 +203,14 @@ export default function Header() {
                 >
                   회사 소개
                 </Link>
-                <Link
+                {/* 교육서비스 임시 비활성화 */}
+                {/* <Link
                   href="/eduservice"
                   className="w-full py-3 text-lg font-normal text-white hover:bg-[#22304a] rounded transition"
                   onClick={() => setMenuOpen(false)}
                 >
                   교육서비스
-                </Link>
+                </Link> */}
                 <button
                   onClick={() => {
                     handleOpenCounselModal();
