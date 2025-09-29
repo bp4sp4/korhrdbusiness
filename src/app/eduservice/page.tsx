@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 // import EduServicePageClient from "@/components/eduservice/EduServicePageClient";
 
 export const metadata: Metadata = {
@@ -57,12 +58,12 @@ export default function Eduservice() {
       <div className="text-center">
         <h1 className="text-2xl font-bold text-gray-800 mb-4">서비스 준비중</h1>
         <p className="text-gray-600 mb-6">교육서비스 페이지가 준비중입니다.</p>
-        <a
+        <Link
           href="/"
           className="inline-block bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors"
         >
           메인으로 이동
-        </a>
+        </Link>
       </div>
     </div>
   );
