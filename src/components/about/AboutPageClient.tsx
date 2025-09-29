@@ -330,10 +330,10 @@ export default function AboutPageClient() {
             </span>
           </p>
         </div>
-        <div className="mb-[120px]">
+        {/* <div className="mb-[120px]">
           {" "}
           <MarqueeDemo />
-        </div>
+        </div> */}
       </motion.section>
 
       {/* 6. CEO 메시지 */}
