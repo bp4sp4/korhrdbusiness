@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import EduServicePageClient from "@/components/eduservice/EduServicePageClient";
+// import EduServicePageClient from "@/components/eduservice/EduServicePageClient";
 
 export const metadata: Metadata = {
   title: "에듀바이저스 | 한평생 에듀바이저스 교육 서비스",
