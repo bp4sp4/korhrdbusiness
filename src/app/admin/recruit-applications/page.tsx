@@ -5,19 +5,14 @@ import { supabase } from "@/lib/supabase";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import {
   Download,
-  CheckCircle,
-  XCircle,
-  AlertCircle,
   History,
-  Mail, // 이메일
-  Phone, // 전화
-  MapPin, // 주소
-  Calendar, // 생년월일, 지원일
-  Briefcase, // 경력
-  Paperclip, // 이력서, 포트폴리오 파일
-  LinkIcon, // 포트폴리오 URL, 개인 웹사이트
-  Info, // 상태
 } from "lucide-react";
 import * as XLSX from "xlsx";
 import React from "react";
@@ -27,19 +22,20 @@ interface Application {
   id: number;
   job_id: number;
   name: string;
-  email: string;
+  email?: string; // 선택적 필드로 변경
   phone: string;
-  address: string;
-  birth_date: string;
-  introduction: string;
-  cover_letter: string;
-  resume_url: string;
-  portfolio_file_url: string;
-  portfolio_url: string;
+  address: string; // 거주지 (서울, 경기/인천, 그외)
+  birth_date?: string; // 선택적 필드로 변경
+  introduction: string; // 하고싶은말
+  cover_letter?: string; // 선택적 필드로 변경
+  resume_url?: string; // 선택적 필드로 변경
+  portfolio_file_url?: string; // 선택적 필드로 변경
+  portfolio_url?: string; // 선택적 필드로 변경
   website_url?: string;
   created_at: string;
   status: string;
-  educations: {
+  consent?: string; // 동의 여부
+  educations?: {
     graduationDate: string;
     type: string;
     school: string;
@@ -48,15 +44,15 @@ interface Application {
     graduationStatus: string;
     entranceYear: string;
     graduationYear: string;
-  }[];
-  experiences: {
+  }[]; // 선택적 필드로 변경
+  experiences?: {
     period: string;
     company: string;
     position: string;
     description: string;
     startDate: string;
     endDate: string;
-  }[];
+  }[]; // 선택적 필드로 변경
 }
 
 interface Job {
@@ -76,20 +72,12 @@ interface AdminActionLog {
   created_at: string;
 }
 
-function statusToKorean(status: string) {
-  if (status === "approved") return "합격";
-  if (status === "rejected") return "불합격";
-  if (status === "pending") return "대기";
-  return status;
-}
 
 export default function RecruitApplicationsPage() {
   const [applications, setApplications] = useState<Application[]>([]);
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selected, setSelected] = useState<Application | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [statusFilter, setStatusFilter] = useState<string>("all");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   const [showHistory, setShowHistory] = useState(false);
@@ -97,6 +85,7 @@ export default function RecruitApplicationsPage() {
   const [role, setRole] = useState<string | null>(null);
   const [roleLoading, setRoleLoading] = useState(true);
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
+  const [selectedMessage, setSelectedMessage] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchData() {
@@ -140,26 +129,6 @@ export default function RecruitApplicationsPage() {
   const getJobTitle = (job_id: number) =>
     jobs.find((j) => j.id === job_id)?.title || "-";
 
-  const handleStatusChange = async (id: number, status: string) => {
-    await supabase.from("recruit_applications").update({ status }).eq("id", id);
-    setApplications((prev) =>
-      prev.map((a) => (a.id === id ? { ...a, status } : a))
-    );
-
-    // 로그 저장
-    await supabase.from("admin_action_logs").insert([
-      {
-        action_type: "상태변경",
-        target_id: id,
-        target_name: applications.find((a) => a.id === id)?.name || "",
-        prev_status: applications.find((a) => a.id === id)?.status || "",
-        new_status: status,
-        created_at: new Date().toISOString(),
-        admin_email:
-          (await supabase.auth.getUser()).data.user?.email || "unknown",
-      },
-    ]);
-  };
 
   const handleDelete = async (id: number) => {
     const app = applications.find((a) => a.id === id);
@@ -203,10 +172,10 @@ export default function RecruitApplicationsPage() {
   const filteredData = applications.filter((a) => {
     const matchesSearch =
       a.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      a.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      a.phone.includes(searchTerm);
-    const matchesStatus = statusFilter === "all" || a.status === statusFilter;
-    return matchesSearch && matchesStatus;
+      (a.email && a.email.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      a.phone.includes(searchTerm) ||
+      (a.address && a.address.includes(searchTerm));
+    return matchesSearch;
   });
   const paginatedData = filteredData.slice(
     (currentPage - 1) * itemsPerPage,
@@ -214,19 +183,15 @@ export default function RecruitApplicationsPage() {
   );
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
-  // 상태별 통계
-  const statusCounts = {
-    pending: applications.filter((a) => a.status === "pending").length,
-    approved: applications.filter((a) => a.status === "approved").length,
-    rejected: applications.filter((a) => a.status === "rejected").length,
-  };
 
   // 엑셀 다운로드
   const handleExcelDownload = () => {
     const exportData = filteredData.map((a) => ({
       이름: a.name,
-      이메일: a.email,
+      이메일: a.email || "-",
       연락처: a.phone,
+      거주지: a.address || "-",
+      하고싶은말: a.introduction || "-",
       공고명: getJobTitle(a.job_id),
       지원일: a.created_at?.split("T")[0],
       상태: a.status,
@@ -301,70 +266,15 @@ export default function RecruitApplicationsPage() {
             </div>
           </div>
 
-          {/* Stats Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 bg-gray-50 border border-gray-200 shadow-lg p-6 rounded-2xl">
-            <Card className="transition-shadow rounded-xl">
-              <CardContent className="p-6 flex items-center gap-4">
-                <div className="p-3 bg-blue-50 rounded-full">
-                  <CheckCircle className="w-7 h-7 text-blue-600" />
-                </div>
-                <div>
-                  <p className="text-base text-blue-700 font-semibold">합격</p>
-                  <p className="text-3xl font-extrabold">
-                    {statusCounts.approved}
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-            <Card className="transition-shadow  rounded-xl">
-              <CardContent className="p-6 flex items-center gap-4">
-                <div className="p-3 bg-red-50 rounded-full">
-                  <XCircle className="w-7 h-7 text-red-600" />
-                </div>
-                <div>
-                  <p className="text-base text-red-700 font-semibold">불합격</p>
-                  <p className="text-3xl font-extrabold">
-                    {statusCounts.rejected}
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-            <Card className="-shadow  rounded-xl">
-              <CardContent className="p-6 flex items-center gap-4">
-                <div className="p-3 bg-yellow-50 rounded-full">
-                  <AlertCircle className="w-7 h-7 text-yellow-600" />
-                </div>
-                <div>
-                  <p className="text-base text-yellow-700 font-semibold">
-                    대기
-                  </p>
-                  <p className="text-3xl font-extrabold">
-                    {statusCounts.pending}
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
           {/* Filter/Search Bar */}
           <div className="flex flex-col md:flex-row gap-2 items-center justify-between">
             <input
               type="text"
-              placeholder="이름, 이메일, 연락처 검색"
+              placeholder="이름, 연락처, 거주지 검색"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="border rounded px-3 py-2 w-full md:w-64"
             />
-            <select
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-              className="border rounded px-3 py-2 w-full md:w-40"
-            >
-              <option value="all">전체 상태</option>
-              <option value="pending">대기</option>
-              <option value="approved">합격</option>
-              <option value="rejected">불합격</option>
-            </select>
           </div>
 
           {/* Table */}
@@ -372,7 +282,7 @@ export default function RecruitApplicationsPage() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-gray-100">
-                  <th className="p-2">
+                  <th className="p-2 text-center">
                     <input
                       type="checkbox"
                       checked={
@@ -388,21 +298,19 @@ export default function RecruitApplicationsPage() {
                       }}
                     />
                   </th>
-                  <th className="p-2">지원일</th>
-                  <th className="p-2">공고명</th>
-                  <th className="p-2">이름</th>
-                  <th className="p-2">이메일</th>
-                  <th className="p-2">연락처</th>
-
-                  <th className="p-2">상태</th>
-                  <th className="p-2">관리</th>
-                  <th className="p-2">상세</th>
+                  <th className="p-2 text-center">지원일</th>
+                  <th className="p-2 text-center">공고명</th>
+                  <th className="p-2 text-center">이름</th>
+                  <th className="p-2 text-center">연락처</th>
+                  <th className="p-2 text-center">거주지</th>
+                  <th className="p-2 text-center">하고싶은말</th>
+                  <th className="p-2 text-center">관리</th>
                 </tr>
               </thead>
               <tbody>
                 {paginatedData.map((a) => (
                   <tr key={a.id} className="border-b hover:bg-gray-50">
-                    <td className="p-2">
+                    <td className="p-2 text-center">
                       <input
                         type="checkbox"
                         checked={selectedIds.includes(a.id)}
@@ -417,28 +325,24 @@ export default function RecruitApplicationsPage() {
                         }}
                       />
                     </td>
-                    <td className="p-2">{a.created_at?.split("T")[0]}</td>
-                    <td className="p-2">{getJobTitle(a.job_id)}</td>
-                    <td className="p-2">{a.name}</td>
-                    <td className="p-2">{a.email}</td>
-                    <td className="p-2">{a.phone}</td>
-
-                    <td className="p-2">
-                      {/* 상태수정 드롭다운: role이 있으면 활성화, 없으면 disabled */}
-                      <select
-                        value={a.status}
-                        onChange={(e) =>
-                          handleStatusChange(a.id, e.target.value)
-                        }
-                        className="border rounded px-2 py-1"
-                        disabled={roleLoading || !role}
-                      >
-                        <option value="pending">대기</option>
-                        <option value="approved">합격</option>
-                        <option value="rejected">불합격</option>
-                      </select>
+                    <td className="p-2 text-center">{a.created_at?.split("T")[0]}</td>
+                    <td className="p-2 text-center">{getJobTitle(a.job_id)}</td>
+                    <td className="p-2 text-center">{a.name}</td>
+                    <td className="p-2 text-center">{a.phone}</td>
+                    <td className="p-2 text-center">{a.address || "-"}</td>
+                    <td className="p-2 text-center max-w-xs">
+                      {a.introduction && a.introduction.length > 30 ? (
+                        <button
+                          onClick={() => setSelectedMessage(a.introduction)}
+                          className="text-blue-600 hover:text-blue-800 hover:underline cursor-pointer truncate block w-full"
+                        >
+                          {a.introduction.substring(0, 30)}...
+                        </button>
+                      ) : (
+                        <span>{a.introduction || "-"}</span>
+                      )}
                     </td>
-                    <td className="p-2">
+                    <td className="p-2 text-center">
                       {/* 삭제 버튼: super, manager만 노출 */}
                       {(role === "super" || role === "manager") && (
                         <Button
@@ -449,15 +353,6 @@ export default function RecruitApplicationsPage() {
                           삭제
                         </Button>
                       )}
-                    </td>
-                    <td className="p-2">
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => setSelected(a)}
-                      >
-                        상세보기
-                      </Button>
                     </td>
                   </tr>
                 ))}
@@ -529,261 +424,19 @@ export default function RecruitApplicationsPage() {
             </div>
           </div>
 
-          {/* 상세 모달 */}
-          {selected && (
-            <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
-              <div className="bg-white rounded-lg p-6 w-full max-w-4xl shadow-lg relative overflow-y-auto max-h-[80vh]">
-                <button
-                  className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl"
-                  onClick={() => setSelected(null)}
-                >
-                  ×
-                </button>
-                <h2 className="text-2xl font-bold mb-6 text-gray-800">
-                  <span className="text-blue-600">{selected.name}</span>님의
-                  지원 정보
-                </h2>
-
-                <div className="space-y-8">
-                  {/* 기본 정보 & 지원 정보 */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-gray-700">
-                    <div className="space-y-3">
-                      <h3 className="font-semibold text-lg text-gray-900 border-b pb-2 mb-3">
-                        기본 정보
-                      </h3>
-                      <div className="flex items-center gap-2">
-                        <Mail className="w-5 h-5 text-blue-500" />
-                        <span>이메일 : {selected.email}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Phone className="w-5 h-5 text-blue-500" />
-                        <span>전화번호 : {selected.phone}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <MapPin className="w-5 h-5 text-blue-500" />
-                        <span>주소 : {selected.address || "-"}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Calendar className="w-5 h-5 text-blue-500" />
-                        <span>생년월일 : {selected.birth_date || "-"}</span>
-                      </div>
-                    </div>
-                    <div className="space-y-3">
-                      <h3 className="font-semibold text-lg text-gray-900 border-b pb-2 mb-3">
-                        지원 정보
-                      </h3>
-                      <div className="flex items-center gap-2">
-                        <Briefcase className="w-5 h-5 text-blue-500" />
-                        <span>{getJobTitle(selected.job_id)}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Calendar className="w-5 h-5 text-blue-500" />
-                        <span>
-                          지원날짜 : {selected.created_at?.split("T")[0]}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Info className="w-5 h-5 text-blue-500" />
-                        <span>{statusToKorean(selected.status)}상태</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* 학력 정보 */}
-                  <div>
-                    <h3 className="font-semibold text-lg text-gray-900 border-b pb-2 mb-3">
-                      학력
-                    </h3>
-                    <div className="space-y-4">
-                      {selected.educations?.length > 0 ? (
-                        selected.educations.map((edu, index) => (
-                          <div
-                            key={index}
-                            className="grid grid-cols-3 gap-x-4 p-3 bg-gray-50 rounded-md"
-                          >
-                            <p>
-                              <span className="font-medium">기간:</span>{" "}
-                              {["재학중", "졸업예정"].includes(
-                                edu.graduationStatus
-                              )
-                                ? `${edu.entranceYear || "-"} ~ ${
-                                    edu.graduationYear || "-"
-                                  }`
-                                : edu.graduationYear || "-"}
-                            </p>
-                            <p>
-                              <span className="font-medium">학교:</span>{" "}
-                              {edu.school} ({edu.type})
-                            </p>
-                            <p>
-                              <span className="font-medium">전공:</span>{" "}
-                              {edu.major} (학점: {edu.score})
-                            </p>
-                          </div>
-                        ))
-                      ) : (
-                        <p className="text-muted-foreground">
-                          학력 정보가 없습니다.
-                        </p>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* 경력 정보 */}
-                  <div>
-                    <h3 className="font-semibold text-lg text-gray-900 border-b pb-2 mb-3">
-                      경력
-                    </h3>
-                    <div className="space-y-4">
-                      {selected.experiences?.length > 0 ? (
-                        selected.experiences.map((exp, index) => (
-                          <div
-                            key={index}
-                            className="p-3 bg-gray-50 rounded-md"
-                          >
-                            <div className="grid grid-cols-3 gap-x-4 mb-2">
-                              <p>
-                                <span className="font-medium">기간:</span>{" "}
-                                {exp.startDate && exp.endDate
-                                  ? `${exp.startDate} ~ ${exp.endDate}`
-                                  : exp.startDate
-                                  ? `${exp.startDate} ~`
-                                  : exp.endDate
-                                  ? `~ ${exp.endDate}`
-                                  : "-"}
-                              </p>
-                              <p>
-                                <span className="font-medium">회사:</span>{" "}
-                                {exp.company}
-                              </p>
-                              <p>
-                                <span className="font-medium">직책:</span>{" "}
-                                {exp.position}
-                              </p>
-                            </div>
-                            <p className="text-l whitespace-pre-wrap">
-                              <span className="font-medium">주요업무:</span>{" "}
-                              {exp.description}
-                            </p>
-                          </div>
-                        ))
-                      ) : (
-                        <p className="text-muted-foreground">
-                          경력 정보가 없습니다.
-                        </p>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* 자기소개 */}
-                  <div>
-                    <h3 className="font-semibold text-lg text-gray-900 border-b pb-2 mb-3">
-                      자기소개, 지원 동기 및 포부
-                    </h3>
-                    <p className="text-sm bg-gray-50 p-3 rounded-md whitespace-pre-wrap">
-                      {selected.introduction}
-                    </p>
-                  </div>
-
-                  {/* 첨부 파일 및 링크 */}
-                  <div>
-                    <h3 className="font-semibold text-lg text-gray-900 border-b pb-2 mb-3">
-                      첨부 파일 및 링크
-                      <span className="text-[#979797] text-[16px] font-normal">
-                        (첨부 파일 및 링크 없을시 - 표시됩니다.)
-                      </span>
-                    </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="flex items-center gap-3">
-                        <Paperclip className="w-5 h-5 text-blue-500" />
-                        <span className="font-medium">이력서:</span>
-                        {selected.resume_url ? (
-                          <a
-                            href={selected.resume_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              className="gap-1"
-                            >
-                              <Download className="w-4 h-4" /> 다운로드
-                            </Button>
-                          </a>
-                        ) : (
-                          <span className="text-muted-foreground">-</span>
-                        )}
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <Paperclip className="w-5 h-5 text-blue-500" />
-                        <span className="font-medium">포트폴리오 파일:</span>
-                        {selected.portfolio_file_url ? (
-                          <a
-                            href={selected.portfolio_file_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              className="gap-1"
-                            >
-                              <Download className="w-4 h-4" /> 다운로드
-                            </Button>
-                          </a>
-                        ) : (
-                          <span className="text-muted-foreground">-</span>
-                        )}
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <LinkIcon className="w-5 h-5 text-blue-500" />
-                        <span className="font-medium">포트폴리오 URL:</span>
-                        {selected.portfolio_url ? (
-                          <a
-                            href={selected.portfolio_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              className="gap-1"
-                            >
-                              <LinkIcon className="w-4 h-4" /> 바로가기
-                            </Button>
-                          </a>
-                        ) : (
-                          <span className="text-muted-foreground">-</span>
-                        )}
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <LinkIcon className="w-5 h-5 text-blue-500" />
-                        <span className="font-medium">개인 웹사이트:</span>
-                        {selected.website_url ? (
-                          <a
-                            href={selected.website_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              className="gap-1"
-                            >
-                              <LinkIcon className="w-4 h-4" /> 바로가기
-                            </Button>
-                          </a>
-                        ) : (
-                          <span className="text-muted-foreground">-</span>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+          {/* 하고싶은말 팝업 모달 */}
+          <Dialog open={!!selectedMessage} onOpenChange={() => setSelectedMessage(null)}>
+            <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+              <DialogHeader>
+                <DialogTitle>하고싶은말</DialogTitle>
+              </DialogHeader>
+              <div className="mt-4">
+                <p className="whitespace-pre-wrap text-sm text-gray-700">
+                  {selectedMessage || "-"}
+                </p>
               </div>
-            </div>
-          )}
+            </DialogContent>
+          </Dialog>
 
           {/* 히스토리 모달 */}
           {showHistory && (
@@ -817,19 +470,7 @@ export default function RecruitApplicationsPage() {
                         </span>
                         <span className="mx-1">-</span>
                         <span className="font-semibold">{log.target_name}</span>
-                        {log.action_type === "상태변경" && (
-                          <span className="ml-2 text-gray-600">
-                            (
-                            <span className="font-medium">
-                              {statusToKorean(log.prev_status || "")}
-                            </span>
-                            <span className="mx-1">→</span>
-                            <span className="font-medium">
-                              {statusToKorean(log.new_status || "")}
-                            </span>
-                            )
-                          </span>
-                        )}
+
                       </div>
                     </li>
                   ))}
