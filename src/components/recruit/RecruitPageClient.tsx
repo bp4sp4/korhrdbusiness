@@ -37,7 +37,7 @@ import {
 } from "@/components/ui/dialog";
 import Link from "next/link";
 import "@/app/main.css";
-
+import NewsSection from "../NewsSection";
 
 interface Job {
   id: number;
@@ -506,7 +506,7 @@ export default function RecruitListPageClient() {
                   한평생에듀바이저스는 단순한 교육기관이 아닙니다. 모두가 평생
                   성장할 수 있도록 돕는 교육의 장입니다.
                   <br className="hidden sm:block" />
-                  함께 만들어가는 따뜻한 교육 공동체를
+                  학생, 교사, 교직원이 함께 만들어가는 따뜻한 교육 공동체를
                   지향합니다.
                   <br />
                   새로운 교육의 미래, 한평생에듀바이저스에서 시작하세요.
@@ -702,7 +702,9 @@ export default function RecruitListPageClient() {
                         </div>
                         <div className="flex flex-col sm:items-end gap-2">
                           <div className="flex items-center gap-2">
-                        
+                            <Badge variant="outline" className="w-fit">
+                              {job.status}
+                            </Badge>
                             {isAdmin && (
                               <div className="flex gap-1">
                                 <Button
@@ -757,7 +759,7 @@ export default function RecruitListPageClient() {
                       에듀바이저스 북부지점 인터뷰
                     </div>
                     <div className="text-sm text-gray-500">
-                    강도연 대리
+                      영업 1팀 | 강도연 대리
                     </div>
                   </div>
                 </Card>
@@ -775,7 +777,7 @@ export default function RecruitListPageClient() {
                       에듀바이저스 강남지점 인터뷰
                     </div>
                     <div className="text-sm text-gray-500">
-                      장은혜 대리
+                      영업 3팀 | 장은혜 대리
                     </div>
                   </div>
                 </Card>
@@ -822,7 +824,7 @@ export default function RecruitListPageClient() {
             </motion.div>
           )}
         </AnimatePresence>
-        
+        <NewsSection />
       </main>
     </div>
   );

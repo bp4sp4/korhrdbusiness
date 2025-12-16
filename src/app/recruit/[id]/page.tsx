@@ -919,7 +919,14 @@ const JobDetailPage = () => {
                   <MapPin className="h-4 w-4 text-muted-foreground" />
                   <span>{job.location}</span>
                 </div>
+<<<<<<< HEAD
               
+=======
+                <div className="flex items-center gap-2 text-sm">
+                  <Briefcase className="h-4 w-4 text-muted-foreground" />
+                  <span>{job.status}</span>
+                </div>
+>>>>>>> 98b9f0d8e9b63bd1065f8f9471cb9582f4a6c89d
                 <div className="flex items-center gap-2 text-sm">
                   <Calendar className="h-4 w-4 text-muted-foreground" />
                   <span>등록일: {job.date}</span>
