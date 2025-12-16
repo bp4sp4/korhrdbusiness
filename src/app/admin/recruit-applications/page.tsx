@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import {
   Dialog,
   DialogContent,
@@ -83,7 +82,6 @@ export default function RecruitApplicationsPage() {
   const [showHistory, setShowHistory] = useState(false);
   const [historyLogs, setHistoryLogs] = useState<AdminActionLog[]>([]);
   const [role, setRole] = useState<string | null>(null);
-  const [roleLoading, setRoleLoading] = useState(true);
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const [selectedMessage, setSelectedMessage] = useState<string | null>(null);
 
@@ -106,13 +104,11 @@ export default function RecruitApplicationsPage() {
 
   useEffect(() => {
     async function fetchRole() {
-      setRoleLoading(true);
       const {
         data: { user },
       } = await supabase.auth.getUser();
       if (!user) {
         setRole(null);
-        setRoleLoading(false);
         return;
       }
       const { data: admin } = await supabase
@@ -121,7 +117,6 @@ export default function RecruitApplicationsPage() {
         .eq("email", user.email)
         .single();
       setRole(admin?.role || null);
-      setRoleLoading(false);
     }
     fetchRole();
   }, []);

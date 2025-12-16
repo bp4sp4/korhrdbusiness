@@ -10,7 +10,6 @@ import { Badge } from "@/components/ui/badge";
 import { Label } from "@/components/ui/label";
 import {
   ArrowLeft,
-  User,
   MapPin,
   Calendar,
   CheckCircle,
