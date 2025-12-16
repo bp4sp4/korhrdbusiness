@@ -1,0 +1,29 @@
+.header__container {
+    border-bottom: 1px solid #e5e7eb;
+    background: #fff;
+}
+
+.header__logo {
+    letter-spacing: 1px;
+}
+
+.header__nav-link {
+    color: #334155;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.header__nav-link:hover {
+    color: #2563eb;
+}
+
+.header__cta-btn {
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
+}
+
+.header__menu-btn {
+    font-size: 1.5rem;
+    color: #334155;
+    background: none;
+    border: none;
+}

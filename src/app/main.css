@@ -1,0 +1,325 @@
+@import url('https://static.toss.im/tps/main.css');
+@import url('https://static.toss.im/tps/others.css');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('/fonts/Pretendard-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('/fonts/Pretendard-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('/fonts/Pretendard-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('/fonts/Pretendard-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
+* {
+    font-family: 'Pretendard', sans-serif;
+}
+
+.main__hero-content {
+    max-width: 1000px;
+    width: 100%;
+    margin: auto;
+}
+
+.main__hero-title {
+    line-height: 1.2;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
+}
+
+.main__hero-btn {
+    width: 303px;
+    height: 70Px;
+    background: #2B7FFF;
+    border-radius: 12px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.main__hero-btn:hover {
+    background-color: var(--color-blue-700);
+    transition: all 0.3s ease;
+
+}
+
+
+
+
+
+
+.main__service {
+    max-width: 1000px;
+    margin: auto;
+    flex-wrap: wrap;
+
+}
+
+.main__service_desc {
+    max-width: 800px;
+    padding: 120px 0 80px;
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 1.62;
+    color: #1e1e25;
+    letter-spacing: -0.3px;
+    word-break: keep-all;
+
+
+}
+
+@media (max-width: 768px) {
+    .main__service_desc {
+        padding: 60px 0 40px;
+        font-size: 18px;
+
+        margin: 0 auto;
+    }
+
+
+    .main__hero-btn {
+        width: 293px;
+        height: 65px;
+        background: #2B7FFF;
+        border-radius: 10px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-size: 20px;
+        font-weight: 500;
+        cursor: pointer;
+    }
+}
+
+
+@media (max-width: 376px) {
+
+    .text-4xl {
+        font-size: 1.8rem;
+    }
+
+
+
+    .main__hero-btn {
+        width: 263px;
+        height: 65px;
+        background: #2B7FFF;
+        border-radius: 20px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-size: 20px;
+        font-weight: 500;
+        cursor: pointer;
+    }
+}
+
+
+
+@media (max-width: 1024px) {
+
+    .main__hero-content,
+
+    .main__service {
+        max-width: 90vw;
+        padding-bottom: 6rem;
+    }
+
+    .main__hero-title {
+        font-size: 2.2rem;
+    }
+
+
+
+
+
+}
+
+@media (max-width: 768px) {
+    .main__hero-title {
+        font-size: 2.5rem;
+    }
+
+
+
+    .main__service__items {
+        flex-direction: column !important;
+        gap: 2rem;
+    }
+
+    .main__service__item {
+        text-align: center !important;
+        margin-bottom: 1.5rem;
+    }
+
+    .main__service {
+        padding-bottom: 3rem;
+    }
+
+    .footer__logo img,
+    .footer__logo {
+        width: 28px !important;
+        height: 28px !important;
+    }
+
+
+
+
+
+
+
+    .main__recruit {
+        flex-direction: column !important;
+        min-height: unset;
+        height: auto;
+    }
+
+
+
+    .main__recruit h2 {
+        font-size: 1.35rem !important;
+        color: var(--color-white) !important;
+        text-align: center !important;
+    }
+
+    .main__recruit p {
+        font-size: 1rem !important;
+        color: var(--color-white) !important;
+        text-align: center !important;
+    }
+
+    .main__recruit a {
+        display: block;
+        margin: 0 auto;
+        font-size: 1rem !important;
+        padding: 0.9rem 0;
+        width: 100%;
+        max-width: 260px;
+    }
+
+    .main__recruit>div:last-child {
+        height: 220px !important;
+        min-height: 140px;
+        width: 100% !important;
+        margin-top: 0;
+    }
+
+    .main__recruit img {
+        border-radius: 0;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+
+    .main__service_desc {
+        font-size: 1rem;
+        padding: 2rem 0 1.5rem;
+        max-width: 346px;
+        margin: 0 auto 2rem auto;
+        line-height: 1.7;
+        text-align: left;
+    }
+
+    .main__service__items {
+        flex-direction: column !important;
+        gap: 2rem;
+        max-width: 340px;
+        margin: 0 auto;
+    }
+
+    .main__service__item {
+        text-align: left !important;
+        margin-bottom: 1.5rem;
+
+        padding-bottom: 1.5rem;
+    }
+
+    .main__service__item:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    .main__service__item-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.75rem;
+
+        align-items: center;
+        gap: 0.5rem;
+        color: #222;
+    }
+
+    .main__service__item-title img {
+        width: 30px !important;
+        height: 30px !important;
+        margin-bottom: 5px !important;
+        margin-right: 0.3rem;
+    }
+
+    .main__service__item-desc {
+        font-size: 0.97rem;
+        color: #555;
+        line-height: 1.7;
+    }
+
+    .footer__logo p {
+        font-size: 1rem;
+    }
+
+
+}
+
+@media (max-width: 767px) {
+    br.mobile-hide {
+        display: none;
+    }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
+    box-shadow: 0 0 0 1000px #fff inset !important;
+    -webkit-text-fill-color: #111 !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
