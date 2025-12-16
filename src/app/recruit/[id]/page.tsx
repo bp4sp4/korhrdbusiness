@@ -15,7 +15,6 @@ import {
   User,
   MapPin,
   Calendar,
-  Briefcase,
   Send,
   CheckCircle,
   X,
@@ -919,10 +918,7 @@ const JobDetailPage = () => {
                   <MapPin className="h-4 w-4 text-muted-foreground" />
                   <span>{job.location}</span>
                 </div>
-                <div className="flex items-center gap-2 text-sm">
-                  <Briefcase className="h-4 w-4 text-muted-foreground" />
-                  <span>{job.status}</span>
-                </div>
+              
 
                 <div className="flex items-center gap-2 text-sm">
                   <Calendar className="h-4 w-4 text-muted-foreground" />
@@ -938,25 +934,26 @@ const JobDetailPage = () => {
                     <p className="text-sm text-muted-foreground">-</p>
                   )}
                 </div>
-                {job.main_tasks &&
-                  job.main_tasks
-                    .split("\n")
-                    .filter((task) => task.trim().length > 0).length > 0 && (
+                {(() => {
+                  const tasks = job.main_tasks
+                    ? job.main_tasks
+                        .split("\n")
+                        .filter((task) => task.trim().length > 0)
+                    : [];
+                  return tasks.length > 0 ? (
                     <div className="pt-4 border-t">
                       <h4 className="font-semibold mb-2">주요 업무</h4>
                       <ul className="text-sm text-muted-foreground space-y-1">
-                        {job.main_tasks
-                          .split("\n")
-                          .filter((task) => task.trim().length > 0)
-                          .map((task, idx) => (
-                            <li key={idx} className="flex items-start gap-2">
-                              <span className="text-blue-500">•</span>
-                              <span>{task}</span>
-                            </li>
-                          ))}
+                        {tasks.map((task, idx) => (
+                          <li key={idx} className="flex items-start gap-2">
+                            <span className="text-blue-500">•</span>
+                            <span>{task}</span>
+                          </li>
+                        ))}
                       </ul>
                     </div>
-                  )}
+                  ) : null;
+                })()}
                 <div className="pt-4 border-t">
                   <h4 className="font-semibold mb-2">자격 요건</h4>
                   <ul className="text-sm text-muted-foreground space-y-1">
