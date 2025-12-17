@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-export function middleware(request: NextRequest) {
+export function middleware(_request: NextRequest) {
   // 점검 모드 활성화 여부 (환경변수로 제어)
   // const isMaintenanceMode = process.env.MAINTENANCE_MODE === "true";
 

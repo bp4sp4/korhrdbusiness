@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import "@/app/main.css";
 import { motion, Easing } from "framer-motion";
 import Link from "next/link";
