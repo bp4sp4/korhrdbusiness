@@ -1,23 +1,37 @@
-"use client";
+import type { Metadata } from "next";
+import AddBranchPageClient from "@/components/addbranch/AddBranchPageClient";
 
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Home } from "lucide-react";
+export const metadata: Metadata = {
+  title: "지점 모집 | 에듀바이저스 - 개인이 아닌 지점으로 성장하는 교육파트너",
+  description:
+    "한평생 에듀바이저스와 함께 성장할 지점 파트너를 모집합니다. 체계적인 교육 시스템과 마케팅 지원으로 안정적인 지점 운영이 가능합니다.",
+  keywords: [
+    "지점 모집",
+    "에듀바이저스 지점",
+    "교육 지점",
+    "지점 파트너",
+    "가맹점",
+    "지점 운영",
+  ],
+  openGraph: {
+    title: "지점 모집 | 에듀바이저스",
+    description:
+      "개인이 아닌 지점으로 성장하는 교육파트너. 한평생 에듀바이저스와 함께 성장하세요.",
+    url: "https://www.eduvisor.kr/addbranch",
+    siteName: "에듀바이저스",
+    images: [
+      {
+        url: "https://www.eduvisor.kr/images/addbranch/addbranch_main.png",
+        width: 1200,
+        height: 630,
+        alt: "지점 모집",
+      },
+    ],
+    locale: "ko_KR",
+    type: "website",
+  },
+};
+
 export default function AddBranchPage() {
-  return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-background text-center p-4">
-      <div className="max-w-md">
-        <h1 className="text-2xl font-bold text-primary mb-4">
-          서비스 준비중입니다.
-        </h1>
-
-        <Button asChild>
-          <Link href="/">
-            <Home className="mr-2 h-4 w-4" />
-            메인으로 이동하기
-          </Link>
-        </Button>
-      </div>
-    </div>
-  );
+  return <AddBranchPageClient />;
 }
