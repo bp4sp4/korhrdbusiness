@@ -37,7 +37,7 @@ export default function AddBranchPageClient() {
         <div className="main__hero-content flex-1 flex flex-col items-start z-10 rounded-lg md:bg-transparent md:p-0 px-10">
           <div className="main__hero-title text-white text-xl md:text-7xl mb-6 flex flex-col gap-3">
             <motion.p
-              className="text-white text-2xl md:text-4xl font-normal"
+              className="text-white text-[24px] md:text-[36px] md:font-normal font-bold"
               variants={textVariants}
               initial="hidden"
               animate="visible"
@@ -50,7 +50,7 @@ export default function AddBranchPageClient() {
               initial="hidden"
               animate="visible"
             >
-              지점으로 성장하는 교육파트너
+              지점으로 성장하는<br className="block md:hidden" /> 교육파트너
             </motion.h2>
           </div>
           <div className="main__hero-buttons flex">
@@ -68,7 +68,7 @@ export default function AddBranchPageClient() {
           height: "75vh",
           left: 0,
           right: 0,
-          backgroundImage: "url('/images/addbranch/addbranch_main.png')",
+          backgroundImage: "url('/images/addbranch/main_mobile.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -78,7 +78,7 @@ export default function AddBranchPageClient() {
           <div className="absolute bottom-[40px] left-0 right-0 max-w-[300px] mx-auto">
             <div className="main__hero-title text-white text-xl mb-4 flex flex-col gap-2 ">
               <motion.p
-                className="text-white text-2xl font-normal"
+                className="text-white text-[28px] font-bold md:text-[36px] md:font-normal leading-[1] md:leading-normal"
                 variants={textVariants}
                 initial="hidden"
                 animate="visible"
@@ -86,12 +86,12 @@ export default function AddBranchPageClient() {
                 개인이 아닌
               </motion.p>
               <motion.h2
-                className="text-white text-4xl font-bold"
+                className="text-white text-4xl font-bold leading-[1.2] md:leading-normal"
                 variants={textVariants}
                 initial="hidden"
                 animate="visible"
               >
-                지점으로 성장하는 교육파트너
+                지점으로 성장하는<br /> 교육파트너
               </motion.h2>
             </div>
             <div className="main__hero-buttons flex">
@@ -111,24 +111,24 @@ export default function AddBranchPageClient() {
         <div className="flex items-center flex-col justify-center w-full ">
           <div className="relative flex items-center justify-center gap-2">
            
-            <span className="text-white text-[14px] md:text-2xl font-bold">
-              한평생 에듀바이저스와 함께할 지점을 모십니다.
+            <span className="text-white text-[24px] md:text-2xl font-bold">
+              한평생 에듀바이저스와<br className="block md:hidden" /> 함께할 지점을 모십니다.
             </span>
           </div>
         </div>
       </section>
 
       {/* 섹션 1: 교육은 본사가 준비했어요 */}
-      <section className="w-full bg-white py-16 md:py-[150px] flex items-center justify-center">
+      <section className="w-full bg-white py-[60px] md:py-[150px] flex items-center justify-center">
         <div className="max-w-6xl mx-auto px-6 md:px-10">
-          <div className="flex flex-col md:flex-row items-center gap-8 md:gap-[346px]">
+          <div className="flex flex-col md:flex-row items-left gap-8 md:gap-[346px] md:items-center">
             <div className="flex-1">
               <h2 className="text-[28px] md:text-[48px] font-bold mb-4">
-                <span className="text-[#525F96] text-[20px] md:text-[60px] font-normal">교육은</span>
+                <span className="text-[#525F96] text-[40px] md:text-[60px] font-normal">교육은</span>
+                <br className="hidden md:block" />
+                <span className="text-[#040D33] text-[40px] md:text-[60px] extra-bold">&nbsp;본사가</span>
                 <br />
-                <span className="text-[#040D33] md:text-[60px] extra-bold">본사가</span>
-                <br />
-                <span className="text-[#525F96] text-[20px] md:text-[60px] font-normal">준비했어요</span>
+                <span className="text-[#525F96] text-[40px] md:text-[60px] font-normal">준비했어요</span>
               </h2>
             </div>
             <div>
@@ -147,20 +147,20 @@ export default function AddBranchPageClient() {
 
       {/* 섹션 2: 지점은 운영에만 집중하세요 */}
       <section 
-        className="w-full py-16 md:py-[150px]"
+        className="w-full py-[60px] md:py-[150px]"
         style={{
           backgroundColor: "#040D33",
         }}
       >
         <div className="max-w-6xl mx-auto px-6 md:px-10 flex items-center justify-center">
-          <div className="flex flex-col md:flex-row items-center gap-8 md:gap-[346px]">
+          <div className="flex flex-col md:flex-row items-left gap-8 md:gap-[346px] md:items-center">
             <div className="flex-1">
               <h2 className="text-[28px] md:text-[48px] font-bold mb-4 text-white">
-                <span className="text-[#A3AEDE] text-[20px] md:text-[60px] font-normal">지점은</span>
+                <span className="text-[#A3AEDE] text-[40px] md:text-[60px] font-normal">지점은</span>
+                <br className="hidden md:block" />
+                <span className="text-white text-[40px] md:text-[60px] extra-bold">&nbsp;운영에만</span>
                 <br />
-                <span className="text-white md:text-[60px] extra-bold">운영에만</span>
-                <br />
-                <span className="text-[#A3AEDE] text-[20px] md:text-[60px] font-normal"><span className="text-[#FFFFFF] md:text-[60px] font-extrabold">집중</span>하세요</span>
+                <span className="text-[#A3AEDE] text-[40px] md:text-[60px] font-normal"><span className="text-[#FFFFFF] md:text-[60px] font-extrabold">집중</span>하세요</span>
               </h2>
             </div>
             <div>
@@ -178,16 +178,16 @@ export default function AddBranchPageClient() {
       </section>
 
       {/* 섹션 3: 혼자가 아닌 구조로 오래가요 */}
-      <section className="w-full bg-white py-16 md:py-[150px] flex items-center justify-center">
+      <section className="w-full bg-white py-[60px] md:py-[150px] flex items-center justify-center">
         <div className="max-w-6xl mx-auto px-6 md:px-10">
-          <div className="flex flex-col md:flex-row items-center gap-8 md:gap-[346px]">
+          <div className="flex flex-col md:flex-row items-left gap-8 md:gap-[346px] md:items-center">
             <div className="flex-1">
               <h2 className="text-[28px] md:text-[48px] font-bold mb-4">
-                <span className="text-[#040D33] text-[20px] md:text-[60px] extra-bold">혼자가 아닌</span>
+                <span className="text-[#040D33] text-[40px] md:text-[60px] extra-bold">혼자가 아닌</span>
+                <br className="hidden md:block" />
+                <span className="text-[#525F96] text-[40px] md:text-[60px] font-normal">구조로</span>
                 <br />
-                <span className="text-[#525F96] md:text-[60px] font-normal">구조로</span>
-                <br />
-                <span className="text-[#525F96] text-[20px] md:text-[60px] font-normal">오래가요</span>
+                <span className="text-[#525F96] text-[40px] md:text-[60px] font-normal">오래가요</span>
               </h2>
             </div>
             <div>
@@ -242,24 +242,22 @@ export default function AddBranchPageClient() {
       {/* 모바일 문의 섹션 */}
       <section id="contact" className="block md:hidden w-full h-[100vh] relative ">
         <img
-          src="/images/main/main__banner002__mobile.png"
+          src="/images/addbranch/addbranch-footer_mobile.png"
           alt="지점 모집 모바일"
           className="w-full h-full object-cover"
         />
 
         <div className="absolute mt-10 inset-0 flex flex-col max-w-[300px] mx-auto">
-          <h2 className="text-[30px] font-bold mb-3 text-white ">
-            지점 모집 문의
+          <h2 className="text-[28px] font-bold mb-3 text-white ">
+          에듀바이저스와 함께<br/>
+          성장하실 지점을 모십니다.
           </h2>
-          <p className="text-white text-[15px] mt-[29px] ">
-            한평생 에듀바이저스와 함께 성장할
-            <br />
-            파트너를 찾고 있습니다.
-            <br />
-            <br />
-            체계적인 교육 시스템과 마케팅 지원으로
-            <br />
-            안정적인 지점 운영이 가능합니다.
+          <p className="text-white text-[14.5px] mt-[29px] ">
+          지점 설립 후 성장계획에 맞추어<br/>
+에듀바이저스만의 관리 체계를 제공합니다.<br/>
+<br/>
+평생교육의 미래를 꿈꾸는<br/>
+에듀바이저스의 비전에 공감하시는 지점을 찾습니다.
           </p>
           <Link
             href="/about"
