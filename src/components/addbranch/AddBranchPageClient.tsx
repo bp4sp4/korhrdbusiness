@@ -4,7 +4,6 @@ import Image from "next/image";
 import "@/app/main.css";
 import { motion, Easing } from "framer-motion";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
 export default function AddBranchPageClient() {
   const textVariants = {
@@ -19,46 +18,17 @@ export default function AddBranchPageClient() {
     },
   };
 
-  function ArrowBlink() {
-    const [active, setActive] = useState(true);
-    useEffect(() => {
-      const interval = setInterval(() => {
-        setActive((prev) => !prev);
-      }, 2000);
-      return () => clearInterval(interval);
-    }, []);
-    return (
-      <span className="absolute top-full mt-4 left-1/2 -translate-x-1/2 w-[22px] h-[30px]">
-        <Image
-          src="/images/main/arrow_action.png"
-          width={22}
-          height={11}
-          alt="활성 화살표"
-          className={`absolute top-0 left-0 transition-all ease-in-out duration-[2000ms] ${
-            active ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2.5"
-          }`}
-        />
-        <Image
-          src="/images/main/arrow_beaction.png"
-          width={22}
-          height={11}
-          alt="비활성 화살표"
-          className={`absolute top-0 left-0 transition-all ease-in-out duration-[2000ms] ${
-            !active ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2.5"
-          }`}
-        />
-      </span>
-    );
-  }
 
   return (
-    <main className="main w-screen min-h-screen flex flex-col items-center bg-white">
+    <main className="main w-full min-h-screen flex flex-col items-center bg-white overflow-x-hidden">
       {/* Desktop Hero Section */}
       <section
-        className="main__hero hidden md:flex absolute inset-0 w-full h-full items-center justify-center relative"
+        className="main__hero hidden md:flex w-full h-full items-center justify-center relative"
         style={{
-          width: "100vw",
+          width: "100%",
           height: "75vh",
+          left: 0,
+          right: 0,
           backgroundImage: "url('/images/addbranch/addbranch_main.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -93,10 +63,12 @@ export default function AddBranchPageClient() {
       </section>
       {/* Mobile Hero Section */}
       <section
-        className="main__hero flex md:hidden absolute inset-0 w-full h-full items-center justify-center relative"
+        className="main__hero flex md:hidden w-full h-full items-center justify-center relative"
         style={{
-          width: "100vw",
+          width: "100%",
           height: "75vh",
+          left: 0,
+          right: 0,
           backgroundImage: "url('/images/addbranch/addbranch_main.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
