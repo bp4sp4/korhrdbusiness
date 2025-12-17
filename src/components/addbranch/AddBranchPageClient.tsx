@@ -126,7 +126,7 @@ export default function AddBranchPageClient() {
               <h2 className="text-[28px] md:text-[48px] font-bold mb-4">
                 <span className="text-[#525F96] text-[40px] md:text-[60px] font-normal">교육은</span>
                 <br className="hidden md:block" />
-                <span className="text-[#040D33] text-[40px] md:text-[60px] extra-bold">&nbsp;본사가</span>
+                <span className="text-[#040D33] text-[40px] md:text-[60px] extra-bold">본사가</span>
                 <br />
                 <span className="text-[#525F96] text-[40px] md:text-[60px] font-normal">준비했어요</span>
               </h2>
@@ -158,7 +158,7 @@ export default function AddBranchPageClient() {
               <h2 className="text-[28px] md:text-[48px] font-bold mb-4 text-white">
                 <span className="text-[#A3AEDE] text-[40px] md:text-[60px] font-normal">지점은</span>
                 <br className="hidden md:block" />
-                <span className="text-white text-[40px] md:text-[60px] extra-bold">&nbsp;운영에만</span>
+                <span className="text-white text-[40px] md:text-[60px] extra-bold">운영에만</span>
                 <br />
                 <span className="text-[#A3AEDE] text-[40px] md:text-[60px] font-normal"><span className="text-[#FFFFFF] md:text-[60px] font-extrabold">집중</span>하세요</span>
               </h2>
@@ -248,11 +248,11 @@ export default function AddBranchPageClient() {
         />
 
         <div className="absolute mt-10 inset-0 flex flex-col max-w-[300px] mx-auto">
-          <h2 className="text-[28px] font-bold mb-3 text-white ">
+          <h2 className="text-[28px] font-bold mb-3 text-white leading-[1.2]">
           에듀바이저스와 함께<br/>
           성장하실 지점을 모십니다.
           </h2>
-          <p className="text-white text-[14.5px] mt-[29px] ">
+          <p className="text-white text-[14.5px] mt-[29px] leading-[1.2]">
           지점 설립 후 성장계획에 맞추어<br/>
 에듀바이저스만의 관리 체계를 제공합니다.<br/>
 <br/>
