@@ -124,7 +124,7 @@ export default function AddBranchPageClient() {
           <div className="flex flex-col md:flex-row items-left gap-8 md:gap-[346px] md:items-center">
             <div className="flex-1">
               <h2 className="text-[28px] md:text-[48px] font-bold mb-4">
-                <span className="text-[#525F96] text-[40px] md:text-[60px] font-normal">교육은</span>
+                <span className="text-[#525F96] text-[40px] md:text-[60px] font-normal">교육은 </span>
                 <br className="hidden md:block" />
                 <span className="text-[#040D33] text-[40px] md:text-[60px] extra-bold">본사가</span>
                 <br />
@@ -156,7 +156,7 @@ export default function AddBranchPageClient() {
           <div className="flex flex-col md:flex-row items-left gap-8 md:gap-[346px] md:items-center">
             <div className="flex-1">
               <h2 className="text-[28px] md:text-[48px] font-bold mb-4 text-white">
-                <span className="text-[#A3AEDE] text-[40px] md:text-[60px] font-normal">지점은</span>
+                <span className="text-[#A3AEDE] text-[40px] md:text-[60px] font-normal">지점은 </span>
                 <br className="hidden md:block" />
                 <span className="text-white text-[40px] md:text-[60px] extra-bold">운영에만</span>
                 <br />
@@ -183,7 +183,7 @@ export default function AddBranchPageClient() {
           <div className="flex flex-col md:flex-row items-left gap-8 md:gap-[346px] md:items-center">
             <div className="flex-1">
               <h2 className="text-[28px] md:text-[48px] font-bold mb-4">
-                <span className="text-[#040D33] text-[40px] md:text-[60px] extra-bold">혼자가 아닌</span>
+                <span className="text-[#040D33] text-[40px] md:text-[60px] extra-bold">혼자가 아닌 </span>
                 <br className="hidden md:block" />
                 <span className="text-[#525F96] text-[40px] md:text-[60px] font-normal">구조로</span>
                 <br />
@@ -228,7 +228,7 @@ export default function AddBranchPageClient() {
             <div className="w-[1000px] mx-auto relative">
               <div className="absolute left-[49px] bottom-[35px] ">
                 <Link
-                  className="bg-[#2B7FFF] text-white w-[373px] h-[86px] flex items-center justify-center rounded-[20px] text-[20px] font-semibold hover:bg-blue-700 transition text-center"
+                  className="bg-[#2B7FFF] text-white w-[373px] h-[86px] flex items-center justify-center rounded-[12px] text-[20px] font-semibold hover:bg-blue-700 transition text-center"
                   href="/about"
                 >
                   지점 모집 문의하기
