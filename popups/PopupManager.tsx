@@ -113,7 +113,7 @@ export default function PopupManager({ onClose }: PopupManagerProps) {
         
         if (activePopups.length > 0 && isMainPage && !isLoginPage) {
           // 오늘 하루 안보기 체크
-          const visiblePopups = activePopups.filter(popup => shouldShowPopup(popup.id));
+          const visiblePopups = activePopups.filter((popup: Popup) => shouldShowPopup(popup.id));
           if (visiblePopups.length > 0) {
             devLog('팝업 표시:', visiblePopups.length, '개');
             setShowPopup(true);
