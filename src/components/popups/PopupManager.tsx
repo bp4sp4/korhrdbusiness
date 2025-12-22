@@ -37,7 +37,6 @@ export default function PopupManager({ onClose }: PopupManagerProps) {
   }, [pathname]);
 
   // 메인 페이지에서만 팝업 표시 (로그인 페이지 제외)
-  const isMainPage = pathname === "/";
   const isLoginPage = pathname === "/admin/login";
 
   // 오늘 하루 안보기 체크

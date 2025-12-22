@@ -83,7 +83,18 @@ export async function PUT(
     } = body;
 
     // 부분 업데이트를 위한 객체 생성
-    const updateData: any = {};
+    const updateData: {
+      name?: string;
+      description?: string;
+      template_type?: string;
+      template_image?: string | null;
+      center_image?: string | null;
+      bottom_title?: string | null;
+      bottom_subtitle?: string | null;
+      link_url?: string | null;
+      is_active?: boolean;
+      display_order?: number;
+    } = {};
 
     if (name !== undefined) updateData.name = name.trim();
     if (description !== undefined)
