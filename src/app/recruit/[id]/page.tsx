@@ -138,20 +138,22 @@ const JobDetailPage = () => {
     }
 
     // Slack 알림 전송
-    try {
-      const slackMessage = createRecruitApplicationNotification({
-        name: applicationForm.name,
-        phone: applicationForm.phone,
-        location: applicationForm.location,
-        message: applicationForm.message,
-        jobTitle: job.title,
-      });
-      console.log("📝 슬랙 메시지 생성 완료:", slackMessage);
-      await sendSlackNotification(slackMessage);
-      console.log("✅ 슬랙 알림 전송 성공");
-    } catch (error) {
-      console.error("❌ Slack 알림 전송 실패:", error);
-      // 슬랙 알림 실패해도 지원서 제출은 성공으로 처리
+    if (job) {
+      try {
+        const slackMessage = createRecruitApplicationNotification({
+          name: applicationForm.name,
+          phone: applicationForm.phone,
+          location: applicationForm.location,
+          message: applicationForm.message,
+          jobTitle: job.title,
+        });
+        console.log("📝 슬랙 메시지 생성 완료:", slackMessage);
+        await sendSlackNotification(slackMessage);
+        console.log("✅ 슬랙 알림 전송 성공");
+      } catch (error) {
+        console.error("❌ Slack 알림 전송 실패:", error);
+        // 슬랙 알림 실패해도 지원서 제출은 성공으로 처리
+      }
     }
 
     setIsSubmitting(false);
