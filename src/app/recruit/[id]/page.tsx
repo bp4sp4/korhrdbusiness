@@ -23,6 +23,10 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import {
+  sendSlackNotification,
+  createRecruitApplicationNotification,
+} from "@/lib/slack";
 
 interface Job {
   id: number;
@@ -131,6 +135,23 @@ const JobDetailPage = () => {
       alert("지원서 저장 실패: " + insertError.message);
       setIsSubmitting(false);
       return;
+    }
+
+    // Slack 알림 전송
+    try {
+      const slackMessage = createRecruitApplicationNotification({
+        name: applicationForm.name,
+        phone: applicationForm.phone,
+        location: applicationForm.location,
+        message: applicationForm.message,
+        jobTitle: job.title,
+      });
+      console.log("📝 슬랙 메시지 생성 완료:", slackMessage);
+      await sendSlackNotification(slackMessage);
+      console.log("✅ 슬랙 알림 전송 성공");
+    } catch (error) {
+      console.error("❌ Slack 알림 전송 실패:", error);
+      // 슬랙 알림 실패해도 지원서 제출은 성공으로 처리
     }
 
     setIsSubmitting(false);
