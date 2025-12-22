@@ -127,16 +127,9 @@ export default function Header() {
 
           {(adminRole === "super" || adminRole === "manager") && (
             <>
-              {adminRole === "super" && (
-                <Link href="/admin/consultations" className="group">
-                  <span className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)] font-bold text-blue-300">
-                    상담 신청 내역
-                  </span>
-                </Link>
-              )}
               <Link href="/admin/recruit-applications" className="group">
                 <span className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)] font-bold text-blue-300">
-                  설계사 지원자 관리
+                  어드민
                 </span>
               </Link>
               <button

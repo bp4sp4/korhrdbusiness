@@ -226,7 +226,7 @@ export default function RecruitApplicationsPage() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold text-foreground">
-                설계사 지원자 관리
+                어드민
               </h1>
               <p className="text-muted-foreground mt-1">
                 총 {filteredData.length}명의 지원자가 있습니다.

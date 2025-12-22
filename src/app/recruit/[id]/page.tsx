@@ -97,15 +97,15 @@ const JobDetailPage = () => {
     // 연락처 필드인 경우 포맷팅 적용
     if (field === "phone") {
       const formatted = formatPhoneNumber(value);
-      setApplicationForm((prev) => ({
-        ...prev,
+    setApplicationForm((prev) => ({
+      ...prev,
         [field]: formatted,
-      }));
+    }));
     } else {
-      setApplicationForm((prev) => ({
-        ...prev,
+    setApplicationForm((prev) => ({
+      ...prev,
         [field]: value,
-      }));
+    }));
     }
   };
 
@@ -148,7 +148,7 @@ const JobDetailPage = () => {
           jobTitle: job.title,
         });
         console.log("📝 슬랙 메시지 생성 완료:", slackMessage);
-        await sendSlackNotification(slackMessage);
+    await sendSlackNotification(slackMessage);
         console.log("✅ 슬랙 알림 전송 성공");
       } catch (error) {
         console.error("❌ Slack 알림 전송 실패:", error);
@@ -260,17 +260,17 @@ const JobDetailPage = () => {
                         .filter((task) => task.trim().length > 0)
                     : [];
                   return tasks.length > 0 ? (
-                    <div className="pt-4 border-t">
-                      <h4 className="font-semibold mb-2">주요 업무</h4>
-                      <ul className="text-sm text-muted-foreground space-y-1">
+                <div className="pt-4 border-t">
+                  <h4 className="font-semibold mb-2">주요 업무</h4>
+                  <ul className="text-sm text-muted-foreground space-y-1">
                         {tasks.map((task, idx) => (
-                          <li key={idx} className="flex items-start gap-2">
-                            <span className="text-blue-500">•</span>
-                            <span>{task}</span>
-                          </li>
+                        <li key={idx} className="flex items-start gap-2">
+                          <span className="text-blue-500">•</span>
+                          <span>{task}</span>
+                        </li>
                         ))}
-                      </ul>
-                    </div>
+                  </ul>
+                </div>
                   ) : null;
                 })()}
                 {(() => {
@@ -280,17 +280,17 @@ const JobDetailPage = () => {
                         .filter((req) => req.trim().length > 0)
                     : [];
                   return qualifications.length > 0 ? (
-                    <div className="pt-4 border-t">
-                      <h4 className="font-semibold mb-2">자격 요건</h4>
-                      <ul className="text-sm text-muted-foreground space-y-1">
+                <div className="pt-4 border-t">
+                  <h4 className="font-semibold mb-2">자격 요건</h4>
+                  <ul className="text-sm text-muted-foreground space-y-1">
                         {qualifications.map((req, index) => (
-                          <li key={index} className="flex items-start gap-2">
-                            <span className="text-blue-500">•</span>
-                            <span>{req}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                      <li key={index} className="flex items-start gap-2">
+                        <span className="text-blue-500">•</span>
+                        <span>{req}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
                   ) : null;
                 })()}
                 <div className="pt-4 border-t">
@@ -366,7 +366,7 @@ const JobDetailPage = () => {
                     <div className="space-y-4">
                       <Label>
                         거주지 <span className="text-red-500">*</span>
-                      </Label>
+                        </Label>
                       <div className="flex flex-wrap gap-4">
                         <label className="flex items-center space-x-2 cursor-pointer">
                           <input
@@ -400,16 +400,16 @@ const JobDetailPage = () => {
                             name="location"
                             value="그 외 지역"
                             checked={applicationForm.location === "그 외 지역"}
-                            onChange={(e) =>
+                        onChange={(e) =>
                               handleInputChange("location", e.target.value)
-                            }
+                        }
                             className="w-4 h-4"
-                          />
+                      />
                           <span>그 외 지역</span>
                         </label>
-                      </div>
                     </div>
                   </div>
+                    </div>
                   {/* 하고싶은말 */}
                   <section className="mb-8">
                     <h3 className="text-lg font-semibold mb-4 text-gray-800">

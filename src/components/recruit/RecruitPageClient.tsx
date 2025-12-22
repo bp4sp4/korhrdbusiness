@@ -701,7 +701,7 @@ export default function RecruitListPageClient() {
                         </div>
                         <div className="flex flex-col sm:items-end gap-2">
                           <div className="flex items-center gap-2">
-                          
+                        
                             {isAdmin && (
                               <div className="flex gap-1">
                                 <Button
@@ -756,7 +756,7 @@ export default function RecruitListPageClient() {
                       에듀바이저스 북부지점 인터뷰
                     </div>
                     <div className="text-sm text-gray-500">
-                  강도연 대리
+                    강도연 대리
                     </div>
                   </div>
                 </Card>
@@ -774,8 +774,8 @@ export default function RecruitListPageClient() {
                       에듀바이저스 강남지점 인터뷰
                     </div>
                     <div className="text-sm text-gray-500">
-                    장은혜 대리
-                    </div>  
+                      장은혜 대리
+                    </div>
                   </div>
                 </Card>
               </Link>
