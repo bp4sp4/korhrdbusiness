@@ -17,21 +17,21 @@ export default function Footer() {
               href="https://www.korhrdcorp.co.kr/"
               className="mb-1 block hover:underline"
             >
-              한평생교육그룹
+              한평생교육
             </Link>
             <Link
               target="_blank"
               href="https://korhrd.co.kr/"
               className="mb-1 block hover:underline"
             >
-              한평생직업훈련
+              한평생 직업훈련
             </Link>
             <Link
               target="_blank"
-              href="http://www.korhrdsup.kr/"
+              href="https://pf.kakao.com/_inxaTn"
               className="mb-1 block hover:underline"
             >
-              한평생실습지원센터
+              한평생 학습지원
             </Link>
             <Link href="/recruit" className="mb-1 block hover:underline">
               채용
@@ -64,7 +64,7 @@ export default function Footer() {
           {/* 회사 텍스트 정보 */}
           <div className="text-sm text-[#666] text-left md:text-left">
             <div className="font-bold text-[15px] pb-[16px] text-[#222b45] mb-1">
-              (주)한평생교육그룹
+              (주)한평생 에듀바이저스
             </div>
             <div>
               사업자등록번호 : 227-88-03196 | 직업평생교육시설신고 (제

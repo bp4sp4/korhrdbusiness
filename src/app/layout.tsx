@@ -7,6 +7,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import ModalProvider from "@/providers/ModalProvider";
 import PopupManager from "@/components/popups/PopupManager";
+import ScrollToTop from "@/components/ScrollToTop";
 import { cn } from "@/lib/utils";
 
 const geistSans = Geist({
@@ -107,6 +108,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <PopupManager />
+        <ScrollToTop />
         <SpeedInsights />
         <Analytics />
       </body>
