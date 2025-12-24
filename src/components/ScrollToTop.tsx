@@ -8,12 +8,12 @@ export default function ScrollToTop() {
   };
 
   return (
-    <div className="fixed bottom-8 right-8 sm:right-8 z-50">
+    <div className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-50">
       <img
         src="/images/upbtn.png"
         alt="맨 위로 이동"
         aria-label="맨 위로 이동"
-        className="w-10 h-10 cursor-pointer sm:w-10 sm:h-10 hover:opacity-80 transition-opacity"
+        className="w-12 h-12 sm:w-10 sm:h-10 cursor-pointer hover:opacity-80 active:opacity-70 transition-opacity shadow-lg"
         onClick={handleScrollToTop}
       />
     </div>

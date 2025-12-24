@@ -33,7 +33,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 420;
+  width: 420px;
   height: 520px;
   z-index: 1;
   border-radius: 12px;
@@ -161,6 +161,7 @@
   width: 300px;
   height: 300px;
   object-fit: cover;
+  max-width: 100%;
 }
 
 .bottomTextContainer {
@@ -282,12 +283,20 @@
 
 /* 반응형 디자인 */
 @media (max-width: 768px) {
+  .popupOverlay {
+    align-items: flex-end;
+    padding-bottom: 3rem;
+    padding-top: 2rem;
+  }
+
   .popupContainer {
     width: 90%;
     max-width: 420px;
     height: auto;
-    min-height: 520px;
+    min-height: 500px;
+    max-height: 90vh;
     margin: 1rem;
+    margin-top: auto;
   }
 
   .popupContent {
@@ -295,16 +304,26 @@
     min-height: 300px;
   }
 
+  .centerImageContainer {
+    margin-bottom: 1rem;
+  }
+
   .centerImage {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
     max-height: 200px;
+    object-fit: contain;
   }
 
   .bottomTitle {
     font-size: 1.25rem;
+    margin: 0 0 0.5rem 0;
   }
 
   .bottomSubtitle {
     font-size: 0.875rem;
+    margin-left: 0;
   }
 
   .navButton {
@@ -315,35 +334,106 @@
   .closeButton {
     width: 35px;
     height: 35px;
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+
+  .hideTodayButton {
+    top: -35px;
+    right: 0;
+    font-size: 0.75rem;
+    padding: 0.4rem 0.8rem;
   }
 }
 
 @media (max-width: 480px) {
+  .popupOverlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+  }
+
   .popupContainer {
     width: 95%;
     max-width: 380px;
     height: auto;
-    min-height: 480px;
+    min-height: 450px;
+    max-height: 85vh;
+    margin: 0;
   }
 
   .popupContent {
-    padding: 1rem;
+    padding: 2rem;
+    min-height: 350px;
+  }
+
+  .centerImageContainer {
+    margin-bottom: 0.75rem;
   }
 
   .centerImage {
-    max-height: 150px;
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    max-height: 250px;
+    object-fit: contain;
   }
 
   .bottomTextContainer {
-    padding: 0.75rem 1rem;
+    padding: 0;
+    margin-top: 0.75rem;
   }
 
   .bottomTitle {
-    font-size: 1.125rem;
+    font-size: 1.4rem;
+    line-height: 1.4;
+    margin: 0 0 0.4rem 0;
   }
 
   .bottomSubtitle {
-    font-size: 0.8rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-left: 0;
+  }
+
+  .navButton {
+    width: 36px;
+    height: 36px;
+  }
+
+  .navButton svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .closeButton {
+    width: 32px;
+    height: 32px;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+
+  .closeButton svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .hideTodayButton {
+    top: -27px;
+    right: 0;
+    font-size: 0.7rem;
+    padding: 0.35rem 0.7rem;
+  }
+
+  .pageIndicators {
+    bottom: 0.75rem;
+    gap: 0.4rem;
+  }
+
+  .indicator {
+    width: 10px;
+    height: 10px;
   }
 }
 
