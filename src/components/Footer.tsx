@@ -64,7 +64,7 @@ export default function Footer() {
           {/* 회사 텍스트 정보 */}
           <div className="text-sm text-[#666] text-left md:text-left">
             <div className="font-bold text-[15px] pb-[16px] text-[#222b45] mb-1">
-              (주)한평생 에듀바이저스
+              (주)한평생교육
             </div>
             <div>
               사업자등록번호 : 227-88-03196 | 직업평생교육시설신고 (제
