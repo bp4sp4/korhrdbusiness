@@ -49,7 +49,7 @@ export default function Footer() {
           <div className="min-w-[180px]">
             <div className="font-bold mb-2">문의</div>
             <a href="tel:0221356513" className="mb-1 block hover:underline">
-              전화: 02-2135-6513 (평일 10:00 ~ 18:00)
+              전화: 02-2135-6514 (평일 10:00 ~ 18:00)
             </a>
             <a
               href="mailto:korhrdlicense@korhrdoffice.com"

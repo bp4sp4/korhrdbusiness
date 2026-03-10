@@ -313,6 +313,7 @@ export default function HomePageClient() {
                 학습자 각자의 환경과 여건을 먼저 이해하고,
                 <br /> 그에 걸맞은 최적의 교육과정을 제공함으로써
                 <br /> <strong>진짜 필요한 교육을 실현합니다.</strong>
+                <br /> <span className="text-[#2b7fff]">(사회복지사 상담 완료 시 수강료 70% 할인)</span>
               </div>
             </div>
           </div>
