@@ -164,7 +164,7 @@ const CounselingModal = () => {
 
   const handleInputChange = (
     field: keyof typeof formData,
-    value: string | boolean
+    value: string | boolean,
   ) => {
     if (field === "phone" && typeof value === "string") {
       setFormData((prev) => ({
@@ -299,8 +299,8 @@ const CounselingModal = () => {
           >
             <div className="space-y-2">
               <div className="md:space-y-2">
-                <div className="w-full md:h-10  flex items-center justify-between">
-                  <Label htmlFor="name" className="text-sm font-medium">
+                <div className="w-full md:h-10  flex items-center justify-between ">
+                  <Label htmlFor="name" className="text-sm  font-medium">
                     이름 *
                   </Label>
 
@@ -330,7 +330,7 @@ const CounselingModal = () => {
                 />
               </div>
               <div className="md:space-y-2">
-                <Label htmlFor="phone" className="text-sm font-medium">
+                <Label htmlFor="phone" className="text-sm font-medium mb-2">
                   연락처 *
                 </Label>
                 <Input
@@ -352,7 +352,7 @@ const CounselingModal = () => {
                 )}
               </div>
               <div className="md:space-y-2">
-                <Label className="text-sm font-medium">
+                <Label className="text-sm font-medium mb-2">
                   최종학력 *
                   <span className="text-xs text-gray-400">
                     (최종학력마다 과정이 조금씩 달라져요!)
@@ -378,7 +378,7 @@ const CounselingModal = () => {
                 </Select>
               </div>
               <div className="md:space-y-2">
-                <Label className="text-sm font-medium">
+                <Label className="text-sm font-mediu mb-2">
                   관심 분야*
                   <span className="text-xs text-gray-400">
                     (여러 개 선택 가능)
@@ -394,14 +394,14 @@ const CounselingModal = () => {
                       fieldOptions.reduce(
                         (
                           acc: Record<string, FieldOption[]>,
-                          option: FieldOption
+                          option: FieldOption,
                         ) => {
                           if (!acc[option.category]) acc[option.category] = [];
                           acc[option.category].push(option);
                           return acc;
                         },
-                        {} as Record<string, FieldOption[]>
-                      )
+                        {} as Record<string, FieldOption[]>,
+                      ),
                     ).map(([category, options]) => (
                       <div key={category} className="space-y-2">
                         <div className="text-xs font-semibold text-gray-500 px-2 py-1 bg-gray-50 rounded">
@@ -415,45 +415,45 @@ const CounselingModal = () => {
                               ? isCustomField
                               : fieldList.includes(option.value);
                             return (
-                            <button
-                              key={option.value}
-                              type="button"
-                              onClick={() =>
-                                isCustomOption
-                                  ? toggleCustomField()
-                                  : toggleField(option.value)
-                              }
-                              className={cn(
-                                "w-full text-left p-2 rounded-lg border transition-all duration-200 hover:border-primary/50 flex items-center gap-3",
-                                isSelected
-                                  ? "border-primary bg-primary/5 text-primary"
-                                  : "border-border"
-                              )}
-                            >
-                              {/* 왼쪽 체크박스/체크아이콘 */}
-                              {isSelected ? (
-                                <img
-                                  src="/images/check.png"
-                                  alt="check"
-                                  className="w-5 h-5 mr-3"
-                                />
-                              ) : (
-                                <span className="inline-block w-5 h-5 mr-3 border-2 border-gray-300 rounded"></span>
-                              )}
-                              {/* 텍스트 영역 */}
-                              <div className="flex-1 min-w-0">
-                                <div className="font-medium text-sm">
-                                  {option.label}
-                                </div>
-                                {option.description && (
-                                  <div className="text-xs text-muted-foreground mt-1">
-                                    {option.description}
-                                  </div>
+                              <button
+                                key={option.value}
+                                type="button"
+                                onClick={() =>
+                                  isCustomOption
+                                    ? toggleCustomField()
+                                    : toggleField(option.value)
+                                }
+                                className={cn(
+                                  "w-full text-left p-2 rounded-lg border transition-all duration-200 hover:border-primary/50 flex items-center gap-3",
+                                  isSelected
+                                    ? "border-primary bg-primary/5 text-primary"
+                                    : "border-border",
                                 )}
-                              </div>
-                            </button>
+                              >
+                                {/* 왼쪽 체크박스/체크아이콘 */}
+                                {isSelected ? (
+                                  <img
+                                    src="/images/check.png"
+                                    alt="check"
+                                    className="w-5 h-5 mr-3"
+                                  />
+                                ) : (
+                                  <span className="inline-block w-5 h-5 mr-3 border-2 border-gray-300 rounded"></span>
+                                )}
+                                {/* 텍스트 영역 */}
+                                <div className="flex-1 min-w-0">
+                                  <div className="font-medium text-sm">
+                                    {option.label}
+                                  </div>
+                                  {option.description && (
+                                    <div className="text-xs text-muted-foreground mt-1">
+                                      {option.description}
+                                    </div>
+                                  )}
+                                </div>
+                              </button>
                             );
-                          }
+                          },
                         )}
                       </div>
                     ))}
@@ -538,7 +538,9 @@ const CounselingModal = () => {
             >
               <CheckCircle className="w-14 h-14 text-[#2B7FFF] mb-5" />
             </motion.div>
-            <h3 className="text-lg font-semibold mb-1.5">신청이 완료되었어요</h3>
+            <h3 className="text-lg font-semibold mb-1.5">
+              신청이 완료되었어요
+            </h3>
             <p className="text-sm text-gray-500 mb-7">
               담당자가 일주일 내에 연락드릴게요.
             </p>
