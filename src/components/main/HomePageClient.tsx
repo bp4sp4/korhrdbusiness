@@ -5,8 +5,11 @@ import "@/app/main.css";
 import { motion, Easing } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useCounselModal } from "@/store/useCounselModal";
 
 export default function HomePageClient() {
+  const { openModal } = useCounselModal();
+
   const textVariants = {
     hidden: { y: 30, opacity: 0 },
     visible: {
@@ -313,8 +316,11 @@ export default function HomePageClient() {
                 학습자 각자의 환경과 여건을 먼저 이해하고,
                 <br /> 그에 걸맞은 최적의 교육과정을 제공함으로써
                 <br /> <strong>진짜 필요한 교육을 실현합니다.</strong>
-                <br /> <span className="text-[#2b7fff]">(사회복지사 자격증 상담은 무료로 진행됩니다.
-사회복지사 자격증 수강료 70% 할인)</span>
+                <br />{" "}
+                <span className="text-[#2b7fff]">
+                  (사회복지사 자격증 상담은 무료로 진행됩니다. 사회복지사 자격증
+                  수강료 70% 할인)
+                </span>
               </div>
             </div>
           </div>
@@ -407,25 +413,30 @@ export default function HomePageClient() {
           <div className="w-[1180px] mx-auto flex text-left">
             <div className="w-full relative">
               <h2 className="text-[40px] font-semibold mb-4 text-white">
-                한평생 에듀바이저스와
+                한평생교육에서
                 <br />
-                함께하실 분을 찾습니다.
+                함께 시작해 보세요
               </h2>
               <p className="text-white text-[20px] mb-8">
-                판매 실적이 아닌, 고객만족 중심의 파격적인 보상을 드립니다.
+                실용적이고 학습자 만족 중심의
                 <br />
-                오직 고객 만족에만 집중할 수 있는 업무 환경과 최고의 복리후생을
-                제공합니다.
+                과정을 운영하고 있습니다.
+              </p>
+              <p className="text-white text-[20px] mb-8">
+                상담 비용은 일절 발생하지 않으니
+                <br />
+                편하게 이야기 나눠보시길 바랍니다.
               </p>
             </div>
             <div className="w-[1000px] mx-auto relative">
-              <div className="absolute left-[49px] bottom-[35px] ">
-                <Link
-                  className="bg-[#2B7FFF] text-white w-[373px] h-[86px] flex items-center justify-center rounded-[20px] text-[20px] font-semibold hover:bg-blue-700 transition text-center"
-                  href="/recruit"
+              <div className="absolute left-[49px] bottom-[110px] ">
+                <button
+                  type="button"
+                  onClick={openModal}
+                  className="bg-[#2B7FFF] text-white w-[373px] h-[86px] flex items-center justify-center rounded-[20px] text-[20px] font-semibold hover:bg-blue-700 transition text-center cursor-pointer border-none"
                 >
-                  채용중인 공고 보기
-                </Link>
+                  교육상담 신청하기
+                </button>
               </div>
             </div>
           </div>

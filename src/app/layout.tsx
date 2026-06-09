@@ -95,10 +95,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className="overflow-x-hidden">
+    <html lang="ko" className="overflow-x-clip">
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased overflow-x-hidden",
+          "min-h-screen bg-background font-sans antialiased overflow-x-clip",
           geistSans.variable,
           geistMono.variable
         )}

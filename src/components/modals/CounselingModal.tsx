@@ -35,106 +35,45 @@ interface FieldOption {
   description?: string;
 }
 
+// 직접입력 옵션 식별용 상수
+const CUSTOM_FIELD_VALUE = "직접입력";
+
 const fieldOptions: FieldOption[] = [
-  // {
-  //   value: "사회복지사 자격증",
-  //   label: "사회복지사 자격증",
-  //   category: "자격증",
-  //   icon: "",
-  //   description: "사회복지 전문가 양성",
-  // },
-  // {
-  //   value: "보육교사 자격증",
-  //   label: "보육교사 자격증",
-  //   category: "자격증",
-  //   icon: "",
-  //   description: "영유아 보육 전문가",
-  // },
-  // {
-  //   value: "한국어교원 자격증",
-  //   label: "한국어교원 자격증",
-  //   category: "자격증",
-  //   icon: "",
-  //   description: "한국어 교육 전문가",
-  // },
-  // {
-  //   value: "평생교육사 자격증",
-  //   label: "평생교육사 자격증",
-  //   category: "자격증",
-  //   icon: "",
-  //   description: "성인 교육 전문가",
-  // },
-  // {
-  //   value: "종합미용면허증",
-  //   label: "종합미용면허증",
-  //   category: "자격증",
-  //   icon: "",
-  //   description: "미용 전문가 면허",
-  // },
-  // {
-  //   value: "산업기사/기사 응시자격",
-  //   label: "산업기사/기사 응시자격",
-  //   category: "자격증",
-  //   icon: "",
-  //   description: "기술 전문가 자격",
-  // },
-  // {
-  //   value: "요양보호사자격증",
-  //   label: "요양보호사자격증",
-  //   category: "자격증",
-  //   icon: "",
-  //   description: "노인 돌봄 전문가",
-  // },
-  // {
-  //   value: "청소년지도사2급",
-  //   label: "청소년지도사2급",
-  //   category: "자격증",
-  //   icon: "‍",
-  //   description: "청소년 교육 지도",
-  // },
-  // {
-  //   value: "장애인영유아보육교사",
-  //   label: "장애인영유아보육교사",
-  //   category: "자격증",
-  //   icon: "",
-  //   description: "특수 보육 전문가",
-  // },
-  // {
-  //   value: "심리학사",
-  //   label: "심리학사",
-  //   category: "학위/편입",
-  //   icon: "",
-  //   description: "심리학 학사 학위",
-  // },
-  // {
-  //   value: "2/4년제 학위취득",
-  //   label: "2/4년제 학위취득",
-  //   category: "학위/편입",
-  //   icon: "",
-  //   description: "대학 학위 취득",
-  // },
-  // {
-  //   value: "편입학/대졸자전형",
-  //   label: "편입학/대졸자전형",
-  //   category: "학위/편입",
-  //   icon: "",
-  //   description: "대학 편입 준비",
-  // },
   {
-    value: "노인분야자격증",
-    label: "노인분야자격증",
-    category: "노인분야자격증",
+    value: "사회복지사 자격증",
+    label: "사회복지사 자격증",
+    category: "자격증",
     icon: "",
-    description:
-      "병원동행매니저1급, 실버인지활동지도사1급, 노인돌봄생활지원사1급",
   },
   {
-    value: "아동분야자격증",
-    label: "아동분야자격증",
-    category: "아동분야 자격증",
-    icon: "‍",
-    description:
-      "방과후아동지도사1급, 지역아동교육지도사1급, 방과후돌봄교실지도사1급",
+    value: "보육교사 자격증",
+    label: "보육교사 자격증",
+    category: "자격증",
+    icon: "",
+  },
+  {
+    value: "평생교육사",
+    label: "평생교육사",
+    category: "자격증",
+    icon: "",
+  },
+  {
+    value: "편입/대학원",
+    label: "편입/대학원",
+    category: "자격증",
+    icon: "",
+  },
+  {
+    value: "청소년지도사",
+    label: "청소년지도사",
+    category: "자격증",
+    icon: "",
+  },
+  {
+    value: CUSTOM_FIELD_VALUE,
+    label: "직접입력",
+    category: "자격증",
+    icon: "",
   },
 ];
 
@@ -144,7 +83,7 @@ const CounselingModal = () => {
     name: "",
     phone: "",
     experience: "고등학교 졸업",
-    field: "사회복지사 자격증",
+    field: "",
     consent: false,
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -154,6 +93,10 @@ const CounselingModal = () => {
   const [showTerms, setShowTerms] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const nameInputRef = useRef<HTMLInputElement>(null);
+  // 관심분야(복수선택) 상태
+  const [fieldList, setFieldList] = useState<string[]>([]);
+  const [isCustomField, setIsCustomField] = useState(false);
+  const [customFieldValue, setCustomFieldValue] = useState("");
 
   useEffect(() => {
     if (!isOpen) {
@@ -161,11 +104,14 @@ const CounselingModal = () => {
         setFormData({
           name: "",
           phone: "",
-          experience: "고등학교 졸업",
-          field: "사회복지사 자격증",
+          experience: "",
+          field: "",
           consent: false,
         });
         setIsSubmitted(false);
+        setFieldList([]);
+        setIsCustomField(false);
+        setCustomFieldValue("");
       }, 300);
       return () => clearTimeout(timer);
     }
@@ -220,7 +166,43 @@ const CounselingModal = () => {
     }
   };
 
-  const educationLevels = ["고등학교 졸업", "2·3년제 대졸", "4년제 대졸"];
+  // 선택된 관심분야 항목들을 formData.field 문자열로 동기화
+  const syncField = (list: string[], custom: boolean, customVal: string) => {
+    const parts = [...list];
+    if (custom && customVal.trim()) parts.push(customVal.trim());
+    handleInputChange("field", parts.join(", "));
+  };
+
+  const toggleField = (value: string) => {
+    const next = fieldList.includes(value)
+      ? fieldList.filter((v) => v !== value)
+      : [...fieldList, value];
+    setFieldList(next);
+    syncField(next, isCustomField, customFieldValue);
+  };
+
+  const toggleCustomField = () => {
+    const next = !isCustomField;
+    setIsCustomField(next);
+    syncField(fieldList, next, customFieldValue);
+  };
+
+  const handleCustomFieldChange = (value: string) => {
+    setCustomFieldValue(value);
+    syncField(fieldList, isCustomField, value);
+  };
+
+  const educationLevels = [
+    "고졸",
+    "2년제 중퇴",
+    "2년제 졸업",
+    "3년제 중퇴",
+    "3년제 졸업",
+    "4년제 중퇴",
+    "4년제 졸업",
+    "대학원 이상",
+    "대학교졸업(외국)",
+  ];
 
   const handleSubmit = async (e?: React.FormEvent<HTMLFormElement>) => {
     if (e) e.preventDefault();
@@ -233,7 +215,30 @@ const CounselingModal = () => {
         .insert([{ ...formData, created_at: new Date().toISOString() }]);
       if (dbError) throw new Error(`DB 저장 실패: ${dbError.message}`);
 
-      // 2. Slack 알림 전송
+      // 2. 학점은행제 사업부 문의 DB(KorhrdGroupDB)로 전송
+      //    실패해도 신청 자체는 완료 처리(자체 DB + 슬랙은 이미 저장됨)
+      try {
+        const res = await fetch("/api/hakjeom-inquiry", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: formData.name,
+            contact: formData.phone,
+            education: formData.experience,
+            hope_course: formData.field,
+            // 유입경로 → 대분류: 에듀바이저스 / 중분류: 상담폼 ("대분류_중분류" 형식)
+            click_source: "에듀바이저스_상담폼",
+          }),
+        });
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}));
+          console.error("학점은행제 문의 DB 전송 실패:", err);
+        }
+      } catch (groupErr) {
+        console.error("학점은행제 문의 DB 전송 중 오류:", groupErr);
+      }
+
+      // 3. Slack 알림 전송
       const slackMessage = createCounselingNotification(formData);
       await sendSlackNotification(slackMessage);
 
@@ -339,7 +344,7 @@ const CounselingModal = () => {
                   required
                 >
                   <SelectTrigger id="counsel-experience-select">
-                    <SelectValue placeholder="학력을 선택해주세요" />
+                    <SelectValue placeholder="최종학력을 선택해주세요" />
                   </SelectTrigger>
                   <SelectContent className="z-[10000]">
                     {educationLevels.map((level) => (
@@ -354,7 +359,7 @@ const CounselingModal = () => {
                 <Label className="text-sm font-medium">
                   관심 분야*
                   <span className="text-xs text-gray-400">
-                    (아래로 스크롤해 더 많은 항목을 확인하세요)
+                    (여러 개 선택 가능)
                   </span>
                 </Label>
                 <div id="counsel-field-select" className="relative">
@@ -381,22 +386,30 @@ const CounselingModal = () => {
                           {category}
                         </div>
                         {(options as FieldOption[]).map(
-                          (option: FieldOption) => (
+                          (option: FieldOption) => {
+                            const isCustomOption =
+                              option.value === CUSTOM_FIELD_VALUE;
+                            const isSelected = isCustomOption
+                              ? isCustomField
+                              : fieldList.includes(option.value);
+                            return (
                             <button
                               key={option.value}
                               type="button"
                               onClick={() =>
-                                handleInputChange("field", option.value)
+                                isCustomOption
+                                  ? toggleCustomField()
+                                  : toggleField(option.value)
                               }
                               className={cn(
                                 "w-full text-left p-2 rounded-lg border transition-all duration-200 hover:border-primary/50 flex items-center gap-3",
-                                formData.field === option.value
+                                isSelected
                                   ? "border-primary bg-primary/5 text-primary"
                                   : "border-border"
                               )}
                             >
                               {/* 왼쪽 체크박스/체크아이콘 */}
-                              {formData.field === option.value ? (
+                              {isSelected ? (
                                 <img
                                   src="/images/check.png"
                                   alt="check"
@@ -417,11 +430,23 @@ const CounselingModal = () => {
                                 )}
                               </div>
                             </button>
-                          )
+                            );
+                          }
                         )}
                       </div>
                     ))}
                   </div>
+                  {/* 직접입력 선택 시 한 줄 입력창 */}
+                  {isCustomField && (
+                    <Input
+                      id="counsel-custom-field-input"
+                      placeholder="관심 분야를 직접 입력해주세요"
+                      value={customFieldValue}
+                      onChange={(e) => handleCustomFieldChange(e.target.value)}
+                      className="mt-2 w-full text-base h-10 text-[14px] placeholder:text-[14px]"
+                      autoComplete="off"
+                    />
+                  )}
                   {showScrollIndicator && (
                     <div className="absolute bottom-0 left-0 right-0 h-14 z-10 bg-gradient-to-t from-white to-transparent pointer-events-none flex flex-col items-center justify-end pb-2">
                       <motion.div
@@ -479,29 +504,26 @@ const CounselingModal = () => {
           </form>
         ) : (
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="text-center p-4 md:p-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex flex-col items-center text-center px-6 py-10 md:py-12"
           >
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
-              transition={{ delay: 0.2, type: "spring" }}
+              transition={{ delay: 0.1, type: "spring", stiffness: 200 }}
             >
-              <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
+              <CheckCircle className="w-14 h-14 text-[#2B7FFF] mb-5" />
             </motion.div>
-            <h3 className="text-xl font-semibold mb-2">
-              신청이 완료되었습니다!
-            </h3>
-            <p className="text-gray-600 mb-4">
-              담당자가 일주일 내에 연락드릴 예정입니다.
+            <h3 className="text-lg font-semibold mb-1.5">신청이 완료되었어요</h3>
+            <p className="text-sm text-gray-500 mb-7">
+              담당자가 일주일 내에 연락드릴게요.
             </p>
-            <div className="text-sm text-gray-500">
-              <p>• 상담 확정 안내를 보내드립니다</p>
-              <p>• 상담 전 준비사항을 미리 안내해드립니다</p>
-            </div>
-            <Button onClick={closeModal} className="mt-6 ">
-              닫기
+            <Button
+              onClick={closeModal}
+              className="w-full h-11 text-[15px] bg-[#2B7FFF] hover:bg-[#2B7FFF]/80"
+            >
+              확인
             </Button>
           </motion.div>
         )}
