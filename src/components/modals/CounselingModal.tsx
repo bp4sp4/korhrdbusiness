@@ -148,15 +148,28 @@ const CounselingModal = () => {
     }
   };
 
+  // 연락처 자동 하이픈 포맷 (010-XXXX-XXXX / 011-XXX-XXXX)
+  const formatPhone = (raw: string) => {
+    const d = raw.replace(/\D/g, "").slice(0, 11);
+    if (d.length <= 3) return d;
+    if (d.length <= 7) return `${d.slice(0, 3)}-${d.slice(3)}`;
+    if (d.length <= 10)
+      return `${d.slice(0, 3)}-${d.slice(3, 6)}-${d.slice(6)}`;
+    return `${d.slice(0, 3)}-${d.slice(3, 7)}-${d.slice(7)}`;
+  };
+
+  // 010(11자리) 또는 011(10~11자리)만 허용
+  const isValidPhone = (phone: string) =>
+    /^(010\d{8}|011\d{7,8})$/.test(phone.replace(/\D/g, ""));
+
   const handleInputChange = (
     field: keyof typeof formData,
     value: string | boolean
   ) => {
     if (field === "phone" && typeof value === "string") {
-      const sanitizedValue = value.replace(/[^0-9-]/g, "");
       setFormData((prev) => ({
         ...prev,
-        [field]: sanitizedValue,
+        [field]: formatPhone(value),
       }));
     } else {
       setFormData((prev) => ({
@@ -207,6 +220,10 @@ const CounselingModal = () => {
   const handleSubmit = async (e?: React.FormEvent<HTMLFormElement>) => {
     if (e) e.preventDefault();
     if (isSubmitting) return;
+    if (!isValidPhone(formData.phone)) {
+      alert("연락처는 010 또는 011로 시작하는 번호로 정확히 입력해주세요.");
+      return;
+    }
     setIsSubmitting(true);
     try {
       // 1. 데이터베이스에 저장
@@ -328,6 +345,11 @@ const CounselingModal = () => {
                   className="w-full text-base md:h-10 font-[14px] placeholder:text-[14px]"
                   required
                 />
+                {formData.phone && !isValidPhone(formData.phone) && (
+                  <p className="text-xs text-red-500 mt-1">
+                    010 또는 011로 시작하는 번호를 정확히 입력해주세요.
+                  </p>
+                )}
               </div>
               <div className="md:space-y-2">
                 <Label className="text-sm font-medium">
@@ -493,6 +515,7 @@ const CounselingModal = () => {
               disabled={
                 !formData.name ||
                 !formData.phone ||
+                !isValidPhone(formData.phone) ||
                 !formData.experience ||
                 !formData.field ||
                 !formData.consent ||
