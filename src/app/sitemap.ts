@@ -1,6 +1,9 @@
 import { MetadataRoute } from "next";
 import { supabase } from "@/lib/supabase";
 
+// 빌드 시점이 아니라 요청 시점에 생성 (DB 조회를 런타임에 수행)
+export const dynamic = "force-dynamic";
+
 const URL = "https://www.eduvisor.kr";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
