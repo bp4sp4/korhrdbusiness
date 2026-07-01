@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import AdminSidebar from "@/components/admin/AdminSidebar";
 import {
@@ -22,9 +22,40 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   const router = useRouter();
+  const pathname = usePathname();
+  const isLoginPage = pathname === "/admin/login";
   const logoutTimer = useRef<NodeJS.Timeout | null>(null);
   const warningTimer = useRef<NodeJS.Timeout | null>(null);
   const [showWarningModal, setShowWarningModal] = useState(false);
+  // null = 확인 중, false = 관리자 아님, true = 인증된 관리자
+  const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
+
+  // 로그인 여부 확인 (로그인 시 사이드바 노출용) + 로그인/로그아웃 실시간 반영
+  useEffect(() => {
+    let mounted = true;
+    const checkAdmin = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (!user) {
+        if (mounted) setIsAdmin(false);
+        return;
+      }
+      const { data: admins } = await supabase
+        .from("admins")
+        .select("email")
+        .eq("email", user.email);
+      if (mounted) setIsAdmin(!!admins && admins.length > 0);
+    };
+    checkAdmin();
+    const { data: sub } = supabase.auth.onAuthStateChange(() => {
+      checkAdmin();
+    });
+    return () => {
+      mounted = false;
+      sub.subscription.unsubscribe();
+    };
+  }, []);
 
   const resetTimers = useCallback(() => {
     if (logoutTimer.current) {
@@ -52,6 +83,9 @@ export default function AdminLayout({
   }, [resetTimers, showWarningModal]);
 
   useEffect(() => {
+    // 로그인 페이지이거나 인증 전에는 자동 로그아웃 타이머를 돌리지 않는다.
+    if (isLoginPage || isAdmin !== true) return;
+
     resetTimers();
 
     window.addEventListener("mousemove", handleActivity);
@@ -71,16 +105,22 @@ export default function AdminLayout({
       window.removeEventListener("scroll", handleActivity);
       window.removeEventListener("click", handleActivity);
     };
-  }, [handleActivity, resetTimers]);
+  }, [handleActivity, resetTimers, isLoginPage, isAdmin]);
 
   const extendSession = () => {
     setShowWarningModal(false);
     resetTimers();
   };
 
+  // 로그인 페이지는 사이드바 없이 전체 폭으로 렌더링
+  if (isLoginPage) {
+    return <div className="min-h-screen bg-gray-50">{children}</div>;
+  }
+
   return (
     <div className="flex min-h-screen">
-      <AdminSidebar />
+      {/* 사이드바는 인증된 관리자일 때만 노출 */}
+      {isAdmin && <AdminSidebar />}
       <main className="flex-1 bg-gray-50">{children}</main>
 
       <Dialog open={showWarningModal} onOpenChange={setShowWarningModal}>

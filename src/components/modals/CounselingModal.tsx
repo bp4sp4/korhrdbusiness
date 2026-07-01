@@ -26,6 +26,7 @@ import {
   createCounselingNotification,
 } from "@/lib/slack";
 import "driver.js/dist/driver.css";
+import styles from "./CounselingModal.module.css";
 
 interface FieldOption {
   value: string;
@@ -271,47 +272,36 @@ const CounselingModal = () => {
   return (
     <Dialog open={isOpen} onOpenChange={closeModal}>
       <DialogContent
-        className="
-          max-w-full sm:max-w-[500px]
-          p-0
-          z-[999]
-          h-[78vh] md:h-auto
-          md:overflow-y-visible
-          w-[350px]
-          md:w-[500px]
-        "
+        className={styles.dialogContent}
         onPointerDownOutside={(e) => e.preventDefault()}
         aria-describedby="counsel-modal-desc"
       >
-        <span id="counsel-modal-desc" className="sr-only">
+        <span id="counsel-modal-desc" className={styles.srOnly}>
           상담신청을 위한 입력 폼입니다. 이름, 연락처, 학력, 관심분야, 개인정보
           동의를 입력하세요.
         </span>
-        <DialogHeader className="p-2 md:pt-4 pb-0">
-          <DialogTitle className="text-lg font-bold text-center md:text-[20px] pt-2">
+        <DialogHeader className={styles.header}>
+          <DialogTitle className={styles.title}>
             교육 상담 신청
           </DialogTitle>
         </DialogHeader>
         {!isSubmitted ? (
-          <form
-            className="p-4 md:p-6 space-y-4 md:space-y-6"
-            onSubmit={handleSubmit}
-          >
-            <div className="space-y-2">
-              <div className="md:space-y-2">
-                <div className="w-full md:h-10  flex items-center justify-between ">
-                  <Label htmlFor="name" className="text-sm  font-medium">
+          <form className={styles.form} onSubmit={handleSubmit}>
+            <div className={styles.fieldsGroup}>
+              <div className={styles.field}>
+                <div className={styles.nameRow}>
+                  <Label htmlFor="name" className={styles.label}>
                     이름 *
                   </Label>
 
-                  <div className="flex items-center justify-center">
+                  <div className={styles.brand}>
                     <img
                       src="/images/logo2.png"
                       alt="logo"
-                      className="w-3 h-3 md:w-3 md:h-3"
+                      className={styles.brandLogo}
                     />
                     <span
-                      className="ml-1 font-bold  text-gray-800 tracking-wide text-[14px] md:text-[14px]"
+                      className={styles.brandName}
                       style={{ fontFamily: "Toss Product Sans" }}
                     >
                       Eduvisors
@@ -324,13 +314,13 @@ const CounselingModal = () => {
                   placeholder="홍길동"
                   value={formData.name}
                   onChange={(e) => handleInputChange("name", e.target.value)}
-                  className="w-full text-base h-10 text-[14px] placeholder:text-[14px]"
+                  className={styles.input}
                   required
                   autoComplete="off"
                 />
               </div>
-              <div className="md:space-y-2">
-                <Label htmlFor="phone" className="text-sm font-medium mb-2">
+              <div className={styles.field}>
+                <Label htmlFor="phone" className={styles.labelBlock}>
                   연락처 *
                 </Label>
                 <Input
@@ -342,19 +332,19 @@ const CounselingModal = () => {
                   placeholder="연락처를 다시 한 번 확인해 주세요"
                   value={formData.phone}
                   onChange={(e) => handleInputChange("phone", e.target.value)}
-                  className="w-full text-base md:h-10 font-[14px] placeholder:text-[14px]"
+                  className={styles.input}
                   required
                 />
                 {formData.phone && !isValidPhone(formData.phone) && (
-                  <p className="text-xs text-red-500 mt-1">
+                  <p className={styles.phoneError}>
                     010 또는 011로 시작하는 번호를 정확히 입력해주세요.
                   </p>
                 )}
               </div>
-              <div className="md:space-y-2">
-                <Label className="text-sm font-medium mb-2">
+              <div className={styles.field}>
+                <Label className={styles.labelBlock}>
                   최종학력 *
-                  <span className="text-xs text-gray-400">
+                  <span className={styles.hint}>
                     (최종학력마다 과정이 조금씩 달라져요!)
                   </span>
                 </Label>
@@ -368,7 +358,7 @@ const CounselingModal = () => {
                   <SelectTrigger id="counsel-experience-select">
                     <SelectValue placeholder="최종학력을 선택해주세요" />
                   </SelectTrigger>
-                  <SelectContent className="z-[10000]">
+                  <SelectContent className={styles.selectContent}>
                     {educationLevels.map((level) => (
                       <SelectItem key={level} value={level}>
                         {level}
@@ -377,17 +367,17 @@ const CounselingModal = () => {
                   </SelectContent>
                 </Select>
               </div>
-              <div className="md:space-y-2">
-                <Label className="text-sm font-mediu mb-2">
+              <div className={styles.field}>
+                <Label className={styles.labelBlock}>
                   관심 분야*
-                  <span className="text-xs text-gray-400">
+                  <span className={styles.hint}>
                     (여러 개 선택 가능)
                   </span>
                 </Label>
-                <div id="counsel-field-select" className="relative">
+                <div id="counsel-field-select" className={styles.fieldSelectWrap}>
                   <div
                     ref={scrollRef}
-                    className="grid grid-cols-1 sm:grid-cols-1 gap-2 md:max-h-60 max-h-40 overflow-y-auto border rounded-lg p-2 scrollbar-hide"
+                    className={styles.fieldScroll}
                     onScroll={checkScrollIndicator}
                   >
                     {Object.entries(
@@ -403,8 +393,8 @@ const CounselingModal = () => {
                         {} as Record<string, FieldOption[]>,
                       ),
                     ).map(([category, options]) => (
-                      <div key={category} className="space-y-2">
-                        <div className="text-xs font-semibold text-gray-500 px-2 py-1 bg-gray-50 rounded">
+                      <div key={category} className={styles.category}>
+                        <div className={styles.categoryLabel}>
                           {category}
                         </div>
                         {(options as FieldOption[]).map(
@@ -424,10 +414,8 @@ const CounselingModal = () => {
                                     : toggleField(option.value)
                                 }
                                 className={cn(
-                                  "w-full text-left p-2 rounded-lg border transition-all duration-200 hover:border-primary/50 flex items-center gap-3",
-                                  isSelected
-                                    ? "border-primary bg-primary/5 text-primary"
-                                    : "border-border",
+                                  styles.option,
+                                  isSelected && styles.optionSelected,
                                 )}
                               >
                                 {/* 왼쪽 체크박스/체크아이콘 */}
@@ -435,18 +423,18 @@ const CounselingModal = () => {
                                   <img
                                     src="/images/check.png"
                                     alt="check"
-                                    className="w-5 h-5 mr-3"
+                                    className={styles.checkIcon}
                                   />
                                 ) : (
-                                  <span className="inline-block w-5 h-5 mr-3 border-2 border-gray-300 rounded"></span>
+                                  <span className={styles.checkbox}></span>
                                 )}
                                 {/* 텍스트 영역 */}
-                                <div className="flex-1 min-w-0">
-                                  <div className="font-medium text-sm">
+                                <div className={styles.optionText}>
+                                  <div className={styles.optionLabel}>
                                     {option.label}
                                   </div>
                                   {option.description && (
-                                    <div className="text-xs text-muted-foreground mt-1">
+                                    <div className={styles.optionDesc}>
                                       {option.description}
                                     </div>
                                   )}
@@ -465,12 +453,12 @@ const CounselingModal = () => {
                       placeholder="관심 분야를 직접 입력해주세요"
                       value={customFieldValue}
                       onChange={(e) => handleCustomFieldChange(e.target.value)}
-                      className="mt-2 w-full text-base h-10 text-[14px] placeholder:text-[14px]"
+                      className={styles.customInput}
                       autoComplete="off"
                     />
                   )}
                   {showScrollIndicator && (
-                    <div className="absolute bottom-0 left-0 right-0 h-14 z-10 bg-gradient-to-t from-white to-transparent pointer-events-none flex flex-col items-center justify-end pb-2">
+                    <div className={styles.scrollIndicator}>
                       <motion.div
                         initial={{ y: -5, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
@@ -480,14 +468,14 @@ const CounselingModal = () => {
                           ease: "easeInOut",
                         }}
                       >
-                        <ArrowDown className="w-5 h-5 text-gray-400" />
+                        <ArrowDown className={styles.arrowIcon} />
                       </motion.div>
                     </div>
                   )}
                 </div>
               </div>
-              <div className="p-2 bg-gray-50 rounded-lg border">
-                <label className="flex items-center gap-2 text-sm font-medium">
+              <div className={styles.consentBox}>
+                <label className={styles.consentLabel}>
                   <input
                     id="counsel-consent-checkbox"
                     type="checkbox"
@@ -500,7 +488,7 @@ const CounselingModal = () => {
                   개인정보 수집 및 이용에 동의합니다.
                   <button
                     type="button"
-                    className="ml-2 text-xs underline text-primary hover:text-primary/80"
+                    className={styles.termsBtn}
                     onClick={() => setShowTerms(true)}
                   >
                     자세히 보기
@@ -511,7 +499,7 @@ const CounselingModal = () => {
             <Button
               id="counsel-submit-btn"
               type="submit"
-              className="w-full text-base text-[14px] md:h-11 h-11 md:text-[16px] bg-[#2B7FFF] hover:bg-[#2B7FFF]/80"
+              className={styles.submitBtn}
               disabled={
                 !formData.name ||
                 !formData.phone ||
@@ -529,24 +517,24 @@ const CounselingModal = () => {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="flex flex-col items-center text-center px-6 py-10 md:py-12"
+            className={styles.successWrap}
           >
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.1, type: "spring", stiffness: 200 }}
             >
-              <CheckCircle className="w-14 h-14 text-[#2B7FFF] mb-5" />
+              <CheckCircle className={styles.successIcon} />
             </motion.div>
-            <h3 className="text-lg font-semibold mb-1.5">
+            <h3 className={styles.successTitle}>
               신청이 완료되었어요
             </h3>
-            <p className="text-sm text-gray-500 mb-7">
+            <p className={styles.successDesc}>
               담당자가 일주일 내에 연락드릴게요.
             </p>
             <Button
               onClick={closeModal}
-              className="w-full h-11 text-[15px] bg-[#2B7FFF] hover:bg-[#2B7FFF]/80"
+              className={styles.confirmBtn}
             >
               확인
             </Button>
@@ -555,12 +543,12 @@ const CounselingModal = () => {
       </DialogContent>
       {/* 약관 모달 */}
       <Dialog open={showTerms} onOpenChange={setShowTerms}>
-        <DialogContent className="max-w-md z-1001">
+        <DialogContent className={styles.termsContent}>
           <DialogHeader>
             <DialogTitle>개인정보 수집 및 이용 동의</DialogTitle>
           </DialogHeader>
-          <div className="text-xs text-gray-600 space-y-2">
-            <ul className="list-disc pl-4 mb-2">
+          <div className={styles.termsBody}>
+            <ul className={styles.termsList}>
               <li>수집 항목: 이름, 연락처, 학력, 분야</li>
               <li>이용 목적: 상담 신청 접수 및 관리, 서비스 제공</li>
               <li>
@@ -573,7 +561,7 @@ const CounselingModal = () => {
           </div>
           <Button
             onClick={() => setShowTerms(false)}
-            className="w-full mt-4 bg-[#2B7FFF] hover:bg-[#2B7FFF]/80"
+            className={styles.termsCloseBtn}
           >
             닫기
           </Button>

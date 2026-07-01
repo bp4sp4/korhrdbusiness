@@ -6,6 +6,7 @@ import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import { useCounselModal } from "@/store/useCounselModal";
+import styles from "./Header.module.css";
 
 export default function Header() {
   // isAdmin: null(아직 확인 전), true(어드민), false(비어있음)
@@ -73,7 +74,7 @@ export default function Header() {
 
   return (
     <header
-      className="fixed top-0 left-0 w-full z-50 bg-white"
+      className={styles.header}
       style={{
         backgroundColor: "#191f28",
         position: "sticky",
@@ -81,24 +82,20 @@ export default function Header() {
         zIndex: 100,
       }}
     >
-      <div className="w-full max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
-        <Link href="/" className="header__logo flex items-center gap-2">
+      <div className={styles.inner}>
+        <Link href="/" className={styles.logo}>
           <Image
             src="/images/logo2.png"
             alt="로고"
             width={28}
             height={28}
-            className="header__logo-img w-[23px] h-[23px] md:w-[25px] md:h-[25px]"
+            className={styles.logoImg}
           />
-          <span className="font-bold text-white text-[20px] md:text-[24px]">
-            한평생 에듀바이저스
-          </span>
+          <span className={styles.logoText}>한평생 에듀바이저스</span>
         </Link>
-        <nav className="header__nav hidden md:flex gap-3 text-white items-center">
-          <Link href="/about" className="group">
-            <span className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)]">
-              회사소개
-            </span>
+        <nav className={styles.nav}>
+          <Link href="/about" className={styles.navItem}>
+            <span className={styles.navLink}>회사소개</span>
           </Link>
           {/* 교육서비스 임시 비활성화 */}
           {/* <Link href="/eduservice" className="group">
@@ -108,11 +105,9 @@ export default function Header() {
           </Link> */}
           <button
             onClick={handleOpenCounselModal}
-            className="group bg-transparent border-none cursor-pointer"
+            className={`${styles.navItem} ${styles.btnReset}`}
           >
-            <span className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)]">
-              교육상담받기
-            </span>
+            <span className={styles.navLink}>교육상담받기</span>
           </button>
           {/* 설계사채용/지점모집 임시 비활성화 */}
           {/* <Link href="/recruit" className="group">
@@ -128,14 +123,14 @@ export default function Header() {
 
           {(adminRole === "super" || adminRole === "manager") && (
             <>
-              <Link href="/admin/recruit-applications" className="group">
-                <span className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)] font-bold text-blue-300">
+              <Link href="/admin/recruit-applications" className={styles.navItem}>
+                <span className={`${styles.navLink} ${styles.adminLink}`}>
                   어드민
                 </span>
               </Link>
               <button
                 onClick={handleLogout}
-                className="header__nav-link text-[15px] px-4 py-2 rounded-[8px] transition-colors duration-150 group-hover:bg-[rgba(217,217,255,0.11)] font-bold text-red-300"
+                className={`${styles.navLink} ${styles.logoutBtn}`}
                 style={{
                   border: 0,
                   background: "none",
@@ -152,13 +147,11 @@ export default function Header() {
         </nav>
         {/* 모바일: 햄버거/X 버튼 토글 */}
         <button
-          className="header__menu-btn md:hidden text-white"
+          className={styles.menuBtn}
           onClick={() => setMenuOpen((prev) => !prev)}
           aria-label={menuOpen ? "메뉴 닫기" : "메뉴 열기"}
         >
-          <span className="header__menu-icon text-3xl">
-            {menuOpen ? "×" : "☰"}
-          </span>
+          <span className={styles.menuIcon}>{menuOpen ? "×" : "☰"}</span>
         </button>
       </div>
       {/* 모바일 메뉴 오버레이 */}
@@ -166,33 +159,24 @@ export default function Header() {
         <>
           {/* 오버레이 배경: 모바일 메뉴가 열릴 때만 */}
           <div
-            className={`
-              fixed inset-0 z-40 transition-opacity duration-300
-              ${
-                menuOpen
-                  ? "opacity-100 pointer-events-auto"
-                  : "opacity-0 pointer-events-none"
-              }
-              md:hidden
-            `}
+            className={`${styles.overlay} ${
+              menuOpen ? styles.overlayOpen : styles.overlayClosed
+            }`}
             onClick={() => setMenuOpen(false)}
           />
           {/* 메뉴 리스트: 헤더 아래에서 height transition으로 스르륵 */}
           <div
-            className={`
-              fixed left-0 right-0 z-50 bg-[#191f28] text-white shadow-lg md:hidden overflow-hidden
-              transition-[max-height] duration-200 ease-in-out
-            `}
+            className={styles.menuPanel}
             style={{
               top: "60px",
               maxHeight: menuOpen ? `${menuHeight}px` : "0px",
             }}
           >
             <div ref={menuListRef}>
-              <nav className="w-full flex flex-col items-center gap-2 px-4 py-4">
+              <nav className={styles.mobileNav}>
                 <Link
                   href="/about"
-                  className="w-full py-3 text-lg font-normal text-white hover:bg-[#22304a] rounded transition"
+                  className={styles.mobileLink}
                   onClick={() => setMenuOpen(false)}
                 >
                   회사 소개
@@ -210,7 +194,7 @@ export default function Header() {
                     handleOpenCounselModal();
                     setMenuOpen(false);
                   }}
-                  className="w-full py-3 text-lg font-normal text-white hover:bg-[#22304a] rounded transition bg-transparent border-none text-left md:text-left"
+                  className={`${styles.mobileLink} ${styles.mobileBtnReset}`}
                 >
                   교육상담받기
                 </button>

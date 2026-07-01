@@ -9,6 +9,7 @@ import "swiper/css";
 import { Card } from "@/components/ui/card";
 import { Autoplay } from "swiper/modules";
 import type { Swiper as SwiperClass } from "swiper";
+import styles from "./AboutPageClient.module.css";
 // import MarqueeDemo from "../magicui/review";
 
 interface TimelineEntry {
@@ -30,13 +31,13 @@ export default function AboutPageClient() {
     if (typeof window === "undefined") return;
     const observer1 = new window.IntersectionObserver(
       ([entry]) => setEduTopActive(entry.isIntersecting),
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
     if (eduTopContainerRef.current)
       observer1.observe(eduTopContainerRef.current);
     const observer2 = new window.IntersectionObserver(
       ([entry]) => setEduCardsActive(entry.isIntersecting),
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
     if (eduCardsContainerRef.current)
       observer2.observe(eduCardsContainerRef.current);
@@ -67,61 +68,57 @@ export default function AboutPageClient() {
   }, [eduCardsActive]);
 
   return (
-    <div className=" text-white w-full min-h-screen">
+    <div className={styles.page}>
       {/* 1. 히어로/인트로 */}
-      <div className="relative w-full h-[87vh]  md:h-[100vh] flex items-center justify-center overflow-hidden">
+      <div className={styles.hero}>
         {/* 배경 이미지에 parallax */}
-        <motion.div className="absolute inset-0 w-full h-full z-0">
-          <div className="absolute inset-0 w-full h-full z-0">
+        <motion.div className={styles.heroBgLayer}>
+          <div className={styles.heroBgInner}>
             {/* 데스크톱용 이미지 (md 사이즈 이상에서 보임) */}
             <img
               src="/images/about/about_main_banner.png"
               alt="메인 배너 이미지"
-              className="hidden md:block w-full h-full object-cover"
+              className={styles.bannerDesktop}
             />
             {/* 모바일용 이미지 (md 사이즈 미만에서 보임) */}
             <img
               src="/images/about/about_main_banner_moblie.png"
               alt="모바일 메인 배너 이미지"
-              className="block md:hidden w-full h-full object-cover"
+              className={styles.bannerMobile}
             />
           </div>
           {/* 어두운 오버레이 (모바일만) */}
-          <div className="block md:hidden absolute inset-0 w-full h-full bg-black opacity-50 z-10 pointer-events-none" />
+          <div className={styles.heroOverlay} />
         </motion.div>
         <motion.div
-          className=" z-10 flex flex-col w-full max-w-[1200px] mx-auto px-10 absolute bottom-15 md:relative md:bottom-10"
+          className={styles.heroContent}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.1 }}
         >
-          <h2
-            className="text-3xl md:text-6xl font-normal mb-2"
-            style={{ letterSpacing: "-2px" }}
-          >
+          <h2 className={styles.heroTitle} style={{ letterSpacing: "-2px" }}>
             누구도 끝까지 책임지지 않던
           </h2>
-          <p className="text-3xl md:text-6xl font-bold font-extrabold ">
-            교육의 본질을 바꿉니다.
-          </p>
-          <p className="text-xl md:text-3xl text-white mt-10">
+          <p className={styles.heroSubtitle}>교육의 본질을 바꿉니다.</p>
+          <p className={styles.heroDesc}>
             <strong>한평생교육</strong>은 여러분과{" "}
-            <span className="md:hidden block"></span>한 평생을 함께 함께합니다.
+            <span className={styles.mobileBreak}></span>한 평생을 함께
+            함께합니다.
           </p>
         </motion.div>
       </div>
 
       {/* 2. 연혁(타임라인) */}
       <motion.section
-        className="bg-[#191f28] py-16"
+        className={styles.timelineSection}
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
         viewport={{ once: true, amount: 0.2 }}
       >
-        <div className="max-w-4xl mx-auto">
-          <div className="w-full font-sans md:px-10">
-            <div className="relative max-w-4xl mx-auto pb-20">
+        <div className={styles.container4xl}>
+          <div className={styles.timelineInner}>
+            <div className={styles.timelineTrack}>
               <TimelineSection />
             </div>
           </div>
@@ -129,10 +126,10 @@ export default function AboutPageClient() {
       </motion.section>
 
       {/* 3. 교육 철학/슬로건 */}
-      <motion.section className="bg-white text-black mt-[134px]  relative">
-        <div className="max-w-2xl mx-auto text-center">
-          <h3 className="md:text-[40px] text-2xl font-extrabold mb-[133px]">
-            &apos;<span className="text-blue-600">왜?</span>&apos; 교육은
+      <motion.section className={styles.philosophy}>
+        <div className={styles.centerNarrow}>
+          <h3 className={styles.philTitle}>
+            &apos;<span className={styles.blue600}>왜?</span>&apos; 교육은
             어렵게만 느껴질까?
           </h3>
         </div>
@@ -154,7 +151,7 @@ export default function AboutPageClient() {
               <>
                 {/* 모바일 Swiper */}
                 <div
-                  className="block md:hidden mb-[178px]"
+                  className={styles.mobileSwiperWrap}
                   ref={eduTopContainerRef}
                 >
                   <Swiper
@@ -167,24 +164,24 @@ export default function AboutPageClient() {
                     onSwiper={(swiper) => {
                       eduTopSwiperRef.current = swiper;
                     }}
-                    className="w-full px-2"
+                    className={styles.swiperFull}
                     style={{ paddingLeft: 0, paddingRight: 0 }}
                   >
                     {eduTopCards.map((card, idx) => (
                       <SwiperSlide
                         key={card.img + idx}
                         style={{ width: 270, maxWidth: 270 }}
-                        className="!w-[270px]"
+                        className={styles.slide270}
                       >
-                        <div className="flex justify-center">
+                        <div className={styles.slideCenter}>
                           <Card
-                            className="relative flex flex-col justify-end overflow-hidden r h-[380px] w-[270px]"
+                            className={styles.eduTopCard}
                             style={{ width: 270, height: 380 }}
                           >
                             <img
                               src={card.img}
                               alt=""
-                              className="w-full h-full object-cover object-center "
+                              className={styles.cardImgCover}
                               style={{ borderRadius: "16px" }}
                               onError={(e) => {
                                 e.currentTarget.style.display = "none";
@@ -197,16 +194,13 @@ export default function AboutPageClient() {
                   </Swiper>
                 </div>
                 {/* 데스크탑 기존 그리드 */}
-                <div className="hidden md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10 max-w-[1200px] mx-auto mb-[178px] px-2">
+                <div className={styles.eduTopGrid}>
                   {eduTopCards.map((card, idx) => (
-                    <div
-                      className="flex flex-col items-center"
-                      key={card.img + idx}
-                    >
+                    <div className={styles.gridItem} key={card.img + idx}>
                       <img
                         src={card.img}
                         alt=""
-                        className="w-[270px] h-[380px] md:w-full object-contain rounded-2xl"
+                        className={styles.eduTopGridImg}
                         style={{ borderRadius: "16px" }}
                       />
                     </div>
@@ -215,14 +209,14 @@ export default function AboutPageClient() {
               </>
             );
           })()}
-          <div className="flex flex-col items-center justify-center">
-            <p className="mb-[123px] md:text-[32px] text-2xl text-center">
+          <div className={styles.centerCol}>
+            <p className={styles.philText1}>
               수많은 학생분들을 만나오면서
               <br />
               <strong>
-                <span className="text-[#2B7FFF]">&apos;되는 방법&apos;</span> 을
-                알고, <br className="md:hidden" />
-                <span className="text-[#2B7FFF]">
+                <span className={styles.blueBrand}>&apos;되는 방법&apos;</span>{" "}
+                을 알고, <br className={styles.mobileOnlyBr} />
+                <span className={styles.blueBrand}>
                   &apos;실제로 되게&apos;
                 </span>{" "}
                 만듭니다.
@@ -230,9 +224,10 @@ export default function AboutPageClient() {
             </p>
           </div>
         </motion.div>
-        <div className="max-w-2xl mx-auto text-center">
-          <h3 className="text-2xl md:text-4xl font-bold font-extragray-50mt-[200px] mt-[198px] mb-[106px] ">
-            교육은 <span className="text-[#2B7FFF] ">진짜 써먹어야 합니다</span>
+        <div className={styles.centerNarrow}>
+          <h3 className={styles.philTitle2}>
+            교육은{" "}
+            <span className={styles.blueBrand}>진짜 써먹어야 합니다</span>
           </h3>
         </div>
         {/* 아래 educard 카드들도 motion.div로 감싸서 등장 애니메이션 적용 */}
@@ -253,7 +248,7 @@ export default function AboutPageClient() {
               <>
                 {/* 모바일 Swiper */}
                 <div
-                  className="block md:hidden mb-[178px]"
+                  className={styles.mobileSwiperWrap}
                   ref={eduCardsContainerRef}
                 >
                   <Swiper
@@ -264,24 +259,24 @@ export default function AboutPageClient() {
                     onSwiper={(swiper) => {
                       eduCardsSwiperRef.current = swiper;
                     }}
-                    className="w-full px-2"
+                    className={styles.swiperFull}
                     style={{ paddingLeft: 0, paddingRight: 0 }}
                   >
                     {eduCards.map((card, idx) => (
                       <SwiperSlide
                         key={card.img + idx}
                         style={{ width: 274, maxWidth: 317 }}
-                        className="!w-[300px]"
+                        className={styles.slide300}
                       >
-                        <div className="flex justify-center">
+                        <div className={styles.slideCenter}>
                           <Card
-                            className="relative flex flex-col justify-end overflow-hidden r h-[380px] w-[270px]"
+                            className={styles.eduCard}
                             style={{ width: 310, height: 317 }}
                           >
                             <img
                               src={card.img}
                               alt=""
-                              className="w-full h-full object-cover "
+                              className={styles.cardImgCoverPlain}
                               style={{ borderRadius: "16px" }}
                               onError={(e) => {
                                 e.currentTarget.style.display = "none";
@@ -294,20 +289,17 @@ export default function AboutPageClient() {
                   </Swiper>
                 </div>
                 {/* 데스크탑 기존 그리드 */}
-                <div className="hidden md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-[1200px] mx-auto mb-[178px] px-2">
+                <div className={styles.eduCardGrid}>
                   {eduCards.map((card, idx) => (
-                    <div
-                      className="flex flex-col items-center"
-                      key={card.img + idx}
-                    >
+                    <div className={styles.gridItem} key={card.img + idx}>
                       <Card
-                        className="relative flex flex-col justify-end overflow-hidden bg-white h-[310px] w-[270px]"
+                        className={styles.eduCardDesktop}
                         style={{ width: 270, height: 310 }}
                       >
                         <img
                           src={card.img}
                           alt=""
-                          className="w-full h-full object-cover object-center rounded-2xl"
+                          className={styles.cardImgCover}
                           style={{ borderRadius: "16px" }}
                           onError={(e) => {
                             e.currentTarget.style.display = "none";
@@ -321,11 +313,11 @@ export default function AboutPageClient() {
             );
           })()}
         </motion.div>
-        <div className="flex flex-col items-center justify-center">
-          <p className="mb-[67px] md:text-[32px] text-[20px]  text-center">
+        <div className={styles.centerCol}>
+          <p className={styles.philText2}>
             한평생 에듀바이저스는 단순한 교육이 아닌,
             <br />
-            <span className="font-bold">
+            <span className={styles.bold}>
               인생의 방향성과 성장을 함께 하겠습니다.
             </span>
           </p>
@@ -339,7 +331,7 @@ export default function AboutPageClient() {
       {/* 6. CEO 메시지 */}
       {/* 데스크톱용 CEO 메시지 */}
       <motion.section
-        className="text-black py-16 hidden md:block"
+        className={styles.ceoDesktop}
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
@@ -350,13 +342,11 @@ export default function AboutPageClient() {
           backgroundPosition: "center",
         }}
       >
-        <div className="max-w-6xl mx-auto flex flex-col items-center px-4">
+        <div className={styles.ceoContainer}>
           {/* 메시지 영역 */}
-          <div className="flex-1 text-left">
-            <div className="font-extrabold text-2xl md:text-3xl mb-6 text-white">
-              CEO Message
-            </div>
-            <div className="text-white text-base md:text-lg leading-relaxed ">
+          <div className={styles.ceoMsgCol}>
+            <div className={styles.ceoHeading}>CEO Message</div>
+            <div className={styles.ceoBody}>
               한평생에듀바이저스 홈페이지에 방문해 주신
               <br /> 모든 분께 감사의 말씀을 전합니다.
               <br />
@@ -376,13 +366,13 @@ export default function AboutPageClient() {
             </div>
           </div>
           {/* 사인 영역 */}
-          <div className="flex-1 flex justify-center md:justify-end items-start w-full"></div>
+          <div className={styles.ceoSignCol}></div>
         </div>
       </motion.section>
 
       {/* 모바일용 CEO 메시지 */}
       <motion.section
-        className="text-white py-16 block md:hidden relative"
+        className={styles.ceoMobile}
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
@@ -393,13 +383,11 @@ export default function AboutPageClient() {
           backgroundPosition: "center",
         }}
       >
-        <div className="max-w-6xl mx-auto flex flex-col items-center gap-12 px-8 relative z-10">
+        <div className={styles.ceoContainerMobile}>
           {/* 메시지 영역 */}
-          <div className="flex-1  text-left">
-            <div className="font-extrabold text-2xl md:text-3xl mb-6 text-white">
-              CEO Message
-            </div>
-            <div className="text-white text-[14px] md:text-lg leading-relaxed mb-8">
+          <div className={styles.ceoMsgCol}>
+            <div className={styles.ceoHeading}>CEO Message</div>
+            <div className={styles.ceoBodyMobile}>
               한평생에듀바이저스 홈페이지에 방문해 주신
               <br /> 모든 분께 감사의 말씀을 전합니다.
               <br />
@@ -420,7 +408,7 @@ export default function AboutPageClient() {
             </div>
           </div>
           {/* 사인 영역 */}
-          <div className="flex-1 flex justify-center md:justify-end items-start w-full"></div>
+          <div className={styles.ceoSignCol}></div>
         </div>
       </motion.section>
     </div>
@@ -448,50 +436,36 @@ const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
   return (
-    <section className="bg-[#191f28] py-[30px]">
-      <div className="max-w-4xl mx-auto">
-        <h3 className="text-[20px] md:text-4xl font-bold mb-12 text-center text-white">
+    <section className={styles.tlSection}>
+      <div className={styles.container4xl}>
+        <h3 className={styles.tlHeading}>
           한평생교육은 매일,
           <br />
           누군가의 내일을 바꾸고 있습니다.
         </h3>
-        <div className="w-full font-sans md:px-10" ref={containerRef}>
-          <div ref={ref} className="relative max-w-4xl mx-auto pb-20">
+        <div className={styles.timelineInner} ref={containerRef}>
+          <div ref={ref} className={styles.timelineTrack}>
             {data.map((item: TimelineEntry, index: number) => (
-              <div
-                key={index}
-                className="flex justify-start pt-10 md:pt-30 md:gap-10"
-              >
-                <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
-                  <div className="h-10 absolute left-3 md:left-3 w-10 rounded-full  flex items-center justify-center">
-                    <div className="h-4 w-4 rounded-full bg-blue-500 border border-blue-600 p-2" />
+              <div key={index} className={styles.tlItem}>
+                <div className={styles.tlMarkerCol}>
+                  <div className={styles.tlDotWrap}>
+                    <div className={styles.tlDot} />
                   </div>
-                  <h3 className="hidden md:block text-xl md:pl-20 md:text-5xl font-bold text-blue-400">
-                    {item.year}
-                  </h3>
+                  <h3 className={styles.tlYearDesktop}>{item.year}</h3>
                 </div>
-                <div className="relative pl-20 pr-4 md:pl-4 w-full">
-                  <h3 className="md:hidden block text-2xl mb-4 text-left font-bold text-blue-400">
-                    {item.year}
-                  </h3>
-                  <div className="text-white">
-                    <h4 className="text-xl md:text-2xl font-bold mb-4 text-white">
-                      {item.title}
-                    </h4>
-                    <p className="text-gray-300 text-sm md:text-base mb-6 leading-relaxed w-[300px]">
-                      {item.description}
-                    </p>
-                    <div className="space-y-2">
+                <div className={styles.tlContent}>
+                  <h3 className={styles.tlYearMobile}>{item.year}</h3>
+                  <div className={styles.tlWhite}>
+                    <h4 className={styles.tlTitle}>{item.title}</h4>
+                    <p className={styles.tlDesc}>{item.description}</p>
+                    <div className={styles.tlAchievements}>
                       {item.achievements.map(
                         (achievement: string, idx: number) => (
-                          <div
-                            key={idx}
-                            className="flex items-center gap-3 text-gray-300 text-sm md:text-base"
-                          >
-                            <div className="w-2 h-2 bg-blue-400 rounded-full flex-shrink-0" />
+                          <div key={idx} className={styles.tlAchievement}>
+                            <div className={styles.tlAchievementDot} />
                             <span>{achievement}</span>
                           </div>
-                        )
+                        ),
                       )}
                     </div>
                   </div>
@@ -502,14 +476,14 @@ const Timeline = ({ data }: { data: TimelineEntry[] }) => {
               style={{
                 height: height + "px",
               }}
-              className="absolute md:left-8 left-8 top-0 overflow-hidden w-[2px] bg-gradient-to-b from-transparent via-gray-600 to-transparent [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]"
+              className={styles.tlProgressTrack}
             >
               <motion.div
                 style={{
                   height: heightTransform,
                   opacity: opacityTransform,
                 }}
-                className="absolute inset-x-0 top-0 w-[2px] bg-gradient-to-t from-blue-500 via-blue-400 to-transparent rounded-full"
+                className={styles.tlProgressFill}
               />
             </div>
           </div>

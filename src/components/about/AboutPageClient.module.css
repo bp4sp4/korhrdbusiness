@@ -1,0 +1,626 @@
+/* AboutPageClient — Tailwind → CSS Module 전환 (하이브리드)
+ * 레이아웃/유틸 className 을 이 모듈로 이전. shadcn Card 및 Swiper 는 유지.
+ * md 브레이크포인트 = 768px, sm = 640px, lg = 1024px (Tailwind 기본값 기준)
+ */
+
+.page {
+  width: 100%;
+  min-height: 100vh;
+  color: #ffffff;
+}
+
+/* ---------- 1. 히어로 ---------- */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 87vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+@media (min-width: 768px) {
+  .hero {
+    height: 100vh;
+  }
+}
+
+.heroBgLayer,
+.heroBgInner {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.bannerDesktop {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.bannerMobile {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+@media (min-width: 768px) {
+  .bannerDesktop {
+    display: block;
+  }
+  .bannerMobile {
+    display: none;
+  }
+}
+
+.heroOverlay {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  opacity: 0.5;
+  z-index: 10;
+  pointer-events: none;
+}
+@media (min-width: 768px) {
+  .heroOverlay {
+    display: none;
+  }
+}
+
+.heroContent {
+  position: absolute;
+  bottom: 3.75rem;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+@media (min-width: 768px) {
+  .heroContent {
+    position: relative;
+    bottom: 2.5rem;
+  }
+}
+
+.heroTitle {
+  margin-bottom: 0.5rem;
+  font-size: 1.875rem;
+  line-height: 2.25rem; /* text-3xl */
+  font-weight: 400;
+}
+.heroSubtitle {
+  font-size: 1.875rem;
+  line-height: 2.25rem; /* text-3xl */
+  font-weight: 800;
+}
+.heroDesc {
+  margin-top: 2.5rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem; /* text-xl */
+  color: #ffffff;
+}
+@media (min-width: 768px) {
+  .heroTitle,
+  .heroSubtitle {
+    font-size: 3.75rem;
+    line-height: 1; /* text-6xl */
+  }
+  .heroDesc {
+    font-size: 1.875rem;
+    line-height: 2.25rem; /* text-3xl */
+  }
+}
+
+.mobileBreak {
+  display: block;
+}
+@media (min-width: 768px) {
+  .mobileBreak {
+    display: none;
+  }
+}
+.mobileOnlyBr {
+  display: inline;
+}
+@media (min-width: 768px) {
+  .mobileOnlyBr {
+    display: none;
+  }
+}
+
+/* ---------- 공통 컨테이너 ---------- */
+.container4xl {
+  max-width: 56rem;
+  margin: 0 auto;
+}
+.centerNarrow {
+  max-width: 42rem;
+  margin: 0 auto;
+  text-align: center;
+}
+.centerCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.gridItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ---------- 2. 연혁 섹션 래퍼 ---------- */
+.timelineSection {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  background-color: #191f28;
+}
+.timelineInner {
+  width: 100%;
+  font-family: var(--font-sans, ui-sans-serif, system-ui, sans-serif);
+}
+@media (min-width: 768px) {
+  .timelineInner {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+.timelineTrack {
+  position: relative;
+  max-width: 56rem;
+  margin: 0 auto;
+  padding-bottom: 5rem;
+}
+
+/* ---------- 3. 교육 철학 ---------- */
+.philosophy {
+  position: relative;
+  margin-top: 134px;
+  background-color: #ffffff;
+  color: #000000;
+}
+.philTitle {
+  margin-bottom: 133px;
+  font-size: 1.5rem;
+  line-height: 2rem; /* text-2xl */
+  font-weight: 800;
+}
+.philTitle2 {
+  margin-top: 198px;
+  margin-bottom: 106px;
+  font-size: 1.5rem;
+  line-height: 2rem; /* text-2xl */
+  font-weight: 700;
+}
+@media (min-width: 768px) {
+  .philTitle {
+    font-size: 40px;
+  }
+  .philTitle2 {
+    font-size: 2.25rem;
+    line-height: 2.5rem; /* text-4xl */
+  }
+}
+
+.philText1 {
+  margin-bottom: 123px;
+  font-size: 1.5rem;
+  line-height: 2rem; /* text-2xl */
+  text-align: center;
+}
+.philText2 {
+  margin-bottom: 67px;
+  font-size: 20px;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .philText1,
+  .philText2 {
+    font-size: 32px;
+  }
+}
+
+.blue600 {
+  color: #2563eb;
+}
+.blueBrand {
+  color: #2b7fff;
+}
+.bold {
+  font-weight: 700;
+}
+
+/* ---------- Swiper (모바일) & 그리드 (데스크톱) ---------- */
+.mobileSwiperWrap {
+  display: block;
+  margin-bottom: 178px;
+}
+@media (min-width: 768px) {
+  .mobileSwiperWrap {
+    display: none;
+  }
+}
+.swiperFull {
+  width: 100%;
+}
+.slide270 {
+  width: 270px !important;
+}
+.slide300 {
+  width: 300px !important;
+}
+.slideCenter {
+  display: flex;
+  justify-content: center;
+}
+
+.eduTopCard,
+.eduCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  width: 270px;
+  height: 380px;
+}
+.eduCardDesktop {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  width: 270px;
+  height: 310px;
+  background-color: #ffffff;
+}
+.cardImgCover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.cardImgCoverPlain {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.eduTopGrid,
+.eduCardGrid {
+  display: none;
+}
+@media (min-width: 768px) {
+  .eduTopGrid,
+  .eduCardGrid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto 178px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+@media (min-width: 640px) {
+  .eduTopGrid,
+  .eduCardGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .eduTopGrid {
+    gap: 2.5rem;
+  }
+}
+@media (min-width: 1024px) {
+  .eduTopGrid,
+  .eduCardGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+.eduTopGridImg {
+  width: 270px;
+  height: 380px;
+  object-fit: contain;
+  border-radius: 1rem;
+}
+@media (min-width: 768px) {
+  .eduTopGridImg {
+    width: 100%;
+  }
+}
+
+/* ---------- 6. CEO 메시지 ---------- */
+.ceoDesktop {
+  display: none;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  color: #000000;
+}
+@media (min-width: 768px) {
+  .ceoDesktop {
+    display: block;
+  }
+}
+.ceoMobile {
+  display: block;
+  position: relative;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  color: #ffffff;
+}
+@media (min-width: 768px) {
+  .ceoMobile {
+    display: none;
+  }
+}
+
+.ceoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 72rem;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.ceoContainerMobile {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  max-width: 72rem;
+  margin: 0 auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+.ceoMsgCol {
+  flex: 1 1 0%;
+  text-align: left;
+}
+.ceoHeading {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  line-height: 2rem; /* text-2xl */
+  font-weight: 800;
+  color: #ffffff;
+}
+@media (min-width: 768px) {
+  .ceoHeading {
+    font-size: 1.875rem;
+    line-height: 2.25rem; /* text-3xl */
+  }
+}
+.ceoBody {
+  font-size: 1rem;
+  line-height: 1.625;
+  color: #ffffff;
+}
+.ceoBodyMobile {
+  margin-bottom: 2rem;
+  font-size: 14px;
+  line-height: 1.625;
+  color: #ffffff;
+}
+@media (min-width: 768px) {
+  .ceoBody,
+  .ceoBodyMobile {
+    font-size: 1.125rem;
+  }
+}
+.ceoSignCol {
+  flex: 1 1 0%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .ceoSignCol {
+    justify-content: flex-end;
+  }
+}
+
+/* ---------- Timeline 내부 컴포넌트 ---------- */
+.tlSection {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: #191f28;
+}
+.tlHeading {
+  margin-bottom: 3rem;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  color: #ffffff;
+}
+@media (min-width: 768px) {
+  .tlHeading {
+    font-size: 2.25rem;
+    line-height: 2.5rem; /* text-4xl */
+  }
+}
+.tlItem {
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 2.5rem;
+}
+@media (min-width: 768px) {
+  .tlItem {
+    padding-top: 7.5rem;
+    gap: 2.5rem;
+  }
+}
+.tlMarkerCol {
+  position: sticky;
+  top: 10rem;
+  align-self: flex-start;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 20rem;
+}
+@media (min-width: 768px) {
+  .tlMarkerCol {
+    flex-direction: row;
+    width: 100%;
+  }
+}
+@media (min-width: 1024px) {
+  .tlMarkerCol {
+    max-width: 24rem;
+  }
+}
+.tlDotWrap {
+  position: absolute;
+  left: 0.75rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tlDot {
+  width: 1rem;
+  height: 1rem;
+  padding: 0.5rem;
+  border-radius: 9999px;
+  background-color: #3b82f6;
+  border: 1px solid #2563eb;
+}
+.tlYearDesktop {
+  display: none;
+  font-size: 1.25rem;
+  line-height: 1.75rem; /* text-xl */
+  font-weight: 700;
+  color: #60a5fa;
+}
+@media (min-width: 768px) {
+  .tlYearDesktop {
+    display: block;
+    padding-left: 5rem;
+    font-size: 3rem;
+    line-height: 1; /* text-5xl */
+  }
+}
+.tlContent {
+  position: relative;
+  width: 100%;
+  padding-left: 5rem;
+  padding-right: 1rem;
+}
+@media (min-width: 768px) {
+  .tlContent {
+    padding-left: 1rem;
+  }
+}
+.tlYearMobile {
+  display: block;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  line-height: 2rem; /* text-2xl */
+  text-align: left;
+  font-weight: 700;
+  color: #60a5fa;
+}
+@media (min-width: 768px) {
+  .tlYearMobile {
+    display: none;
+  }
+}
+.tlWhite {
+  color: #ffffff;
+}
+.tlTitle {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem; /* text-xl */
+  font-weight: 700;
+  color: #ffffff;
+}
+@media (min-width: 768px) {
+  .tlTitle {
+    font-size: 1.5rem;
+    line-height: 2rem; /* text-2xl */
+  }
+}
+.tlDesc {
+  width: 300px;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: #d1d5db;
+}
+@media (min-width: 768px) {
+  .tlDesc {
+    font-size: 1rem;
+  }
+}
+.tlAchievements > * + * {
+  margin-top: 0.5rem;
+}
+.tlAchievement {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem; /* text-sm */
+  color: #d1d5db;
+}
+@media (min-width: 768px) {
+  .tlAchievement {
+    font-size: 1rem;
+    line-height: 1.5rem; /* text-base */
+  }
+}
+.tlAchievementDot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background-color: #60a5fa;
+  flex-shrink: 0;
+}
+.tlProgressTrack {
+  position: absolute;
+  left: 2rem;
+  top: 0;
+  width: 2px;
+  overflow: hidden;
+  background: linear-gradient(to bottom, transparent, #4b5563, transparent);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+}
+.tlProgressFill {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 2px;
+  border-radius: 9999px;
+  background: linear-gradient(to top, #3b82f6, #60a5fa, transparent);
+}

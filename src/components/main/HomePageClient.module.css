@@ -1,0 +1,576 @@
+/* HomePageClient — Tailwind → CSS Module 전환 (하이브리드)
+ * main.css(BEM: main__*)는 그대로 유지하고, 요소에 섞여 있던 Tailwind 유틸만 이 모듈로 이전.
+ * 주의: main__hero-title / main__hero-btn 은 main.css 가 폰트크기·행간을 정의하며
+ *       원래도 Tailwind 유틸을 이기고 있었으므로, 해당(무효였던) 유틸은 여기 넣지 않는다.
+ * md = 768px, lg = 1024px 기준.
+ */
+
+.root {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+}
+
+/* ---------- 화살표 깜빡임 ---------- */
+.arrowWrap {
+  position: absolute;
+  top: 100%;
+  margin-top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 22px;
+  height: 30px;
+}
+.arrowImg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all 2000ms ease-in-out;
+}
+.arrowVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.arrowHiddenUp {
+  opacity: 0;
+  transform: translateY(-0.625rem);
+}
+.arrowHiddenDown {
+  opacity: 0;
+  transform: translateY(0.625rem);
+}
+
+/* ---------- 데스크톱 히어로 ---------- */
+.heroDesktop {
+  display: none;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+@media (min-width: 768px) {
+  .heroDesktop {
+    display: flex;
+  }
+}
+.heroContentDesktop {
+  flex: 1 1 0%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 10;
+  border-radius: 0.5rem;
+}
+@media (min-width: 768px) {
+  .heroContentDesktop {
+    background-color: transparent;
+    padding: 0;
+  }
+}
+/* main__hero-title 이 폰트/행간을 담당하므로 여기선 레이아웃만 */
+.heroTitleDesktop {
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.heroLead {
+  color: #ffffff;
+  font-size: 1.5rem;
+  line-height: 2rem; /* text-2xl */
+  font-weight: 400;
+}
+.heroName {
+  color: #ffffff;
+  font-size: 2.25rem;
+  line-height: 2.5rem; /* text-4xl */
+  font-weight: 700;
+}
+@media (min-width: 768px) {
+  .heroLead {
+    font-size: 2.25rem;
+    line-height: 2.5rem; /* text-4xl */
+  }
+  .heroName {
+    font-size: 3rem;
+    line-height: 1; /* text-5xl */
+  }
+}
+.heroButtons {
+  display: flex;
+}
+
+/* ---------- 모바일 히어로 ---------- */
+.heroMobile {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+@media (min-width: 768px) {
+  .heroMobile {
+    display: none;
+  }
+}
+.heroContentMobile {
+  flex: 1 1 0%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 10;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+}
+.heroMobileInner {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  right: 0;
+  max-width: 300px;
+  margin: 0 auto;
+}
+.heroTitleMobile {
+  color: #ffffff;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.heroLeadMobile {
+  color: #ffffff;
+  font-size: 1.5rem;
+  line-height: 2rem; /* text-2xl */
+  font-weight: 400;
+}
+.heroNameMobile {
+  color: #ffffff;
+  font-size: 2.25rem;
+  line-height: 2.5rem; /* text-4xl */
+  font-weight: 700;
+}
+/* main.css 의 .text-4xl(≤376px → 1.8rem) 오버라이드 재현 */
+@media (max-width: 376px) {
+  .heroNameMobile {
+    font-size: 1.8rem;
+  }
+}
+/* main__hero-btn 이 크기/폰트를 담당하므로 여기선 패딩만 */
+.heroBtnMobile {
+  padding: 0.5rem 1rem;
+}
+
+/* ---------- "시작" 배너 ---------- */
+.bannerStart {
+  width: 100%;
+  height: 20vh;
+}
+.bannerStartInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2.5rem;
+}
+.bannerStartRow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.startLogo {
+  display: none;
+  width: 25px;
+  height: 25px;
+}
+@media (min-width: 768px) {
+  .startLogo {
+    display: block;
+  }
+}
+.startText {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+}
+@media (min-width: 768px) {
+  .startText {
+    font-size: 1.5rem;
+    line-height: 2rem; /* text-2xl */
+  }
+}
+
+/* ---------- 서비스(철학) 섹션 ---------- */
+.service {
+  display: none;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (min-width: 768px) {
+  .service {
+    display: block;
+  }
+}
+.serviceTitle {
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+@media (min-width: 768px) {
+  .serviceTitle {
+    align-items: flex-start;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+.serviceHeading {
+  font-size: 30px;
+  font-weight: 700;
+}
+@media (min-width: 768px) {
+  .serviceHeading {
+    font-size: 40px;
+  }
+}
+.serviceText {
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 768px) {
+  .serviceText {
+    font-size: 26px;
+    display: block;
+  }
+}
+.serviceMobile {
+  display: block;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+@media (min-width: 768px) {
+  .serviceMobile {
+    display: none;
+  }
+}
+
+.blueBrand {
+  color: #2b7fff;
+}
+.blueBrandBold {
+  color: #2b7fff;
+  font-weight: 700;
+}
+.dark1e {
+  color: #1e1e1e;
+}
+.brMobileOnly {
+  display: block;
+}
+@media (min-width: 768px) {
+  .brMobileOnly {
+    display: none;
+  }
+}
+.brDesktopOnly {
+  display: none;
+}
+@media (min-width: 768px) {
+  .brDesktopOnly {
+    display: block;
+  }
+}
+
+/* ---------- "다릅니다" STEP 섹션 ---------- */
+.diffSection {
+  width: 100%;
+  max-width: 64rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+@media (min-width: 768px) {
+  .diffSection {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+.diffHeading {
+  font-size: 1.5rem;
+  line-height: 2rem; /* text-2xl */
+  margin-top: 100px;
+  margin-bottom: 128px;
+  font-weight: 700;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .diffHeading {
+    font-size: 40px;
+    margin-top: 150px;
+  }
+}
+
+.stepRow,
+.stepRowReverse,
+.stepRow3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+.stepRow {
+  margin-bottom: 70px;
+}
+.stepRowReverse {
+  margin-bottom: 70px;
+  gap: 0;
+}
+.stepRow3 {
+  margin-bottom: 230px;
+}
+@media (min-width: 768px) {
+  .stepRow,
+  .stepRowReverse,
+  .stepRow3 {
+    flex-direction: row;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .stepRow {
+    flex-direction: row;
+    margin-bottom: 158px;
+    gap: 160px;
+  }
+  .stepRowReverse {
+    flex-direction: row-reverse;
+    margin-bottom: 158px;
+    gap: 2rem;
+  }
+  .stepRow3 {
+    gap: 160px;
+  }
+}
+.stepImg {
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+@media (min-width: 768px) {
+  .stepImg {
+    margin-bottom: 0;
+  }
+}
+.stepCol {
+  flex: 1 1 0%;
+  margin-top: 1.25rem;
+}
+@media (min-width: 768px) {
+  .stepCol {
+    margin-top: 0;
+  }
+}
+/* 원본의 'h-[26px]bg-[#CBE0FF]' 는 오타로 무효였으므로 높이/배경 없음 */
+.stepBadge {
+  width: 60px;
+  margin-bottom: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.stepText380 {
+  width: 300px;
+}
+.stepText518 {
+  width: 300px;
+}
+.stepText515 {
+  width: 300px;
+}
+@media (min-width: 768px) {
+  .stepText380 {
+    width: 380px;
+  }
+  .stepText518 {
+    width: 518px;
+  }
+  .stepText515 {
+    width: 515px;
+  }
+}
+.stepTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #2b7fff;
+  margin-bottom: 0.75rem;
+}
+@media (min-width: 768px) {
+  .stepTitle {
+    font-size: 24px;
+  }
+}
+.stepBody {
+  color: #1e1e1e;
+  font-size: 16px;
+  line-height: 1.5;
+}
+@media (min-width: 768px) {
+  .stepBody {
+    font-size: 20px;
+  }
+}
+
+/* ---------- 취업지원(데스크톱) ---------- */
+.recruit {
+  display: none;
+  width: 100%;
+  flex-direction: column;
+  align-items: stretch;
+  height: auto;
+}
+@media (min-width: 768px) {
+  .recruit {
+    display: flex;
+    flex-direction: row;
+    height: 400px;
+  }
+}
+.recruitPanel {
+  flex: 1 1 0%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #aeb2a3;
+}
+@media (min-width: 768px) {
+  .recruitPanel {
+    height: 100%;
+  }
+}
+.recruitRow {
+  width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  text-align: left;
+}
+.recruitTextCol {
+  width: 100%;
+  position: relative;
+}
+.recruitHeading {
+  font-size: 40px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+.recruitPara {
+  color: #ffffff;
+  font-size: 20px;
+  margin-bottom: 2rem;
+}
+.recruitBtnCol {
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+.recruitBtnPos {
+  position: absolute;
+  left: 49px;
+  bottom: 110px;
+}
+.recruitBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 373px;
+  height: 86px;
+  border-radius: 20px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #2b7fff;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.15s;
+}
+.recruitBtn:hover {
+  background-color: #1d4ed8;
+}
+
+/* ---------- 취업지원(모바일) ---------- */
+.recruitMobile {
+  display: block;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+@media (min-width: 768px) {
+  .recruitMobile {
+    display: none;
+  }
+}
+.recruitMobileImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.recruitMobileContent {
+  position: absolute;
+  margin-top: 2.5rem;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.recruitMobileHeading {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #ffffff;
+}
+.recruitMobilePara {
+  color: #ffffff;
+  font-size: 15px;
+  margin-top: 29px;
+}
+.recruitMobileBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 50px;
+  margin-top: 37px;
+  border-radius: 12px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #2b7fff;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  transition: all 0.15s;
+  text-align: center;
+}

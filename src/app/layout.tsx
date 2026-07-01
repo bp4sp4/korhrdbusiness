@@ -100,7 +100,7 @@ export default function RootLayout({
         className={cn(
           "min-h-screen bg-background font-sans antialiased overflow-x-clip",
           geistSans.variable,
-          geistMono.variable
+          geistMono.variable,
         )}
       >
         <ModalProvider />

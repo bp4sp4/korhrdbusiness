@@ -1,29 +1,174 @@
-.header__container {
-    border-bottom: 1px solid #e5e7eb;
-    background: #fff;
+/* Header — Tailwind → CSS Module 전환
+ * 기존 header__* 전역 클래스는 어디에도 정의가 없어(무효) 이 모듈로 대체한다.
+ * 색상 배경 등 인라인 style 이 있는 요소는 그대로 두고 레이아웃만 여기서 담당.
+ * md = 768px 기준.
+ */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+  background-color: #ffffff;
 }
 
-.header__logo {
-    letter-spacing: 1px;
+.inner {
+  width: 100%;
+  max-width: 72rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
 }
 
-.header__nav-link {
-    color: #334155;
-    text-decoration: none;
-    transition: color 0.2s;
+/* ---------- 로고 ---------- */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  letter-spacing: 1px;
+}
+.logoImg {
+  width: 23px;
+  height: 23px;
+}
+@media (min-width: 768px) {
+  .logoImg {
+    width: 25px;
+    height: 25px;
+  }
+}
+.logoText {
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 20px;
+}
+@media (min-width: 768px) {
+  .logoText {
+    font-size: 24px;
+  }
 }
 
-.header__nav-link:hover {
-    color: #2563eb;
+/* ---------- 데스크톱 네비 ---------- */
+.nav {
+  display: none;
+  gap: 0.75rem;
+  align-items: center;
+  color: #ffffff;
+}
+@media (min-width: 768px) {
+  .nav {
+    display: flex;
+  }
 }
 
-.header__cta-btn {
-    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
+/* group(마커) 요소 — hover 시 자식 .navLink 배경 변경 */
+.navItem {
+  display: inline-block;
+}
+.navItem:hover .navLink {
+  background-color: rgba(217, 217, 255, 0.11);
+}
+.btnReset {
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }
 
-.header__menu-btn {
-    font-size: 1.5rem;
-    color: #334155;
-    background: none;
-    border: none;
+.navLink {
+  display: inline-block;
+  font-size: 15px;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background-color 0.15s, color 0.15s;
+}
+.adminLink {
+  font-weight: 700;
+  color: #93c5fd; /* text-blue-300 */
+}
+.logoutBtn {
+  font-weight: 700;
+  color: #fca5a5; /* text-red-300 */
+}
+
+/* ---------- 모바일 햄버거 ---------- */
+.menuBtn {
+  color: #ffffff;
+}
+@media (min-width: 768px) {
+  .menuBtn {
+    display: none;
+  }
+}
+.menuIcon {
+  font-size: 1.875rem;
+  line-height: 2.25rem; /* text-3xl */
+}
+
+/* ---------- 모바일 오버레이/패널 ---------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  transition: opacity 0.3s;
+}
+@media (min-width: 768px) {
+  .overlay {
+    display: none;
+  }
+}
+.overlayOpen {
+  opacity: 1;
+  pointer-events: auto;
+}
+.overlayClosed {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.menuPanel {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background-color: #191f28;
+  color: #ffffff;
+  overflow: hidden;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  transition: max-height 0.2s ease-in-out;
+}
+@media (min-width: 768px) {
+  .menuPanel {
+    display: none;
+  }
+}
+.mobileNav {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+.mobileLink {
+  display: block;
+  width: 100%;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem; /* text-lg */
+  font-weight: 400;
+  color: #ffffff;
+  border-radius: 0.25rem;
+  transition: all 0.15s;
+}
+.mobileLink:hover {
+  background-color: #22304a;
+}
+.mobileBtnReset {
+  background: transparent;
+  border: none;
+  text-align: left;
 }

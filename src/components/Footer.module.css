@@ -1,0 +1,99 @@
+/* Footer — Tailwind + Footer.css → CSS Module 전환
+ * 기존 Footer.css 에서 유효했던 스타일은 footer 요소 패딩뿐(footer__* 는 JSX 미사용)이라
+ * 그 패딩을 .footer 클래스로 옮기고 나머지 유틸을 module 로 이전한다.
+ * md = 768px 기준.
+ */
+
+.footer {
+  width: 100%;
+  padding: 25px 0 25px;
+  background-color: #f7f8fa;
+  color: #222b45;
+}
+@media (max-width: 768px) {
+  .footer {
+    padding: 60px 40px 80px;
+  }
+}
+
+.wrap {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+/* ---------- 상단: 회사 / 문의 ---------- */
+.topRow {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 2rem;
+  color: #666666;
+  font-size: 15px;
+}
+@media (min-width: 768px) {
+  .topRow {
+    flex-direction: row;
+  }
+}
+.col120 {
+  min-width: 120px;
+}
+.col180 {
+  min-width: 180px;
+}
+.colHeading {
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.linkItem {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+.linkItem:hover {
+  text-decoration: underline;
+}
+
+/* ---------- 하단: 회사 정보 ---------- */
+.infoRow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+@media (min-width: 768px) {
+  .infoRow {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+}
+.infoCol {
+  font-size: 0.875rem;
+  line-height: 1.25rem; /* text-sm */
+  color: #666666;
+  text-align: left;
+}
+.companyName {
+  font-weight: 700;
+  font-size: 15px;
+  padding-bottom: 16px;
+  margin-bottom: 0.25rem;
+  color: #222b45;
+}
+.linksRow {
+  margin-top: 0.5rem;
+}
+.policyLink {
+  margin-right: 1rem;
+}
+.policyLink:hover,
+.underlineLink:hover {
+  text-decoration: underline;
+}
+.copyright {
+  margin-top: 0.5rem;
+  font-size: 12px;
+}
