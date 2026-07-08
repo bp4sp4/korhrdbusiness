@@ -4,7 +4,7 @@ import { BrochureButton, PartnerButton } from "@/components/common/CtaButtons";
 
 /**
  * 메인 상단 히어로 섹션 (신규 디자인)
- * - 배경: /images/main/main.png (cover)
+ * - 배경: /images/main/main.jpg (cover)
  * - 상단 파란 그라디언트 위에 헤드라인 / 서브텍스트 / CTA 버튼 2개
  */
 export default function HeroSection() {
@@ -12,7 +12,7 @@ export default function HeroSection() {
     <section className={styles.hero}>
       {/* 배경 이미지 */}
       <Image
-        src="/images/main/main.png"
+        src="/images/main/main.jpg"
         alt=""
         fill
         priority

@@ -76,7 +76,7 @@ export default function AboutPageClient() {
           <div className={styles.heroBgInner}>
             {/* 데스크톱용 이미지 (md 사이즈 이상에서 보임) */}
             <img
-              src="/images/about/about_main_banner.png"
+              src="/images/about/about_main_banner.jpg"
               alt="메인 배너 이미지"
               className={styles.bannerDesktop}
             />
