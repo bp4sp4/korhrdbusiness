@@ -1,0 +1,171 @@
+/* Pretendard 는 HeroSection.module.css 에서 이미 @font-face 로드됨 */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 180px;
+  width: 100%;
+  padding: clamp(90px, 14vw, 200px) 20px;
+  background: linear-gradient(180deg, #00184d 0%, #4c85ff 100%);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+  max-width: 1302px;
+}
+
+/* ---------- 헤더 ---------- */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.title {
+  margin: 0;
+  color: #fff;
+  text-align: center;
+  font-family: "Pretendard", sans-serif;
+  font-size: clamp(28px, 3.6vw, 42px);
+  font-weight: 700;
+  line-height: 1.2; /* 120% */
+}
+
+.subtitle {
+  margin: 0;
+  color: #fff;
+  text-align: center;
+  font-family: "Pretendard", sans-serif;
+  font-size: clamp(16px, 1.7vw, 20px);
+  font-weight: 500;
+  line-height: 1.2; /* 120% */
+}
+
+/* ---------- 카드 ---------- */
+.cards {
+  display: flex;
+  align-items: stretch;
+  gap: 14px;
+  width: 100%;
+}
+
+.card {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 24px;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.icon {
+  display: block;
+  width: 56px;
+  height: 56px;
+}
+.icon svg {
+  display: block;
+  width: 56px;
+  height: 56px;
+}
+
+.cardText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  align-self: stretch;
+}
+
+.cardTitle {
+  margin: 0;
+  color: #010101; /* Atomic-Mono-900 */
+  font-family: "Pretendard", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.4; /* 140% */
+}
+
+.cardDesc {
+  margin: 0;
+  color: #3d3d3d; /* Atomic-Mono-700 */
+  font-family: "Pretendard", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4; /* 140% */
+}
+
+/* ---------- 반응형 ---------- */
+@media (max-width: 1024px) {
+  .section {
+    gap: 120px;
+  }
+  .cards {
+    flex-wrap: wrap;
+  }
+  .card {
+    flex: 1 1 calc(50% - 14px);
+    min-width: 240px;
+  }
+}
+
+@media (max-width: 560px) {
+  .card {
+    flex: 1 1 100%;
+  }
+  .cardTitle {
+    font-size: 20px;
+  }
+}
+
+/* ---------- 모바일 ---------- */
+@media (max-width: 768px) {
+  .section {
+    padding: 120px 18px;
+    gap: 110px;
+  }
+  .title {
+    font-size: 22px;
+    line-height: 140%;
+  }
+  .subtitle {
+    font-size: 14px;
+    line-height: 120%;
+  }
+  .cards {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 14px;
+  }
+  .card {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  .icon,
+  .icon svg {
+    width: 36px;
+    height: 36px;
+  }
+  .cardTitle {
+    font-size: 20px;
+    line-height: 140%;
+  }
+  .cardDesc {
+    font-size: 14px;
+    line-height: 140%;
+    white-space: nowrap;
+  }
+  /* 강제 줄바꿈(<br/>) 제거 → 한 줄로 */
+  .cardDesc br {
+    display: none;
+  }
+}

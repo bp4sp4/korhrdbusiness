@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import CounselingModal from "@/components/modals/CounselingModal";
+import PartnerInquiryModal from "@/components/modals/PartnerInquiryModal";
 
 const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -17,6 +18,7 @@ const ModalProvider = () => {
   return (
     <>
       <CounselingModal />
+      <PartnerInquiryModal />
     </>
   );
 };

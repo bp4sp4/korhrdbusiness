@@ -23,30 +23,32 @@ export default function AdminLoginPage() {
       return;
     }
 
-    // 이메일로 관리자 정보 가져오기
-    const { data: admin, error: adminError } = await supabase
-      .from("admins")
-      .select("*")
-      .eq("email", email)
-      .single();
-
-    if (adminError || !admin) {
-      alert("등록되지 않은 관리자입니다.");
-      return;
-    }
-
-    // 비밀번호는 Supabase Auth를 통해 로그인 시도
-    const { error } = await supabase.auth.signInWithPassword({
+    // 1. Supabase Auth 로그인 (자격 증명 검증)
+    const { error: signInError } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
 
-    if (error) {
-      alert("로그인 실패: " + error.message);
+    if (signInError) {
+      alert("로그인 실패: " + signInError.message);
       return;
     }
 
-    router.push("/");
+    // 2. 인증된 본인 계정이 관리자 목록에 있는지 확인
+    //    (admins 테이블은 본인 행만 조회 가능하도록 RLS로 보호됨)
+    const { data: admin, error: adminError } = await supabase
+      .from("admins")
+      .select("email")
+      .eq("email", email)
+      .maybeSingle();
+
+    if (adminError || !admin) {
+      await supabase.auth.signOut();
+      alert("등록되지 않은 관리자입니다.");
+      return;
+    }
+
+    router.push("/admin/partner-inquiries");
   };
 
   useEffect(() => {

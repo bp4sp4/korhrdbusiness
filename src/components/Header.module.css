@@ -15,12 +15,27 @@
 
 .inner {
   width: 100%;
-  max-width: 72rem;
-  margin: 0 auto;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.75rem 1rem;
+  padding: 24px 300px;
+}
+
+@media (max-width: 768px) {
+  .inner {
+    width: 100%;
+    max-width: 72rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px;
+  }
+  .logoImg {
+    width: 120px;
+    height: 20px;
+  }
 }
 
 /* ---------- 로고 ---------- */
@@ -31,32 +46,16 @@
   letter-spacing: 1px;
 }
 .logoImg {
-  width: 23px;
-  height: 23px;
-}
-@media (min-width: 768px) {
-  .logoImg {
-    width: 25px;
-    height: 25px;
-  }
-}
-.logoText {
-  font-weight: 700;
-  color: #ffffff;
-  font-size: 20px;
-}
-@media (min-width: 768px) {
-  .logoText {
-    font-size: 24px;
-  }
+  width: 160px;
+  height: 27px;
+  aspect-ratio: 160 / 27;
 }
 
 /* ---------- 데스크톱 네비 ---------- */
 .nav {
   display: none;
-  gap: 0.75rem;
+  gap: 42px;
   align-items: center;
-  color: #ffffff;
 }
 @media (min-width: 768px) {
   .nav {
@@ -77,12 +76,38 @@
   cursor: pointer;
 }
 
+/* ---------- 소개서 받기 CTA ---------- */
+.ctaBtn {
+  display: flex;
+  padding: 6px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  border-radius: 6px;
+  background: #2469ff; /* Atomic-Blue-400 */
+  color: #fff;
+  font-family: "Pretendard", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 140%; /* 19.6px */
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.ctaBtn:hover {
+  background: #1a56e0;
+}
+
 .navLink {
   display: inline-block;
-  font-size: 15px;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  transition: background-color 0.15s, color 0.15s;
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%; /* 16px */
 }
 .adminLink {
   font-weight: 700;
@@ -136,7 +161,9 @@
   background-color: #191f28;
   color: #ffffff;
   overflow: hidden;
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  box-shadow:
+    0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
   transition: max-height 0.2s ease-in-out;
 }
 @media (min-width: 768px) {
@@ -159,7 +186,7 @@
   padding-bottom: 0.75rem;
   font-size: 1.125rem;
   line-height: 1.75rem; /* text-lg */
-  font-weight: 400;
+  font-weight: 600;
   color: #ffffff;
   border-radius: 0.25rem;
   transition: all 0.15s;

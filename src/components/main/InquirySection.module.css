@@ -1,0 +1,127 @@
+/* Pretendard 는 HeroSection.module.css 에서 이미 @font-face 로드됨 */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 65px;
+  width: 100%;
+  padding: 200px 20px;
+  background: url("/images/main/inquirybackground.png") 50% / cover no-repeat;
+}
+
+/* ---------- 텍스트 ---------- */
+.textCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.title {
+  margin: 0;
+  color: #1d1d1d;
+  text-align: center;
+  font-family: "Pretendard", sans-serif;
+  font-size: clamp(28px, 3.6vw, 42px);
+  font-weight: 700;
+  line-height: 1.2; /* 120% */
+}
+
+.subtitle {
+  margin: 0;
+  color: #3d3d3d;
+  text-align: center;
+  font-family: "Pretendard", sans-serif;
+  font-size: clamp(15px, 1.5vw, 18px);
+  font-weight: 500;
+  line-height: 140%;
+  word-break: keep-all;
+}
+
+/* 모바일 전용 줄바꿈 (데스크톱에선 숨김) */
+.brMobile {
+  display: none;
+}
+
+/* ---------- 버튼 ---------- */
+.buttons {
+  display: flex;
+  width: 299px;
+  max-width: 100%;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.btn {
+  display: flex;
+  flex: 1 0 0;
+  padding: 14px 22px;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: "Pretendard", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 120%; /* 21.6px */
+  white-space: nowrap;
+  transition: background-color 0.2s ease;
+}
+
+.btnPrimary {
+  background: #0039b2; /* Atomic-Blue-400 */
+  color: #fff;
+}
+.btnPrimary:hover {
+  background: #1a56e0;
+}
+
+.btnSecondary {
+  background: #fff;
+  color: #0051ff; /* Atomic-Blue-500 */
+}
+.btnSecondary:hover {
+  background: #eef2ff;
+}
+
+/* ---------- 모바일 (max-width: 768) ---------- */
+@media (max-width: 768px) {
+  .section {
+    padding: 160px 18px;
+    gap: 32px;
+  }
+  .textCol {
+    gap: 16px;
+  }
+  .title {
+    font-size: 22px;
+    line-height: 140%;
+  }
+  .subtitle {
+    font-size: 14px;
+    line-height: 140%;
+  }
+  .brMobile {
+    display: inline;
+  }
+  .buttons {
+    width: auto;
+  }
+  .btn {
+    flex: 0 0 auto;
+    padding: 10px 19px;
+    font-size: 14px;
+  }
+  /* 모바일 버튼 컬러: #0039B2 (Atomic-Blue-700) */
+  .btnPrimary {
+    background: #0039b2;
+  }
+  .btnSecondary {
+    background: #fff;
+    color: #0039b2;
+  }
+}

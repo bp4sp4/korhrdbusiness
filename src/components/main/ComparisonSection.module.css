@@ -1,0 +1,185 @@
+/* Pretendard 는 HeroSection.module.css 에서 이미 @font-face 로드됨 */
+
+.section {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+  width: 100%;
+  padding: 100px 20px;
+  background: linear-gradient(
+    180deg,
+    #4c85ff 0%,
+    #90b3ff 23.12%,
+    #ecf2ff 39.81%
+  );
+}
+
+/* 배경 텍스처 (gabackground.png, multiply) */
+.bg {
+  position: absolute;
+  inset: 0;
+  background: url("/images/main/gabackground.png") 0 0 / 100% 100% no-repeat;
+  mix-blend-mode: multiply;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ---------- 헤더 ---------- */
+.header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.title {
+  margin: 0;
+  color: #fff;
+  text-align: center;
+  font-family: "Pretendard", sans-serif;
+  font-size: clamp(28px, 3.6vw, 42px);
+  font-weight: 700;
+  line-height: 1.2; /* 120% */
+}
+
+.subtitle {
+  margin: 0;
+  max-width: 720px;
+  color: #fff;
+  text-align: center;
+  font-family: "Pretendard", sans-serif;
+  font-size: clamp(16px, 1.7vw, 20px);
+  font-weight: 500;
+  line-height: 1.4;
+  word-break: keep-all;
+}
+
+/* 모바일 전용 줄바꿈 (데스크톱에선 숨김) */
+.brMobile {
+  display: none;
+}
+
+/* ---------- 비교 카드 ---------- */
+.cards {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 220px;
+  max-width: 100%;
+}
+
+/* 가운데 - 2배 차이 + 곡선 화살표 */
+.center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+.multiplier {
+  position: relative;
+  z-index: 1; /* 화살표보다 뒤 */
+  text-align: center;
+  font-family: "Pretendard", sans-serif;
+  font-size: 50px;
+  font-weight: 900;
+  line-height: 100%;
+  white-space: nowrap;
+  background: radial-gradient(50% 50% at 50% 50%, #7fa8ff 0%, #2469ff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.curvedArrow {
+  position: relative;
+  z-index: 2; /* 글자보다 앞 */
+  width: 284px;
+  height: 193px;
+  object-fit: cover;
+  margin-top: -20px; /* gap: -20px */
+}
+
+@media (max-width: 1200px) {
+  .cards {
+    gap: 80px;
+  }
+}
+
+@media (max-width: 900px) {
+  .cards {
+    flex-direction: column;
+    gap: 40px;
+    width: 100%;
+  }
+  /* 세로로 쌓이면 가운데 오버레이는 위치가 어긋나므로 숨김 */
+  .center {
+    display: none;
+  }
+}
+
+/* ---------- 모바일 (max-width: 768) ---------- */
+@media (max-width: 768px) {
+  .section {
+    gap: 100px;
+    padding: 100px 18px;
+  }
+  /* 배경 텍스처: 하단에 360x180 비율로 (multiply 유지) */
+  .bg {
+    top: auto;
+    height: 180px;
+  }
+  .title {
+    font-size: 22px;
+    line-height: 140%;
+  }
+  .subtitle {
+    font-size: 14px;
+    line-height: 120%;
+  }
+  .brMobile {
+    display: inline;
+  }
+  /* 카드 간격 제거 (화살표가 위아래 카드에 겹치도록) */
+  .cards {
+    gap: 160px;
+  }
+  /* 가운데 - 2배 차이 + 곡선 화살표: 위아래 카드에 겹쳐서 배치 (화살표 90° 회전) */
+  .center {
+    display: flex;
+    position: absolute;
+    z-index: 3; /* 카드 위로 */
+    transform: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    width: 100%;
+    left: 0px;
+    bottom: 690px;
+  }
+  .curvedArrow {
+    width: 202px;
+    height: auto;
+    margin-top: 0;
+    transform: rotate(90deg);
+    aspect-ratio: 103/70;
+  }
+  .multiplier {
+    font-size: 32px;
+    margin-left: -50px; /* gap: -20px */
+  }
+}

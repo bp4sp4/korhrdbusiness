@@ -2,7 +2,7 @@ import * as React from "react";
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { CheckCircle, ArrowDown } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -21,10 +21,7 @@ import {
 } from "@/components/ui/dialog";
 import { supabase } from "@/lib/supabase";
 import { useCounselModal } from "@/store/useCounselModal";
-import {
-  sendSlackNotification,
-  createCounselingNotification,
-} from "@/lib/slack";
+import { sendSlackNotification } from "@/lib/slack";
 import "driver.js/dist/driver.css";
 import styles from "./CounselingModal.module.css";
 
@@ -256,9 +253,13 @@ const CounselingModal = () => {
         console.error("학점은행제 문의 DB 전송 중 오류:", groupErr);
       }
 
-      // 3. Slack 알림 전송
-      const slackMessage = createCounselingNotification(formData);
-      await sendSlackNotification(slackMessage);
+      // 3. Slack 알림 전송 (메시지는 서버에서 조립)
+      await sendSlackNotification("counseling", {
+        name: formData.name,
+        phone: formData.phone,
+        experience: formData.experience,
+        field: formData.field,
+      });
 
       setIsSubmitted(true);
     } catch (error) {
@@ -281,9 +282,7 @@ const CounselingModal = () => {
           동의를 입력하세요.
         </span>
         <DialogHeader className={styles.header}>
-          <DialogTitle className={styles.title}>
-            교육 상담 신청
-          </DialogTitle>
+          <DialogTitle className={styles.title}>교육 상담 신청</DialogTitle>
         </DialogHeader>
         {!isSubmitted ? (
           <form className={styles.form} onSubmit={handleSubmit}>
@@ -370,11 +369,12 @@ const CounselingModal = () => {
               <div className={styles.field}>
                 <Label className={styles.labelBlock}>
                   관심 분야*
-                  <span className={styles.hint}>
-                    (여러 개 선택 가능)
-                  </span>
+                  <span className={styles.hint}>(여러 개 선택 가능)</span>
                 </Label>
-                <div id="counsel-field-select" className={styles.fieldSelectWrap}>
+                <div
+                  id="counsel-field-select"
+                  className={styles.fieldSelectWrap}
+                >
                   <div
                     ref={scrollRef}
                     className={styles.fieldScroll}
@@ -394,9 +394,7 @@ const CounselingModal = () => {
                       ),
                     ).map(([category, options]) => (
                       <div key={category} className={styles.category}>
-                        <div className={styles.categoryLabel}>
-                          {category}
-                        </div>
+                        <div className={styles.categoryLabel}>{category}</div>
                         {(options as FieldOption[]).map(
                           (option: FieldOption) => {
                             const isCustomOption =
@@ -524,18 +522,18 @@ const CounselingModal = () => {
               animate={{ scale: 1 }}
               transition={{ delay: 0.1, type: "spring", stiffness: 200 }}
             >
-              <CheckCircle className={styles.successIcon} />
+              <img
+                src="/complete-check.png"
+                alt="신청 완료"
+                className={styles.successIcon}
+                style={{ objectFit: "cover" }}
+              />
             </motion.div>
-            <h3 className={styles.successTitle}>
-              신청이 완료되었어요
-            </h3>
+            <h3 className={styles.successTitle}>신청이 완료되었어요</h3>
             <p className={styles.successDesc}>
               담당자가 일주일 내에 연락드릴게요.
             </p>
-            <Button
-              onClick={closeModal}
-              className={styles.confirmBtn}
-            >
+            <Button onClick={closeModal} className={styles.confirmBtn}>
               확인
             </Button>
           </motion.div>

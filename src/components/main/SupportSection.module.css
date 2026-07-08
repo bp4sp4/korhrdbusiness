@@ -1,0 +1,201 @@
+/* Pretendard 는 HeroSection.module.css 에서 이미 @font-face 로드됨 */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 42px;
+  width: 100%;
+  padding: 120px 10px 180px;
+  background: #f2f4f6;
+}
+
+/* ---------- 헤더 ---------- */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 516px;
+  max-width: 100%;
+}
+
+.title {
+  margin: 0;
+  color: #010101;
+  text-align: center;
+  font-family: "Pretendard", sans-serif;
+  font-size: clamp(28px, 3.6vw, 42px);
+  font-weight: 700;
+  line-height: 1.2; /* 120% */
+}
+
+.subtitle {
+  margin: 0;
+  color: #656565;
+  text-align: center;
+  font-family: "Pretendard", sans-serif;
+  font-size: clamp(15px, 1.5vw, 18px);
+  font-weight: 500;
+  line-height: 1.4; /* 140% */
+  word-break: keep-all;
+}
+
+/* ---------- 카드 ---------- */
+.cards {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 24px;
+  width: 1320px;
+  max-width: 100%;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  align-self: stretch;
+}
+
+.card {
+  display: flex;
+  min-height: 200px;
+  padding: 36px;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 20px;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.wide {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.fixed {
+  flex: 0 1 489px;
+  width: 489px;
+  max-width: 100%;
+}
+
+.cardText {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
+  gap: 12px;
+}
+
+.textTop {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.cardTitle {
+  margin: 0;
+  color: #010101; /* Atomic-Mono-900 */
+  font-family: "Pretendard", sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.2; /* 120% */
+}
+
+.cardDesc {
+  margin: 0;
+  color: #3d3d3d; /* Atomic-Mono-700 */
+  font-family: "Pretendard", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 140%; /* 22.4px */
+  word-break: keep-all;
+}
+
+.note {
+  color: #919191;
+  font-family: "Pretendard", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 140%;
+  word-break: keep-all;
+}
+
+.cardIcon {
+  display: flex;
+  width: 54px;
+  height: 54px;
+  flex-shrink: 0;
+}
+/* svg 가 컨테이너 크기를 따르도록 (인라인 width=54 속성 무시) */
+.cardIcon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ---------- 반응형 ---------- */
+@media (max-width: 900px) {
+  .row {
+    flex-direction: column;
+  }
+  .fixed,
+  .wide {
+    flex: none;
+    width: 100%;
+  }
+}
+
+/* ---------- 모바일 (max-width: 768) ---------- */
+@media (max-width: 768px) {
+  .section {
+    padding: 120px 18px;
+  }
+  .title {
+    font-size: 22px;
+    line-height: 140%;
+  }
+  .subtitle {
+    font-size: 14px;
+    line-height: 120%;
+  }
+  .cards {
+    gap: 14px;
+  }
+  .row {
+    gap: 14px;
+  }
+  /* 카드: 세로 배치 (텍스트 위 / 아이콘 우하단) */
+  .card {
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 26px;
+    gap: 20px;
+    min-height: 0;
+  }
+  .cardText {
+    flex: none;
+    justify-content: flex-start;
+    gap: 8px;
+  }
+  .textTop {
+    gap: 8px;
+  }
+  .cardTitle {
+    font-size: 20px;
+    line-height: 100%;
+  }
+  .cardDesc {
+    font-size: 14px;
+  }
+  .cardIcon {
+    width: 42px;
+    height: 42px;
+  }
+}

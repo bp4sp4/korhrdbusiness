@@ -1,0 +1,94 @@
+/* Pretendard 는 HeroSection.module.css 에서 이미 @font-face 로드됨 */
+
+.section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  padding-top: 100px;
+  overflow: hidden;
+  background: radial-gradient(
+    69% 69% at 50% 55.25%,
+    #4c85ff 0%,
+    #b2caff 100%
+  );
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 70px;
+  width: 100%;
+  max-width: 1465px;
+  padding: 0 20px;
+}
+
+/* ---------- 텍스트 ---------- */
+.textCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.lead {
+  margin: 0;
+  color: #fff;
+  text-align: center;
+  font-family: "Pretendard", sans-serif;
+  font-size: clamp(20px, 2.4vw, 30px);
+  font-weight: 500;
+  line-height: 150%; /* 45px */
+}
+
+.headline {
+  margin: 0;
+  color: #fff;
+  text-align: center;
+  font-family: "Pretendard", sans-serif;
+  font-size: clamp(28px, 3.2vw, 40px);
+  font-weight: 700;
+  line-height: normal;
+}
+
+/* ---------- 이미지 ---------- */
+.image {
+  width: 100%;
+  max-width: 1465px;
+  height: auto;
+  display: block;
+}
+
+/* ---------- 모바일 (max-width: 768) ---------- */
+@media (max-width: 768px) {
+  .section {
+    height: 420px;
+    padding: 80px 18px 0;
+    justify-content: space-between;
+  }
+  .inner {
+    flex: 1;
+    gap: 0;
+    padding: 0;
+    justify-content: space-between;
+  }
+  .lead {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 100%;
+  }
+  .headline {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 120%;
+  }
+  .image {
+    width: 100%;
+    max-width: 328px;
+  }
+}

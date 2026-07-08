@@ -18,9 +18,15 @@
 
 .wrap {
   max-width: 64rem;
-  margin: 0 auto;
+  margin: 24px 300px;
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+@media (max-width) {
+  .wrap {
+    margin: 0 auto;
+  }
 }
 
 /* ---------- 상단: 회사 / 문의 ---------- */
@@ -33,9 +39,9 @@
   color: #666666;
   font-size: 15px;
 }
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   .topRow {
-    flex-direction: row;
+    font-size: 14px;
   }
 }
 .col120 {

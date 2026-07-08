@@ -5,17 +5,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
-import { useCounselModal } from "@/store/useCounselModal";
+import { usePartnerModal } from "@/store/usePartnerModal";
+import { BROCHURE_MESSAGE } from "@/components/common/CtaButtons";
 import styles from "./Header.module.css";
 
 export default function Header() {
   // isAdmin: null(아직 확인 전), true(어드민), false(비어있음)
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
-  const { openModal } = useCounselModal();
+  const { openModal: openPartnerModal } = usePartnerModal();
   const [isMounted, setIsMounted] = useState(false);
   const menuListRef = useRef<HTMLDivElement>(null);
   const [menuHeight, setMenuHeight] = useState(0);
+  const headerRef = useRef<HTMLElement>(null);
+  const [headerH, setHeaderH] = useState(0);
   const [adminRole, setAdminRole] = useState<
     null | "super" | "manager" | "none"
   >(null);
@@ -62,36 +65,57 @@ export default function Header() {
     }
   }, [menuOpen]);
 
+  // 헤더 높이 측정 → fixed 헤더 아래 스페이서 높이로 사용
+  useEffect(() => {
+    const measure = () => {
+      if (headerRef.current) setHeaderH(headerRef.current.offsetHeight);
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, []);
+
   const handleLogout = async () => {
     await supabase.auth.signOut();
     router.push("/admin/login");
   };
 
-  const handleOpenCounselModal = () => {
-    openModal();
+  const handleOpenPartnerModal = () => {
+    openPartnerModal();
+    setMenuOpen(false);
+  };
+
+  // 소개서 받기: 준비중 안내 후 파트너 문의 모달 오픈
+  const handleBrochure = () => {
+    alert(BROCHURE_MESSAGE);
+    openPartnerModal();
     setMenuOpen(false);
   };
 
   return (
-    <header
-      className={styles.header}
-      style={{
-        backgroundColor: "#191f28",
-        position: "sticky",
-        top: 0,
-        zIndex: 100,
-      }}
-    >
+    <>
+      {/* fixed 헤더 자리를 차지하는 스페이서 (레이아웃 밀림 방지) */}
+      <div style={{ height: headerH }} aria-hidden="true" />
+      <header
+        ref={headerRef}
+        className={styles.header}
+        style={{
+          backgroundColor: "#191f28",
+          position: "fixed",
+          top: 0,
+          zIndex: 100,
+        }}
+      >
       <div className={styles.inner}>
         <Link href="/" className={styles.logo}>
           <Image
-            src="/images/logo2.png"
-            alt="로고"
-            width={28}
-            height={28}
+            src="/images/logo-white.png"
+            alt="한평생 에듀바이저스"
+            width={160}
+            height={27}
             className={styles.logoImg}
+            priority
           />
-          <span className={styles.logoText}>한평생 에듀바이저스</span>
         </Link>
         <nav className={styles.nav}>
           <Link href="/about" className={styles.navItem}>
@@ -104,10 +128,18 @@ export default function Header() {
             </span>
           </Link> */}
           <button
-            onClick={handleOpenCounselModal}
+            onClick={handleOpenPartnerModal}
             className={`${styles.navItem} ${styles.btnReset}`}
           >
-            <span className={styles.navLink}>교육상담받기</span>
+            <span className={styles.navLink}>파트너 문의</span>
+          </button>
+          {/* 소개서 받기 CTA */}
+          <button
+            type="button"
+            className={styles.ctaBtn}
+            onClick={handleBrochure}
+          >
+            소개서 받기
           </button>
           {/* 설계사채용/지점모집 임시 비활성화 */}
           {/* <Link href="/recruit" className="group">
@@ -191,12 +223,20 @@ export default function Header() {
                 </Link> */}
                 <button
                   onClick={() => {
-                    handleOpenCounselModal();
+                    handleOpenPartnerModal();
                     setMenuOpen(false);
                   }}
                   className={`${styles.mobileLink} ${styles.mobileBtnReset}`}
                 >
-                  교육상담받기
+                  파트너 문의
+                </button>
+                {/* 소개서 받기 */}
+                <button
+                  type="button"
+                  onClick={handleBrochure}
+                  className={`${styles.mobileLink} ${styles.mobileBtnReset}`}
+                >
+                  소개서 받기
                 </button>
                 {/* 설계사채용/지점모집 임시 비활성화 */}
                 {/* <Link
@@ -218,6 +258,7 @@ export default function Header() {
           </div>
         </>
       )}
-    </header>
+      </header>
+    </>
   );
 }

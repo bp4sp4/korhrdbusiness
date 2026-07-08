@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
-import AboutPageClient from "@/components/about/AboutPageClient";
+import AboutHero from "@/components/about/AboutHero";
+import AboutValueSection from "@/components/about/AboutValueSection";
+import AboutPartnerSection from "@/components/about/AboutPartnerSection";
+import AboutCtaBanner from "@/components/about/AboutCtaBanner";
 
 export const metadata: Metadata = {
   title: "에듀바이저스 | 한평생 에듀바이저스 회사 소개",
@@ -48,5 +51,12 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-  return <AboutPageClient />;
+  return (
+    <main>
+      <AboutHero />
+      <AboutValueSection />
+      <AboutPartnerSection />
+      <AboutCtaBanner />
+    </main>
+  );
 }

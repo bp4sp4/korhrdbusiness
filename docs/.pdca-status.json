@@ -1,13 +1,21 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-07-01T08:48:35.887Z",
+  "lastUpdated": "2026-07-08T09:30:57.193Z",
   "activeFeatures": [
     "korhrdbusiness",
     "main",
     "modals",
     "hakjeom-inquiry",
     "about",
-    "admin"
+    "admin",
+    "comparison",
+    "store",
+    "providers",
+    "partner-inquiries",
+    "slack",
+    "[id]",
+    "login",
+    "popups"
   ],
   "primaryFeature": "korhrdbusiness",
   "features": {
@@ -20,9 +28,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-06-09T07:56:12.234Z",
-        "lastUpdated": "2026-07-01T08:48:35.887Z"
+        "lastUpdated": "2026-07-08T07:54:53.458Z"
       },
-      "lastFile": "/Users/korhrd/Documents/GitHub/korhrdbusiness/src/components/Footer.tsx"
+      "lastFile": "/Users/korhrd/Documents/GitHub/korhrdbusiness/next.config.ts"
     },
     "main": {
       "phase": "do",
@@ -33,9 +41,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-06-09T07:56:23.235Z",
-        "lastUpdated": "2026-07-01T08:24:17.776Z"
+        "lastUpdated": "2026-07-07T09:34:13.676Z"
       },
-      "lastFile": "/Users/korhrd/Documents/GitHub/korhrdbusiness/src/components/main/HomePageClient.tsx"
+      "lastFile": "/Users/korhrd/Documents/GitHub/korhrdbusiness/src/components/main/InquirySection.tsx"
     },
     "modals": {
       "phase": "do",
@@ -46,9 +54,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-06-09T08:06:45.990Z",
-        "lastUpdated": "2026-07-01T08:07:15.882Z"
+        "lastUpdated": "2026-07-08T08:03:20.805Z"
       },
-      "lastFile": "/Users/korhrd/Documents/GitHub/korhrdbusiness/src/components/modals/CounselingModal.tsx"
+      "lastFile": "/Users/korhrd/Documents/GitHub/korhrdbusiness/src/components/modals/PartnerInquiryModal.tsx"
     },
     "hakjeom-inquiry": {
       "phase": "do",
@@ -72,9 +80,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-07-01T08:13:08.891Z",
-        "lastUpdated": "2026-07-01T08:15:01.167Z"
+        "lastUpdated": "2026-07-07T09:34:41.641Z"
       },
-      "lastFile": "/Users/korhrd/Documents/GitHub/korhrdbusiness/src/components/about/AboutPageClient.tsx"
+      "lastFile": "/Users/korhrd/Documents/GitHub/korhrdbusiness/src/components/about/AboutCtaBanner.tsx"
     },
     "admin": {
       "phase": "do",
@@ -85,9 +93,113 @@
       "documents": {},
       "timestamps": {
         "started": "2026-07-01T08:40:27.722Z",
-        "lastUpdated": "2026-07-01T08:40:52.754Z"
+        "lastUpdated": "2026-07-08T07:56:59.450Z"
       },
-      "lastFile": "/Users/korhrd/Documents/GitHub/korhrdbusiness/src/app/admin/layout.tsx"
+      "lastFile": "/Users/korhrd/Documents/GitHub/korhrdbusiness/src/app/admin/page.tsx"
+    },
+    "comparison": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-07-06T06:10:21.169Z",
+        "lastUpdated": "2026-07-07T02:45:18.431Z"
+      },
+      "lastFile": "/Users/korhrd/Documents/GitHub/korhrdbusiness/src/components/main/comparison/EduvisorsCard.tsx"
+    },
+    "store": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-07-07T09:08:29.549Z",
+        "lastUpdated": "2026-07-07T09:08:29.549Z"
+      },
+      "lastFile": "/Users/korhrd/Documents/GitHub/korhrdbusiness/src/store/usePartnerModal.ts"
+    },
+    "providers": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-07-07T09:09:15.625Z",
+        "lastUpdated": "2026-07-07T09:09:17.181Z"
+      },
+      "lastFile": "/Users/korhrd/Documents/GitHub/korhrdbusiness/src/providers/ModalProvider.tsx"
+    },
+    "partner-inquiries": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-07-07T09:10:43.655Z",
+        "lastUpdated": "2026-07-08T07:38:28.345Z"
+      },
+      "lastFile": "/Users/korhrd/Documents/GitHub/korhrdbusiness/src/app/admin/partner-inquiries/page.tsx"
+    },
+    "slack": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-07-08T01:53:15.934Z",
+        "lastUpdated": "2026-07-08T07:11:49.913Z"
+      },
+      "lastFile": "/Users/korhrd/Documents/GitHub/korhrdbusiness/src/app/api/slack/route.ts"
+    },
+    "[id]": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-07-08T01:54:41.084Z",
+        "lastUpdated": "2026-07-08T01:54:43.681Z"
+      },
+      "lastFile": "/Users/korhrd/Documents/GitHub/korhrdbusiness/src/app/recruit/[id]/page.tsx"
+    },
+    "login": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-07-08T01:54:56.688Z",
+        "lastUpdated": "2026-07-08T07:57:00.746Z"
+      },
+      "lastFile": "/Users/korhrd/Documents/GitHub/korhrdbusiness/src/app/admin/login/page.tsx"
+    },
+    "popups": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-07-08T07:54:23.062Z",
+        "lastUpdated": "2026-07-08T09:30:57.193Z"
+      },
+      "lastFile": "/Users/korhrd/Documents/GitHub/korhrdbusiness/src/components/popups/PopupManager.tsx"
     }
   },
   "pipeline": {
@@ -98,7 +210,7 @@
   "session": {
     "startedAt": "2026-03-10T06:41:43.515Z",
     "onboardingCompleted": false,
-    "lastActivity": "2026-07-01T08:48:35.887Z"
+    "lastActivity": "2026-07-08T09:30:57.193Z"
   },
   "history": [
     {
@@ -560,6 +672,900 @@
     {
       "timestamp": "2026-07-01T08:48:35.887Z",
       "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T03:38:13.110Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T03:47:54.119Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T03:47:56.208Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T03:48:04.716Z",
+      "feature": "about",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T03:48:06.397Z",
+      "feature": "about",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T03:49:58.212Z",
+      "feature": "about",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T05:34:43.161Z",
+      "feature": "main",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T05:35:09.825Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T05:35:12.058Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T05:43:33.477Z",
+      "feature": "main",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T05:43:52.478Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T05:43:53.556Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T05:53:25.812Z",
+      "feature": "main",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T05:53:47.001Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T05:53:48.489Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T06:10:21.169Z",
+      "feature": "comparison",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T06:10:33.152Z",
+      "feature": "comparison",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T06:10:58.271Z",
+      "feature": "main",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T06:11:02.099Z",
+      "feature": "main",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T06:16:37.745Z",
+      "feature": "comparison",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T06:16:47.733Z",
+      "feature": "comparison",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T06:17:14.316Z",
+      "feature": "main",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T06:17:17.009Z",
+      "feature": "main",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T06:26:28.431Z",
+      "feature": "main",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T06:26:32.011Z",
+      "feature": "main",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T06:39:06.627Z",
+      "feature": "comparison",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T06:39:12.012Z",
+      "feature": "comparison",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T06:55:00.242Z",
+      "feature": "main",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T06:55:15.925Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T06:55:17.403Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T07:04:25.807Z",
+      "feature": "main",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T07:04:50.256Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T07:04:51.565Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T07:08:21.592Z",
+      "feature": "main",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T07:08:46.416Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T07:08:47.656Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T07:13:52.441Z",
+      "feature": "main",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T07:14:09.914Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T07:14:10.930Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T07:19:12.570Z",
+      "feature": "main",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T07:19:35.941Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T07:19:36.999Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T07:23:23.320Z",
+      "feature": "main",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T07:23:45.436Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T07:23:46.668Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T08:08:50.283Z",
+      "feature": "about",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T08:09:13.010Z",
+      "feature": "about",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T08:09:15.702Z",
+      "feature": "about",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T08:26:41.902Z",
+      "feature": "about",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T08:27:08.970Z",
+      "feature": "about",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T08:27:10.406Z",
+      "feature": "about",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T08:31:02.392Z",
+      "feature": "about",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T08:39:10.621Z",
+      "feature": "about",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T08:39:29.512Z",
+      "feature": "about",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T08:39:30.522Z",
+      "feature": "about",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T08:43:04.359Z",
+      "feature": "about",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T08:43:29.464Z",
+      "feature": "about",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T08:43:30.626Z",
+      "feature": "about",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-06T08:46:10.647Z",
+      "feature": "about",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T01:59:06.601Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T01:59:15.060Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T02:08:23.005Z",
+      "feature": "main",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T02:12:43.325Z",
+      "feature": "main",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T02:40:08.850Z",
+      "feature": "comparison",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T02:45:18.431Z",
+      "feature": "comparison",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T03:48:04.428Z",
+      "feature": "main",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T05:36:11.068Z",
+      "feature": "about",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T05:52:21.118Z",
+      "feature": "about",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T05:52:28.711Z",
+      "feature": "about",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T08:50:25.956Z",
+      "feature": "about",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T08:52:20.038Z",
+      "feature": "about",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T08:52:56.571Z",
+      "feature": "about",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T08:58:58.910Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:08:29.549Z",
+      "feature": "store",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:09:05.504Z",
+      "feature": "modals",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:09:15.625Z",
+      "feature": "providers",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:09:17.181Z",
+      "feature": "providers",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:09:43.787Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:09:45.382Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:09:47.148Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:09:56.619Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:10:02.784Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:10:43.655Z",
+      "feature": "partner-inquiries",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:10:54.387Z",
+      "feature": "admin",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:12:14.491Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:12:16.470Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:12:17.904Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:14:27.128Z",
+      "feature": "partner-inquiries",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:14:29.038Z",
+      "feature": "partner-inquiries",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:14:44.089Z",
+      "feature": "partner-inquiries",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:15:13.153Z",
+      "feature": "partner-inquiries",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:26:26.382Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:28:46.173Z",
+      "feature": "modals",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:28:48.469Z",
+      "feature": "modals",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:29:03.460Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:29:17.719Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:32:39.716Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:33:58.106Z",
+      "feature": "main",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:34:01.082Z",
+      "feature": "main",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:34:10.930Z",
+      "feature": "main",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:34:13.676Z",
+      "feature": "main",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:34:21.719Z",
+      "feature": "about",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:34:24.278Z",
+      "feature": "about",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:34:38.849Z",
+      "feature": "about",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:34:41.641Z",
+      "feature": "about",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:35:03.431Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:35:11.972Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:35:14.478Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:35:24.921Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:35:27.552Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:47:47.127Z",
+      "feature": "modals",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:48:30.647Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:48:43.804Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:48:53.418Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:49:25.923Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-07T09:55:50.187Z",
+      "feature": "partner-inquiries",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-08T01:53:15.934Z",
+      "feature": "slack",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-08T01:53:39.361Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-08T01:54:14.982Z",
+      "feature": "slack",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-08T01:54:37.070Z",
+      "feature": "modals",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-08T01:54:39.079Z",
+      "feature": "modals",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-08T01:54:41.084Z",
+      "feature": "[id]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-08T01:54:43.681Z",
+      "feature": "[id]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-08T01:54:56.688Z",
+      "feature": "login",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-08T07:11:37.305Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-08T07:11:39.329Z",
+      "feature": "slack",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-08T07:11:48.144Z",
+      "feature": "slack",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-08T07:11:49.913Z",
+      "feature": "slack",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-08T07:11:54.648Z",
+      "feature": "modals",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-08T07:11:57.449Z",
+      "feature": "modals",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-08T07:15:39.023Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-08T07:15:40.504Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-08T07:15:41.809Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-08T07:34:14.592Z",
+      "feature": "partner-inquiries",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-08T07:36:11.780Z",
+      "feature": "admin",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-08T07:36:12.976Z",
+      "feature": "partner-inquiries",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-08T07:38:26.502Z",
+      "feature": "partner-inquiries",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-08T07:38:28.345Z",
+      "feature": "partner-inquiries",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-08T07:47:51.417Z",
+      "feature": "modals",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-08T07:47:52.968Z",
+      "feature": "modals",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-08T07:51:22.019Z",
+      "feature": "admin",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-08T07:51:23.970Z",
+      "feature": "admin",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-08T07:54:23.062Z",
+      "feature": "popups",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-08T07:54:53.458Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-08T07:56:59.450Z",
+      "feature": "admin",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-08T07:57:00.746Z",
+      "feature": "login",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-08T08:03:19.030Z",
+      "feature": "modals",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-08T08:03:20.805Z",
+      "feature": "modals",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-08T09:30:57.193Z",
+      "feature": "popups",
       "phase": "do",
       "action": "updated"
     }

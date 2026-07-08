@@ -1,0 +1,20 @@
+/* 파트너 문의 모달 — 폰트 14px (공용 CounselingModal.module.css 오버라이드) */
+.font14 label,
+.font14 input,
+.font14 textarea,
+.font14 button,
+.font14 p,
+.font14 span {
+  font-size: 14px;
+}
+
+/* input/textarea placeholder 도 14 */
+.font14 input::placeholder,
+.font14 textarea::placeholder {
+  font-size: 14px;
+}
+
+/* 타이틀은 20px */
+.font14 h2 {
+  font-size: 20px;
+}

@@ -1,0 +1,111 @@
+/* Pretendard 는 HeroSection.module.css 에서 이미 @font-face 로드됨 */
+
+.banner {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 30px 20px;
+}
+
+/* 배경 이미지 */
+.bg {
+  position: absolute;
+  inset: 0;
+  background: url("/images/main/gabackgroun50.png") 50% / cover no-repeat;
+  z-index: 0;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 65px;
+  width: 1320px;
+  max-width: 100%;
+}
+
+/* ---------- 텍스트 ---------- */
+.textCol {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 30px;
+}
+
+.title {
+  margin: 0;
+  color: #1d1d1d;
+  font-family: "Pretendard", sans-serif;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 700;
+  line-height: 130%;
+}
+
+.highlight {
+  color: #2469ff;
+}
+
+/* 줄바꿈: 데스크톱은 brDesktop, 모바일은 brMobile 만 노출 */
+.brMobile {
+  display: none;
+}
+
+.subtitle {
+  margin: 0;
+  color: #656565;
+  font-family: "Pretendard", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 140%;
+  word-break: keep-all;
+}
+
+/* ---------- 50% 이미지 ---------- */
+.badge {
+  flex-shrink: 0;
+  width: 300px;
+  height: auto;
+}
+
+/* ---------- 모바일 (max-width: 768) ---------- */
+@media (max-width: 768px) {
+  .banner {
+    justify-content: flex-start;
+    padding: 30px 26px;
+  }
+  .inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    width: 100%;
+  }
+  .textCol {
+    flex: none;
+    align-self: stretch;
+    gap: 13px;
+  }
+  .title {
+    font-size: 22px;
+    line-height: 130%;
+  }
+  .subtitle {
+    font-size: 14px;
+    line-height: 140%;
+  }
+  /* 모바일: 데스크톱용 br 숨기고 모바일용 br 노출 */
+  .brDesktop {
+    display: none;
+  }
+  .brMobile {
+    display: inline;
+  }
+  .badge {
+    align-self: flex-end; /* 우측 하단 정렬 */
+    width: 165px;
+    height: auto;
+  }
+}

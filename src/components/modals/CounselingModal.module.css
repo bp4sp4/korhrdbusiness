@@ -10,6 +10,7 @@
   max-width: 100%;
   width: 350px;
   height: 78vh;
+  overflow-y: auto;
   padding: 0;
   z-index: 999;
 }
@@ -22,7 +23,8 @@
   .dialogContent {
     width: 500px;
     height: auto;
-    overflow-y: visible;
+    max-height: 85vh;
+    overflow-y: auto;
   }
 }
 
@@ -138,6 +140,25 @@
 .customInput {
   composes: input;
   margin-top: 0.5rem;
+}
+
+/* 긴 텍스트(공백 없는 문자열)로 인한 가로 폭 넘침 방지.
+ * Textarea 의 field-sizing:content 가 내용 폭만큼 늘어나는 것을 막고,
+ * 긴 단어도 강제로 줄바꿈시킨다. */
+.form textarea,
+.form input {
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.field {
+  min-width: 0;
+}
+/* 내용이 길어지면 무한정 늘어나지 않고 내부 스크롤 */
+.form textarea {
+  max-height: 8rem;
+  overflow-y: auto;
 }
 
 .phoneError {
@@ -330,9 +351,8 @@
   }
 }
 .successIcon {
-  width: 3.5rem;
-  height: 3.5rem;
-  margin-bottom: 1.25rem;
+  width: 10rem;
+  height: 10rem;
   color: #2b7fff;
 }
 .successTitle {

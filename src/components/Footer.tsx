@@ -16,7 +16,7 @@ export default function Footer() {
               href="https://www.korhrdcorp.co.kr/"
               className={styles.linkItem}
             >
-              한평생교육
+              한평생그룹
             </Link>
             <Link
               target="_blank"
@@ -43,7 +43,7 @@ export default function Footer() {
               href="mailto:korhrdlicense@korhrdoffice.com"
               className={styles.linkItem}
             >
-              이메일: korhrdlicense@korhrdoffice.com
+              이메일: jinsoorin@korhrdcorp.co.kr
             </a>
           </div>
         </div>
@@ -51,7 +51,7 @@ export default function Footer() {
         <div className={styles.infoRow}>
           {/* 회사 텍스트 정보 */}
           <div className={styles.infoCol}>
-            <div className={styles.companyName}>(주)한평생교육</div>
+            <div className={styles.companyName}>(주)한평생그룹</div>
             <div>
               사업자등록번호 : 227-88-03196 | 직업평생교육시설신고 (제
               원격20-6호) | 대표: 양병웅
@@ -66,7 +66,7 @@ export default function Footer() {
               </Link>
             </div>
             <div className={styles.copyright}>
-              2025 © Eduvisors (KORHRD Partners). All rights reserved.
+              2025 © Eduvisors (KorhrdGroup). All rights reserved.
             </div>
           </div>
         </div>

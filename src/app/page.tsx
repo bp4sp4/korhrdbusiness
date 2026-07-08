@@ -1,5 +1,13 @@
 import type { Metadata } from "next";
-import HomePageClient from "@/components/main/HomePageClient";
+import HeroSection from "@/components/main/HeroSection";
+import ConcernSection from "@/components/main/ConcernSection";
+import PayoutBanner from "@/components/main/PayoutBanner";
+import ComparisonSection from "@/components/main/ComparisonSection";
+import JoinSection from "@/components/main/JoinSection";
+import SupportSection from "@/components/main/SupportSection";
+import JoinCtaSection from "@/components/main/JoinCtaSection";
+import FaqSection from "@/components/main/FaqSection";
+import InquirySection from "@/components/main/InquirySection";
 
 export const metadata: Metadata = {
   title: "에듀바이저스 | 한평생 에듀바이저스 - 당신의 커리어 성장 파트너",
@@ -59,5 +67,17 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  return <HomePageClient />;
+  return (
+    <main>
+      <HeroSection />
+      <ConcernSection />
+      <PayoutBanner />
+      <ComparisonSection />
+      <JoinSection />
+      <SupportSection />
+      <JoinCtaSection />
+      <FaqSection />
+      <InquirySection />
+    </main>
+  );
 }

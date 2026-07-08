@@ -1,0 +1,176 @@
+/* Pretendard (히어로 전용 로컬 로드 — main.css 의 전역 부작용 회피) */
+@font-face {
+  font-family: "Pretendard";
+  src: url("/fonts/Pretendard-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("/fonts/Pretendard-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("/fonts/Pretendard-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- 히어로 ---------- */
+.hero {
+  position: relative;
+  width: 100%;
+  /* Figma: 1236/1920 ≈ 0.644 → 화면 너비에 비례, 상·하한 지정 */
+  min-height: clamp(620px, 64vw, 1240px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bgImage {
+  object-fit: cover;
+  /* 인물이 잘리지 않게 조정 가능 — 필요 시 % 값 수정 */
+  object-position: center 30%;
+  z-index: 0;
+}
+
+/* 상단 파란 그라디언트 */
+.gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: clamp(360px, 33vw, 446px);
+  background: linear-gradient(
+    179deg,
+    #4c85ff 0.85%,
+    rgba(76, 133, 255, 0.54) 68.43%,
+    rgba(76, 133, 255, 0) 99.15%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ---------- 콘텐츠 ---------- */
+.content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+  width: 100%;
+  padding: 100px 20px 0;
+}
+
+.textGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.headline {
+  margin: 0;
+  color: #fff;
+  text-align: center;
+  font-family: "Pretendard", sans-serif;
+  font-size: clamp(28px, 3.6vw, 42px);
+  font-weight: 700;
+  line-height: 1.2; /* 120% */
+}
+
+.subtitle {
+  margin: 0;
+  color: #fff;
+  text-align: center;
+  font-family: "Pretendard", sans-serif;
+  font-size: clamp(15px, 1.5vw, 18px);
+  font-weight: 500;
+  line-height: 1.4; /* 140% */
+}
+
+/* ---------- 버튼 ---------- */
+.buttons {
+  display: flex;
+  width: 299px;
+  max-width: 100%;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.btn {
+  display: flex;
+  padding: 14px 22px;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  flex: 1 0 0;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: "Pretendard", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2; /* 120% */
+  white-space: nowrap;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.btnPrimary {
+  background: #0039b2; /* Atomic-Blue-700 */
+  color: #fff;
+}
+.btnPrimary:hover {
+  background: #002d8f;
+}
+
+.btnSecondary {
+  background: #fff;
+  color: #0039b2; /* Atomic-Blue-700 */
+}
+.btnSecondary:hover {
+  background: #eef2ff;
+}
+
+/* ---------- 모바일 ---------- */
+@media (max-width: 480px) {
+  .hero {
+    min-height: 650px;
+  }
+  .gradient {
+    height: 276px;
+  }
+  .content {
+    gap: 24px;
+    padding: 60px 16px 0;
+  }
+  .textGroup {
+    gap: 10px;
+  }
+  .headline {
+    font-size: 22px;
+    line-height: 140%;
+  }
+  .subtitle {
+    font-size: 14px;
+    line-height: 100%;
+  }
+  .buttons {
+    width: auto;
+    justify-content: center;
+  }
+  .btn {
+    flex: 0 0 auto;
+    padding: 10px 19px;
+    font-size: 14px;
+  }
+}

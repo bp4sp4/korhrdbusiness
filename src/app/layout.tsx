@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "../components/Header";
-import Footer from "../components/Footer";
+import ConditionalFooter from "../components/ConditionalFooter";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import ModalProvider from "@/providers/ModalProvider";
@@ -19,6 +19,11 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   title: "에듀바이저스 | 한평생 에듀바이저스 - 당신의 커리어 성장 파트너",
@@ -106,7 +111,7 @@ export default function RootLayout({
         <ModalProvider />
         <Header />
         {children}
-        <Footer />
+        <ConditionalFooter />
         <PopupManager />
         <ScrollToTop />
         <SpeedInsights />

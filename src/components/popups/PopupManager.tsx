@@ -39,19 +39,12 @@ export default function PopupManager({ onClose }: PopupManagerProps) {
   // 메인 페이지에서만 팝업 표시 (로그인 페이지 제외)
   const isLoginPage = pathname === "/admin/login";
 
-  // 오늘 하루 안보기 체크
-  const isDevelopment = process.env.NODE_ENV !== "production";
-
-  const devLog = (...args: unknown[]) => {
-    if (isDevelopment) {
-      console.log(...args);
-    }
+  // 디버그 로그 비활성화 (콘솔 노이즈 제거)
+  const devLog = (...args: unknown[]): void => {
+    void args;
   };
-
-  const devError = (...args: unknown[]) => {
-    if (isDevelopment) {
-      console.error(...args);
-    }
+  const devError = (...args: unknown[]): void => {
+    void args;
   };
 
   const shouldShowPopup = (popupId: string) => {
