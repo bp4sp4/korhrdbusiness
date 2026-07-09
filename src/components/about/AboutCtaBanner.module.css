@@ -106,19 +106,19 @@
 }
 
 .btnPrimary {
-  background: #0039b2; /* Atomic-Blue-400 */
+  background: #0051ff; /* Atomic-Blue-400 */
   color: #fff;
 }
 .btnPrimary:hover {
-  background: #1a56e0;
+  background: #0745d5;
 }
 
 .btnSecondary {
-  background: #e5edff; /* Atomic-Blue-50 */
+  background: #fff; /* Atomic-Blue-50 */
   color: #0051ff; /* Atomic-Blue-500 */
 }
 .btnSecondary:hover {
-  background: #d3e0ff;
+  background: #e5e5e5;
 }
 
 /* ---------- 모바일 (max-width: 768) — 세로형: 위 텍스트 / 아래 이미지 ---------- */
@@ -195,8 +195,9 @@
     padding: 10px 19px;
     font-size: 14px;
   }
-  /* 모바일 보조 버튼 글씨색 #2469FF */
+  /* 모바일 보조 버튼: 흰색 배경 + 파란 글씨 */
   .btnSecondary {
-    color: #2469ff;
+    background: #fff;
+    color: #0039b2;
   }
 }

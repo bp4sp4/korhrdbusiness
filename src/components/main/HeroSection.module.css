@@ -165,11 +165,11 @@
     line-height: 100%;
   }
   .buttons {
-    width: auto;
+    width: 100%;
     justify-content: center;
   }
   .btn {
-    flex: 0 0 auto;
+    flex: 1 0 0;
     padding: 10px 19px;
     font-size: 14px;
   }

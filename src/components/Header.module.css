@@ -32,7 +32,8 @@
     justify-content: space-between;
     padding: 18px;
   }
-  .logoImg {
+  /* 기본 .logoImg 규칙보다 우선하도록 선택자 특이성을 높인다 */
+  .logo .logoImg {
     width: 120px;
     height: 20px;
   }
