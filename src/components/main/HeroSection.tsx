@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styles from "./HeroSection.module.css";
 import { BrochureButton, PartnerButton } from "@/components/common/CtaButtons";
 
@@ -10,22 +9,18 @@ import { BrochureButton, PartnerButton } from "@/components/common/CtaButtons";
 export default function HeroSection() {
   return (
     <section className={styles.hero}>
-      {/* 배경 이미지 (데스크톱) */}
-      <Image
+      {/* 배경 이미지 (데스크톱) — 원본 그대로 (최적화 없이) */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
         src="/images/main/main01_low.png"
         alt=""
-        fill
-        priority
-        sizes="100vw"
         className={styles.bgImage}
       />
-      {/* 배경 이미지 (모바일) */}
-      <Image
+      {/* 배경 이미지 (모바일) — 원본 그대로 */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
         src="/images/main/main_moble_low.png"
         alt=""
-        fill
-        priority
-        sizes="100vw"
         className={styles.bgImageMobile}
       />
 
