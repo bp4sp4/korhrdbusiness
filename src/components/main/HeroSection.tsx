@@ -12,7 +12,7 @@ export default function HeroSection() {
     <section className={styles.hero}>
       {/* 배경 이미지 (데스크톱) */}
       <Image
-        src="/images/main/main01.png"
+        src="/images/main/main01_low.png"
         alt=""
         fill
         priority
@@ -21,7 +21,7 @@ export default function HeroSection() {
       />
       {/* 배경 이미지 (모바일) */}
       <Image
-        src="/images/main/main_moble.png"
+        src="/images/main/main_moble_low.png"
         alt=""
         fill
         priority
