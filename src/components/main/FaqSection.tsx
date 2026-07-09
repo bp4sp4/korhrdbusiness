@@ -68,11 +68,13 @@ export default function FaqSection() {
                   <ChevronIcon />
                 </span>
               </button>
-              {open && (
-                <div className={styles.body}>
-                  <p className={styles.answer}>{faq.a}</p>
+              <div className={`${styles.body} ${open ? styles.bodyOpen : ""}`}>
+                <div className={styles.bodyClip}>
+                  <div className={styles.bodyContent}>
+                    <p className={styles.answer}>{faq.a}</p>
+                  </div>
                 </div>
-              )}
+              </div>
             </div>
           );
         })}

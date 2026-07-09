@@ -50,6 +50,8 @@
   background: #fff;
   cursor: pointer;
   text-align: left;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .headerOpen {
@@ -77,14 +79,27 @@
   transform: rotate(180deg);
 }
 
-/* 답변 본문 */
+/* 답변 본문 — 높이 애니메이션(스르륵 열림/닫힘) */
 .body {
+  align-self: stretch;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.32s ease;
+}
+.bodyOpen {
+  grid-template-rows: 1fr;
+}
+.bodyClip {
+  min-height: 0;
+  overflow: hidden;
+}
+/* 실제 보이는 내용(테두리·배경·패딩) */
+.bodyContent {
   display: flex;
   padding: 20px;
   flex-direction: column;
   align-items: flex-start;
   gap: 14px;
-  align-self: stretch;
   border-radius: 0 0 10px 10px;
   border-right: 1px solid #e4e4e4;
   border-bottom: 1px solid #e4e4e4;

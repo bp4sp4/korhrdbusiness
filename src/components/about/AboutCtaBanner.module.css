@@ -106,7 +106,7 @@
 }
 
 .btnPrimary {
-  background: #0051ff; /* Atomic-Blue-400 */
+  background: #0039b2; /* Atomic-Blue-400 */
   color: #fff;
 }
 .btnPrimary:hover {
@@ -115,7 +115,7 @@
 
 .btnSecondary {
   background: #fff; /* Atomic-Blue-50 */
-  color: #0051ff; /* Atomic-Blue-500 */
+  color: #0039b2; /* Atomic-Blue-500 */
 }
 .btnSecondary:hover {
   background: #e5e5e5;
