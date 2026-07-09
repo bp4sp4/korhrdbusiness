@@ -130,7 +130,7 @@
   .btnPrimary {
     background: #0039b2;
     display: flex;
-    padding: 10px 19px;
+    padding: 12px 19px;
     justify-content: center;
     align-items: center;
     gap: 6px;
@@ -138,7 +138,7 @@
   }
   .btnSecondary {
     display: flex;
-    padding: 10px 19px;
+    padding: 12px 19px;
     justify-content: center;
     align-items: center;
     gap: 6px;
