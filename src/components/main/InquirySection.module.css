@@ -91,8 +91,13 @@
 /* ---------- 모바일 (max-width: 768) ---------- */
 @media (max-width: 768px) {
   .section {
-    padding: 160px 18px;
+    display: flex;
+    padding: 160px 32px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 32px;
+    align-self: stretch;
   }
   .textCol {
     gap: 16px;
@@ -109,6 +114,11 @@
     display: inline;
   }
   .buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    align-self: stretch;
     width: auto;
   }
   .btn {
@@ -119,8 +129,20 @@
   /* 모바일 버튼 컬러: #0039B2 (Atomic-Blue-700) */
   .btnPrimary {
     background: #0039b2;
+    display: flex;
+    padding: 10px 19px;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    flex: 1 0 0;
   }
   .btnSecondary {
+    display: flex;
+    padding: 10px 19px;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    flex: 1 0 0;
     background: #fff;
     color: #0039b2;
   }
