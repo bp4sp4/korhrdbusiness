@@ -4,20 +4,29 @@ import { BrochureButton, PartnerButton } from "@/components/common/CtaButtons";
 
 /**
  * 메인 상단 히어로 섹션 (신규 디자인)
- * - 배경: /images/main/main.jpg (cover)
+ * - 배경: /images/main/main01.jpg (cover)
  * - 상단 파란 그라디언트 위에 헤드라인 / 서브텍스트 / CTA 버튼 2개
  */
 export default function HeroSection() {
   return (
     <section className={styles.hero}>
-      {/* 배경 이미지 */}
+      {/* 배경 이미지 (데스크톱) */}
       <Image
-        src="/images/main/main.jpg"
+        src="/images/main/main01.png"
         alt=""
         fill
         priority
         sizes="100vw"
         className={styles.bgImage}
+      />
+      {/* 배경 이미지 (모바일) */}
+      <Image
+        src="/images/main/main_moble.png"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className={styles.bgImageMobile}
       />
 
       {/* 상단 파란 그라디언트 */}
