@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-07-09T07:20:30.955Z",
+  "lastUpdated": "2026-07-21T05:27:37.929Z",
   "activeFeatures": [
     "korhrdbusiness",
     "main",
@@ -15,7 +15,10 @@
     "slack",
     "[id]",
     "login",
-    "popups"
+    "popups",
+    "recruit",
+    "eduservice",
+    "addbranch"
   ],
   "primaryFeature": "korhrdbusiness",
   "features": {
@@ -28,9 +31,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-06-09T07:56:12.234Z",
-        "lastUpdated": "2026-07-08T07:54:53.458Z"
+        "lastUpdated": "2026-07-21T05:27:27.384Z"
       },
-      "lastFile": "/Users/korhrd/Documents/GitHub/korhrdbusiness/next.config.ts"
+      "lastFile": "/Users/korhrd/Documents/GitHub/korhrdbusiness/src/app/sitemap.ts"
     },
     "main": {
       "phase": "do",
@@ -200,6 +203,45 @@
         "lastUpdated": "2026-07-08T09:30:57.193Z"
       },
       "lastFile": "/Users/korhrd/Documents/GitHub/korhrdbusiness/src/components/popups/PopupManager.tsx"
+    },
+    "recruit": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-07-21T05:27:29.445Z",
+        "lastUpdated": "2026-07-21T05:27:29.445Z"
+      },
+      "lastFile": "/Users/korhrd/Documents/GitHub/korhrdbusiness/src/app/recruit/layout.tsx"
+    },
+    "eduservice": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-07-21T05:27:35.925Z",
+        "lastUpdated": "2026-07-21T05:27:35.925Z"
+      },
+      "lastFile": "/Users/korhrd/Documents/GitHub/korhrdbusiness/src/app/eduservice/page.tsx"
+    },
+    "addbranch": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-07-21T05:27:37.929Z",
+        "lastUpdated": "2026-07-21T05:27:37.929Z"
+      },
+      "lastFile": "/Users/korhrd/Documents/GitHub/korhrdbusiness/src/app/addbranch/page.tsx"
     }
   },
   "pipeline": {
@@ -210,7 +252,7 @@
   "session": {
     "startedAt": "2026-03-10T06:41:43.515Z",
     "onboardingCompleted": false,
-    "lastActivity": "2026-07-09T07:20:30.955Z"
+    "lastActivity": "2026-07-21T05:27:37.929Z"
   },
   "history": [
     {
@@ -1674,6 +1716,30 @@
     {
       "timestamp": "2026-07-09T07:20:30.955Z",
       "feature": "main",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-21T05:27:27.384Z",
+      "feature": "korhrdbusiness",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-21T05:27:29.445Z",
+      "feature": "recruit",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-21T05:27:35.925Z",
+      "feature": "eduservice",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-21T05:27:37.929Z",
+      "feature": "addbranch",
       "phase": "do",
       "action": "updated"
     }
