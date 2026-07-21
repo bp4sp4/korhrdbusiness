@@ -1,55 +1,21 @@
 import { MetadataRoute } from "next";
-import { supabase } from "@/lib/supabase";
-
-// 빌드 시점이 아니라 요청 시점에 생성 (DB 조회를 런타임에 수행)
-export const dynamic = "force-dynamic";
 
 const URL = "https://www.eduvisor.kr";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // 정적 페이지 경로
-  const staticRoutes = [
-    "/",
-    "/about",
-    "/eduservice",
-    "/recruit",
-    "/recruit/interview",
-    "/policy/privacy",
-    "/policy/terms",
-  ].map((route) => ({
-    url: `${URL}${route}`,
-    lastModified: new Date().toISOString(),
-    changeFrequency: "weekly" as const,
-    priority: route === "/" ? 1.0 : 0.8,
-  }));
-
-  // 동적 채용 공고 페이지 경로
-  const { data: jobs, error } = await supabase
-    .from("recruit_jobs")
-    .select("id");
-
-  if (error) {
-    return staticRoutes; // 에러 발생 시 정적 경로만 반환
-  }
-
-  const jobRoutes = jobs.map((job) => ({
-    url: `${URL}/recruit/${job.id}`,
-    lastModified: new Date().toISOString(),
-    changeFrequency: "weekly" as const,
-    priority: 0.7,
-  }));
-
-  // 인터뷰 페이지 경로 (정적으로 추가)
-  const interviewRoutes = [
-    "/recruit/interview/doyeon",
-    "/recruit/interview/eunhye",
-    "/recruit/interview/hanpyeongsaeng3",
-  ].map((route) => ({
-    url: `${URL}${route}`,
-    lastModified: new Date().toISOString(),
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
-  }));
-
-  return [...staticRoutes, ...jobRoutes, ...interviewRoutes];
+// 현재 운영 중인 페이지(홈, 소개)만 사이트맵에 포함
+export default function sitemap(): MetadataRoute.Sitemap {
+  return [
+    {
+      url: `${URL}/`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "weekly" as const,
+      priority: 1.0,
+    },
+    {
+      url: `${URL}/about`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    },
+  ];
 }

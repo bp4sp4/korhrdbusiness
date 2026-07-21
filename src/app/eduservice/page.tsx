@@ -3,6 +3,15 @@ import Link from "next/link";
 // import EduServicePageClient from "@/components/eduservice/EduServicePageClient";
 
 export const metadata: Metadata = {
+  // 현재 미사용 페이지 — 검색엔진 색인 제외
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+    },
+  },
   title: "에듀바이저스 | 한평생 에듀바이저스 교육 서비스",
   description:
     "에듀바이저스(한평생 에듀바이저스)의 직무 교육, 1:1 커리어 상담, 자격증 취득 지원, 유학 프로그램 등 전문적인 교육 서비스를 확인해보세요.",
