@@ -19,8 +19,14 @@
   font-size: 20px;
 }
 
-/* 접수 완료 화면 — 데스크탑에서 팝업 가로폭 축소
+/* 접수 완료 화면 — 높이는 내용에 맞추고(모바일 78vh 고정 해제), 데스크탑 가로폭 축소
  * (.successNarrow.successNarrow — 공용 .dialogContent 보다 우선하도록 특이도 상승) */
+.successNarrow.successNarrow {
+  height: auto;
+  max-height: 90vh;
+  width: min(350px, calc(100vw - 32px));
+}
+
 @media (min-width: 768px) {
   .successNarrow.successNarrow {
     width: 400px;
