@@ -115,7 +115,9 @@ const PartnerInquiryModal = () => {
   return (
     <Dialog open={isOpen} onOpenChange={closeModal}>
       <DialogContent
-        className={`${styles.dialogContent} ${pStyles.font14}`}
+        className={`${styles.dialogContent} ${
+          isSubmitted ? pStyles.successNarrow : ""
+        } ${pStyles.font14}`}
         onPointerDownOutside={(e) => e.preventDefault()}
         aria-describedby="partner-modal-desc"
       >
@@ -123,9 +125,13 @@ const PartnerInquiryModal = () => {
           파트너 문의 입력 폼입니다. 이름, 연락처, 컨설팅 컨텐츠, 현재상황,
           궁금한 내용을 입력하세요.
         </span>
-        <DialogHeader className={styles.header}>
-          <DialogTitle className={styles.title}>파트너 문의</DialogTitle>
-        </DialogHeader>
+        {!isSubmitted ? (
+          <DialogHeader className={styles.header}>
+            <DialogTitle className={styles.title}>파트너 문의</DialogTitle>
+          </DialogHeader>
+        ) : (
+          <DialogTitle className={styles.srOnly}>문의 접수 완료</DialogTitle>
+        )}
 
         {!isSubmitted ? (
           <form className={styles.form} onSubmit={handleSubmit}>

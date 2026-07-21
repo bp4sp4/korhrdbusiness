@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { useBrochureModal } from "@/store/useBrochureModal";
+import { usePartnerModal } from "@/store/usePartnerModal";
 import styles from "./PopupManager.module.css";
 
 interface Popup {
@@ -31,6 +33,23 @@ export default function PopupManager({ onClose }: PopupManagerProps) {
   const [loading, setLoading] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
   const pathname = usePathname();
+  const { openModal: openBrochureModal } = useBrochureModal();
+  const { openModal: openPartnerModal } = usePartnerModal();
+
+  // 링크 URL 특수값: #brochure → 소개서 받기 모달, #partner → 파트너 문의 모달
+  const handlePopupLink = (linkUrl: string) => {
+    if (linkUrl === "#brochure") {
+      setShowPopup(false);
+      openBrochureModal();
+      return;
+    }
+    if (linkUrl === "#partner") {
+      setShowPopup(false);
+      openPartnerModal();
+      return;
+    }
+    window.location.href = linkUrl;
+  };
 
   useEffect(() => {
     // 팝업은 메인 페이지에서만 표시되므로 다른 페이지에서는 API 호출 자체를 생략
@@ -214,9 +233,9 @@ export default function PopupManager({ onClose }: PopupManagerProps) {
           className={`${styles.popupContainer} ${currentPopup.link_url ? styles.clickable : ""}`}
           onClick={(e) => {
             e.stopPropagation();
-            // 링크가 있으면 클릭 시 이동
+            // 링크가 있으면 클릭 시 이동 (#brochure/#partner 는 모달 오픈)
             if (currentPopup.link_url) {
-              window.location.href = currentPopup.link_url;
+              handlePopupLink(currentPopup.link_url);
             }
           }}
           style={{

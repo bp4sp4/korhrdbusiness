@@ -13,6 +13,7 @@ import {
 import { useBrochureModal } from "@/store/useBrochureModal";
 import styles from "./CounselingModal.module.css";
 import pStyles from "./PartnerInquiryModal.module.css";
+import bStyles from "./BrochureModal.module.css";
 
 const initialForm = {
   name: "",
@@ -104,7 +105,9 @@ const BrochureModal = () => {
   return (
     <Dialog open={isOpen} onOpenChange={closeModal}>
       <DialogContent
-        className={`${styles.dialogContent} ${pStyles.font14}`}
+        className={`${styles.dialogContent} ${bStyles.compact} ${
+          isSubmitted ? bStyles.successNarrow : ""
+        } ${pStyles.font14}`}
         onPointerDownOutside={(e) => e.preventDefault()}
         aria-describedby="brochure-modal-desc"
       >
@@ -112,9 +115,13 @@ const BrochureModal = () => {
           소개서 받기 입력 폼입니다. 이름, 연락처, 이메일을 입력하시면 입력하신
           이메일로 소개서를 보내드립니다.
         </span>
-        <DialogHeader className={styles.header}>
-          <DialogTitle className={styles.title}>소개서 받기</DialogTitle>
-        </DialogHeader>
+        {!isSubmitted ? (
+          <DialogHeader className={styles.header}>
+            <DialogTitle className={styles.title}>소개서 받기</DialogTitle>
+          </DialogHeader>
+        ) : (
+          <DialogTitle className={styles.srOnly}>소개서 발송 완료</DialogTitle>
+        )}
 
         {!isSubmitted ? (
           <form className={styles.form} onSubmit={handleSubmit}>

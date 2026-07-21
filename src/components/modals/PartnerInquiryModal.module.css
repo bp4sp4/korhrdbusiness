@@ -18,3 +18,12 @@
 .font14 h2 {
   font-size: 20px;
 }
+
+/* 접수 완료 화면 — 데스크탑에서 팝업 가로폭 축소
+ * (.successNarrow.successNarrow — 공용 .dialogContent 보다 우선하도록 특이도 상승) */
+@media (min-width: 768px) {
+  .successNarrow.successNarrow {
+    width: 400px;
+    max-width: 400px;
+  }
+}

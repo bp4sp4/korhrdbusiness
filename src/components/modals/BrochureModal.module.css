@@ -1,0 +1,25 @@
+/* BrochureModal — CounselingModal.module.css 위에 얹는 오버라이드.
+ * 상담 모달은 모바일에서 height: 78vh 고정이지만, 소개서 폼은 필드가 3개뿐이라
+ * 내용 높이에 맞춘다. (.compact.compact — 공용 .dialogContent 보다 우선하도록 특이도 상승)
+ */
+
+.compact.compact {
+  height: auto;
+  max-height: 90vh;
+  width: min(350px, calc(100vw - 32px));
+}
+
+@media (min-width: 768px) {
+  .compact.compact {
+    width: 500px;
+    max-height: 85vh;
+  }
+}
+
+/* 발송 완료 화면 — 데스크탑에서 팝업 가로폭 축소 (.compact 뒤에 선언해 우선 적용) */
+@media (min-width: 768px) {
+  .successNarrow.successNarrow {
+    width: 400px;
+    max-width: 400px;
+  }
+}

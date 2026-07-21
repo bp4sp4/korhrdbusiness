@@ -585,9 +585,10 @@ export default function PopupsPage() {
                     <label htmlFor="link_url" className={pageStyles.label}>
                       링크 URL (선택사항)
                     </label>
+                    {/* #brochure/#partner 같은 특수값도 허용해야 하므로 type="url" 대신 text */}
                     <input
                       id="link_url"
-                      type="url"
+                      type="text"
                       className={pageStyles.input}
                       value={formData.link_url}
                       onChange={(e) =>
@@ -599,7 +600,8 @@ export default function PopupsPage() {
                       placeholder="https://example.com 또는 /recruit 등"
                     />
                     <small style={{ color: "#6b7280", fontSize: "0.875rem", marginTop: "0.25rem", display: "block" }}>
-                      팝업 클릭 시 이동할 URL을 입력하세요
+                      팝업 클릭 시 이동할 URL을 입력하세요 (#brochure: 소개서
+                      받기 팝업, #partner: 파트너 문의 팝업)
                     </small>
                   </div>
 
