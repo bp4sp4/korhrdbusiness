@@ -21,7 +21,14 @@ function getSupabaseAdmin() {
 }
 
 // 팝업 목록 조회 (공개)
-export async function GET() {
+// - 기본: 활성 팝업만 + CDN 캐시 (메인 페이지 팝업 표시용 — 빠른 응답)
+// - ?admin=1: 전체 팝업 + 캐시 없음 (관리자 목록용 — 수정 즉시 반영)
+export async function GET(request: NextRequest) {
+  const isAdminList = request.nextUrl.searchParams.get("admin") === "1";
+  // 공개 응답은 CDN에 2분 캐시, 만료 후 10분간은 기존 응답을 먼저 주고 백그라운드 갱신
+  const cacheHeaders: Record<string, string> = isAdminList
+    ? { "Cache-Control": "no-store" }
+    : { "Cache-Control": "public, s-maxage=120, stale-while-revalidate=600" };
   try {
     logger.log("팝업 API GET 요청 수신");
     
@@ -46,11 +53,15 @@ export async function GET() {
     }
 
     const supabaseAdmin = getSupabaseAdmin();
-    const { data: popups, error } = await supabaseAdmin
+    let query = supabaseAdmin
       .from("popups")
       .select("*")
       .order("display_order", { ascending: true })
       .order("created_at", { ascending: false });
+    if (!isAdminList) {
+      query = query.eq("is_active", true);
+    }
+    const { data: popups, error } = await query;
 
     if (error) {
       logger.error("팝업 조회 오류:", error);
@@ -69,7 +80,10 @@ export async function GET() {
       );
     }
 
-    return NextResponse.json({ popups: popups || [] });
+    return NextResponse.json(
+      { popups: popups || [] },
+      { headers: cacheHeaders },
+    );
   } catch (error) {
     logger.error("팝업 조회 오류:", error);
     return NextResponse.json(

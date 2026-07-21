@@ -8,6 +8,7 @@ const ACCENT = "#2b50c4";
 
 const menuItems = [
   { href: "/admin/partner-inquiries", label: "파트너 문의" },
+  { href: "/admin/brochure-requests", label: "소개서 요청" },
   { href: "/admin/popups", label: "팝업 관리" },
   { href: "/admin/recruit-applications", label: "설계사 지원자 관리" },
   { href: "/admin/consultations", label: "상담신청내역" },

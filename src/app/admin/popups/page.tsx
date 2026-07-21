@@ -67,7 +67,10 @@ export default function PopupsPage() {
 
   const loadPopups = async () => {
     try {
-      const response = await fetch("/api/popups");
+      // 관리자 목록: 비활성 팝업 포함 + CDN 캐시 우회 (수정 즉시 반영)
+      const response = await fetch("/api/popups?admin=1", {
+        cache: "no-store",
+      });
       const data = await response.json();
       setPopups(data.popups || []);
     } catch (error) {

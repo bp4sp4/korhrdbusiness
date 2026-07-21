@@ -12,7 +12,7 @@ export const runtime = "nodejs";
 export const maxDuration = 60;
 
 const SITE_URL = "https://www.eduvisor.kr";
-const SENDER_NAME = "한평생 에듀바이저스";
+const SENDER_NAME = "에듀바이저스";
 
 const isValidPhone = (phone: string) =>
   /^(010\d{8}|011\d{7,8})$/.test(phone.replace(/\D/g, ""));
@@ -33,7 +33,8 @@ function buildMailHtml(name: string, viewUrl: string) {
   <div style="margin:0;padding:32px 16px;background-color:#f4f6f9;font-family:'Apple SD Gothic Neo','Malgun Gothic',sans-serif;">
     <div style="max-width:560px;margin:0 auto;background-color:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #e5e9f0;">
       <div style="padding:32px 32px 24px;border-bottom:1px solid #eef1f5;">
-        <p style="margin:0;font-size:14px;color:#3b82f6;font-weight:700;">Eduvisors</p>
+        <img src="${SITE_URL}/images/logo-full.png" alt="에듀바이저스" width="110" height="28"
+          style="display:block;border:0;" />
         <h1 style="margin:12px 0 0;font-size:22px;line-height:1.4;color:#111827;">
           ${safeName}님, 요청하신<br/>에듀바이저스 소개서를 보내드려요
         </h1>
@@ -54,7 +55,7 @@ function buildMailHtml(name: string, viewUrl: string) {
       </div>
       <div style="padding:20px 32px;background-color:#f9fafb;border-top:1px solid #eef1f5;">
         <p style="margin:0;font-size:12px;color:#9ca3af;line-height:1.6;">
-          한평생 에듀바이저스 · 본 메일은 소개서 요청에 따라 발송되었습니다.
+          에듀바이저스 · 본 메일은 소개서 요청에 따라 발송되었습니다.
         </p>
       </div>
     </div>
@@ -105,14 +106,20 @@ async function sendSlackNotification(data: {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json().catch(() => null);
-    const name = String(body?.name ?? "").trim().slice(0, 50);
-    const phone = String(body?.phone ?? "").trim().slice(0, 20);
-    const email = String(body?.email ?? "").trim().slice(0, 100);
+    const name = String(body?.name ?? "")
+      .trim()
+      .slice(0, 50);
+    const phone = String(body?.phone ?? "")
+      .trim()
+      .slice(0, 20);
+    const email = String(body?.email ?? "")
+      .trim()
+      .slice(0, 100);
 
     if (!name || !isValidPhone(phone) || !isValidEmail(email)) {
       return NextResponse.json(
         { success: false, error: "이름/연락처/이메일을 확인해주세요." },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -125,7 +132,7 @@ export async function POST(request: NextRequest) {
       console.error("❌ 소개서 발송 환경변수가 설정되지 않았습니다.");
       return NextResponse.json(
         { success: false, error: "서버 설정 오류입니다." },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -145,7 +152,7 @@ export async function POST(request: NextRequest) {
       console.error("❌ brochure_requests insert 실패:", insertError);
       return NextResponse.json(
         { success: false, error: "접수 저장에 실패했습니다." },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -176,8 +183,11 @@ export async function POST(request: NextRequest) {
         .update({ mail_status: "failed" })
         .eq("id", row.id);
       return NextResponse.json(
-        { success: false, error: "메일 발송에 실패했습니다. 다시 시도해주세요." },
-        { status: 500 }
+        {
+          success: false,
+          error: "메일 발송에 실패했습니다. 다시 시도해주세요.",
+        },
+        { status: 500 },
       );
     }
 
@@ -199,7 +209,7 @@ export async function POST(request: NextRequest) {
     const message = error instanceof Error ? error.message : "알 수 없는 오류";
     return NextResponse.json(
       { success: false, error: message },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

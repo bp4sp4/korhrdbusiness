@@ -215,7 +215,7 @@ const BrochureModal = () => {
               transition={{ delay: 0.1, type: "spring", stiffness: 200 }}
             >
               <img
-                src="/complete-check.png"
+                src="/images/mail-sent.png"
                 alt="소개서 발송 완료"
                 className={styles.successIcon}
                 style={{ objectFit: "contain" }}

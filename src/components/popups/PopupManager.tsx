@@ -33,7 +33,14 @@ export default function PopupManager({ onClose }: PopupManagerProps) {
   const pathname = usePathname();
 
   useEffect(() => {
+    // 팝업은 메인 페이지에서만 표시되므로 다른 페이지에서는 API 호출 자체를 생략
+    if (pathname !== "/") {
+      setShowPopup(false);
+      setLoading(false);
+      return;
+    }
     loadActivePopups();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   // 메인 페이지에서만 팝업 표시 (로그인 페이지 제외)
