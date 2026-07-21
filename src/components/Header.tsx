@@ -6,7 +6,7 @@ import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import { usePartnerModal } from "@/store/usePartnerModal";
-import { BROCHURE_MESSAGE } from "@/components/common/CtaButtons";
+import { useBrochureModal } from "@/store/useBrochureModal";
 import styles from "./Header.module.css";
 
 export default function Header() {
@@ -14,6 +14,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
   const { openModal: openPartnerModal } = usePartnerModal();
+  const { openModal: openBrochureModal } = useBrochureModal();
   const [isMounted, setIsMounted] = useState(false);
   const menuListRef = useRef<HTMLDivElement>(null);
   const [menuHeight, setMenuHeight] = useState(0);
@@ -85,10 +86,9 @@ export default function Header() {
     setMenuOpen(false);
   };
 
-  // 소개서 받기: 준비중 안내 후 파트너 문의 모달 오픈
+  // 소개서 받기: 이름/연락처/이메일 입력 모달 오픈
   const handleBrochure = () => {
-    alert(BROCHURE_MESSAGE);
-    openPartnerModal();
+    openBrochureModal();
     setMenuOpen(false);
   };
 

@@ -2,24 +2,18 @@
 
 import type { ReactNode } from "react";
 import { usePartnerModal } from "@/store/usePartnerModal";
-
-export const BROCHURE_MESSAGE =
-  "소개서는 현재 준비 중입니다.\n궁금한 점이 있으시면 파트너 문의를 남겨주세요.";
+import { useBrochureModal } from "@/store/useBrochureModal";
 
 type Props = {
   className?: string;
   children?: ReactNode;
 };
 
-/** 소개서 받기 — 준비중 안내 후 파트너 문의 모달 오픈 */
+/** 소개서 받기 — 이름/연락처/이메일 입력 후 이메일로 소개서 발송 */
 export function BrochureButton({ className, children }: Props) {
-  const { openModal } = usePartnerModal();
-  const handleClick = () => {
-    alert(BROCHURE_MESSAGE);
-    openModal();
-  };
+  const { openModal } = useBrochureModal();
   return (
-    <button type="button" className={className} onClick={handleClick}>
+    <button type="button" className={className} onClick={openModal}>
       {children ?? "소개서 받기"}
     </button>
   );
