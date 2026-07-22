@@ -216,18 +216,12 @@ const BrochureModal = () => {
             animate={{ opacity: 1 }}
             className={styles.successWrap}
           >
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.1, type: "spring", stiffness: 200 }}
-            >
-              <img
-                src="/images/mail-sent.png"
-                alt="소개서 발송 완료"
-                className={styles.successIcon}
-                style={{ objectFit: "contain" }}
-              />
-            </motion.div>
+            <img
+              src="/images/mail-sent.png"
+              alt="소개서 발송 완료"
+              className={styles.successIcon}
+              style={{ objectFit: "contain" }}
+            />
             <h3 className={styles.successTitle}>소개서를 보내드렸어요</h3>
             <p className={styles.successDesc}>
               입력하신 이메일에서 소개서 열람 버튼을 눌러 확인해주세요.

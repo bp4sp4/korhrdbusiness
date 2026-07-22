@@ -251,18 +251,12 @@ const PartnerInquiryModal = () => {
             animate={{ opacity: 1 }}
             className={styles.successWrap}
           >
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.1, type: "spring", stiffness: 200 }}
-            >
-              <img
-                src="/complete-check.png"
-                alt="문의 접수 완료"
-                className={styles.successIcon}
-                style={{ objectFit: "contain" }}
-              />
-            </motion.div>
+            <img
+              src="/complete-check.png"
+              alt="문의 접수 완료"
+              className={styles.successIcon}
+              style={{ objectFit: "contain" }}
+            />
             <h3 className={styles.successTitle}>문의가 접수되었어요</h3>
             <p className={styles.successDesc}>
               담당자가 확인 후 빠르게 연락드릴게요.
