@@ -13,13 +13,6 @@ export default function Footer() {
             <div className={styles.colHeading}>회사</div>
             <Link
               target="_blank"
-              href="https://www.korhrdcorp.co.kr/"
-              className={styles.linkItem}
-            >
-              한평생그룹
-            </Link>
-            <Link
-              target="_blank"
               href="https://korhrd.co.kr/"
               className={styles.linkItem}
             >
