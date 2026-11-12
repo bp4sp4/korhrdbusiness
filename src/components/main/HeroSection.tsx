@@ -3,7 +3,7 @@ import { BrochureButton, PartnerButton } from "@/components/common/CtaButtons";
 
 /**
  * 메인 상단 히어로 섹션 (신규 디자인)
- * - 배경: /images/main/main01.jpg (cover)
+ * - 배경: /images/main/main_hero_wide.webp (데스크톱) / main_hero.webp (모바일), cover
  * - 상단 파란 그라디언트 위에 헤드라인 / 서브텍스트 / CTA 버튼 2개
  */
 export default function HeroSection() {
@@ -12,14 +12,14 @@ export default function HeroSection() {
       {/* 배경 이미지 (데스크톱) — 원본 그대로 (최적화 없이) */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/images/main/main01_low.png"
+        src="/images/main/main_hero_wide.webp"
         alt=""
         className={styles.bgImage}
       />
       {/* 배경 이미지 (모바일) — 원본 그대로 */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/images/main/main_moble_low.png"
+        src="/images/main/main_hero.webp"
         alt=""
         className={styles.bgImageMobile}
       />
