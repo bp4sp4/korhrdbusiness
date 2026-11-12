@@ -69,7 +69,10 @@ export default function Header() {
   // 헤더 높이 측정 → fixed 헤더 아래 스페이서 높이로 사용
   useEffect(() => {
     const measure = () => {
-      if (headerRef.current) setHeaderH(headerRef.current.offsetHeight);
+      // offsetHeight 는 정수로 반올림돼 실제 높이(예: 79.6px)와 어긋나면
+      // 헤더와 본문 사이에 흰 줄이 보인다 → 소수점까지 측정
+      if (headerRef.current)
+        setHeaderH(headerRef.current.getBoundingClientRect().height);
     };
     measure();
     window.addEventListener("resize", measure);
